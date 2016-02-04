@@ -21,7 +21,7 @@
             {
                 case WatermarkVisibleWhen.Empty:
                     return textBox.Text == "" ? Visibility.Visible : Visibility.Collapsed;
-                case WatermarkVisibleWhen.NotKeyboardFocused:
+                case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
                     return textBox.IsKeyboardFocused ? Visibility.Collapsed : Visibility.Visible;
                 default:
                     throw new ArgumentOutOfRangeException();

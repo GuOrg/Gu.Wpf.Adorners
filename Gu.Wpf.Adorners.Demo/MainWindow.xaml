@@ -1,15 +1,19 @@
 ﻿<Window x:Class="Gu.Wpf.Adorners.Demo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
         xmlns:adorners="clr-namespace:Gu.Wpf.Adorners;assembly=Gu.Wpf.Adorners"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <StackPanel>
-            <TextBox adorners:Watermark.Text="Meh"></TextBox>
-        </StackPanel>
-    </Grid>
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="MainWindow"
+        mc:Ignorable="d">
+    <TabControl>
+        <TabItem Header="Watermark">
+            <local:WatermarkView />
+        </TabItem>
+
+        <TabItem Header="Watermark">
+            <TextBlock Text="placeholder" />
+        </TabItem>
+    </TabControl>
 </Window>

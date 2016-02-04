@@ -1,6 +1,8 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System;
+    using System.Collections;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -11,10 +13,12 @@
     {
         private readonly TextBlock child;
         public static readonly DependencyProperty TextStyleProperty = DependencyProperty.Register(
-            "TextStyle", 
-            typeof (Style),
-            typeof (WatermarkAdorner),
-            new PropertyMetadata(default(Style)), OnValidateTextStyle);
+            "TextStyle",
+            typeof(Style),
+            typeof(WatermarkAdorner),
+            new PropertyMetadata(default(Style), OnTextStyleChanged), OnValidateTextStyle);
+
+        private readonly WeakReference<FrameworkElement> textViewRef = new WeakReference<FrameworkElement>(null);
 
         static WatermarkAdorner()
         {
@@ -29,10 +33,23 @@
                 Focusable = false,
             };
 
-            textBlock.Bind(TextBlock.TextProperty)
-                     .OneWayTo(textBox, Watermark.TextProperty);
-
             this.child = textBlock;
+            this.AddVisualChild(this.child);
+            this.AddLogicalChild(this.child);
+        }
+
+        public string Text
+        {
+            get { return this.child.Text; }
+            set
+            {
+                if (child.Text == value)
+                {
+                    return;
+                }
+
+                child.Text = value;
+            }
         }
 
         public Style TextStyle
@@ -41,7 +58,33 @@
             set { this.SetValue(TextStyleProperty, value); }
         }
 
-        public new TextBoxBase AdornedElement => (TextBoxBase) base.AdornedElement;
+        public new TextBoxBase AdornedElement => (TextBoxBase)base.AdornedElement;
+
+        protected override IEnumerator LogicalChildren => new SingleChildEnumerator(this.child);
+
+        protected FrameworkElement TextView
+        {
+            get
+            {
+                FrameworkElement textView;
+                if (this.textViewRef.TryGetTarget(out textView))
+                {
+                    return textView;
+                }
+                textView = (FrameworkElement)AdornedElement.NestedChildren()
+                    .OfType<ScrollContentPresenter>()
+                    .SingleOrDefault()
+                    ?.VisualChildren()
+                    .OfType<IScrollInfo>()
+                    .SingleOrDefault();
+                if (textView != null)
+                {
+                    textViewRef.SetTarget(textView);
+                }
+
+                return textView;
+            }
+        }
 
         protected override int VisualChildrenCount => 1;
 
@@ -57,15 +100,36 @@
 
         protected override Size MeasureOverride(Size constraint)
         {
-            this.child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            return this.child.DesiredSize;
+            var desiredSize = AdornedElement.RenderSize;
+            child.Measure(desiredSize);
+            return desiredSize;
         }
 
         protected override Size ArrangeOverride(Size size)
         {
-            var finalSize = base.ArrangeOverride(size);
-            this.child.Arrange(new Rect(new Point(0, 0), finalSize));
-            return finalSize;
+            var view = TextView;
+            if (view != null)
+            {
+                var aSize = AdornedElement.RenderSize;
+                var wSize = view.RenderSize;
+                var x = (aSize.Width - wSize.Width) / 2;
+                var y = (aSize.Height - wSize.Height) / 2;
+                var location = new Point(x, y);
+                this.child.Arrange(new Rect(location, wSize));
+            }
+            else
+            {
+                this.child.Arrange(new Rect(new Point(0, 0), size));
+            }
+            return size;
+        }
+
+        private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var adorner = (WatermarkAdorner)d;
+            adorner.child.Style = (Style)e.NewValue;
+            adorner.InvalidateMeasure();
+            adorner.InvalidateVisual();
         }
 
         private static bool OnValidateTextStyle(object value)

@@ -3,6 +3,6 @@
     public enum WatermarkVisibleWhen
     {
         Empty,
-        NotKeyboardFocused
+        EmptyAndNotKeyboardFocused
     }
 }
