@@ -33,10 +33,11 @@
             {
                 Focusable = false,
             };
-
             this.child = textBlock;
             this.AddVisualChild(this.child);
             this.AddLogicalChild(this.child);
+            this.child.Bind(StyleProperty)
+                .OneWayTo(this, TextStyleProperty);
         }
 
         public string Text
@@ -127,8 +128,8 @@
 
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var adorner = (WatermarkAdorner)d;
-            adorner.child.SetCurrentValue(FrameworkElement.StyleProperty, e.NewValue);
+            //var adorner = (WatermarkAdorner)d;
+            //adorner.child.SetCurrentValue(FrameworkElement.StyleProperty, e.NewValue);
             //AdornerService.Remove(adorner);
             //AdornerService.Show(adorner);
             //adorner.InvalidateMeasure();

@@ -15,7 +15,7 @@ namespace Gu.Wpf.Adorners
             return new BindingBuilder(target, targetProperty);
         }
 
-        internal static BindingExpression Bind(
+        private static BindingExpression Bind(
             DependencyObject target,
             DependencyProperty targetProperty,
             object source,

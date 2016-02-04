@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:Gu.Wpf.Adorners">
     <Style TargetType="{x:Type local:WatermarkAdorner}">
         <Setter Property="IsHitTestVisible" Value="False" />
-        <Setter Property="Opacity" Value="0.5" />
+        <!--<Setter Property="Opacity" Value="0.5" />-->
         <Setter Property="Focusable" Value="False" />
         <Setter Property="TextElement.FontFamily" Value="{Binding AdornedTextBox.FontFamily, RelativeSource={RelativeSource Self}}" />
         <Setter Property="TextElement.FontStyle" Value="{Binding AdornedTextBox.FontStyle, RelativeSource={RelativeSource Self}}" />
@@ -14,12 +14,17 @@
         <!--<Setter Property="TextElement.Background" Value="{Binding AdornedTextBox.Background, RelativeSource ={ RelativeSource Self}}" />-->
         <Setter Property="TextElement.TextEffects" Value="{Binding Path=(TextElement.TextEffects), RelativeSource ={RelativeSource Self}}" />
         
-        <!--<Setter Property="TextStyle">
+        <Setter Property="TextStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Opacity" Value="0.5" />
                     <Setter Property="FontStyle" Value="Oblique" />
                 </Style>
             </Setter.Value>
-        </Setter>-->
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:ContentAdorner}">
+        
     </Style>
 </ResourceDictionary>
