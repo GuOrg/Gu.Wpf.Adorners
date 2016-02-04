@@ -53,6 +53,7 @@
     <Compile Include="Converters\WatermarkTextBlockMarginConverter.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\SingleChildEnumerator.cs" />
+    <Compile Include="Internals\Visible.cs" />
     <Compile Include="Internals\VisualTreeHelperExt.cs" />
     <Compile Include="Watermark.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />

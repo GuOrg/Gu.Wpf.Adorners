@@ -12,11 +12,12 @@
     public class WatermarkAdorner : Adorner
     {
         private readonly TextBlock child;
-        public static readonly DependencyProperty TextStyleProperty = DependencyProperty.Register(
-            "TextStyle",
-            typeof(Style),
+        public static readonly DependencyProperty TextStyleProperty = Watermark.TextStyleProperty.AddOwner(
             typeof(WatermarkAdorner),
-            new PropertyMetadata(default(Style), OnTextStyleChanged), OnValidateTextStyle);
+            new FrameworkPropertyMetadata(
+                default(Style),
+                FrameworkPropertyMetadataOptions.Inherits,
+                OnTextStyleChanged));
 
         private readonly WeakReference<FrameworkElement> textViewRef = new WeakReference<FrameworkElement>(null);
 
@@ -130,12 +131,6 @@
             adorner.child.Style = (Style)e.NewValue;
             adorner.InvalidateMeasure();
             adorner.InvalidateVisual();
-        }
-
-        private static bool OnValidateTextStyle(object value)
-        {
-            var style = (Style)value;
-            return style == null || style.TargetType == typeof(TextBlock);
         }
     }
 }

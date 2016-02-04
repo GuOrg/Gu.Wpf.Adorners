@@ -7,34 +7,55 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <!--<Style TargetType="{x:Type adorners:WatermarkAdorner}">
+        <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Green" />
+        </Style>
+
+        <Style TargetType="{x:Type adorners:WatermarkAdorner}">
             <Setter Property="TextElement.Foreground" Value="HotPink" />
-            <Setter Property="TextStyle">
-                <Setter.Value>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Foreground" Value="Green" />
-                    </Style>
-                </Setter.Value>
-            </Setter>
-        </Style>-->
+            <Setter Property="TextStyle" Value="{StaticResource AdornerTextStyle}" />
+        </Style>
     </UserControl.Resources>
     <StackPanel>
         <StackPanel>
-            <TextBlock Text="Bound text"></TextBlock>
-            <TextBox adorners:Watermark.Text="{Binding Text,
-                                                   ElementName=AdornerText}" />
+            <TextBlock Text="Bound text" />
+            <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
             <TextBox x:Name="AdornerText" Text="AAA" />
         </StackPanel>
 
         <StackPanel>
-            <TextBlock Text="Fontsize"></TextBlock>
+            <TextBlock Text="Fontsize" />
             <TextBox FontSize="24" adorners:Watermark.Text="Foo" />
         </StackPanel>
 
+        <StackPanel>
+            <TextBlock Text="Explicit style" />
+            <TextBox adorners:Watermark.Text="Foo" adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
+        </StackPanel>
+
+        <StackPanel adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}">
+            <TextBlock Text="Explicit style" />
+            <TextBox adorners:Watermark.Text="Foo" />
+        </StackPanel>
+
         <StackPanel adorners:Watermark.Text="Inherit">
-            <TextBlock Text="Inherits"></TextBlock>
-            <TextBox  />
-            <TextBox  />
+            <TextBlock Text="Inherits" />
+            <TextBox />
+            <TextBox />
+        </StackPanel>
+
+        <StackPanel adorners:Watermark.VisibleWhen="Empty"
+                    adorners:Watermark.Text="visible when empty">
+            <TextBlock Text="VisibleWhen=Empty" />
+            <TextBox />
+            <TextBox />
+        </StackPanel>
+
+        <StackPanel adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused"
+                    adorners:Watermark.Text="visible when not keyboard focused">
+            <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+            <TextBox />
+            <TextBox />
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -32,8 +32,8 @@ namespace Gu.Wpf.Adorners
             typeof(Watermark),
             new FrameworkPropertyMetadata(
                 default(Style),
-                FrameworkPropertyMetadataOptions.Inherits,
-                OnTextStyleChanged));
+                FrameworkPropertyMetadataOptions.Inherits),
+            OnValidateTextStyle);
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
@@ -43,6 +43,8 @@ namespace Gu.Wpf.Adorners
 
         static Watermark()
         {
+            EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
+            EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.GotKeyboardFocusEvent, new RoutedEventHandler(OnGotKeyboardFocus));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.LostKeyboardFocusEvent, new RoutedEventHandler(OnLostKeyboardFocus));
             EventManager.RegisterClassHandler(typeof(TextBox), TextBoxBase.TextChangedEvent, new RoutedEventHandler(OnTextChanged));
@@ -135,17 +137,23 @@ namespace Gu.Wpf.Adorners
 
         private static void OnVisibleWhenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            UpdateWatermarkVisibility(d as TextBox);
         }
 
-        private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static bool OnValidateTextStyle(object value)
         {
-            var textBoxBase = d as TextBoxBase;
-            var adorner = textBoxBase?.GetAdorner();
-            if (adorner != null)
-            {
-                adorner.TextStyle = (Style)e.NewValue;
-            }
+            var style = (Style)value;
+            return style == null || typeof(TextBlock).IsAssignableFrom(style.TargetType);
+        }
+
+        private static void OnSizeChanged(object sender, RoutedEventArgs e)
+        {
+            UpdateWatermarkVisibility((TextBox)sender);
+        }
+
+        private static void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            UpdateWatermarkVisibility((TextBox)sender);
         }
 
         private static void OnGotKeyboardFocus(object sender, RoutedEventArgs e)
@@ -165,7 +173,7 @@ namespace Gu.Wpf.Adorners
 
         private static void UpdateWatermarkVisibility(TextBox textBox)
         {
-            var adorner = textBox.GetAdorner();
+            var adorner = textBox?.GetAdorner();
             if (adorner == null)
             {
                 return;
