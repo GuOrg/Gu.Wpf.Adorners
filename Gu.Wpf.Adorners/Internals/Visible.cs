@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System.Windows;
+    using System.Windows.Data;
 
     internal static class Visible
     {
@@ -10,33 +11,26 @@
             typeof(RoutedEventHandler),
             typeof(Visible));
 
-        private static readonly DependencyProperty TrackerProperty = DependencyProperty.RegisterAttached(
-            "Tracker",
-            typeof(VisibilityTracker),
+        private static readonly DependencyProperty IsVisibleProxyProperty = DependencyProperty.RegisterAttached(
+            "IsVisibleProxy",
+            typeof(bool?),
             typeof(Visible),
-            new PropertyMetadata(default(VisibilityTracker)));
+            new PropertyMetadata(default(bool?), OnIsVisibleChanged));
 
         private static readonly RoutedEventArgs IsVisibleChangedEventArgs = new RoutedEventArgs(Visible.IsVisibleChangedEvent);
 
-        internal static void Track(FrameworkElement e)
+        internal static void Track(UIElement e)
         {
-            if (e.GetValue(TrackerProperty) == null)
+            if (BindingOperations.GetBindingExpression(e, IsVisibleProxyProperty) == null)
             {
-                e.SetValue(TrackerProperty, new VisibilityTracker(e));
+                e.Bind(IsVisibleProxyProperty)
+                 .OneWayTo(e, UIElement.IsVisibleProperty);
             }
         }
 
-        private class VisibilityTracker
+        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            public VisibilityTracker(FrameworkElement e)
-            {
-                e.IsVisibleChanged += OnIsVisibleChanged;
-            }
-
-            private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-            {
-                ((FrameworkElement)sender).RaiseEvent(IsVisibleChangedEventArgs);
-            }
+            ((UIElement)d).RaiseEvent(IsVisibleChangedEventArgs);
         }
     }
 }

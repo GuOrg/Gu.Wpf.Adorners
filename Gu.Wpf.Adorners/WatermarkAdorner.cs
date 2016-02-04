@@ -128,7 +128,7 @@
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var adorner = (WatermarkAdorner)d;
-            adorner.child.Style = (Style)e.NewValue;
+            adorner.child.SetCurrentValue(FrameworkElement.StyleProperty, e.NewValue);
             adorner.InvalidateMeasure();
             adorner.InvalidateVisual();
         }
