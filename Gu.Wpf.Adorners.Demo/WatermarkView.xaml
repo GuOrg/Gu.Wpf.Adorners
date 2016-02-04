@@ -24,18 +24,18 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <!--<TextBlock Text="Bound text" />
+        <TextBlock Text="Bound text" />
         <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
         <TextBox x:Name="AdornerText" Text="AAA" />
 
         <TextBlock Text="Fontsize" />
-        <TextBox FontSize="24" adorners:Watermark.Text="Foo" />-->
+        <TextBox FontSize="24" adorners:Watermark.Text="Foo" />
 
         <TextBlock Text="Explicit style" />
         <TextBox adorners:Watermark.Text="Explicit style" 
                  adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
 
-        <!--<GroupBox Header="Inherited style"
+        <GroupBox Header="Inherited style"
                   adorners:Watermark.Text="Inherited style"
                   adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}">
             <StackPanel>
@@ -44,7 +44,8 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Header="Inherited text" adorners:Watermark.Text="Inherit">
+        <GroupBox Header="Inherited text" 
+                  adorners:Watermark.Text="Inherited text">
             <StackPanel>
                 <TextBox />
                 <TextBox />
@@ -55,6 +56,6 @@
         <TextBox adorners:Watermark.Text="visible when empty" adorners:Watermark.VisibleWhen="Empty" />
 
         <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-        <TextBox adorners:Watermark.Text="visible when not keyboard focused" adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />-->
+        <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)" adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
     </StackPanel>
 </UserControl>

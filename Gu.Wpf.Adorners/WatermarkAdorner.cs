@@ -129,8 +129,10 @@
         {
             var adorner = (WatermarkAdorner)d;
             adorner.child.SetCurrentValue(FrameworkElement.StyleProperty, e.NewValue);
-            adorner.InvalidateMeasure();
-            adorner.InvalidateVisual();
+            //AdornerService.Remove(adorner);
+            //AdornerService.Show(adorner);
+            //adorner.InvalidateMeasure();
+            //adorner.InvalidateVisual();
         }
     }
 }

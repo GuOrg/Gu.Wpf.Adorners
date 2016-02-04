@@ -32,7 +32,8 @@ namespace Gu.Wpf.Adorners
             typeof(Watermark),
             new FrameworkPropertyMetadata(
                 default(Style),
-                FrameworkPropertyMetadataOptions.Inherits),
+                FrameworkPropertyMetadataOptions.Inherits,
+                OnTextStyleChanged),
             OnValidateTextStyle);
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
@@ -142,11 +143,16 @@ namespace Gu.Wpf.Adorners
             UpdateWatermarkVisibility(d as TextBox);
         }
 
+        private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (d as TextBox)?.GetAdorner()
+                          ?.SetCurrentValue(WatermarkAdorner.TextStyleProperty, e.NewValue);
+        }
+
         private static bool OnValidateTextStyle(object value)
         {
             var style = (Style)value;
-            return style == null ||
-                   style.TargetType == null ||
+            return style?.TargetType == null ||
                    typeof(TextBlock).IsAssignableFrom(style.TargetType);
         }
 

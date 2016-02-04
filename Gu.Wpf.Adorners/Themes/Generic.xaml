@@ -12,7 +12,8 @@
         <Setter Property="TextElement.FontSize" Value="{Binding AdornedTextBox.FontSize, RelativeSource={RelativeSource Self}}" />
         <Setter Property="TextElement.Foreground" Value="{Binding AdornedTextBox.Foreground, RelativeSource={RelativeSource Self}}" />
         <!--<Setter Property="TextElement.Background" Value="{Binding AdornedTextBox.Background, RelativeSource ={ RelativeSource Self}}" />-->
-        <!--<Setter Property="TextElement.TextEffects" Value="{Binding AdornedTextBox.TextEffects, RelativeSource ={RelativeSource Self}}" />-->
+        <Setter Property="TextElement.TextEffects" Value="{Binding Path=(TextElement.TextEffects), RelativeSource ={RelativeSource Self}}" />
+        
         <!--<Setter Property="TextStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type TextBlock}">

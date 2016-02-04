@@ -12,7 +12,7 @@
             <local:WatermarkView />
         </TabItem>
 
-        <TabItem Header="Watermark">
+        <TabItem Header="meh">
             <TextBlock Text="placeholder" />
         </TabItem>
     </TabControl>
