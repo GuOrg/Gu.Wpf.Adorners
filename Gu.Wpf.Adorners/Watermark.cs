@@ -145,7 +145,9 @@ namespace Gu.Wpf.Adorners
         private static bool OnValidateTextStyle(object value)
         {
             var style = (Style)value;
-            return style == null || typeof(TextBlock).IsAssignableFrom(style.TargetType);
+            return style == null ||
+                   style.TargetType == null ||
+                   typeof(TextBlock).IsAssignableFrom(style.TargetType);
         }
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)

@@ -59,7 +59,7 @@
             set { this.SetValue(TextStyleProperty, value); }
         }
 
-        public new TextBoxBase AdornedElement => (TextBoxBase)base.AdornedElement;
+        public TextBoxBase AdornedTextBox => (TextBoxBase)base.AdornedElement;
 
         protected override IEnumerator LogicalChildren => new SingleChildEnumerator(this.child);
 
