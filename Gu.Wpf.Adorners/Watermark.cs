@@ -45,6 +45,7 @@ namespace Gu.Wpf.Adorners
         {
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
+            EventManager.RegisterClassHandler(typeof(TextBox), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.GotKeyboardFocusEvent, new RoutedEventHandler(OnGotKeyboardFocus));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.LostKeyboardFocusEvent, new RoutedEventHandler(OnLostKeyboardFocus));
             EventManager.RegisterClassHandler(typeof(TextBox), TextBoxBase.TextChangedEvent, new RoutedEventHandler(OnTextChanged));
@@ -121,6 +122,7 @@ namespace Gu.Wpf.Adorners
                 if (adorner == null)
                 {
                     adorner = new WatermarkAdorner(textBox);
+                    Visible.Track(textBox);
                     var textStyle = textBox.GetTextStyle();
                     if (textStyle != null)
                     {
@@ -156,6 +158,11 @@ namespace Gu.Wpf.Adorners
             UpdateWatermarkVisibility((TextBox)sender);
         }
 
+        private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
+        {
+            UpdateWatermarkVisibility((TextBox)sender);
+        }
+
         private static void OnGotKeyboardFocus(object sender, RoutedEventArgs e)
         {
             UpdateWatermarkVisibility((TextBox)sender);
@@ -176,6 +183,12 @@ namespace Gu.Wpf.Adorners
             var adorner = textBox?.GetAdorner();
             if (adorner == null)
             {
+                return;
+            }
+
+            if (!textBox.IsVisible)
+            {
+                AdornerService.Remove(adorner);
                 return;
             }
 
