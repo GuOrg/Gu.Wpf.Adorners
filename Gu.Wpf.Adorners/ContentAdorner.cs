@@ -20,7 +20,7 @@
             typeof(object),
             typeof(ContentAdorner),
             new FrameworkPropertyMetadata(
-                default(object), 
+                default(object),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register(
@@ -40,7 +40,7 @@
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentAdorner), new FrameworkPropertyMetadata(typeof(ContentAdorner)));
         }
 
-        public ContentAdorner(UIElement adornedElement, object content)
+        public ContentAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
             this.children = new VisualCollection(this);
@@ -54,7 +54,6 @@
                 .OneWayTo(this, ContentTemplateProperty);
             this.contentPresenter.Bind(ContentPresenter.ContentTemplateSelectorProperty)
                 .OneWayTo(this, ContentTemplateSelectorProperty);
-            Content = content;
         }
 
         protected override int VisualChildrenCount => 1;
@@ -79,8 +78,9 @@
 
         protected override Size MeasureOverride(Size constraint)
         {
-            this.contentPresenter.Measure(constraint);
-            return constraint;
+            var desiredSize = AdornedElement.RenderSize;
+            this.contentPresenter.Measure(desiredSize);
+            return desiredSize;
         }
 
         protected override Size ArrangeOverride(Size finalSize)

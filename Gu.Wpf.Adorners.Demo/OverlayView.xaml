@@ -1,13 +1,33 @@
 ﻿<UserControl x:Class="Gu.Wpf.Adorners.Demo.OverlayView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:adorners="http://gu.se/Adorners"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <Grid>
-        <Button />
-    </Grid>
+    <StackPanel>
+        <Button Width="100"
+                Height="100"
+                adorners:Overlay.IsVisible="True">
+            <adorners:Overlay.Content>
+                <Border BorderBrush="HotPink" BorderThickness="3" />
+            </adorners:Overlay.Content>
+        </Button>
+
+        <!--<Button Width="100"
+                Height="100"
+                adorners:Overlay.Content="yeah"
+                adorners:Overlay.IsVisible="True">
+            <adorners:Overlay.ContentTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="HotPink" BorderThickness="3">
+                        <TextBox Text="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </adorners:Overlay.ContentTemplate>
+        </Button>-->
+    </StackPanel>
 </UserControl>

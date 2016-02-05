@@ -17,10 +17,6 @@
             <Setter Property="BorderThickness" Value="1" />
         </Style>
 
-        <!--<Style TargetType="{x:Type adorners:WatermarkAdorner}">
-            <Setter Property="TextElement.Foreground" Value="HotPink" />
-            <Setter Property="TextStyle" Value="{StaticResource AdornerTextStyle}" />
-        </Style>-->
     </UserControl.Resources>
 
     <StackPanel>
