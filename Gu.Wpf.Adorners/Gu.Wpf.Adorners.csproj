@@ -51,12 +51,15 @@
   <ItemGroup>
     <Compile Include="AdornerService.cs" />
     <Compile Include="ContentAdorner.cs" />
-    <Compile Include="Converters\WatermarkTextBlockMarginConverter.cs" />
+    <Compile Include="Info.cs" />
+    <Compile Include="Internals\AdornedElementReplacer.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
+    <Compile Include="Internals\DependencyObjectHelper.cs" />
     <Compile Include="Internals\SingleChildEnumerator.cs" />
     <Compile Include="Internals\Visible.cs" />
     <Compile Include="Internals\VisualTreeHelperExt.cs" />
     <Compile Include="Overlay.cs" />
+    <Compile Include="TemplatedAdornerFactory.cs" />
     <Compile Include="Watermark.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
     <Compile Include="Internals\WatermarkVisibilityConverter.cs" />
@@ -85,6 +88,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,7 +1,10 @@
-﻿namespace Gu.Wpf.Adorners.Demo
+﻿namespace Gu.Wpf.Adorners
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Documents;
+    using System.Windows.Threading;
 
     public static class Info
     {
@@ -21,9 +24,9 @@
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
-            typeof(TemplatedAdorner),
+            typeof(Adorner),
             typeof(Info),
-            new PropertyMetadata(default(TemplatedAdorner)));
+            new PropertyMetadata(default(Adorner)));
 
         public static void SetInfoTemplate(DependencyObject element, ControlTemplate value)
         {
@@ -45,35 +48,56 @@
             return (bool)element.GetValue(InfoVisibleProperty);
         }
 
-        private static void SetAdorner(this DependencyObject element, TemplatedAdorner value)
+        private static void SetAdorner(this DependencyObject element, Adorner value)
         {
             element.SetValue(AdornerProperty, value);
         }
 
-        private static TemplatedAdorner GetAdorner(this DependencyObject element)
+        private static Adorner GetAdorner(this DependencyObject element)
         {
-            return (TemplatedAdorner)element.GetValue(AdornerProperty);
+            return (Adorner)element.GetValue(AdornerProperty);
         }
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var adorner = d.GetAdorner();
-            if (Equals(e.NewValue, true))
+            UpdateVisibility((UIElement) d);
+        }
+
+        private static void UpdateVisibility(UIElement adornedElement)
+        {
+            var adorner = adornedElement.GetAdorner();
+            if (adornedElement.IsVisible)
             {
                 if (adorner == null)
                 {
-                    adorner = new TemplatedAdorner((UIElement)d, GetInfoTemplate(d));
+                    var template = GetInfoTemplate(adornedElement);
+                    adorner = TemplatedAdornerFactory.Create(adornedElement, template);
                 }
 
+                if (adorner == null)
+                {
+                    return;
+                  //adornedElement.Dispatcher.BeginInvoke(DispatcherPriority.Loaded,new Action<UIElement>(a))
+                }
+
+                adornedElement.SetAdorner(adorner);
                 AdornerService.Show(adorner);
             }
-            else
+
+            else if(adorner != null)
             {
-                if (adorner != null)
-                {
-                    AdornerService.Remove(adorner);
-                }
+                AdornerService.Remove(adorner);
             }
         }
+
+        //private static Adorner 
+
+        //private static object CreateAdornerOperation(object arg)
+        //{
+        //    var args = (object[])arg;
+        //    var adorner = (Adorner)args[0];
+        //    Show(adorner, false);
+        //    return null;
+        //}
     }
 }

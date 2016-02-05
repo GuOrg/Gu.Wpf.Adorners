@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:adorners="http://gu.se/Adorners"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
+        <Style x:Key="AdornerTextStyle"
+               TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="Green" />
             <Setter Property="Opacity" Value="1" />
         </Style>
@@ -22,13 +22,15 @@
     <StackPanel>
         <TextBlock Text="Bound text" />
         <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
-        <TextBox x:Name="AdornerText" Text="AAA" />
+        <TextBox x:Name="AdornerText"
+                 Text="AAA" />
 
         <TextBlock Text="Fontsize" />
-        <TextBox FontSize="24" adorners:Watermark.Text="Foo" />
+        <TextBox FontSize="32"
+                 adorners:Watermark.Text="Foo" />
 
         <TextBlock Text="Explicit style" />
-        <TextBox adorners:Watermark.Text="Explicit style" 
+        <TextBox adorners:Watermark.Text="Explicit style"
                  adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
 
         <GroupBox Header="Inherited style"
@@ -40,7 +42,7 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Header="Inherited text" 
+        <GroupBox Header="Inherited text"
                   adorners:Watermark.Text="Inherited text">
             <StackPanel>
                 <TextBox />
@@ -49,9 +51,11 @@
         </GroupBox>
 
         <TextBlock Text="VisibleWhen=Empty" />
-        <TextBox adorners:Watermark.Text="visible when empty" adorners:Watermark.VisibleWhen="Empty" />
+        <TextBox adorners:Watermark.Text="visible when empty"
+                 adorners:Watermark.VisibleWhen="Empty" />
 
         <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-        <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)" adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
+        <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)"
+                 adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
     </StackPanel>
 </UserControl>
