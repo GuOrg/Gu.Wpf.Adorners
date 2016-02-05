@@ -55,7 +55,9 @@
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectHelper.cs" />
     <Compile Include="Internals\EmptyEnumerator.cs" />
+    <Compile Include="Internals\Loaded.cs" />
     <Compile Include="Internals\SingleChildEnumerator.cs" />
+    <Compile Include="Internals\UnLoaded.cs" />
     <Compile Include="Internals\Visible.cs" />
     <Compile Include="Internals\VisualTreeHelperExt.cs" />
     <Compile Include="Overlay.cs" />

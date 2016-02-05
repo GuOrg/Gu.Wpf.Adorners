@@ -38,8 +38,8 @@ namespace Gu.Wpf.Adorners
 
         private static readonly DependencyPropertyKey IsVisiblePropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsVisible",
-            typeof (bool),
-            typeof (Watermark),
+            typeof(bool),
+            typeof(Watermark),
             new PropertyMetadata(default(bool), OnIsVisibleChanged));
 
         public static readonly DependencyProperty IsVisibleProperty = IsVisiblePropertyKey.DependencyProperty;
@@ -52,8 +52,11 @@ namespace Gu.Wpf.Adorners
 
         static Watermark()
         {
+            Loaded.Track();
+            UnLoaded.Track();
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
+            EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
             EventManager.RegisterClassHandler(typeof(TextBox), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.GotKeyboardFocusEvent, new RoutedEventHandler(OnGotKeyboardFocus));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.LostKeyboardFocusEvent, new RoutedEventHandler(OnLostKeyboardFocus));
@@ -96,12 +99,12 @@ namespace Gu.Wpf.Adorners
             return (Style)element.GetValue(TextStyleProperty);
         }
 
-        private static void SetIsVisible(this DependencyObject element, bool value)
+        private static void SetIsVisible(this TextBox element, bool value)
         {
             element.SetValue(IsVisiblePropertyKey, value);
         }
 
-        public static bool GetIsVisible(this DependencyObject element)
+        public static bool GetIsVisible(this TextBox element)
         {
             return (bool)element.GetValue(IsVisibleProperty);
         }
@@ -156,8 +159,9 @@ namespace Gu.Wpf.Adorners
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var textBox = (TextBox) d;
-            if (textBox.IsVisible)
+            Debug.Print($"Visible changed to: {e.NewValue}");
+            var textBox = (TextBox)d;
+            if (Equals(e.NewValue, true))
             {
                 var adorner = textBox.GetAdorner();
                 if (adorner == null)
@@ -199,6 +203,11 @@ namespace Gu.Wpf.Adorners
             UpdateWatermarkVisibility((TextBox)sender);
         }
 
+        private static void OnUnLoaded(object sender, RoutedEventArgs e)
+        {
+            UpdateWatermarkVisibility((TextBox)sender);
+        }
+
         private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
         {
             UpdateWatermarkVisibility((TextBox)sender);
@@ -226,7 +235,7 @@ namespace Gu.Wpf.Adorners
                 return;
             }
 
-            if (!textBox.IsVisible || string.IsNullOrEmpty(GetText(textBox)))
+            if (!textBox.IsVisible || !textBox.IsLoaded || string.IsNullOrEmpty(GetText(textBox)))
             {
                 textBox.SetIsVisible(false);
             }
