@@ -52,17 +52,15 @@
     <Compile Include="AdornerService.cs" />
     <Compile Include="ContentAdorner.cs" />
     <Compile Include="Info.cs" />
-    <Compile Include="Internals\AdornedElementReplacer.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectHelper.cs" />
+    <Compile Include="Internals\EmptyEnumerator.cs" />
     <Compile Include="Internals\SingleChildEnumerator.cs" />
     <Compile Include="Internals\Visible.cs" />
     <Compile Include="Internals\VisualTreeHelperExt.cs" />
     <Compile Include="Overlay.cs" />
-    <Compile Include="TemplatedAdornerFactory.cs" />
     <Compile Include="Watermark.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
-    <Compile Include="Internals\WatermarkVisibilityConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -76,7 +74,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TemplatedAdorner.cs" />
     <Compile Include="WatermarkAdorner.cs" />
     <Compile Include="WatermarkVisibleWhen.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

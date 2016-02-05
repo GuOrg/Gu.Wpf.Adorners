@@ -25,7 +25,7 @@
         <TextBox x:Name="AdornerText"
                  Text="AAA" />
 
-        <TextBlock Text="Fontsize" />
+        <TextBlock Text="Inherits Fontsize via default style" />
         <TextBox FontSize="32"
                  adorners:Watermark.Text="Foo" />
 

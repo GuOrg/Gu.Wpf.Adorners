@@ -36,6 +36,14 @@ namespace Gu.Wpf.Adorners
                 OnTextStyleChanged),
             OnValidateTextStyle);
 
+        private static readonly DependencyPropertyKey IsVisiblePropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "IsVisible",
+            typeof (bool),
+            typeof (Watermark),
+            new PropertyMetadata(default(bool), OnIsVisibleChanged));
+
+        public static readonly DependencyProperty IsVisibleProperty = IsVisiblePropertyKey.DependencyProperty;
+
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
             typeof(WatermarkAdorner),
@@ -88,6 +96,16 @@ namespace Gu.Wpf.Adorners
             return (Style)element.GetValue(TextStyleProperty);
         }
 
+        private static void SetIsVisible(this DependencyObject element, bool value)
+        {
+            element.SetValue(IsVisiblePropertyKey, value);
+        }
+
+        public static bool GetIsVisible(this DependencyObject element)
+        {
+            return (bool)element.GetValue(IsVisibleProperty);
+        }
+
         private static void SetAdorner(this DependencyObject element, WatermarkAdorner value)
         {
             element.SetValue(AdornerProperty, value);
@@ -106,36 +124,7 @@ namespace Gu.Wpf.Adorners
                 return;
             }
 
-            var text = (string)e.NewValue;
-            if (string.IsNullOrEmpty(text))
-            {
-                var adorner = textBox.GetAdorner();
-                if (adorner != null)
-                {
-                    AdornerService.Remove(adorner);
-                }
-
-                textBox.ClearValue(AdornerProperty);
-            }
-            else
-            {
-                var adorner = textBox.GetAdorner();
-                if (adorner == null)
-                {
-                    adorner = new WatermarkAdorner(textBox);
-                    Visible.Track(textBox);
-                    var textStyle = textBox.GetTextStyle();
-                    if (textStyle != null)
-                    {
-                        adorner.TextStyle = textStyle;
-                    }
-
-                    textBox.SetAdorner(adorner);
-                    UpdateWatermarkVisibility(textBox);
-                }
-
-                adorner.Text = (string)e.NewValue;
-            }
+            UpdateWatermarkVisibility(textBox);
         }
 
         private static void OnVisibleWhenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -145,8 +134,17 @@ namespace Gu.Wpf.Adorners
 
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as TextBox)?.GetAdorner()
-                          ?.SetCurrentValue(WatermarkAdorner.TextStyleProperty, e.NewValue);
+            var adorner = (d as TextBox)?.GetAdorner();
+            if (adorner == null)
+            {
+                return;
+            }
+
+            adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, e.NewValue);
+            if (e.NewValue == null)
+            {
+                adorner.UpdateDefaultStyle();
+            }
         }
 
         private static bool OnValidateTextStyle(object value)
@@ -154,6 +152,41 @@ namespace Gu.Wpf.Adorners
             var style = (Style)value;
             return style?.TargetType == null ||
                    typeof(TextBlock).IsAssignableFrom(style.TargetType);
+        }
+
+        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBox = (TextBox) d;
+            if (textBox.IsVisible)
+            {
+                var adorner = textBox.GetAdorner();
+                if (adorner == null)
+                {
+                    adorner = new WatermarkAdorner(textBox);
+                    var textStyle = textBox.GetTextStyle();
+                    if (textStyle != null)
+                    {
+                        adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, textStyle);
+                    }
+
+                    AdornerService.Show(adorner);
+                    textBox.SetValue(AdornerProperty, adorner);
+                }
+                else
+                {
+                    Debug.Print("Already visible");
+                }
+            }
+            else
+            {
+                var adorner = textBox.GetAdorner();
+                if (adorner != null)
+                {
+                    AdornerService.Remove(adorner);
+                    adorner.ClearChild();
+                    textBox.ClearValue(AdornerProperty);
+                }
+            }
         }
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
@@ -188,44 +221,28 @@ namespace Gu.Wpf.Adorners
 
         private static void UpdateWatermarkVisibility(TextBox textBox)
         {
-            var adorner = textBox?.GetAdorner();
-            if (adorner == null)
+            if (textBox == null)
             {
                 return;
             }
 
-            if (!textBox.IsVisible)
+            if (!textBox.IsVisible || string.IsNullOrEmpty(GetText(textBox)))
             {
-                AdornerService.Remove(adorner);
-                return;
+                textBox.SetIsVisible(false);
             }
-
-            var visibleWhen = textBox.GetVisibleWhen();
-            Debug.WriteLine(visibleWhen);
-            switch (visibleWhen)
+            else
             {
-                case WatermarkVisibleWhen.Empty:
-                    if (string.IsNullOrEmpty(textBox.Text))
-                    {
-                        AdornerService.Show(adorner);
-                    }
-                    else
-                    {
-                        AdornerService.Remove(adorner);
-                    }
-                    break;
-                case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                    if (string.IsNullOrEmpty(textBox.Text) && !textBox.IsKeyboardFocused)
-                    {
-                        AdornerService.Show(adorner);
-                    }
-                    else
-                    {
-                        AdornerService.Remove(adorner);
-                    }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                switch (textBox.GetVisibleWhen())
+                {
+                    case WatermarkVisibleWhen.Empty:
+                        textBox.SetIsVisible(string.IsNullOrEmpty(textBox.Text));
+                        break;
+                    case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
+                        textBox.SetIsVisible(string.IsNullOrEmpty(textBox.Text) && !textBox.IsKeyboardFocused);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
     }
