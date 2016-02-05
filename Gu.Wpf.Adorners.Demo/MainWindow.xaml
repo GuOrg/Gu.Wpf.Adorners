@@ -12,8 +12,12 @@
             <local:WatermarkView />
         </TabItem>
 
-        <TabItem Header="meh">
+        <TabItem Header="Overlay">
             <local:OverlayView />
+        </TabItem>
+
+        <TabItem Header="Info">
+            <local:InfoView />
         </TabItem>
     </TabControl>
 </Window>

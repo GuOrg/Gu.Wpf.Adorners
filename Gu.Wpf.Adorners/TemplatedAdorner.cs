@@ -10,7 +10,7 @@
     /// <summary>
     /// ~Inspired by: http://referencesource.microsoft.com/#PresentationFramework/src/Framework/MS/Internal/Controls/TemplatedAdorner.cs,c0a050a6ac0c693d
     /// </summary>
-    internal sealed class TemplatedAdorner : Adorner
+    public sealed class TemplatedAdorner : Adorner
     {
         private Control child;
 
@@ -61,6 +61,7 @@
             {
                 group.Children.Add(t);
             }
+
             return group;
         }
 

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Gu.Wpf.Adorners.Demo.InfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <StackPanel>
+        <Button Width="100"
+                Height="100"
+                Margin="5"
+                local:Info.InfoVisible="{Binding IsChecked,
+                                                 ElementName=IsVisibleButton}">
+            <local:Info.InfoTemplate>
+                <ControlTemplate>
+                    <Border Margin="-1"
+                            BorderBrush="Red"
+                            BorderThickness="1">
+                        <AdornedElementPlaceholder />
+                    </Border>
+                </ControlTemplate>
+            </local:Info.InfoTemplate>
+        </Button>
+
+        <ToggleButton x:Name="IsVisibleButton"
+                      Width="100"
+                      Height="100"
+                      Margin="5" Content="IsVisible"/>
+    </StackPanel>
+</UserControl>
