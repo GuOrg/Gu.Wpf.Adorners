@@ -22,5 +22,21 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:ContentAdorner}" />
+    <Style TargetType="{x:Type local:ContentAdorner}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="TextElement.FontFamily" Value="{Binding Path=AdornedElement.(TextElement.FontFamily), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStyle" Value="{Binding Path=AdornedElement.(TextElement.FontStyle), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontWeight" Value="{Binding Path=AdornedElement.(TextElement.FontWeight), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStretch" Value="{Binding Path=AdornedElement.(TextElement.FontStretch), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontSize" Value="{Binding Path=AdornedElement.(TextElement.FontSize), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.Foreground" Value="{Binding Path=AdornedElement.(TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.TextEffects" Value="{Binding Path=(TextElement.TextEffects), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="ContentPresenterStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Setter Property="Focusable" Value="False" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

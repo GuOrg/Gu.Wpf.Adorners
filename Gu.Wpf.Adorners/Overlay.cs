@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System.Windows;
+    using System.Windows.Controls;
 
     public static class Overlay
     {
@@ -16,7 +17,26 @@
             "ContentTemplate",
             typeof(DataTemplate),
             typeof(Overlay),
-            new PropertyMetadata(default(DataTemplate), OnContentTemplateChanged));
+            new PropertyMetadata(
+                default(DataTemplate),
+                OnContentTemplateChanged));
+
+        public static readonly DependencyProperty ContentTemplateSelectorProperty = DependencyProperty.RegisterAttached(
+            "ContentTemplateSelector",
+            typeof(DataTemplateSelector),
+            typeof(Overlay),
+            new PropertyMetadata(
+                default(DataTemplateSelector),
+                OnContentTemplateSelectorChanged));
+
+        public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.RegisterAttached(
+            "ContentPresenterStyle",
+            typeof(Style),
+            typeof(Overlay),
+            new FrameworkPropertyMetadata(
+                default(Style),
+                FrameworkPropertyMetadataOptions.Inherits,
+                OnContentPresenterStyleChanged));
 
         public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached(
             "IsVisible",
@@ -55,6 +75,28 @@
         public static DataTemplate GetContentTemplate(DependencyObject element)
         {
             return (DataTemplate)element.GetValue(ContentTemplateProperty);
+        }
+
+        public static void SetContentTemplateSelector(DependencyObject element, DataTemplateSelector value)
+        {
+            element.SetValue(ContentTemplateSelectorProperty, value);
+        }
+
+        public static DataTemplateSelector GetContentTemplateSelector(DependencyObject element)
+        {
+            return (DataTemplateSelector)element.GetValue(ContentTemplateSelectorProperty);
+        }
+
+        public static void SetContentPresenterStyle(this UIElement element, Style value)
+        {
+            element.SetValue(ContentPresenterStyleProperty, value);
+        }
+
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(UIElement))]
+        public static Style GetContentPresenterStyle(this UIElement element)
+        {
+            return (Style)element.GetValue(ContentPresenterStyleProperty);
         }
 
         public static void SetIsVisible(UIElement element, bool value)
@@ -119,6 +161,8 @@
 
                 adorner.Content = e.NewValue;
                 adorner.ContentTemplate = GetContentTemplate(element);
+                adorner.ContentTemplateSelector = GetContentTemplateSelector(element);
+                adorner.ContentPresenterStyle = GetContentPresenterStyle(element);
             }
         }
 
@@ -128,6 +172,25 @@
             if (adorner != null)
             {
                 adorner.ContentTemplate = GetContentTemplate(d);
+            }
+        }
+
+        private static void OnContentTemplateSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var adorner = (ContentAdorner)(d as UIElement)?.GetAdorner();
+            if (adorner != null)
+            {
+                adorner.ContentTemplate = GetContentTemplate(d);
+            }
+        }
+
+        private static void OnContentPresenterStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var element = d as UIElement;
+            var adorner = element?.GetAdorner();
+            if (adorner != null)
+            {
+                adorner.ContentPresenterStyle = GetContentPresenterStyle(element);
             }
         }
 

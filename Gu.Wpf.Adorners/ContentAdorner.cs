@@ -35,6 +35,12 @@
             typeof(ContentAdorner),
             new PropertyMetadata(default(DataTemplateSelector)));
 
+        public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.Register(
+            "ContentPresenterStyle", 
+            typeof (Style), 
+            typeof (ContentAdorner),
+            new PropertyMetadata(default(Style)));
+
         static ContentAdorner()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentAdorner), new FrameworkPropertyMetadata(typeof(ContentAdorner)));
@@ -54,6 +60,8 @@
                 .OneWayTo(this, ContentTemplateProperty);
             this.contentPresenter.Bind(ContentPresenter.ContentTemplateSelectorProperty)
                 .OneWayTo(this, ContentTemplateSelectorProperty);
+            this.contentPresenter.Bind(ContentPresenter.StyleProperty)
+                .OneWayTo(this, StyleProperty);
         }
 
         protected override int VisualChildrenCount => 1;
@@ -74,6 +82,12 @@
         {
             get { return (DataTemplateSelector)GetValue(ContentTemplateSelectorProperty); }
             set { SetValue(ContentTemplateSelectorProperty, value); }
+        }
+
+        public Style ContentPresenterStyle
+        {
+            get { return (Style)GetValue(ContentPresenterStyleProperty); }
+            set { SetValue(ContentPresenterStyleProperty, value); }
         }
 
         protected override Size MeasureOverride(Size constraint)
