@@ -4,14 +4,14 @@
     <Style TargetType="{x:Type local:WatermarkAdorner}">
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="TextElement.FontFamily" Value="{Binding AdornedTextBox.FontFamily, RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontStyle" Value="{Binding AdornedTextBox.FontStyle, RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontWeight" Value="{Binding AdornedTextBox.FontWeight, RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontStretch" Value="{Binding AdornedTextBox.FontStretch, RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontSize" Value="{Binding AdornedTextBox.FontSize, RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.Foreground" Value="{Binding AdornedTextBox.Foreground, RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.TextEffects" Value="{Binding Path=(TextElement.TextEffects), RelativeSource={RelativeSource Self}}" />
-
+        <Setter Property="TextElement.FontFamily" Value="{Binding AdornedElement.(TextElement.FontFamily), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStyle" Value="{Binding AdornedElement.(TextElement.FontStyle), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontWeight" Value="{Binding AdornedElement.(TextElement.FontWeight), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStretch" Value="{Binding AdornedElement.(TextElement.FontStretch), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontSize" Value="{Binding AdornedElement.(TextElement.FontSize), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.Foreground" Value="{Binding AdornedElement.(TextElement.Foreground), RelativeSource ={RelativeSource Self}}" />
+        <!--<Setter Property="TextElement.Background" Value="{Binding AdornedElement.(TextElement.Background), RelativeSource ={RelativeSource Self}}" />-->
+        <Setter Property="TextElement.TextEffects" Value="{Binding AdornedElement.(TextElement.TextEffects), RelativeSource ={RelativeSource Self}}" />
         <Setter Property="TextStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type TextBlock}">
@@ -24,13 +24,14 @@
 
     <Style TargetType="{x:Type local:ContentAdorner}">
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="TextElement.FontFamily" Value="{Binding Path=AdornedElement.(TextElement.FontFamily), RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontStyle" Value="{Binding Path=AdornedElement.(TextElement.FontStyle), RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontWeight" Value="{Binding Path=AdornedElement.(TextElement.FontWeight), RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontStretch" Value="{Binding Path=AdornedElement.(TextElement.FontStretch), RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontSize" Value="{Binding Path=AdornedElement.(TextElement.FontSize), RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.Foreground" Value="{Binding Path=AdornedElement.(TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
-        <Setter Property="TextElement.TextEffects" Value="{Binding Path=(TextElement.TextEffects), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontFamily" Value="{Binding AdornedElement.(TextElement.FontFamily), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStyle" Value="{Binding AdornedElement.(TextElement.FontStyle), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontWeight" Value="{Binding AdornedElement.(TextElement.FontWeight), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStretch" Value="{Binding AdornedElement.(TextElement.FontStretch), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontSize" Value="{Binding AdornedElement.(TextElement.FontSize), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.Foreground" Value="{Binding AdornedElement.(TextElement.Foreground), RelativeSource ={RelativeSource Self}}" />
+        <!--<Setter Property="TextElement.Background" Value="{Binding AdornedElement.(TextElement.Background), RelativeSource ={RelativeSource Self}}" />-->
+        <Setter Property="TextElement.TextEffects" Value="{Binding AdornedElement.(TextElement.TextEffects), RelativeSource ={RelativeSource Self}}" />
         <Setter Property="ContentPresenterStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ContentPresenter}">

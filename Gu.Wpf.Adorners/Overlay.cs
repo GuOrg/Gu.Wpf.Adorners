@@ -53,6 +53,7 @@
         static Overlay()
         {
             EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
+            Loaded.Track();
             EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
             EventManager.RegisterClassHandler(typeof(UIElement), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
         }
@@ -137,6 +138,7 @@
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var element = (UIElement)d;
+            Visible.Track(element);
             if (e.NewValue == null)
             {
                 var adorner = element.GetAdorner();

@@ -5,8 +5,8 @@
              xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="{x:Type adorners:WatermarkAdorner}">
+        <!--<Style TargetType="{x:Type adorners:WatermarkAdorner}">
             <Setter Property="TextElement.Foreground" Value="HotPink" />
-        </Style>
+        </Style>-->
     </Application.Resources>
 </Application>

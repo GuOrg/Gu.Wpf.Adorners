@@ -36,13 +36,15 @@ namespace Gu.Wpf.Adorners
                 OnTextStyleChanged),
             OnValidateTextStyle);
 
-        private static readonly DependencyPropertyKey IsVisiblePropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "IsVisible",
+        private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "IsShowing",
             typeof(bool),
             typeof(Watermark),
-            new PropertyMetadata(default(bool), OnIsVisibleChanged));
+            new PropertyMetadata(
+                default(bool), 
+                OnIsShowingChanged));
 
-        public static readonly DependencyProperty IsVisibleProperty = IsVisiblePropertyKey.DependencyProperty;
+        public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
@@ -98,14 +100,14 @@ namespace Gu.Wpf.Adorners
             return (Style)element.GetValue(TextStyleProperty);
         }
 
-        private static void SetIsVisible(this TextBox element, bool value)
+        private static void SetIsShowing(this TextBox element, bool value)
         {
-            element.SetValue(IsVisiblePropertyKey, value);
+            element.SetValue(IsShowingPropertyKey, value);
         }
 
-        public static bool GetIsVisible(this TextBox element)
+        public static bool GetIsShowing(this TextBox element)
         {
-            return (bool)element.GetValue(IsVisibleProperty);
+            return (bool)element.GetValue(IsShowingProperty);
         }
 
         private static void SetAdorner(this DependencyObject element, WatermarkAdorner value)
@@ -127,12 +129,12 @@ namespace Gu.Wpf.Adorners
             }
 
             Visible.Track(textBox);
-            UpdateWatermarkVisibility(textBox);
+            UpdateIsShowing(textBox);
         }
 
         private static void OnVisibleWhenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            UpdateWatermarkVisibility(d as TextBox);
+            UpdateIsShowing(d as TextBox);
         }
 
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -157,7 +159,7 @@ namespace Gu.Wpf.Adorners
                    typeof(TextBlock).IsAssignableFrom(style.TargetType);
         }
 
-        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             //Debug.Print($"Visible changed to: {e.NewValue}");
             var textBox = (TextBox)d;
@@ -196,40 +198,40 @@ namespace Gu.Wpf.Adorners
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            UpdateWatermarkVisibility((TextBox)sender);
+            UpdateIsShowing((TextBox)sender);
         }
 
         private static void OnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateWatermarkVisibility((TextBox)sender);
+            UpdateIsShowing((TextBox)sender);
         }
 
         private static void OnUnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateWatermarkVisibility((TextBox)sender);
+            UpdateIsShowing((TextBox)sender);
         }
 
         private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
         {
-            UpdateWatermarkVisibility((TextBox)sender);
+            UpdateIsShowing((TextBox)sender);
         }
 
         private static void OnGotKeyboardFocus(object sender, RoutedEventArgs e)
         {
-            UpdateWatermarkVisibility((TextBox)sender);
+            UpdateIsShowing((TextBox)sender);
         }
 
         private static void OnLostKeyboardFocus(object sender, RoutedEventArgs e)
         {
-            UpdateWatermarkVisibility((TextBox)sender);
+            UpdateIsShowing((TextBox)sender);
         }
 
         private static void OnTextChanged(object sender, RoutedEventArgs e)
         {
-            UpdateWatermarkVisibility((TextBox)sender);
+            UpdateIsShowing((TextBox)sender);
         }
 
-        private static void UpdateWatermarkVisibility(TextBox textBox)
+        private static void UpdateIsShowing(TextBox textBox)
         {
             if (textBox == null)
             {
@@ -238,17 +240,17 @@ namespace Gu.Wpf.Adorners
 
             if (!textBox.IsVisible || !textBox.IsLoaded || string.IsNullOrEmpty(GetText(textBox)))
             {
-                textBox.SetIsVisible(false);
+                textBox.SetIsShowing(false);
             }
             else
             {
                 switch (textBox.GetVisibleWhen())
                 {
                     case WatermarkVisibleWhen.Empty:
-                        textBox.SetIsVisible(string.IsNullOrEmpty(textBox.Text));
+                        textBox.SetIsShowing(string.IsNullOrEmpty(textBox.Text));
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                        textBox.SetIsVisible(string.IsNullOrEmpty(textBox.Text) && !textBox.IsKeyboardFocused);
+                        textBox.SetIsShowing(string.IsNullOrEmpty(textBox.Text) && !textBox.IsKeyboardFocused);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

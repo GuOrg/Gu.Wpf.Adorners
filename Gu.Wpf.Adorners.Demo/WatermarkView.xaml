@@ -21,7 +21,7 @@
     <StackPanel>
         <TextBlock Text="Simple" />
         <TextBox adorners:Watermark.Text="Write something here" />
-        
+
         <TextBlock Text="Bound text" />
         <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
         <TextBox x:Name="AdornerText" Text="AAA" />
