@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdornerService.cs" />
+    <Compile Include="ContainerAdorner{T}.cs" />
     <Compile Include="ContentAdorner.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
