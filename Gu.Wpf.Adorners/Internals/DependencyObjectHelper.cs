@@ -11,8 +11,8 @@ namespace Gu.Wpf.Adorners
     {
         internal static IReadOnlyList<DependencyProperty> GetDependencyProperties(object element)
         {
-            List<DependencyProperty> properties = new List<DependencyProperty>();
-            MarkupObject markupObject = MarkupWriter.GetMarkupObjectFor(element);
+            var properties = new List<DependencyProperty>();
+            var markupObject = MarkupWriter.GetMarkupObjectFor(element);
             if (markupObject != null)
             {
                 foreach (MarkupProperty mp in markupObject.Properties)
@@ -30,7 +30,7 @@ namespace Gu.Wpf.Adorners
         internal static IReadOnlyList<DependencyProperty> GetAttachedProperties(object element)
         {
             var attachedProperties = new List<DependencyProperty>();
-            MarkupObject markupObject = MarkupWriter.GetMarkupObjectFor(element);
+            var markupObject = MarkupWriter.GetMarkupObjectFor(element);
             if (markupObject != null)
             {
                 foreach (MarkupProperty mp in markupObject.Properties)

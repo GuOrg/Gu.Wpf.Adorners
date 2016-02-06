@@ -3,34 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:adorners="http://gu.se/Adorners"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Margin" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+        </Style>
+    </UserControl.Resources>
     <StackPanel>
-        <!--<Button Width="100"
-                Height="100"
-                Margin="5"
-                adorners:Info.InfoVisible="{Binding IsChecked,
-                                                    ElementName=IsVisibleButton}">
-            <adorners:Info.InfoTemplate>
+        <Button Content="red border"
+                adorners:Info.IsVisible="{Binding IsChecked,
+                                                  ElementName=IsVisibleButton}">
+            <adorners:Info.Template>
                 <ControlTemplate>
                     <Border Margin="-1"
                             BorderBrush="Red"
                             BorderThickness="1">
-                        <AdornedElementPlaceholder />
+                        <adorners:AdornedElementPlaceholder />
                     </Border>
                 </ControlTemplate>
-            </adorners:Info.InfoTemplate>
+            </adorners:Info.Template>
+        </Button>
+
+        <Button adorners:Info.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
+            <adorners:Info.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border HorizontalAlignment="Right"
+                                BorderBrush="Blue"
+                                BorderThickness="0,0,0,1">
+                            <adorners:AdornedElementPlaceholder />
+                        </Border>
+                        <TextBlock Grid.Row="1"
+                                   HorizontalAlignment="Right"
+                                   Text="Some info text"
+                                   TextAlignment="Right" />
+                    </Grid>
+                </ControlTemplate>
+            </adorners:Info.Template>
         </Button>
 
         <ToggleButton x:Name="IsVisibleButton"
-                      Width="100"
-                      Height="100"
-                      Margin="5"
                       Content="IsVisible"
-                      IsChecked="True" />-->
+                      IsChecked="True" />
     </StackPanel>
 </UserControl>
 

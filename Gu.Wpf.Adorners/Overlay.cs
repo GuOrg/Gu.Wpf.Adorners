@@ -56,7 +56,6 @@
                 default(bool),
                 OnIsShowingChanged));
 
-
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(

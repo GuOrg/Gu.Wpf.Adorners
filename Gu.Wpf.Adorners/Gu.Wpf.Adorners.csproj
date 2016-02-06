@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdornerService.cs" />
+    <Compile Include="AdornedElementPlaceholder.cs" />
     <Compile Include="ContainerAdorner{T}.cs" />
     <Compile Include="ContentAdorner.cs" />
     <Compile Include="Info.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Internals\Visible.cs" />
     <Compile Include="Internals\VisualTreeHelperExt.cs" />
     <Compile Include="Overlay.cs" />
+    <Compile Include="TemplatedAdorner.cs" />
     <Compile Include="Watermark.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
