@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System.Windows;
+    using System.Windows.Media;
 
     internal class Loaded
     {
@@ -17,12 +18,29 @@
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnFlagChanged));
 
-        public static void Track()
+        internal static void Track()
         {
             EventManager.RegisterClassHandler(
                 typeof(Window),
                 FrameworkElement.LoadedEvent, 
                 new RoutedEventHandler(OnWindowLoaded));
+        }
+
+        internal static bool IsLoaded(DependencyObject element)
+        {
+            var fe = element as FrameworkElement;
+            if (fe != null)
+            {
+                return fe.IsLoaded;
+            }
+
+            var fce = element as FrameworkContentElement;
+            if (fce != null)
+            {
+                return fce.IsLoaded;
+            }
+
+            return false;
         }
 
         private static void OnWindowLoaded(object sender, RoutedEventArgs e)

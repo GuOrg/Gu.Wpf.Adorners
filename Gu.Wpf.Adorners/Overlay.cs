@@ -43,14 +43,27 @@
             typeof(bool),
             typeof(Overlay),
             new PropertyMetadata(
-                default(bool), 
+                default(bool),
                 OnIsVisibleChanged));
+
+        private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "IsShowing",
+            typeof(bool),
+            typeof(Overlay),
+            new PropertyMetadata(
+                default(bool),
+                OnIsShowingChanged));
+
+
+        public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
             typeof(ContentAdorner),
             typeof(Overlay),
-            new PropertyMetadata(default(ContentAdorner), OnAdornerChanged));
+            new PropertyMetadata(
+                default(ContentAdorner),
+                OnAdornerChanged));
 
         static Overlay()
         {
@@ -66,9 +79,11 @@
             element.SetValue(ContentProperty, value);
         }
 
-        public static object GetContent(UIElement element)
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(UIElement))]
+        public static object GetContent(DependencyObject element)
         {
-            return (object)element.GetValue(ContentProperty);
+            return element.GetValue(ContentProperty);
         }
 
         public static void SetContentTemplate(DependencyObject element, DataTemplate value)
@@ -76,6 +91,8 @@
             element.SetValue(ContentTemplateProperty, value);
         }
 
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static DataTemplate GetContentTemplate(DependencyObject element)
         {
             return (DataTemplate)element.GetValue(ContentTemplateProperty);
@@ -86,68 +103,136 @@
             element.SetValue(ContentTemplateSelectorProperty, value);
         }
 
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static DataTemplateSelector GetContentTemplateSelector(DependencyObject element)
         {
             return (DataTemplateSelector)element.GetValue(ContentTemplateSelectorProperty);
         }
 
-        public static void SetContentPresenterStyle(this UIElement element, Style value)
+        public static void SetContentPresenterStyle(DependencyObject element, Style value)
         {
             element.SetValue(ContentPresenterStyleProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
-        public static Style GetContentPresenterStyle(this UIElement element)
+        public static Style GetContentPresenterStyle(DependencyObject element)
         {
             return (Style)element.GetValue(ContentPresenterStyleProperty);
         }
 
-        public static void SetIsVisible(UIElement element, bool value)
+        public static void SetIsVisible(DependencyObject element, bool value)
         {
             element.SetValue(IsVisibleProperty, value);
         }
 
-        public static bool GetIsVisible(UIElement element)
+        public static bool GetIsVisible(DependencyObject element)
         {
             return (bool)element.GetValue(IsVisibleProperty);
         }
 
-        private static void SetAdorner(this UIElement element, ContentAdorner value)
+        private static void SetIsShowing(this DependencyObject element, bool value)
+        {
+            element.SetValue(IsShowingPropertyKey, value);
+        }
+
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(UIElement))]
+        public static bool GetIsShowing(this DependencyObject element)
+        {
+            return (bool)element.GetValue(IsShowingProperty);
+        }
+
+        private static void SetAdorner(this DependencyObject element, ContentAdorner value)
         {
             element.SetValue(AdornerProperty, value);
         }
 
-        private static ContentAdorner GetAdorner(this UIElement element)
+        private static ContentAdorner GetAdorner(this DependencyObject element)
         {
             return (ContentAdorner)element.GetValue(AdornerProperty);
         }
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            UpdateOverlayVisibility(sender as UIElement);
+            var element = sender as DependencyObject;
+            element?.GetAdorner()?.InvalidateMeasure();
+            UpdateIsShowing(element);
         }
 
         private static void OnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateOverlayVisibility(sender as UIElement);
+            UpdateIsShowing(sender as DependencyObject);
         }
 
         private static void OnUnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateOverlayVisibility(sender as UIElement);
+            UpdateIsShowing(sender as DependencyObject);
         }
 
         private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
         {
-            UpdateOverlayVisibility(sender as UIElement);
+            UpdateIsShowing(sender as DependencyObject);
         }
 
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            Visible.Track(d as UIElement);
+            UpdateIsShowing(d);
+        }
+
+        private static void OnContentTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var adorner = d?.GetAdorner();
+            if (adorner != null)
+            {
+                adorner.ContentTemplate = GetContentTemplate(d);
+            }
+        }
+
+        private static void OnContentTemplateSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var adorner = d?.GetAdorner();
+            if (adorner != null)
+            {
+                adorner.ContentTemplate = GetContentTemplate(d);
+            }
+        }
+
+        private static void OnContentPresenterStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var adorner = d?.GetAdorner();
+            if (adorner != null)
+            {
+                adorner.ContentPresenterStyle = GetContentPresenterStyle(d);
+            }
+        }
+
+        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateIsShowing(d);
+        }
+
+        private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
             var element = (UIElement)d;
-            Visible.Track(element);
-            if (e.NewValue == null)
+            if (Equals(e.NewValue, true))
+            {
+                var adorner = element.GetAdorner();
+                if (adorner == null)
+                {
+                    adorner = new ContentAdorner(element);
+                    element.SetAdorner(adorner);
+                }
+
+                adorner.Content = GetContent(element);
+                adorner.ContentTemplate = GetContentTemplate(element);
+                adorner.ContentTemplateSelector = GetContentTemplateSelector(element);
+                adorner.ContentPresenterStyle = GetContentPresenterStyle(element);
+                AdornerService.Show(adorner);
+            }
+            else
             {
                 var adorner = element.GetAdorner();
                 if (adorner != null)
@@ -157,85 +242,29 @@
 
                 element.ClearValue(AdornerProperty);
             }
-            else
-            {
-                var adorner = element.GetAdorner();
-                if (adorner == null)
-                {
-                    adorner = new ContentAdorner(element);
-                    Visible.Track(element);
-
-                    element.SetAdorner(adorner);
-                    UpdateOverlayVisibility(element);
-                }
-
-                adorner.Content = e.NewValue;
-                adorner.ContentTemplate = GetContentTemplate(element);
-                adorner.ContentTemplateSelector = GetContentTemplateSelector(element);
-                adorner.ContentPresenterStyle = GetContentPresenterStyle(element);
-            }
-        }
-
-        private static void OnContentTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var adorner = (ContentAdorner)(d as UIElement)?.GetAdorner();
-            if (adorner != null)
-            {
-                adorner.ContentTemplate = GetContentTemplate(d);
-            }
-        }
-
-        private static void OnContentTemplateSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var adorner = (ContentAdorner)(d as UIElement)?.GetAdorner();
-            if (adorner != null)
-            {
-                adorner.ContentTemplate = GetContentTemplate(d);
-            }
-        }
-
-        private static void OnContentPresenterStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var element = d as UIElement;
-            var adorner = element?.GetAdorner();
-            if (adorner != null)
-            {
-                adorner.ContentPresenterStyle = GetContentPresenterStyle(element);
-            }
-        }
-
-        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            UpdateOverlayVisibility(d as UIElement);
         }
 
         private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((WatermarkAdorner)e.OldValue)?.ClearChild();
+            ((ContentAdorner)e.OldValue)?.ClearChild();
         }
 
-        private static void UpdateOverlayVisibility(UIElement element)
+        private static void UpdateIsShowing(DependencyObject element)
         {
-            var adorner = element?.GetAdorner();
-            if (adorner == null)
+            if (element == null)
             {
                 return;
             }
 
-            if (!element.IsVisible)
+            if (!Visible.IsVisible(element) ||
+                !Loaded.IsLoaded(element) ||
+                GetContent(element) == null)
             {
-                AdornerService.Remove(adorner);
+                element.SetIsShowing(false);
                 return;
             }
 
-            if (GetIsVisible(element))
-            {
-                AdornerService.Show(adorner);
-            }
-            else
-            {
-                AdornerService.Remove(adorner);
-            }
+            element.SetIsShowing(GetIsVisible(element));
         }
     }
 }

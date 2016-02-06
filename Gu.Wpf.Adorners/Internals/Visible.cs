@@ -21,11 +21,27 @@
 
         internal static void Track(UIElement e)
         {
+            if (e == null)
+            {
+                return;
+            }
+
             if (BindingOperations.GetBindingExpression(e, IsVisibleProxyProperty) == null)
             {
                 e.Bind(IsVisibleProxyProperty)
                  .OneWayTo(e, UIElement.IsVisibleProperty);
             }
+        }
+
+        internal static bool IsVisible(DependencyObject element)
+        {
+            var fe = element as UIElement;
+            if (fe != null)
+            {
+                return fe.IsVisible;
+            }
+
+            return false;
         }
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

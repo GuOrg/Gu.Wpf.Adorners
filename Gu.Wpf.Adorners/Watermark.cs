@@ -204,6 +204,8 @@ namespace Gu.Wpf.Adorners
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
+            var element = sender as FrameworkElement;
+            element?.GetAdorner()?.InvalidateMeasure();
             UpdateIsShowing((TextBox)sender);
         }
 
@@ -244,10 +246,11 @@ namespace Gu.Wpf.Adorners
                 return;
             }
 
-            if (!textBox.IsVisible || !textBox.IsLoaded || string.IsNullOrEmpty(GetText(textBox)))
+            if (!textBox.IsVisible || ! textBox.IsLoaded || string.IsNullOrEmpty(GetText(textBox)))
             {
                 textBox.SetIsShowing(false);
             }
+
             else
             {
                 switch (textBox.GetVisibleWhen())

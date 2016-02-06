@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:adorners="http://gu.se/Adorners"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
     <StackPanel>
         <Button Width="100"
                 Height="100"
                 Margin="5"
-                adorners:Overlay.IsVisible="True">
+                adorners:Overlay.IsVisible="{Binding IsChecked,
+                                                     ElementName=IsVisibleButton}">
             <adorners:Overlay.Content>
-                <Border BorderBrush="HotPink" BorderThickness="3" />
+                <Border BorderBrush="HotPink"
+                        BorderThickness="3" />
             </adorners:Overlay.Content>
         </Button>
 
@@ -21,10 +22,12 @@
                 Margin="5"
                 Foreground="Blue"
                 adorners:Overlay.Content="yeah"
-                adorners:Overlay.IsVisible="True">
+                adorners:Overlay.IsVisible="{Binding IsChecked,
+                                                     ElementName=IsVisibleButton}">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="HotPink" BorderThickness="3">
+                    <Border BorderBrush="HotPink"
+                            BorderThickness="3">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
@@ -32,5 +35,12 @@
                 </DataTemplate>
             </adorners:Overlay.ContentTemplate>
         </Button>
+
+        <ToggleButton x:Name="IsVisibleButton"
+                      Width="100"
+                      Height="100"
+                      Margin="5"
+                      Content="IsVisible"
+                      IsChecked="True" />
     </StackPanel>
 </UserControl>
