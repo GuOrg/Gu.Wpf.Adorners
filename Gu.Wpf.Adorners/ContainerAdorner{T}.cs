@@ -26,13 +26,13 @@
             {
                 return this.child;
             }
+
             set
             {
                 var old = this.child;
                 if (!ReferenceEquals(old, value))
                 {
                     this.RemoveVisualChild(old);
-                    //need to remove old element from logical tree
                     this.RemoveLogicalChild(old);
                     this.child = value;
 
@@ -45,6 +45,17 @@
 
         protected override int VisualChildrenCount => this.child == null ? 0 : 1;
 
+        protected override IEnumerator LogicalChildren => this.child == null
+                                              ? EmptyEnumerator.Instance
+                                              : new SingleChildEnumerator(this.child);
+
+        public virtual void ClearChild()
+        {
+            this.RemoveVisualChild(this.child);
+            this.RemoveLogicalChild(this.child);
+            this.child = null;
+        }
+
         protected override Visual GetVisualChild(int index)
         {
             if (this.child == null || index != 0)
@@ -53,17 +64,6 @@
             }
 
             return this.child;
-        }
-
-        protected override IEnumerator LogicalChildren => this.child == null
-                                                      ? EmptyEnumerator.Instance
-                                                      : new SingleChildEnumerator(this.child);
-
-        public virtual void ClearChild()
-        {
-            this.RemoveVisualChild(this.child);
-            this.RemoveLogicalChild(this.child);
-            this.child = null;
         }
     }
 }

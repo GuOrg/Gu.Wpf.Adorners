@@ -4,9 +4,10 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
-    using System.Windows.Threading;
 
-    public static class Info
+    // Failed attempt at making a templated adorner
+    // would be easy to just write it but it would be nice if AdornedElementPlaceHolder could be used like for validation error template.
+    internal static class Info
     {
         public static readonly DependencyProperty InfoTemplateProperty = DependencyProperty.RegisterAttached(
             "InfoTemplate",
@@ -65,6 +66,7 @@
 
         private static void UpdateVisibility(UIElement adornedElement)
         {
+            throw new NotImplementedException();
             //var adorner = adornedElement.GetAdorner();
             //if (adornedElement.IsVisible)
             //{

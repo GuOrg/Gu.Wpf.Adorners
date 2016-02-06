@@ -46,7 +46,7 @@
 
         public TextBoxBase AdornedTextBox => (TextBoxBase)this.AdornedElement;
 
-        protected FrameworkElement TextView
+        private FrameworkElement TextView
         {
             get
             {
@@ -55,6 +55,7 @@
                 {
                     return textView;
                 }
+
                 textView = (FrameworkElement)this.AdornedElement.NestedChildren()
                     .OfType<ScrollContentPresenter>()
                     .SingleOrDefault()

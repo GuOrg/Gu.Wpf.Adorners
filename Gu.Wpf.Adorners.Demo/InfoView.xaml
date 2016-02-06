@@ -9,7 +9,7 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <StackPanel>
-        <Button Width="100"
+        <!--<Button Width="100"
                 Height="100"
                 Margin="5"
                 adorners:Info.InfoVisible="{Binding IsChecked,
@@ -30,7 +30,7 @@
                       Height="100"
                       Margin="5"
                       Content="IsVisible"
-                      IsChecked="True" />
+                      IsChecked="True" />-->
     </StackPanel>
 </UserControl>
 

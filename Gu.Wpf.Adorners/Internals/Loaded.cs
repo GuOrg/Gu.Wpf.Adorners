@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System.Windows;
-    using System.Windows.Media;
 
     internal class Loaded
     {
@@ -22,7 +21,7 @@
         {
             EventManager.RegisterClassHandler(
                 typeof(Window),
-                FrameworkElement.LoadedEvent, 
+                FrameworkElement.LoadedEvent,
                 new RoutedEventHandler(OnWindowLoaded));
         }
 

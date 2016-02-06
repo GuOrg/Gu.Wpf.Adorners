@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.Adorners
 {
-    using System.Diagnostics;
     using System.Windows.Documents;
     using System.Windows.Threading;
 

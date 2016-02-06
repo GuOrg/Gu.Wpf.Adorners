@@ -29,10 +29,15 @@
         /// <param name="value2"> The second double to compare. </param>
         public static bool AreClose(double value1, double value2)
         {
-            //in case they are Infinities (then epsilon check does not work)
-            if (value1 == value2) return true;
+            // in case they are Infinities (then epsilon check does not work)
+#pragma warning disable SA1503 // Braces must not be omitted
+            if (value1 == value2)
+            {
+                return true;
+            }
+#pragma warning restore SA1503 // Braces must not be omitted
 
-            // This computes (|value1-value2| / (|value1| + |value2| + 10.0)) < DBL_EPSILON
+                // This computes (|value1-value2| / (|value1| + |value2| + 10.0)) < DBL_EPSILON
             double eps = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * DBL_EPSILON;
             double delta = value1 - value2;
             return (-eps < delta) && (eps > delta);
@@ -211,8 +216,7 @@
 
             // At this point, rect1 isn't empty, so the first thing we can test is
             // rect2.IsEmpty, followed by property-wise compares.
-
-            return (!rect2.IsEmpty) &&
+            return !rect2.IsEmpty &&
                 DoubleUtil.AreClose(rect1.X, rect2.X) &&
                 DoubleUtil.AreClose(rect1.Y, rect2.Y) &&
                 DoubleUtil.AreClose(rect1.Height, rect2.Height) &&
@@ -226,7 +230,7 @@
 
         public static int DoubleToInt(double val)
         {
-            return (val > 0) ? (int)(val + 0.5) : (int)(val - 0.5);
+            return val > 0 ? (int)(val + 0.5) : (int)(val - 0.5);
         }
 
         /// <summary>

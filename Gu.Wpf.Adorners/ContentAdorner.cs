@@ -29,9 +29,9 @@
             new PropertyMetadata(default(DataTemplateSelector)));
 
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.Register(
-            "ContentPresenterStyle", 
-            typeof (Style), 
-            typeof (ContentAdorner),
+            "ContentPresenterStyle",
+            typeof(Style),
+            typeof(ContentAdorner),
             new PropertyMetadata(default(Style)));
 
         static ContentAdorner()
@@ -63,19 +63,19 @@
 
         public DataTemplate ContentTemplate
         {
-            get { return (DataTemplate) this.GetValue(ContentTemplateProperty); }
+            get { return (DataTemplate)this.GetValue(ContentTemplateProperty); }
             set { this.SetValue(ContentTemplateProperty, value); }
         }
 
         public DataTemplateSelector ContentTemplateSelector
         {
-            get { return (DataTemplateSelector) this.GetValue(ContentTemplateSelectorProperty); }
+            get { return (DataTemplateSelector)this.GetValue(ContentTemplateSelectorProperty); }
             set { this.SetValue(ContentTemplateSelectorProperty, value); }
         }
 
         public Style ContentPresenterStyle
         {
-            get { return (Style) this.GetValue(ContentPresenterStyleProperty); }
+            get { return (Style)this.GetValue(ContentPresenterStyleProperty); }
             set { this.SetValue(ContentPresenterStyleProperty, value); }
         }
 
