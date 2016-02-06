@@ -6,12 +6,11 @@
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
 
-    public class WatermarkAdorner : ContainerAdorner<TextBlock>
+    public sealed class WatermarkAdorner : ContainerAdorner<TextBlock>
     {
         public static readonly DependencyProperty TextStyleProperty = Watermark.TextStyleProperty.AddOwner(
             typeof(WatermarkAdorner),
-            new FrameworkPropertyMetadata(
-                default(Style)));
+            new FrameworkPropertyMetadata(default(Style)));
 
         private readonly WeakReference<FrameworkElement> textViewRef = new WeakReference<FrameworkElement>(null);
 

@@ -29,7 +29,9 @@
             </adorners:Info.Template>
         </Button>
 
-        <Button adorners:Info.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
+        <Button Content="info adorner"
+                adorners:Info.IsVisible="{Binding IsChecked,
+                                                  ElementName=IsVisibleButton}">
             <adorners:Info.Template>
                 <ControlTemplate>
                     <Grid>

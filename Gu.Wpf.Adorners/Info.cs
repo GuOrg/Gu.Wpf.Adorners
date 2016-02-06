@@ -3,10 +3,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
-    using System.Windows.Markup.Primitives;
 
-    // Failed attempt at making a templated adorner
-    // would be easy to just write it but it would be nice if AdornedElementPlaceHolder could be used like for validation error template.
     public static class Info
     {
         public static readonly DependencyProperty TemplateProperty = DependencyProperty.RegisterAttached(
@@ -14,7 +11,7 @@
             typeof(ControlTemplate),
             typeof(Info),
             new PropertyMetadata(
-                default(ControlTemplate), 
+                default(ControlTemplate),
                 OnTemplateChanged));
 
         public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached(

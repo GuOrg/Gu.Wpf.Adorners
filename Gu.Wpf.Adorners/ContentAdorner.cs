@@ -6,7 +6,7 @@
     /// <summary>
     /// http://tech.pro/tutorial/856/wpf-tutorial-using-a-visual-collection
     /// </summary>
-    public class ContentAdorner : ContainerAdorner<ContentPresenter>
+    public sealed class ContentAdorner : ContainerAdorner<ContentPresenter>
     {
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(
             "Content",

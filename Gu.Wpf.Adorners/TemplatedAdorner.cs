@@ -12,7 +12,7 @@ namespace Gu.Wpf.Adorners
     /// constructor and it does not override it, but derived classes could.
     /// ~Inspired~ by: http://referencesource.microsoft.com/#PresentationFramework/src/Framework/MS/Internal/Controls/TemplatedAdorner.cs,c0a050a6ac0c693d
     /// </summary>
-    public class TemplatedAdorner : ContainerAdorner<Control>
+    public sealed class TemplatedAdorner : ContainerAdorner<Control>
     {
         public TemplatedAdorner(UIElement adornedElement, ControlTemplate adornerTemplate) : base(adornedElement)
         {
@@ -27,6 +27,11 @@ namespace Gu.Wpf.Adorners
 
             this.Bind(DataContextProperty)
                 .OneWayTo(this.AdornedElement, DataContextProperty);
+        }
+
+        static TemplatedAdorner()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(TemplatedAdorner), new FrameworkPropertyMetadata(typeof(TemplatedAdorner)));
         }
 
         public FrameworkElement ReferenceElement { get; set; }
