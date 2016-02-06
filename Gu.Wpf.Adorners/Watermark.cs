@@ -36,7 +36,7 @@ namespace Gu.Wpf.Adorners
                 OnTextStyleChanged),
             OnValidateTextStyle);
 
-        private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+        public static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsShowing",
             typeof(bool),
             typeof(Watermark),
@@ -50,7 +50,9 @@ namespace Gu.Wpf.Adorners
             "Adorner",
             typeof(WatermarkAdorner),
             typeof(Watermark),
-            new PropertyMetadata(default(WatermarkAdorner)));
+            new PropertyMetadata(
+                default(WatermarkAdorner),
+                OnAdornerChanged));
 
         static Watermark()
         {
@@ -190,10 +192,14 @@ namespace Gu.Wpf.Adorners
                 if (adorner != null)
                 {
                     AdornerService.Remove(adorner);
-                    adorner.ClearChild();
                     textBox.ClearValue(AdornerProperty);
                 }
             }
+        }
+
+        private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((WatermarkAdorner) e.OldValue)?.ClearChild();
         }
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)

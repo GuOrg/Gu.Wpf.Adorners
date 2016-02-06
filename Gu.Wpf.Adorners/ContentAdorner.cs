@@ -1,20 +1,13 @@
 ﻿namespace Gu.Wpf.Adorners
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Documents;
-    using System.Windows.Media;
 
     /// <summary>
     /// http://tech.pro/tutorial/856/wpf-tutorial-using-a-visual-collection
     /// </summary>
-    public class ContentAdorner : Adorner
+    public class ContentAdorner : ContainerAdorner<ContentPresenter>
     {
-        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
-        private readonly VisualCollection children;
-        private readonly ContentPresenter contentPresenter;
-
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(
             "Content",
             typeof(object),
@@ -49,68 +42,54 @@
         public ContentAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
-            this.children = new VisualCollection(this);
-            this.contentPresenter = new ContentPresenter();
-            this.children.Add(this.contentPresenter);
-            this.contentPresenter.Bind(MarginProperty)
+            this.Child = new ContentPresenter();
+            this.Child.Bind(MarginProperty)
                 .OneWayTo(this, MarginProperty);
-            this.contentPresenter.Bind(ContentPresenter.ContentProperty)
+            this.Child.Bind(ContentPresenter.ContentProperty)
                 .OneWayTo(this, ContentProperty);
-            this.contentPresenter.Bind(ContentPresenter.ContentTemplateProperty)
+            this.Child.Bind(ContentPresenter.ContentTemplateProperty)
                 .OneWayTo(this, ContentTemplateProperty);
-            this.contentPresenter.Bind(ContentPresenter.ContentTemplateSelectorProperty)
+            this.Child.Bind(ContentPresenter.ContentTemplateSelectorProperty)
                 .OneWayTo(this, ContentTemplateSelectorProperty);
-            this.contentPresenter.Bind(ContentPresenter.StyleProperty)
+            this.Child.Bind(StyleProperty)
                 .OneWayTo(this, StyleProperty);
         }
 
-        protected override int VisualChildrenCount => 1;
-
         public object Content
         {
-            get { return GetValue(ContentProperty); }
-            set { SetValue(ContentProperty, value); }
+            get { return this.GetValue(ContentProperty); }
+            set { this.SetValue(ContentProperty, value); }
         }
 
         public DataTemplate ContentTemplate
         {
-            get { return (DataTemplate)GetValue(ContentTemplateProperty); }
-            set { SetValue(ContentTemplateProperty, value); }
+            get { return (DataTemplate) this.GetValue(ContentTemplateProperty); }
+            set { this.SetValue(ContentTemplateProperty, value); }
         }
 
         public DataTemplateSelector ContentTemplateSelector
         {
-            get { return (DataTemplateSelector)GetValue(ContentTemplateSelectorProperty); }
-            set { SetValue(ContentTemplateSelectorProperty, value); }
+            get { return (DataTemplateSelector) this.GetValue(ContentTemplateSelectorProperty); }
+            set { this.SetValue(ContentTemplateSelectorProperty, value); }
         }
 
         public Style ContentPresenterStyle
         {
-            get { return (Style)GetValue(ContentPresenterStyleProperty); }
-            set { SetValue(ContentPresenterStyleProperty, value); }
+            get { return (Style) this.GetValue(ContentPresenterStyleProperty); }
+            set { this.SetValue(ContentPresenterStyleProperty, value); }
         }
 
         protected override Size MeasureOverride(Size constraint)
         {
-            var desiredSize = AdornedElement.RenderSize;
-            this.contentPresenter.Measure(desiredSize);
+            var desiredSize = this.AdornedElement.RenderSize;
+            this.Child.Measure(desiredSize);
             return desiredSize;
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.contentPresenter.Arrange(new Rect(0, 0, finalSize.Width, finalSize.Height));
-            return this.contentPresenter.RenderSize;
-        }
-
-        protected override Visual GetVisualChild(int index)
-        {
-            if (index != 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(index));
-            }
-
-            return this.contentPresenter;
+            this.Child.Arrange(new Rect(0, 0, finalSize.Width, finalSize.Height));
+            return this.Child.RenderSize;
         }
     }
 }

@@ -42,19 +42,22 @@
             "IsVisible",
             typeof(bool),
             typeof(Overlay),
-            new PropertyMetadata(default(bool), OnIsVisibleChanged));
+            new PropertyMetadata(
+                default(bool), 
+                OnIsVisibleChanged));
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
             typeof(ContentAdorner),
             typeof(Overlay),
-            new PropertyMetadata(default(ContentAdorner)));
+            new PropertyMetadata(default(ContentAdorner), OnAdornerChanged));
 
         static Overlay()
         {
             EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
             Loaded.Track();
             EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
+            EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
             EventManager.RegisterClassHandler(typeof(UIElement), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
         }
 
@@ -130,6 +133,11 @@
             UpdateOverlayVisibility(sender as UIElement);
         }
 
+        private static void OnUnLoaded(object sender, RoutedEventArgs e)
+        {
+            UpdateOverlayVisibility(sender as UIElement);
+        }
+
         private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
         {
             UpdateOverlayVisibility(sender as UIElement);
@@ -199,6 +207,11 @@
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             UpdateOverlayVisibility(d as UIElement);
+        }
+
+        private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((WatermarkAdorner)e.OldValue)?.ClearChild();
         }
 
         private static void UpdateOverlayVisibility(UIElement element)
