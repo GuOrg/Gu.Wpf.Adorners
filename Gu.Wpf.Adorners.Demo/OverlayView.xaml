@@ -22,11 +22,12 @@
             </adorners:Overlay.Content>
         </Button>
 
-        <TextBlock Text="Bound visibility" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock HorizontalAlignment="Center"
+                   Text="Bound visibility" />
         <ToggleButton x:Name="IsVisibleButton"
                       Content="IsVisible"
                       IsChecked="True" />
-        
+
         <Button Content="Bound visibility"
                 adorners:Overlay.IsVisible="{Binding IsChecked,
                                                      ElementName=IsVisibleButton}">

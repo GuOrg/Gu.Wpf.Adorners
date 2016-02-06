@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Windows;
     using System.Windows.Documents;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,7 +19,6 @@
                 .ToArray();
             foreach (var property in dependencyProperties)
             {
-                // <Setter Property="TextElement.FontStretch" Value="{Binding AdornedTextBox.(TextElement.FontSize), RelativeSource={RelativeSource Self}}" />
                 Console.WriteLine($"<Setter Property=\"{property.OwnerType.Name}.{property.Name}\" Value=\"{{Binding AdornedElement.({property.OwnerType.Name}.{property.Name}), RelativeSource ={{RelativeSource Self}}}}\" />");
             }
         }
