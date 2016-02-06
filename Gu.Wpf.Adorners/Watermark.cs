@@ -52,9 +52,8 @@ namespace Gu.Wpf.Adorners
 
         static Watermark()
         {
-            Loaded.Track();
-            UnLoaded.Track();
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
+            Loaded.Track();
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
             EventManager.RegisterClassHandler(typeof(TextBox), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
@@ -127,6 +126,7 @@ namespace Gu.Wpf.Adorners
                 return;
             }
 
+            Visible.Track(textBox);
             UpdateWatermarkVisibility(textBox);
         }
 
@@ -159,7 +159,7 @@ namespace Gu.Wpf.Adorners
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Debug.Print($"Visible changed to: {e.NewValue}");
+            //Debug.Print($"Visible changed to: {e.NewValue}");
             var textBox = (TextBox)d;
             if (Equals(e.NewValue, true))
             {
@@ -167,6 +167,7 @@ namespace Gu.Wpf.Adorners
                 if (adorner == null)
                 {
                     adorner = new WatermarkAdorner(textBox);
+                    textBox.SetAdorner(adorner);
                     var textStyle = textBox.GetTextStyle();
                     if (textStyle != null)
                     {
@@ -178,7 +179,7 @@ namespace Gu.Wpf.Adorners
                 }
                 else
                 {
-                    Debug.Print("Already visible");
+                    Debug.Assert(false, "Already visible");
                 }
             }
             else
