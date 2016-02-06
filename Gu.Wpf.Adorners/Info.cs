@@ -65,29 +65,29 @@
 
         private static void UpdateVisibility(UIElement adornedElement)
         {
-            var adorner = adornedElement.GetAdorner();
-            if (adornedElement.IsVisible)
-            {
-                if (adorner == null)
-                {
-                    var template = GetInfoTemplate(adornedElement);
-                    adorner = TemplatedAdornerFactory.Create(adornedElement, template);
-                }
+            //var adorner = adornedElement.GetAdorner();
+            //if (adornedElement.IsVisible)
+            //{
+            //    if (adorner == null)
+            //    {
+            //        var template = GetInfoTemplate(adornedElement);
+            //        adorner = TemplatedAdornerFactory.Create(adornedElement, template);
+            //    }
 
-                if (adorner == null)
-                {
-                    return;
-                  //adornedElement.Dispatcher.BeginInvoke(DispatcherPriority.Loaded,new Action<UIElement>(a))
-                }
+            //    if (adorner == null)
+            //    {
+            //        return;
+            //      //adornedElement.Dispatcher.BeginInvoke(DispatcherPriority.Loaded,new Action<UIElement>(a))
+            //    }
 
-                adornedElement.SetAdorner(adorner);
-                AdornerService.Show(adorner);
-            }
+            //    adornedElement.SetAdorner(adorner);
+            //    AdornerService.Show(adorner);
+            //}
 
-            else if(adorner != null)
-            {
-                AdornerService.Remove(adorner);
-            }
+            //else if(adorner != null)
+            //{
+            //    AdornerService.Remove(adorner);
+            //}
         }
 
         //private static Adorner 

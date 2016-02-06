@@ -11,13 +11,10 @@
 
     public class WatermarkAdorner : Adorner
     {
-        private readonly TextBlock child;
+        private TextBlock child;
         public static readonly DependencyProperty TextStyleProperty = Watermark.TextStyleProperty.AddOwner(
             typeof(WatermarkAdorner),
-            new FrameworkPropertyMetadata(
-                default(Style),
-                FrameworkPropertyMetadataOptions.Inherits,
-                OnTextStyleChanged));
+            new FrameworkPropertyMetadata(default(Style)));
 
         private readonly WeakReference<FrameworkElement> textViewRef = new WeakReference<FrameworkElement>(null);
 
@@ -36,22 +33,12 @@
             this.child = textBlock;
             this.AddVisualChild(this.child);
             this.AddLogicalChild(this.child);
-            this.child.Bind(StyleProperty)
+
+            this.child.Bind(TextBlock.StyleProperty)
                 .OneWayTo(this, TextStyleProperty);
-        }
 
-        public string Text
-        {
-            get { return this.child.Text; }
-            set
-            {
-                if (child.Text == value)
-                {
-                    return;
-                }
-
-                child.Text = value;
-            }
+            this.child.Bind(TextBlock.TextProperty)
+                .OneWayTo(textBox, Watermark.TextProperty);
         }
 
         public Style TextStyle
@@ -60,9 +47,11 @@
             set { this.SetValue(TextStyleProperty, value); }
         }
 
-        public TextBoxBase AdornedTextBox => (TextBoxBase)base.AdornedElement;
+        public TextBoxBase AdornedTextBox => (TextBoxBase)this.AdornedElement;
 
-        protected override IEnumerator LogicalChildren => new SingleChildEnumerator(this.child);
+        protected override IEnumerator LogicalChildren => this.child == null
+                                                              ? EmptyEnumerator.Instance
+                                                              : new SingleChildEnumerator(this.child);
 
         protected FrameworkElement TextView
         {
@@ -73,7 +62,7 @@
                 {
                     return textView;
                 }
-                textView = (FrameworkElement)AdornedElement.NestedChildren()
+                textView = (FrameworkElement)this.AdornedElement.NestedChildren()
                     .OfType<ScrollContentPresenter>()
                     .SingleOrDefault()
                     ?.VisualChildren()
@@ -81,11 +70,18 @@
                     .SingleOrDefault();
                 if (textView != null)
                 {
-                    textViewRef.SetTarget(textView);
+                    this.textViewRef.SetTarget(textView);
                 }
 
                 return textView;
             }
+        }
+
+        public void ClearChild()
+        {
+            this.RemoveVisualChild(this.child);
+            this.RemoveLogicalChild(this.child);
+            this.child = null;
         }
 
         protected override int VisualChildrenCount => 1;
@@ -102,17 +98,17 @@
 
         protected override Size MeasureOverride(Size constraint)
         {
-            var desiredSize = AdornedElement.RenderSize;
-            child.Measure(desiredSize);
+            var desiredSize = this.AdornedElement.RenderSize;
+            this.child.Measure(desiredSize);
             return desiredSize;
         }
 
         protected override Size ArrangeOverride(Size size)
         {
-            var view = TextView;
+            var view = this.TextView;
             if (view != null)
             {
-                var aSize = AdornedElement.RenderSize;
+                var aSize = this.AdornedElement.RenderSize;
                 var wSize = view.RenderSize;
                 var x = (aSize.Width - wSize.Width) / 2;
                 var y = (aSize.Height - wSize.Height) / 2;
@@ -124,16 +120,6 @@
                 this.child.Arrange(new Rect(new Point(0, 0), size));
             }
             return size;
-        }
-
-        private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //var adorner = (WatermarkAdorner)d;
-            //adorner.child.SetCurrentValue(FrameworkElement.StyleProperty, e.NewValue);
-            //AdornerService.Remove(adorner);
-            //AdornerService.Show(adorner);
-            //adorner.InvalidateMeasure();
-            //adorner.InvalidateVisual();
         }
     }
 }
