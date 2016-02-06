@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Gu.Wpf.Adorners.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -82,6 +83,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="paket.references" />
+    <None Include="paket.template" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,4 +102,15 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\Newtonsoft.Json.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+  </ItemGroup>
 </Project>

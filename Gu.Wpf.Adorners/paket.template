@@ -1,0 +1,8 @@
+﻿type project
+tags xaml wpf watermark adorner overlay attachedproperty
+projectUrl https://github.com/JohanLarsson/Gu.Wpf.Adorners
+licenseUrl http://opensource.org/licenses/MIT
+
+excludeddependencies
+  JetBrains.Annotations
+  StyleCop.Analyzers

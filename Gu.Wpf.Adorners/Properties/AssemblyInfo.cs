@@ -9,9 +9,9 @@ using System.Windows.Markup;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Gu.Wpf.Adorners")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Watermark and overlay adorners for WPF.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Johan Larsson")]
 [assembly: AssemblyProduct("Gu.Wpf.Adorners")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

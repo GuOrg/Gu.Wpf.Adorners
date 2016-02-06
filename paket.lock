@@ -1,0 +1,4 @@
+NUGET
+  remote: http://www.nuget.org/api/v2
+  specs:
+    StyleCop.Analyzers (1.0.0)
