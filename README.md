@@ -53,3 +53,48 @@ All properties are attached properties so you can do:
 </StackPanel>
 ```
 
+## Overlay
+The overlay visibility is controled with adorners:Overlay.IsVisible if set to null the overlay is shown if adorners:Overlay.Content != null
+Sample:
+```
+<Button Width="100"
+        Height="100"
+        Margin="5"
+        adorners:Overlay.IsVisible="{Binding IsChecked,
+                                             ElementName=IsVisibleButton}">
+    <adorners:Overlay.Content>
+        <Border BorderBrush="HotPink"
+                BorderThickness="3" />
+    </adorners:Overlay.Content>
+</Button>
+```
+Renders: ![watermarked](http://i.imgur.com/HppBPBC.png)
+
+##### Attached properties
+All properties are attached properties so you can do:
+Note that this sample makes little sense overspecifying, providing it to give copy-paste friendly xaml.
+```
+<StackPanel adorners:Overlay.ContentPresenterStyle="{StaticResource OverlayStyle}"
+            adorners:Overlay.ContentTemplateSelector="{StaticResource OverlayTemplateSelector}">
+    <adorners:Overlay.ContentTemplate>
+        <DataTemplate>
+            <Border BorderBrush="GreenYellow"
+                    BorderThickness="3">
+                <TextBlock HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="{Binding}" />
+            </Border>
+        </DataTemplate>
+    </adorners:Overlay.ContentTemplate>
+
+    <Button Width="100"
+            Height="100"
+            Margin="5"
+            Foreground="Yellow" />
+
+    <Button Width="100"
+            Height="100"
+            Margin="5"
+            Foreground="Blue" />
+</StackPanel>
+```
