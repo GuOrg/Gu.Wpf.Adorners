@@ -9,9 +9,8 @@
             "Content",
             typeof(object),
             typeof(Overlay),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 default(object),
-                FrameworkPropertyMetadataOptions.Inherits,
                 OnContentChanged));
 
         public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.RegisterAttached(
@@ -43,11 +42,10 @@
 
         public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached(
             "IsVisible",
-            typeof(bool),
+            typeof(bool?),
             typeof(Overlay),
-            new FrameworkPropertyMetadata(
-                default(bool),
-                FrameworkPropertyMetadataOptions.Inherits,
+            new PropertyMetadata(
+                default(bool?),
                 OnIsVisibleChanged));
 
         private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
@@ -126,14 +124,14 @@
             return (Style)element.GetValue(ContentPresenterStyleProperty);
         }
 
-        public static void SetIsVisible(DependencyObject element, bool value)
+        public static void SetIsVisible(DependencyObject element, bool? value)
         {
             element.SetValue(IsVisibleProperty, value);
         }
 
-        public static bool GetIsVisible(DependencyObject element)
+        public static bool? GetIsVisible(DependencyObject element)
         {
-            return (bool)element.GetValue(IsVisibleProperty);
+            return (bool?)element.GetValue(IsVisibleProperty);
         }
 
         private static void SetIsShowing(this DependencyObject element, bool value)
@@ -232,10 +230,10 @@
                     element.SetAdorner(adorner);
                 }
 
-                adorner.Content = GetContent(element);
-                adorner.ContentTemplate = GetContentTemplate(element);
-                adorner.ContentTemplateSelector = GetContentTemplateSelector(element);
-                adorner.ContentPresenterStyle = GetContentPresenterStyle(element);
+                SetIfNotNull(d, ContentProperty, adorner, ContentAdorner.ContentProperty);
+                SetIfNotNull(d, ContentTemplateProperty, adorner, ContentAdorner.ContentTemplateProperty);
+                SetIfNotNull(d, ContentTemplateSelectorProperty, adorner, ContentAdorner.ContentTemplateSelectorProperty);
+                SetIfNotNull(d, ContentPresenterStyleProperty, adorner, ContentAdorner.ContentPresenterStyleProperty);
                 AdornerService.Show(adorner);
             }
             else
@@ -269,7 +267,28 @@
                 return;
             }
 
-            element.SetIsShowing(GetIsVisible(element));
+            var isVisible = GetIsVisible(element);
+            if (isVisible != null)
+            {
+                element.SetIsShowing(isVisible.Value);
+                return;
+            }
+
+            var content = GetContent(element);
+            element.SetIsShowing(content != null);
+        }
+
+        private static void SetIfNotNull(
+            DependencyObject source,
+            DependencyProperty sourceProperty,
+            ContentAdorner adorner,
+            DependencyProperty adornerProperty)
+        {
+            var value = source.GetValue(sourceProperty);
+            if (value != null)
+            {
+                adorner.SetValue(adornerProperty, value);
+            }
         }
     }
 }

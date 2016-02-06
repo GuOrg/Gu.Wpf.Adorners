@@ -5,10 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+        </Style>
+    </UserControl.Resources>
     <StackPanel>
-        <Button Width="100"
-                Height="100"
-                Margin="5"
+        <Button Content="Default visibility no overlay" />
+
+        <Button Content="Default visibility">
+            <adorners:Overlay.Content>
+                <Border BorderBrush="Blue"
+                        BorderThickness="3" />
+            </adorners:Overlay.Content>
+        </Button>
+
+        <TextBlock Text="Bound visibility" HorizontalAlignment="Center"></TextBlock>
+        <ToggleButton x:Name="IsVisibleButton"
+                      Content="IsVisible"
+                      IsChecked="True" />
+        
+        <Button Content="Bound visibility"
                 adorners:Overlay.IsVisible="{Binding IsChecked,
                                                      ElementName=IsVisibleButton}">
             <adorners:Overlay.Content>
@@ -17,16 +36,14 @@
             </adorners:Overlay.Content>
         </Button>
 
-        <Button Width="100"
-                Height="100"
-                Margin="5"
+        <Button Content="With content template"
                 Foreground="Blue"
                 adorners:Overlay.Content="yeah"
                 adorners:Overlay.IsVisible="{Binding IsChecked,
                                                      ElementName=IsVisibleButton}">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="HotPink"
+                    <Border BorderBrush="BlueViolet"
                             BorderThickness="3">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
@@ -36,17 +53,8 @@
             </adorners:Overlay.ContentTemplate>
         </Button>
 
-        <ToggleButton x:Name="IsVisibleButton"
-                      Width="100"
-                      Height="100"
-                      Margin="5"
-                      Content="IsVisible"
-                      IsChecked="True" />
-
         <TextBlock Text="Inherits" />
-        <StackPanel adorners:Overlay.Content="inherited"
-                    adorners:Overlay.IsVisible="{Binding IsChecked,
-                                                         ElementName=IsVisibleButton}">
+        <StackPanel adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
                     <Border BorderBrush="GreenYellow"
@@ -58,15 +66,13 @@
                 </DataTemplate>
             </adorners:Overlay.ContentTemplate>
 
-            <Button Width="100"
-                    Height="100"
-                    Margin="5"
-                    Foreground="Yellow" />
+            <Button Content="1"
+                    Foreground="Yellow"
+                    adorners:Overlay.Content="inherited" />
 
-            <Button Width="100"
-                    Height="100"
-                    Margin="5"
-                    Foreground="Blue" />
+            <Button Content="2"
+                    Foreground="Blue"
+                    adorners:Overlay.Content="inherited" />
         </StackPanel>
     </StackPanel>
 </UserControl>
