@@ -42,5 +42,31 @@
                       Margin="5"
                       Content="IsVisible"
                       IsChecked="True" />
+
+        <TextBlock Text="Inherits" />
+        <StackPanel adorners:Overlay.Content="inherited"
+                    adorners:Overlay.IsVisible="{Binding IsChecked,
+                                                         ElementName=IsVisibleButton}">
+            <adorners:Overlay.ContentTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="GreenYellow"
+                            BorderThickness="3">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </adorners:Overlay.ContentTemplate>
+
+            <Button Width="100"
+                    Height="100"
+                    Margin="5"
+                    Foreground="Yellow" />
+
+            <Button Width="100"
+                    Height="100"
+                    Margin="5"
+                    Foreground="Blue" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

@@ -9,24 +9,27 @@
             "Content",
             typeof(object),
             typeof(Overlay),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 default(object),
+                FrameworkPropertyMetadataOptions.Inherits,
                 OnContentChanged));
 
         public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.RegisterAttached(
             "ContentTemplate",
             typeof(DataTemplate),
             typeof(Overlay),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 default(DataTemplate),
+                FrameworkPropertyMetadataOptions.Inherits,
                 OnContentTemplateChanged));
 
         public static readonly DependencyProperty ContentTemplateSelectorProperty = DependencyProperty.RegisterAttached(
             "ContentTemplateSelector",
             typeof(DataTemplateSelector),
             typeof(Overlay),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 default(DataTemplateSelector),
+                 FrameworkPropertyMetadataOptions.Inherits,
                 OnContentTemplateSelectorChanged));
 
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.RegisterAttached(
@@ -42,8 +45,9 @@
             "IsVisible",
             typeof(bool),
             typeof(Overlay),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 default(bool),
+                FrameworkPropertyMetadataOptions.Inherits,
                 OnIsVisibleChanged));
 
         private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
@@ -189,6 +193,7 @@
             {
                 adorner.ContentTemplate = GetContentTemplate(d);
             }
+            UpdateIsShowing(d);
         }
 
         private static void OnContentTemplateSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -198,6 +203,7 @@
             {
                 adorner.ContentTemplate = GetContentTemplate(d);
             }
+            UpdateIsShowing(d);
         }
 
         private static void OnContentPresenterStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -257,8 +263,7 @@
             }
 
             if (!Visible.IsVisible(element) ||
-                !Loaded.IsLoaded(element) ||
-                GetContent(element) == null)
+                !Loaded.IsLoaded(element))
             {
                 element.SetIsShowing(false);
                 return;
