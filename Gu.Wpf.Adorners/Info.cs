@@ -132,7 +132,7 @@
                 var adorner = element.GetAdorner();
                 if (adorner == null)
                 {
-                    adorner = new TemplatedAdorner(element, (ControlTemplate)element.GetValue(TemplateProperty));
+                    adorner = TemplatedAdorner.Create(element, (ControlTemplate)element.GetValue(TemplateProperty));
                     element.SetAdorner(adorner);
                 }
 
@@ -152,7 +152,7 @@
 
         private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((TemplatedAdorner)e.OldValue)?.ClearChild();
+            ((Adorner)e.OldValue)?.ClearTemplatedAdornerChild();
         }
 
         private static void UpdateIsShowing(DependencyObject element)

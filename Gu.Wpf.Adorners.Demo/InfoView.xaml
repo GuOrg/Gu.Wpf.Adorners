@@ -23,7 +23,7 @@
                     <Border Margin="-1"
                             BorderBrush="Red"
                             BorderThickness="1">
-                        <adorners:AdornedElementPlaceholder />
+                        <AdornedElementPlaceholder />
                     </Border>
                 </ControlTemplate>
             </adorners:Info.Template>
@@ -42,7 +42,7 @@
                         <Border HorizontalAlignment="Right"
                                 BorderBrush="Blue"
                                 BorderThickness="0,0,0,1">
-                            <adorners:AdornedElementPlaceholder />
+                            <AdornedElementPlaceholder />
                         </Border>
                         <TextBlock Grid.Row="1"
                                    HorizontalAlignment="Right"
