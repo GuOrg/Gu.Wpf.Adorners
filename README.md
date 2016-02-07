@@ -98,3 +98,33 @@ Note that this sample makes little sense overspecifying, providing it to give co
             Foreground="Blue" />
 </StackPanel>
 ```
+
+## Info
+This is very similar to the adorner used for validation in WPF
+Sample:
+```
+<Button adorners:Info.IsVisible="{Binding IsChecked,
+                                            ElementName=IsVisibleButton}">
+    <adorners:Info.Template>
+        <ControlTemplate>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border HorizontalAlignment="Right"
+                        BorderBrush="Blue"
+                        BorderThickness="0,0,0,1">
+                    <AdornedElementPlaceholder />
+                </Border>
+                <TextBlock Grid.Row="1"
+                            HorizontalAlignment="Right"
+                            Text="Some info text"
+                            TextAlignment="Right" />
+            </Grid>
+        </ControlTemplate>
+    </adorners:Info.Template>
+</Button>
+```
+
+The DataContext of the adorner is bound to DataContext of AdornedElement.
