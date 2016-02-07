@@ -57,10 +57,7 @@ All properties are attached properties so you can do:
 The overlay visibility is controled with adorners:Overlay.IsVisible if set to null the overlay is shown if adorners:Overlay.Content != null
 Sample:
 ```
-<Button Width="100"
-        Height="100"
-        Margin="5"
-        adorners:Overlay.IsVisible="{Binding IsChecked,
+<Button adorners:Overlay.IsVisible="{Binding IsChecked,
                                              ElementName=IsVisibleButton}">
     <adorners:Overlay.Content>
         <Border BorderBrush="HotPink"
@@ -68,7 +65,7 @@ Sample:
     </adorners:Overlay.Content>
 </Button>
 ```
-Renders: ![watermarked](http://i.imgur.com/HppBPBC.png)
+Renders: ![overlay](http://i.imgur.com/Csrqi6L.png)
 
 ##### Attached properties
 All properties are attached properties so you can do:
@@ -126,5 +123,6 @@ Sample:
     </adorners:Info.Template>
 </Button>
 ```
+Renders: ![info](http://i.imgur.com/9ODbtO9.png)
 
 The DataContext of the adorner is bound to DataContext of AdornedElement.
