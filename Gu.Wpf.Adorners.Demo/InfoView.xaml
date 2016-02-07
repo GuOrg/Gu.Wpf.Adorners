@@ -15,7 +15,19 @@
         </Style>
     </UserControl.Resources>
     <StackPanel>
-        <Button Content="red border"
+        <Button Content="red border default visibility">
+            <adorners:Info.Template>
+                <ControlTemplate>
+                    <Border Margin="-1"
+                            BorderBrush="Red"
+                            BorderThickness="1">
+                        <AdornedElementPlaceholder />
+                    </Border>
+                </ControlTemplate>
+            </adorners:Info.Template>
+        </Button>
+        
+        <Button Content="red border bound visibility"
                 adorners:Info.IsVisible="{Binding IsChecked,
                                                   ElementName=IsVisibleButton}">
             <adorners:Info.Template>

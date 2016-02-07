@@ -59,7 +59,7 @@
                     .OfType<ScrollContentPresenter>()
                     .SingleOrDefault()
                     ?.VisualChildren()
-                    .OfType<IScrollInfo>()
+                    .OfType<IScrollInfo>() // The TextView is internal but implements IScrollInfo
                     .SingleOrDefault();
                 if (textView != null)
                 {

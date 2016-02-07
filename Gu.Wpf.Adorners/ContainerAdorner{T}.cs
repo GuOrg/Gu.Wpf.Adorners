@@ -19,8 +19,9 @@
         {
         }
 
+        // marked virtual because AddVisualChild calls the virtual OnVisualChildrenChanged
         [DefaultValue(null)]
-        public T Child
+        public virtual T Child
         {
             get
             {
