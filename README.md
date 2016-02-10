@@ -5,12 +5,66 @@ A collection of adorners for wpf.
 ## Watermark
 Sample:
 ```
-<TextBox adorners:Watermark.Text="Write something here" 
-         adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
-         adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused"/>
+<UserControl.Resources>
+    <Style x:Key="AdornerTextStyle"
+            TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Green" />
+        <Setter Property="Opacity" Value="1" />
+    </Style>
+
+    <Style TargetType="{x:Type GroupBox}">
+        <Setter Property="BorderBrush" Value="Blue" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+</UserControl.Resources>
+
+<StackPanel>
+    <TextBlock Text="Simple" />
+    <TextBox adorners:Watermark.Text="Write something here" />
+
+    <TextBlock Text="Bound text" />
+    <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+    <TextBox x:Name="AdornerText"
+                Text="AAA" />
+
+    <TextBlock Text="Inherits Fontsize via default style" />
+    <TextBox FontSize="32"
+                adorners:Watermark.Text="Foo" />
+
+    <TextBlock Text="Explicit style" />
+    <TextBox adorners:Watermark.Text="Explicit style"
+                adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
+
+    <GroupBox Header="Inherited style"
+                adorners:Watermark.Text="Inherited style"
+                adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}">
+        <StackPanel>
+            <TextBox />
+            <TextBox />
+        </StackPanel>
+    </GroupBox>
+
+    <GroupBox Header="Inherited text"
+                adorners:Watermark.Text="Inherited text">
+        <StackPanel>
+            <TextBox />
+            <TextBox />
+        </StackPanel>
+    </GroupBox>
+
+    <TextBlock Text="VisibleWhen=Empty" />
+    <TextBox adorners:Watermark.Text="visible when empty"
+                adorners:Watermark.VisibleWhen="Empty" />
+
+    <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+    <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)"
+                adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
+</StackPanel>
 ```
 
-Renders: ![watermarked](http://i.imgur.com/HppBPBC.png)
+Renders: 
+![watermarked](http://i.imgur.com/CGMrn3S.gif)
 
 ##### TextStyle 
 Accepts a style for `TextBlock` the text is drawn where the textbox text is drawn so no margins needed.
