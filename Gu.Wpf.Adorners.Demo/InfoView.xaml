@@ -26,7 +26,7 @@
                 </ControlTemplate>
             </adorners:Info.Template>
         </Button>
-        
+
         <Button Content="red border bound visibility"
                 adorners:Info.IsVisible="{Binding IsChecked,
                                                   ElementName=IsVisibleButton}">
