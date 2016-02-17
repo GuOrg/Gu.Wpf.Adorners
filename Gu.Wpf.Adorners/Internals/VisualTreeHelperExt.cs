@@ -60,6 +60,27 @@ namespace Gu.Wpf.Adorners
             }
         }
 
+        internal static T SingleOrNull<T>(this IEnumerable<object> items)
+            where T : class
+        {
+            T match = null;
+            foreach (var item in items)
+            {
+                var temp = item as T;
+                if (temp != null)
+                {
+                    if (match != null)
+                    {
+                        return null;
+                    }
+
+                    match = temp;
+                }
+            }
+
+            return match;
+        }
+
         internal static string DumpVisualTree(this DependencyObject parent)
         {
             using (var stringWriter = new StringWriter())

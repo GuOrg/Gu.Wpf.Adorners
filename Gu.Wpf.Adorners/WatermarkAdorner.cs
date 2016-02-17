@@ -56,11 +56,9 @@
                 }
 
                 textView = (FrameworkElement)this.AdornedElement.NestedChildren()
-                    .OfType<ScrollContentPresenter>()
-                    .SingleOrDefault()
+                    .SingleOrNull<ScrollContentPresenter>()
                     ?.VisualChildren()
-                    .OfType<IScrollInfo>() // The TextView is internal but implements IScrollInfo
-                    .SingleOrDefault();
+                    .SingleOrNull<IScrollInfo>(); // The TextView is internal but implements IScrollInfo
                 if (textView != null)
                 {
                     this.textViewRef.SetTarget(textView);
