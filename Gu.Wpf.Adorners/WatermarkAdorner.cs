@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -55,7 +54,8 @@
                     return textView;
                 }
 
-                textView = (FrameworkElement)this.AdornedElement.NestedChildren()
+                textView = (FrameworkElement)this.AdornedElement
+                    ?.NestedChildren()
                     .SingleOrNull<ScrollContentPresenter>()
                     ?.VisualChildren()
                     .SingleOrNull<IScrollInfo>(); // The TextView is internal but implements IScrollInfo
@@ -71,7 +71,7 @@
         protected override Size MeasureOverride(Size constraint)
         {
             var desiredSize = this.AdornedElement.RenderSize;
-            this.Child.Measure(desiredSize);
+            this.Child?.Measure(desiredSize);
             return desiredSize;
         }
 
@@ -85,12 +85,13 @@
                 var x = (aSize.Width - wSize.Width) / 2;
                 var y = (aSize.Height - wSize.Height) / 2;
                 var location = new Point(x, y);
-                this.Child.Arrange(new Rect(location, wSize));
+                this.Child?.Arrange(new Rect(location, wSize));
             }
             else
             {
-                this.Child.Arrange(new Rect(new Point(0, 0), size));
+                this.Child?.Arrange(new Rect(new Point(0, 0), size));
             }
+
             return size;
         }
     }
