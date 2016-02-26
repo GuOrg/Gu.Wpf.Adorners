@@ -82,14 +82,14 @@
         protected override Size MeasureOverride(Size constraint)
         {
             var desiredSize = this.AdornedElement.RenderSize;
-            this.Child.Measure(desiredSize);
+            this.Child?.Measure(desiredSize);
             return desiredSize;
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.Child.Arrange(new Rect(0, 0, finalSize.Width, finalSize.Height));
-            return this.Child.RenderSize;
+            this.Child?.Arrange(new Rect(0, 0, finalSize.Width, finalSize.Height));
+            return this.Child?.RenderSize ?? base.ArrangeOverride(finalSize);
         }
     }
 }
