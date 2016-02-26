@@ -1,3 +1,4 @@
 source http://www.nuget.org/api/v2/
 
 nuget StyleCop.Analyzers
+nuget NUnit 2.6.4
