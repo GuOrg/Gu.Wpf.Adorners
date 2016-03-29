@@ -5,6 +5,8 @@
 
     public static class Overlay
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
+
         public static readonly DependencyProperty ContentProperty = DependencyProperty.RegisterAttached(
             "Content",
             typeof(object),
@@ -155,6 +157,8 @@
             return (ContentAdorner)element.GetValue(AdornerProperty);
         }
 
+#pragma warning restore SA1202 // Elements must be ordered by access
+
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
             var element = sender as DependencyObject;
@@ -190,6 +194,7 @@
             {
                 adorner.ContentTemplate = GetContentTemplate(d);
             }
+
             UpdateIsShowing(d);
         }
 
@@ -200,6 +205,7 @@
             {
                 adorner.ContentTemplate = GetContentTemplate(d);
             }
+
             UpdateIsShowing(d);
         }
 

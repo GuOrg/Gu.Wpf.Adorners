@@ -6,6 +6,7 @@
 
     public static class Info
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty TemplateProperty = DependencyProperty.RegisterAttached(
             "Template",
             typeof(ControlTemplate),
@@ -90,6 +91,8 @@
         {
             return (Adorner)element.GetValue(AdornerProperty);
         }
+
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {

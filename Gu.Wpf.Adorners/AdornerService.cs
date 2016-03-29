@@ -12,7 +12,7 @@
 
         public static void Remove(Adorner adorner)
         {
-            //Debug.WriteLine(nameof(Remove));
+            ////Debug.WriteLine(nameof(Remove));
             var adornerLayer = AdornerLayer.GetAdornerLayer(adorner.AdornedElement);
             adornerLayer?.Remove(adorner);
         }
@@ -22,14 +22,15 @@
             var adornerLayer = AdornerLayer.GetAdornerLayer(adorner.AdornedElement);
             if (adornerLayer != null)
             {
-                //Debug.WriteLine(nameof(Show));
+                ////Debug.WriteLine(nameof(Show));
                 adornerLayer.Remove(adorner);
                 adornerLayer.Add(adorner);
             }
             else if (retry)
             {
                 // try again later, perhaps giving layout a chance to create the adorner layer
-                adorner.Dispatcher.BeginInvoke(DispatcherPriority.Loaded,
+                adorner.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Loaded,
                     new DispatcherOperationCallback(ShowAdornerOperation),
                     new object[] { adorner });
             }

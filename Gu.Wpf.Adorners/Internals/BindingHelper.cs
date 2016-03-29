@@ -19,15 +19,6 @@ namespace Gu.Wpf.Adorners
             DependencyObject target,
             DependencyProperty targetProperty,
             object source,
-            DependencyProperty sourceProperty)
-        {
-            return Bind(target, targetProperty, source, GetPath(sourceProperty));
-        }
-
-        internal static BindingExpression Bind(
-            DependencyObject target,
-            DependencyProperty targetProperty,
-            object source,
             PropertyPath path)
         {
             var binding = new Binding
@@ -40,7 +31,7 @@ namespace Gu.Wpf.Adorners
             return (BindingExpression)BindingOperations.SetBinding(target, targetProperty, binding);
         }
 
-        internal static PropertyPath GetPath(DependencyProperty property)
+        private static PropertyPath GetPath(DependencyProperty property)
         {
             PropertyPath path;
             if (PropertyPaths.TryGetValue(property, out path))
@@ -51,6 +42,15 @@ namespace Gu.Wpf.Adorners
             path = new PropertyPath(property);
             PropertyPaths[property] = path;
             return path;
+        }
+
+        private static BindingExpression Bind(
+            DependencyObject target,
+            DependencyProperty targetProperty,
+            object source,
+            DependencyProperty sourceProperty)
+        {
+            return Bind(target, targetProperty, source, GetPath(sourceProperty));
         }
 
         internal struct BindingBuilder

@@ -8,6 +8,7 @@ namespace Gu.Wpf.Adorners
 
     public static class Watermark
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
             "Text",
             typeof(string),
@@ -36,12 +37,12 @@ namespace Gu.Wpf.Adorners
                 OnTextStyleChanged),
             OnValidateTextStyle);
 
-        public static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+        private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsShowing",
             typeof(bool),
             typeof(Watermark),
             new PropertyMetadata(
-                default(bool), 
+                default(bool),
                 OnIsShowingChanged));
 
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
@@ -122,6 +123,8 @@ namespace Gu.Wpf.Adorners
             return (WatermarkAdorner)element.GetValue(AdornerProperty);
         }
 
+#pragma warning restore SA1202 // Elements must be ordered by access
+
         private static void OnWatermarkTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var textBox = o as TextBox;
@@ -163,7 +166,7 @@ namespace Gu.Wpf.Adorners
 
         private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            //Debug.Print($"Visible changed to: {e.NewValue}");
+            ////Debug.Print($"Visible changed to: {e.NewValue}");
             var textBox = (TextBox)d;
             if (Equals(e.NewValue, true))
             {
@@ -199,7 +202,7 @@ namespace Gu.Wpf.Adorners
 
         private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((WatermarkAdorner) e.OldValue)?.ClearChild();
+            ((WatermarkAdorner)e.OldValue)?.ClearChild();
         }
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
@@ -246,11 +249,10 @@ namespace Gu.Wpf.Adorners
                 return;
             }
 
-            if (!textBox.IsVisible || ! textBox.IsLoaded || string.IsNullOrEmpty(GetText(textBox)))
+            if (!textBox.IsVisible || !textBox.IsLoaded || string.IsNullOrEmpty(GetText(textBox)))
             {
                 textBox.SetIsShowing(false);
             }
-
             else
             {
                 switch (textBox.GetVisibleWhen())

@@ -52,7 +52,7 @@
             var fe = d as FrameworkElement;
             if (fe != null)
             {
-                fe.Loaded += delegate { };
+                fe.Loaded += (sender, args) => { };
                 if (fe.IsLoaded)
                 {
                     fe.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
@@ -62,7 +62,7 @@
             var fce = d as FrameworkContentElement;
             if (fce != null)
             {
-                fce.Loaded += delegate { };
+                fce.Loaded += (sender, args) => { };
                 if (fce.IsLoaded)
                 {
                     fce.RaiseEvent(new RoutedEventArgs(FrameworkContentElement.LoadedEvent));

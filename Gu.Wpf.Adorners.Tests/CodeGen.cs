@@ -13,9 +13,9 @@
         [TestMethod]
         public void DumpTextElementProps()
         {
-            var dependencyProperties = typeof (TextElement).GetFields()
-                .Where(f => f.FieldType == typeof (DependencyProperty))
-                .Select(f => ((DependencyProperty) f.GetValue(null)))
+            var dependencyProperties = typeof(TextElement).GetFields()
+                .Where(f => f.FieldType == typeof(DependencyProperty))
+                .Select(f => (DependencyProperty)f.GetValue(null))
                 .ToArray();
             foreach (var property in dependencyProperties)
             {
