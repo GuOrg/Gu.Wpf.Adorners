@@ -1,1 +1,7 @@
-NUnit
+group Analyzers
+  JetBrains.Annotations
+  StyleCop.Analyzers
+  WpfAnalyzers
+
+group Test
+  NUnit

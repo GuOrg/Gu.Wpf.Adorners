@@ -1,4 +1,14 @@
 source http://www.nuget.org/api/v2/
+framework >= net4
 
-nuget StyleCop.Analyzers
-nuget NUnit 2.6.4
+group Analyzers
+  source http://www.nuget.org/api/v2/
+  framework >= net45
+  nuget JetBrains.Annotations
+  nuget StyleCop.Analyzers
+  nuget WpfAnalyzers
+
+group Test
+  source http://www.nuget.org/api/v2/
+  framework >= net45
+  nuget NUnit
