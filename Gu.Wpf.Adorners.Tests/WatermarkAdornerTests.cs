@@ -1,11 +1,12 @@
 ﻿namespace Gu.Wpf.Adorners.Tests
 {
     using System.Reflection;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class WatermarkAdornerTests
     {
         private static readonly MethodInfo MeasureOverrideMethod = typeof(WatermarkAdorner).GetMethod("MeasureOverride", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -15,7 +16,7 @@
         public void MeasureOverrideWhenChildIsNull()
         {
             var textBox = new TextBox();
-            var adorner = new WatermarkAdorner(textBox) {Child = null};
+            var adorner = new WatermarkAdorner(textBox) { Child = null };
             var result = MeasureOverrideMethod.Invoke(adorner, new object[] { new Size(0, 0) });
             Assert.AreEqual(new Size(0, 0), result);
         }

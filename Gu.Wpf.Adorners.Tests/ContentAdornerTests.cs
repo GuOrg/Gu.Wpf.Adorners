@@ -1,11 +1,12 @@
 namespace Gu.Wpf.Adorners.Tests
 {
     using System.Reflection;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class ContentAdornerTests
     {
         private static readonly MethodInfo MeasureOverrideMethod = typeof(ContentAdorner).GetMethod("MeasureOverride", BindingFlags.Instance | BindingFlags.NonPublic);

@@ -17,7 +17,7 @@
             typeof(Visible),
             new PropertyMetadata(default(bool?), OnIsVisibleChanged));
 
-        private static readonly RoutedEventArgs IsVisibleChangedEventArgs = new RoutedEventArgs(Visible.IsVisibleChangedEvent);
+        private static readonly RoutedEventArgs IsVisibleChangedEventArgs = new RoutedEventArgs(IsVisibleChangedEvent);
 
         internal static void Track(UIElement e)
         {

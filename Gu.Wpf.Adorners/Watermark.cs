@@ -182,7 +182,7 @@ namespace Gu.Wpf.Adorners
                     }
 
                     AdornerService.Show(adorner);
-                    textBox.SetValue(AdornerProperty, adorner);
+                    textBox.SetCurrentValue(AdornerProperty, adorner);
                 }
                 else
                 {

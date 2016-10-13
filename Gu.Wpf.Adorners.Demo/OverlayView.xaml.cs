@@ -9,7 +9,7 @@
     {
         public OverlayView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

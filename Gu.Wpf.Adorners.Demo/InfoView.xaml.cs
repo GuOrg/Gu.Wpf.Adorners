@@ -9,8 +9,8 @@
     {
         public InfoView()
         {
-            InitializeComponent();
-            DataContext = this;
+            this.InitializeComponent();
+            this.DataContext = this;
         }
     }
 }

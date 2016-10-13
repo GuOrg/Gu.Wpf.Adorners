@@ -190,32 +190,21 @@
         private static void OnContentTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var adorner = d?.GetAdorner();
-            if (adorner != null)
-            {
-                adorner.ContentTemplate = GetContentTemplate(d);
-            }
-
+            adorner?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
             UpdateIsShowing(d);
         }
 
         private static void OnContentTemplateSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var adorner = d?.GetAdorner();
-            if (adorner != null)
-            {
-                adorner.ContentTemplate = GetContentTemplate(d);
-            }
-
+            adorner?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
             UpdateIsShowing(d);
         }
 
         private static void OnContentPresenterStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var adorner = d?.GetAdorner();
-            if (adorner != null)
-            {
-                adorner.ContentPresenterStyle = GetContentPresenterStyle(d);
-            }
+            adorner?.SetCurrentValue(ContentAdorner.ContentPresenterStyleProperty, GetContentPresenterStyle(d));
         }
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

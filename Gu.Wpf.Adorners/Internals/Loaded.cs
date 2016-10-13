@@ -44,7 +44,7 @@
 
         private static void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            ((Window)sender).SetValue(IsTrackingProperty, true);
+            ((Window)sender).SetCurrentValue(IsTrackingProperty, true);
         }
 
         private static void OnFlagChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

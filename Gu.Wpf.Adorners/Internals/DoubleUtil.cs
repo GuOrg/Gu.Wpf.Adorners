@@ -166,8 +166,8 @@
         /// <returns>Whether or not the two points are equal</returns>
         public static bool AreClose(Point point1, Point point2)
         {
-            return DoubleUtil.AreClose(point1.X, point2.X) &&
-            DoubleUtil.AreClose(point1.Y, point2.Y);
+            return AreClose(point1.X, point2.X) &&
+            AreClose(point1.Y, point2.Y);
         }
 
         /// <summary>
@@ -180,8 +180,8 @@
         /// <returns>Whether or not the two Size instances are equal</returns>
         public static bool AreClose(Size size1, Size size2)
         {
-            return DoubleUtil.AreClose(size1.Width, size2.Width) &&
-                   DoubleUtil.AreClose(size1.Height, size2.Height);
+            return AreClose(size1.Width, size2.Width) &&
+                   AreClose(size1.Height, size2.Height);
         }
 
         /// <summary>
@@ -192,10 +192,10 @@
         /// <param name='vector1'>The first Vector to compare</param>
         /// <param name='vector2'>The second Vector to compare</param>
         /// <returns>Whether or not the two Vector instances are equal</returns>
-        public static bool AreClose(System.Windows.Vector vector1, System.Windows.Vector vector2)
+        public static bool AreClose(Vector vector1, Vector vector2)
         {
-            return DoubleUtil.AreClose(vector1.X, vector2.X) &&
-                   DoubleUtil.AreClose(vector1.Y, vector2.Y);
+            return AreClose(vector1.X, vector2.X) &&
+                   AreClose(vector1.Y, vector2.Y);
         }
 
         /// <summary>
@@ -217,10 +217,10 @@
             // At this point, rect1 isn't empty, so the first thing we can test is
             // rect2.IsEmpty, followed by property-wise compares.
             return !rect2.IsEmpty &&
-                DoubleUtil.AreClose(rect1.X, rect2.X) &&
-                DoubleUtil.AreClose(rect1.Y, rect2.Y) &&
-                DoubleUtil.AreClose(rect1.Height, rect2.Height) &&
-                DoubleUtil.AreClose(rect1.Width, rect2.Width);
+                AreClose(rect1.X, rect2.X) &&
+                AreClose(rect1.Y, rect2.Y) &&
+                AreClose(rect1.Height, rect2.Height) &&
+                AreClose(rect1.Width, rect2.Width);
         }
 
         public static bool IsBetweenZeroAndOne(double val)

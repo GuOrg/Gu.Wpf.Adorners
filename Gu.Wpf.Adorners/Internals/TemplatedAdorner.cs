@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Adorners
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Windows;
@@ -49,6 +50,7 @@ namespace Gu.Wpf.Adorners
             ReferenceElementProperty.SetValue(adorner, referenceElement);
         }
 
+        [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         private static void AssertTemplatedAdornerTypee(Adorner adorner, [CallerMemberName] string caller = null)
         {
             if (adorner?.GetType() != TemplatedAdornerType)

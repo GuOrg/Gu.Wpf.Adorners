@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Windows;
     using System.Windows.Documents;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

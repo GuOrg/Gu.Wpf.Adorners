@@ -9,7 +9,7 @@
     {
         public WatermarkView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace Gu.Wpf.Adorners.Demo
+﻿namespace Gu.Wpf.Adorners.Demo
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -9,7 +9,7 @@ namespace Gu.Wpf.Adorners.Demo
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
