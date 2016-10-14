@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
 
     /// <summary>
@@ -27,15 +28,14 @@
         /// </returns>
         /// <param name="value1"> The first double to compare. </param>
         /// <param name="value2"> The second double to compare. </param>
+        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         public static bool AreClose(double value1, double value2)
         {
             // in case they are Infinities (then epsilon check does not work)
-#pragma warning disable SA1503 // Braces must not be omitted
             if (value1 == value2)
             {
                 return true;
             }
-#pragma warning restore SA1503 // Braces must not be omitted
 
                 // This computes (|value1-value2| / (|value1| + |value2| + 10.0)) < DBL_EPSILON
             double eps = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * DblEpsilon;

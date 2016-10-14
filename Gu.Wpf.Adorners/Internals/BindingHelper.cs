@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Adorners
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Data;
 
@@ -44,6 +45,7 @@ namespace Gu.Wpf.Adorners
             return path;
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static BindingExpression Bind(
             DependencyObject target,
             DependencyProperty targetProperty,
