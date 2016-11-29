@@ -15,7 +15,7 @@
             new FrameworkPropertyMetadata(
                 default(bool),
                 FrameworkPropertyMetadataOptions.Inherits,
-                OnFlagChanged));
+                OnIsTrackingChanged));
 
         internal static void Track()
         {
@@ -47,7 +47,7 @@
             ((Window)sender).SetCurrentValue(IsTrackingProperty, true);
         }
 
-        private static void OnFlagChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsTrackingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var fe = d as FrameworkElement;
             if (fe != null)

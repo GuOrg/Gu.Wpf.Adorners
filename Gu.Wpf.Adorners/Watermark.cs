@@ -16,7 +16,7 @@ namespace Gu.Wpf.Adorners
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.Inherits,
-                OnWatermarkTextChanged));
+                OnTextChanged));
 
         public static readonly DependencyProperty VisibleWhenProperty = DependencyProperty.RegisterAttached(
             "VisibleWhen",
@@ -35,7 +35,7 @@ namespace Gu.Wpf.Adorners
                 default(Style),
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnTextStyleChanged),
-            OnValidateTextStyle);
+            TextStyleValidateValue);
 
         private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsShowing",
@@ -125,7 +125,7 @@ namespace Gu.Wpf.Adorners
 
 #pragma warning restore SA1202 // Elements must be ordered by access
 
-        private static void OnWatermarkTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var textBox = o as TextBox;
             if (textBox == null)
@@ -157,7 +157,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static bool OnValidateTextStyle(object value)
+        private static bool TextStyleValidateValue(object value)
         {
             var style = (Style)value;
             return style?.TargetType == null ||

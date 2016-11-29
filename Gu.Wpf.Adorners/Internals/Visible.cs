@@ -15,7 +15,7 @@
             "IsVisibleProxy",
             typeof(bool?),
             typeof(Visible),
-            new PropertyMetadata(default(bool?), OnIsVisibleChanged));
+            new PropertyMetadata(default(bool?), OnIsVisibleProxyChanged));
 
         private static readonly RoutedEventArgs IsVisibleChangedEventArgs = new RoutedEventArgs(IsVisibleChangedEvent);
 
@@ -44,7 +44,7 @@
             return false;
         }
 
-        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsVisibleProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((UIElement)d).RaiseEvent(IsVisibleChangedEventArgs);
         }
