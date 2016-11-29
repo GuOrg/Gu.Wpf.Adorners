@@ -249,7 +249,7 @@ namespace Gu.Wpf.Adorners
                 return;
             }
 
-            if (!textBox.IsVisible || !textBox.IsLoaded || string.IsNullOrEmpty(GetText(textBox)))
+            if (!textBox.IsVisible || string.IsNullOrEmpty(GetText(textBox)))
             {
                 textBox.SetIsShowing(false);
             }
