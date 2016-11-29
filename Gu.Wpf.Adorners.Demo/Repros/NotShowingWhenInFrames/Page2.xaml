@@ -1,0 +1,18 @@
+﻿<Page x:Class="Gu.Wpf.Adorners.Demo.Repros.NotShowingWhenInFrames.Page2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:adorners="http://gu.se/Adorners"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Title="Page2"
+      d:DesignHeight="300"
+      d:DesignWidth="300"
+      mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <TextBlock>TabPage2</TextBlock>
+        <TextBox x:Name="Tab2"
+                 adorners:Watermark.Text="Tab2..."
+                 adorners:Watermark.TextStyle="{StaticResource FrameReproAdornerTextStyle}"
+                 adorners:Watermark.VisibleWhen="Empty" />
+    </StackPanel>
+</Page>

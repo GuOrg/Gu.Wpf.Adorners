@@ -1,10 +1,17 @@
 ﻿<Application x:Class="Gu.Wpf.Adorners.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.StartupUri>MainWindow.xaml</Application.StartupUri>
+    <!--<Application.StartupUri>Repros/NotShowingWhenInFrames/FramesWindow.xaml</Application.StartupUri>-->
     <Application.Resources>
         <!--<Style TargetType="{x:Type adorners:WatermarkAdorner}">
             <Setter Property="TextElement.Foreground" Value="HotPink" />
         </Style>-->
+
+        <Style x:Key="FrameReproAdornerTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#ffdddddd" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+        </Style>
     </Application.Resources>
 </Application>
