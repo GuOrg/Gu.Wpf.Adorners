@@ -10,7 +10,7 @@
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return Equals(values[0], false) && string.IsNullOrEmpty((string) values[1]);
+            return Equals(values[0], false) && Equals(values[1], true);
         }
 
         object[] IMultiValueConverter.ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
