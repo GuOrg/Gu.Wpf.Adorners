@@ -18,5 +18,9 @@
         <TabItem Header="Info">
             <local:InfoView />
         </TabItem>
+
+        <TabItem Header="Password">
+            <local:PasswordView />
+        </TabItem>
     </TabControl>
 </Window>

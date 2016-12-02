@@ -55,8 +55,14 @@
     <Compile Include="InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IsNotFocusedAndEmptyToTrueConverter.cs">
+      <DependentUpon>PasswordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OverlayView.xaml.cs">
       <DependentUpon>OverlayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordView.xaml.cs">
+      <DependentUpon>PasswordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repros\NotShowingWhenInFrames\FramesWindow.xaml.cs">
       <DependentUpon>FramesWindow.xaml</DependentUpon>
@@ -87,6 +93,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OverlayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasswordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
