@@ -3,10 +3,10 @@ framework >= net4
 
 group Analyzers
   source http://www.nuget.org/api/v2/
-  framework >= net45
   nuget JetBrains.Annotations
   nuget StyleCop.Analyzers
   nuget WpfAnalyzers
+  nuget Gu.Analyzers
 
 group Test
   source http://www.nuget.org/api/v2/

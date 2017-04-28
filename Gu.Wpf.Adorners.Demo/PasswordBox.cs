@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.Adorners.Demo
 {
     using System.Windows;
-    using System.Windows.Controls;
 
     public static class PasswordBox
     {
