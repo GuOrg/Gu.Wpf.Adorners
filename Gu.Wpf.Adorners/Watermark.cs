@@ -186,7 +186,7 @@ namespace Gu.Wpf.Adorners
                 }
                 else
                 {
-                    Debug.Assert(false, "Already visible");
+                    Debug.Assert(condition: false, message: "Already visible");
                 }
             }
             else

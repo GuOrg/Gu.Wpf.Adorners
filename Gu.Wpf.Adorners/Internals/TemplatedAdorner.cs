@@ -18,7 +18,7 @@ namespace Gu.Wpf.Adorners
         static TemplatedAdorner()
         {
             var fullName = "MS.Internal.Controls.TemplatedAdorner, " + typeof(AdornedElementPlaceholder).Assembly.FullName;
-            TemplatedAdornerType = Type.GetType(fullName, true);
+            TemplatedAdornerType = Type.GetType(fullName, throwOnError: true);
             Constructor = TemplatedAdornerType.GetConstructor(new[] { typeof(UIElement), typeof(ControlTemplate) });
             ClearChildMethod = TemplatedAdornerType.GetMethod("ClearChild");
             ReferenceElementProperty = TemplatedAdornerType.GetProperty("ReferenceElement");
