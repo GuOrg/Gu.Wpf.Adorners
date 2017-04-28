@@ -49,7 +49,7 @@
         {
             if (d is FrameworkElement fe)
             {
-                fe.Loaded += (sender, args) => { };
+                fe.Loaded += default(Empty).OnLoaded;
                 if (fe.IsLoaded)
                 {
                     fe.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
@@ -58,11 +58,18 @@
 
             if (d is FrameworkContentElement fce)
             {
-                fce.Loaded += (sender, args) => { };
+                fce.Loaded += default(Empty).OnLoaded;
                 if (fce.IsLoaded)
                 {
                     fce.RaiseEvent(new RoutedEventArgs(FrameworkContentElement.LoadedEvent));
                 }
+            }
+        }
+
+        private struct Empty
+        {
+            public void OnLoaded(object sender, RoutedEventArgs e)
+            {
             }
         }
     }
