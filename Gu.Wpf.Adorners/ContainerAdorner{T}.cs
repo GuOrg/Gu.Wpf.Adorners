@@ -23,10 +23,7 @@
         [DefaultValue(null)]
         public virtual T Child
         {
-            get
-            {
-                return this.child;
-            }
+            get => this.child;
 
             set
             {

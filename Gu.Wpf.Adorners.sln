@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners", "Gu.Wpf.Adorners\Gu.Wpf.Adorners.csproj", "{9D7B857D-71E4-42CD-ADCE-F9B2DEC1BB52}"
 EndProject
@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners.Tests", "Gu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{4A04C09C-1598-448C-BA67-80E052F72CB9}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
 		.paket\paket.targets = .paket\paket.targets

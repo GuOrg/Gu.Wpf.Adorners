@@ -36,20 +36,19 @@
                 .OneWayTo(textBox, Watermark.TextProperty);
         }
 
+        public TextBoxBase AdornedTextBox => (TextBoxBase)this.AdornedElement;
+
         public Style TextStyle
         {
-            get { return (Style)this.GetValue(TextStyleProperty); }
-            set { this.SetValue(TextStyleProperty, value); }
+            get => (Style)this.GetValue(TextStyleProperty);
+            set => this.SetValue(TextStyleProperty, value);
         }
-
-        public TextBoxBase AdornedTextBox => (TextBoxBase)this.AdornedElement;
 
         private FrameworkElement TextView
         {
             get
             {
-                FrameworkElement textView;
-                if (this.textViewRef.TryGetTarget(out textView))
+                if (this.textViewRef.TryGetTarget(out FrameworkElement textView))
                 {
                     return textView;
                 }

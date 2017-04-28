@@ -7,7 +7,7 @@
     {
         public static void Show(Adorner adorner)
         {
-            Show(adorner, true);
+            Show(adorner, retry: true);
         }
 
         public static void Remove(Adorner adorner)
@@ -40,7 +40,7 @@
         {
             var args = (object[])arg;
             var adorner = (Adorner)args[0];
-            Show(adorner, false);
+            Show(adorner, retry: false);
             return null;
         }
     }

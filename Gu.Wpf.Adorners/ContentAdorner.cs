@@ -57,26 +57,26 @@
 
         public object Content
         {
-            get { return this.GetValue(ContentProperty); }
-            set { this.SetValue(ContentProperty, value); }
+            get => this.GetValue(ContentProperty);
+            set => this.SetValue(ContentProperty, value);
         }
 
         public DataTemplate ContentTemplate
         {
-            get { return (DataTemplate)this.GetValue(ContentTemplateProperty); }
-            set { this.SetValue(ContentTemplateProperty, value); }
+            get => (DataTemplate)this.GetValue(ContentTemplateProperty);
+            set => this.SetValue(ContentTemplateProperty, value);
         }
 
         public DataTemplateSelector ContentTemplateSelector
         {
-            get { return (DataTemplateSelector)this.GetValue(ContentTemplateSelectorProperty); }
-            set { this.SetValue(ContentTemplateSelectorProperty, value); }
+            get => (DataTemplateSelector)this.GetValue(ContentTemplateSelectorProperty);
+            set => this.SetValue(ContentTemplateSelectorProperty, value);
         }
 
         public Style ContentPresenterStyle
         {
-            get { return (Style)this.GetValue(ContentPresenterStyleProperty); }
-            set { this.SetValue(ContentPresenterStyleProperty, value); }
+            get => (Style)this.GetValue(ContentPresenterStyleProperty);
+            set => this.SetValue(ContentPresenterStyleProperty, value);
         }
 
         protected override Size MeasureOverride(Size constraint)

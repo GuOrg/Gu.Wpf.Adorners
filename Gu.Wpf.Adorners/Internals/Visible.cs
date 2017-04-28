@@ -35,8 +35,7 @@
 
         internal static bool IsVisible(DependencyObject element)
         {
-            var fe = element as UIElement;
-            if (fe != null)
+            if (element is UIElement fe)
             {
                 return fe.IsVisible;
             }

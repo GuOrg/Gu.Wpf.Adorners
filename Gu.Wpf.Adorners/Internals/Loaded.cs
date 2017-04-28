@@ -2,7 +2,7 @@
 {
     using System.Windows;
 
-    internal class Loaded
+    internal static class Loaded
     {
         /// <summary>
         /// This is a hack to use dp inheritance to trickle down so that we can add empty loaded handlers.
@@ -27,14 +27,12 @@
 
         internal static bool IsLoaded(DependencyObject element)
         {
-            var fe = element as FrameworkElement;
-            if (fe != null)
+            if (element is FrameworkElement fe)
             {
                 return fe.IsLoaded;
             }
 
-            var fce = element as FrameworkContentElement;
-            if (fce != null)
+            if (element is FrameworkContentElement fce)
             {
                 return fce.IsLoaded;
             }
@@ -49,8 +47,7 @@
 
         private static void OnIsTrackingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var fe = d as FrameworkElement;
-            if (fe != null)
+            if (d is FrameworkElement fe)
             {
                 fe.Loaded += (sender, args) => { };
                 if (fe.IsLoaded)
@@ -59,8 +56,7 @@
                 }
             }
 
-            var fce = d as FrameworkContentElement;
-            if (fce != null)
+            if (d is FrameworkContentElement fce)
             {
                 fce.Loaded += (sender, args) => { };
                 if (fce.IsLoaded)
