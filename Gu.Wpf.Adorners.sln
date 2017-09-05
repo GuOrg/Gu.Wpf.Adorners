@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners", "Gu.Wpf.Adorners\Gu.Wpf.Adorners.csproj", "{9D7B857D-71E4-42CD-ADCE-F9B2DEC1BB52}"
 EndProject
@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{4A04C0
 		.paket\paket.targets = .paket\paket.targets
 		.paket\Readme.paket.md = .paket\Readme.paket.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners.UiTests", "Gu.Wpf.Adorners.UiTests\Gu.Wpf.Adorners.UiTests.csproj", "{EBE66C3B-EE19-48E7-90F4-9FCF50689674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,8 +38,15 @@ Global
 		{C7423414-C8C1-4484-A7F6-CAFFC92F0150}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7423414-C8C1-4484-A7F6-CAFFC92F0150}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7423414-C8C1-4484-A7F6-CAFFC92F0150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBE66C3B-EE19-48E7-90F4-9FCF50689674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBE66C3B-EE19-48E7-90F4-9FCF50689674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBE66C3B-EE19-48E7-90F4-9FCF50689674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBE66C3B-EE19-48E7-90F4-9FCF50689674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D972AFFF-B45A-4D58-9893-2B201EC5BCE0}
 	EndGlobalSection
 EndGlobal
