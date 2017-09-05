@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.Adorners.UiTests
 {
     using System;
-    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
 
