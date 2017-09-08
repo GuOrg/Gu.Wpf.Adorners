@@ -8,7 +8,7 @@
         [Test]
         public void ClickAllTabs()
         {
-            // Just a smoke test so that everything builds.
+            // Just a smoke test so we don't crash.
             using (var app = Application.Launch(Info.ExeFileName))
             {
                 var window = app.MainWindow;
