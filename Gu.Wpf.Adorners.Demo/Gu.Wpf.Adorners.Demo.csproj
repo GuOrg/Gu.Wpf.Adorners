@@ -67,13 +67,13 @@
     <Compile Include="PasswordView.xaml.cs">
       <DependentUpon>PasswordView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repros\NotShowingWhenInFrames\FramesWindow.xaml.cs">
+    <Compile Include="Windows\NotShowingWhenInFrames\FramesWindow.xaml.cs">
       <DependentUpon>FramesWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repros\NotShowingWhenInFrames\Page1.xaml.cs">
+    <Compile Include="Windows\NotShowingWhenInFrames\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repros\NotShowingWhenInFrames\Page2.xaml.cs">
+    <Compile Include="Windows\NotShowingWhenInFrames\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
     <Compile Include="WatermarkView.xaml.cs">
@@ -103,19 +103,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Repros\NotShowingWhenInFrames\FramesWindow.xaml">
+    <Page Include="Windows\NotShowingWhenInFrames\FramesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Repros\NotShowingWhenInFrames\Page1.xaml">
+    <Page Include="Windows\NotShowingWhenInFrames\Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Repros\NotShowingWhenInFrames\Page2.xaml">
+    <Page Include="Windows\NotShowingWhenInFrames\Page2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WatermarkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WatermarkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
