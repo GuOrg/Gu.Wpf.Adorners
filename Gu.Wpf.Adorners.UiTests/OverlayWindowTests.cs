@@ -17,7 +17,7 @@
                 var window = app.MainWindow;
                 var button = window.FindButton(name);
                 ////Capture.ElementToFile(button, $@"C:\Temp\{Path.GetFileName(imageFileName)}");
-                ImageAssert.AreEqual(imageFileName, button);
+                ImageAssert.AreEqual(imageFileName, button, (_, x) => x.SaveToTemp(imageFileName));
             }
         }
 
