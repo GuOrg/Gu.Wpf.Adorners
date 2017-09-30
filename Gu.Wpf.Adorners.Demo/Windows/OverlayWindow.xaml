@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="WatermarkWindow"
+        FontFamily="Arial"
+        FontSize="12"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
     <Window.Resources>
@@ -13,6 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Height" Value="50" />
+                <Setter Property="Width" Value="200" />
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="VerticalContentAlignment" Value="Top" />
             </Style>
