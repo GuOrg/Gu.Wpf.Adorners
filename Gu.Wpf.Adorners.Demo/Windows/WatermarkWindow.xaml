@@ -28,14 +28,18 @@
         <TextBox x:Name="WithDefaultAdorner" adorners:Watermark.Text="Write something here" />
 
         <TextBlock Text="Bound text" />
-        <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+        <TextBox x:Name="WithBoundAdornerText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
         <TextBox x:Name="AdornerText" Text="AAA" />
 
         <TextBlock Text="Inherits Fontsize via default style" />
-        <TextBox adorners:Watermark.Text="Foo" FontSize="32" />
+        <TextBox x:Name="WithInheritedFontSize"
+                 adorners:Watermark.Text="Foo"
+                 FontSize="32" />
 
         <TextBlock Text="Explicit style" />
-        <TextBox adorners:Watermark.Text="Explicit style" adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
+        <TextBox x:Name="WithExplicitTextStyle"
+                 adorners:Watermark.Text="Explicit style"
+                 adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
 
         <GroupBox adorners:Watermark.Text="Inherited style"
                   adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
@@ -54,10 +58,14 @@
         </GroupBox>
 
         <TextBlock Text="VisibleWhen=Empty" />
-        <TextBox adorners:Watermark.Text="visible when empty" adorners:Watermark.VisibleWhen="Empty" />
+        <TextBox x:Name="VisibleWhenEmpty"
+                 adorners:Watermark.Text="visible when empty"
+                 adorners:Watermark.VisibleWhen="Empty" />
 
         <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-        <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)" adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
+        <TextBox x:Name="VisibleWhenEmptyAndNotFocused"
+                 adorners:Watermark.Text="visible when not keyboard focused (default)"
+                 adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
         <Button Content="Lose focus" />
     </StackPanel>
 </Window>
