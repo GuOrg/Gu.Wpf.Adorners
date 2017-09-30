@@ -23,7 +23,11 @@
 
     <StackPanel>
         <TextBlock Text="Simple" />
-        <TextBox adorners:Watermark.Text="Write something here" markup:Name="WithDefaultAdorner" />
+        <TextBox Height="20"
+                 adorners:Watermark.Text="Write something here"
+                 markup:Name="WithDefaultAdorner"
+                 BorderBrush="Black"
+                 BorderThickness="1" />
 
         <TextBlock Text="Bound text" />
         <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
