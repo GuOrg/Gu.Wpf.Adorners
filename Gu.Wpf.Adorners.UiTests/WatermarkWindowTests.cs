@@ -1,5 +1,7 @@
 ﻿namespace Gu.Wpf.Adorners.UiTests
 {
+    using System.Drawing.Imaging;
+    using System.IO;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -14,7 +16,7 @@
             {
                 var window = app.MainWindow;
                 AutomationElement textBox = window.FindTextBox("WithDefaultAdorner");
-                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_not_focused.png", textBox);
+                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_not_focused.png", textBox, (_, bitmap) => bitmap.Save(Path.Combine(Path.GetTempPath(), "WithDefaultAdorner_not_focused.png"), ImageFormat.Png));
             }
         }
     }
