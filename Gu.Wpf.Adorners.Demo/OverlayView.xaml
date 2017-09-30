@@ -17,35 +17,28 @@
 
         <Button Content="Default visibility">
             <adorners:Overlay.Content>
-                <Border BorderBrush="Blue"
-                        BorderThickness="3" />
+                <Border BorderBrush="Blue" BorderThickness="3" />
             </adorners:Overlay.Content>
         </Button>
 
-        <TextBlock HorizontalAlignment="Center"
-                   Text="Bound visibility" />
+        <TextBlock HorizontalAlignment="Center" Text="Bound visibility" />
         <ToggleButton x:Name="IsVisibleButton"
                       Content="IsVisible"
                       IsChecked="True" />
 
-        <Button Content="Bound visibility"
-                adorners:Overlay.IsVisible="{Binding IsChecked,
-                                                     ElementName=IsVisibleButton}">
+        <Button adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}" Content="Bound visibility">
             <adorners:Overlay.Content>
-                <Border BorderBrush="HotPink"
-                        BorderThickness="3" />
+                <Border BorderBrush="HotPink" BorderThickness="3" />
             </adorners:Overlay.Content>
         </Button>
 
-        <Button Content="With content template"
-                Foreground="Blue"
-                adorners:Overlay.Content="yeah"
-                adorners:Overlay.IsVisible="{Binding IsChecked,
-                                                     ElementName=IsVisibleButton}">
+        <Button adorners:Overlay.Content="yeah"
+                adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}"
+                Content="With content template"
+                Foreground="Blue">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="BlueViolet"
-                            BorderThickness="3">
+                    <Border BorderBrush="BlueViolet" BorderThickness="3">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
@@ -58,8 +51,7 @@
         <StackPanel adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="GreenYellow"
-                            BorderThickness="3">
+                    <Border BorderBrush="GreenYellow" BorderThickness="3">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
@@ -67,13 +59,13 @@
                 </DataTemplate>
             </adorners:Overlay.ContentTemplate>
 
-            <Button Content="1"
-                    Foreground="Yellow"
-                    adorners:Overlay.Content="inherited" />
+            <Button adorners:Overlay.Content="inherited"
+                    Content="1"
+                    Foreground="Yellow" />
 
-            <Button Content="2"
-                    Foreground="Blue"
-                    adorners:Overlay.Content="inherited" />
+            <Button adorners:Overlay.Content="inherited"
+                    Content="2"
+                    Foreground="Blue" />
         </StackPanel>
     </StackPanel>
 </UserControl>

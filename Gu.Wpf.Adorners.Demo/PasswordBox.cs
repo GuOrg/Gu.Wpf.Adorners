@@ -4,6 +4,7 @@
 
     public static class PasswordBox
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         private static readonly DependencyPropertyKey IsEmptyPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsEmpty",
             typeof(bool),
@@ -26,6 +27,8 @@
         {
             return (bool)element.GetValue(IsEmptyProperty);
         }
+
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         private static void OnPasswordChanged(object sender, RoutedEventArgs e)
         {

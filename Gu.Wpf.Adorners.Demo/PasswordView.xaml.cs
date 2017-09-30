@@ -9,7 +9,7 @@
     {
         public PasswordView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
