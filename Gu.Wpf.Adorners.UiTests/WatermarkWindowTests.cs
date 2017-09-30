@@ -1,7 +1,5 @@
 ﻿namespace Gu.Wpf.Adorners.UiTests
 {
-    using System.Drawing.Imaging;
-    using System.IO;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -15,8 +13,33 @@
             using (var app = Application.Launch(Info.ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                AutomationElement textBox = window.FindTextBox("WithDefaultAdorner");
-                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_not_focused.png", textBox, (_, bitmap) => bitmap.Save(Path.Combine(Path.GetTempPath(), "WithDefaultAdorner_not_focused.png"), ImageFormat.Png));
+                var textBox = window.FindTextBox("WithDefaultAdorner");
+                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_not_focused.png", textBox);
+            }
+        }
+
+        [Test]
+        public void DefaultAdornerWhenFocused()
+        {
+            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            {
+                var window = app.MainWindow;
+                var textBox = window.FindTextBox("WithDefaultAdorner");
+                textBox.Focus();
+                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_focused.png", textBox);
+            }
+        }
+
+        [Test]
+        public void DefaultAdornerWhenNotEmpty()
+        {
+            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            {
+                var window = app.MainWindow;
+                var textBox = window.FindTextBox("WithDefaultAdorner");
+                textBox.Text = "abc";
+                window.FindButton("Lose focus").Click();
+                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_not_empty.png", textBox);
             }
         }
     }
