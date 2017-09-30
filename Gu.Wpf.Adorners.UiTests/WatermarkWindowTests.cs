@@ -86,7 +86,7 @@
             {
                 var window = app.MainWindow;
                 var groupBox = window.FindGroupBox("Inherited style");
-                ImageAssert.AreEqual(".\\Images\\WithInheritedTextStyle.png", groupBox);
+                ImageAssert.AreEqual(".\\Images\\WithInheritedTextStyle.png", groupBox, (_, b) => b.SaveToTemp("WithInheritedTextStyle.png"));
             }
         }
 

@@ -41,7 +41,8 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Info.cs" />
+    <Compile Include="Helpers\BitmapExt.cs" />
+    <Compile Include="Helpers\Info.cs" />
     <Compile Include="MainWindowTests.cs" />
     <Compile Include="OverlayWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

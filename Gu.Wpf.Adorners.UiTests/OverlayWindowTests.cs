@@ -14,7 +14,7 @@
             {
                 var window = app.MainWindow;
                 var button = window.FindButton("No overlay");
-                ImageAssert.AreEqual(".\\Images\\No overlay.png", button);
+                ImageAssert.AreEqual(".\\Images\\No overlay.png", button, (_, b) => b.SaveToTemp("No overlay.png"));
             }
         }
 
@@ -25,7 +25,7 @@
             {
                 var window = app.MainWindow;
                 var button = window.FindButton("Default visibility");
-                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
+                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button, (_, b) => b.SaveToTemp("Default visibility.png"));
             }
         }
 
