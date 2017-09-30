@@ -7,25 +7,17 @@
     {
         private const string WindowName = "OverlayWindow";
 
-        [Test]
-        public void NoOverlay()
+        [TestCase("No overlay", ".\\Images\\No overlay.png")]
+        [TestCase("Default visibility", ".\\Images\\Default visibility.png")]
+        [TestCase("With content template", ".\\Images\\With content template.png")]
+        public void Overlay(string name, string imageFileName)
         {
             using (var app = Application.Launch(Info.ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                var button = window.FindButton("No overlay");
-                ImageAssert.AreEqual(".\\Images\\No overlay.png", button, (_, b) => b.SaveToTemp("No overlay.png"));
-            }
-        }
-
-        [Test]
-        public void DefaultVisibility()
-        {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                var button = window.FindButton("Default visibility");
-                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button, (_, b) => b.SaveToTemp("Default visibility.png"));
+                var button = window.FindButton(name);
+                ////Capture.ElementToFile(button, $@"C:\Temp\{Path.GetFileName(imageFileName)}");
+                ImageAssert.AreEqual(imageFileName, button);
             }
         }
 
@@ -40,17 +32,6 @@
 
                 window.FindButton("IsVisibleButton").Click();
                 ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button);
-            }
-        }
-
-        [Test]
-        public void WithContentTemplate()
-        {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                var button = window.FindButton("With content template");
-                ImageAssert.AreEqual(".\\Images\\With content template.png", button);
             }
         }
 
