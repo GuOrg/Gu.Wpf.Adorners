@@ -38,6 +38,7 @@
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
