@@ -36,6 +36,10 @@
     <DocumentationFile>bin\Release\Gu.Wpf.Adorners.XML</DocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../Gu.Wpf.Adorners.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
