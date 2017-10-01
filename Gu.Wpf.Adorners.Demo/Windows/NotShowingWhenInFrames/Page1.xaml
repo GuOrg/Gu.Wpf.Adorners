@@ -8,6 +8,13 @@
       d:DesignHeight="300"
       d:DesignWidth="300"
       mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Classic;V4.0.0.0;31bf3856ad364e35;component/themes/Classic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <StackPanel Orientation="Vertical">
         <TextBlock>TabPage1</TextBlock>
         <TextBox x:Name="Tab1"
