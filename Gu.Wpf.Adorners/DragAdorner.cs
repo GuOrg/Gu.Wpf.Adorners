@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Adorners
 {
     using System;
+    using System.Diagnostics;
     using System.Runtime.InteropServices;
     using System.Windows;
     using System.Windows.Controls;
@@ -34,7 +35,9 @@
         {
             private readonly Adorner adorner;
             private readonly Point position;
-            private readonly HwndSource source;
+            private readonly Window window;
+            private readonly MouseEventHandler mouseMoveEventHandler;
+
             private bool disposed;
             private TranslateTransform transform;
 
@@ -42,8 +45,9 @@
             {
                 this.adorner = adorner;
                 this.position = Mouse.GetPosition(adorner);
-                this.source = HwndSource.FromHwnd(GetDesktopWindow());
-                this.source?.AddHook(this.WndProc);
+                this.window = Window.GetWindow(adorner.AdornedElement);
+                this.mouseMoveEventHandler = this.OnMouseMove;
+                this.window.AddHandler(Mouse.MouseMoveEvent, this.mouseMoveEventHandler, handledEventsToo: true);
             }
 
             public void Dispose()
@@ -54,43 +58,41 @@
                 }
 
                 this.disposed = true;
-                this.source?.RemoveHook(this.WndProc);
+                Mouse.RemovePreviewMouseMoveHandler(this.window, this.mouseMoveEventHandler);
             }
 
-            [DllImport("user32.dll", SetLastError = false)]
-            private static extern IntPtr GetDesktopWindow();
-
-            private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam, ref bool handled)
+            private void OnMouseMove(object sender, MouseEventArgs e)
             {
-                const int WM_MOUSEMOVE = 0x0200;
-
-                switch (msg)
+                Debug.WriteLine("OnMouseMove");
+                if (this.transform == null)
                 {
-                    case WM_MOUSEMOVE:
-                        if (this.transform == null)
-                        {
-                            if (this.adorner.RenderTransform == null)
-                            {
-                                this.adorner.SetCurrentValue(UIElement.RenderTransformProperty, this.transform = new TranslateTransform());
-                            }
-                            else if (this.adorner.RenderTransform is TransformGroup transformGroup)
-                            {
-                                transformGroup.Children.Add(this.transform = new TranslateTransform());
-                            }
-                        }
-
-                        if (this.transform != null)
-                        {
-                            var point = Mouse.GetPosition(this.adorner);
-                            this.transform.SetCurrentValue(TranslateTransform.XProperty, point.X - point.X);
-                            this.transform.SetCurrentValue(TranslateTransform.YProperty, point.Y - this.position.Y);
-                        }
-
-                        // MouseMove?.Invoke();
-                        break;
+                    if (this.adorner.RenderTransform == null)
+                    {
+                        Debug.WriteLine("this.adorner.RenderTransform == null");
+                        this.adorner.SetCurrentValue(UIElement.RenderTransformProperty, this.transform = new TranslateTransform());
+                    }
+                    else if (this.adorner.RenderTransform is TransformGroup transformGroup)
+                    {
+                        transformGroup.Children.Add(this.transform = new TranslateTransform());
+                    }
+                    else if(this.adorner.RenderTransform is MatrixTransform matrixTransform)
+                    {
+                        Debug.WriteLine("Update matrix pos");
+                        var point = Mouse.GetPosition(this.adorner);
+                        var matrix = matrixTransform.Matrix;
+                        matrix.OffsetX = point.X - this.position.X;
+                        matrix.OffsetY = point.Y - this.position.Y;
+                        matrixTransform.SetCurrentValue(MatrixTransform.MatrixProperty, matrix);
+                    }
                 }
 
-                return IntPtr.Zero;
+                if (this.transform != null)
+                {
+                    Debug.WriteLine("Update pos");
+                    var point = Mouse.GetPosition(this.adorner);
+                    this.transform.SetCurrentValue(TranslateTransform.XProperty, point.X - this.position.X);
+                    this.transform.SetCurrentValue(TranslateTransform.YProperty, point.Y - this.position.Y);
+                }
             }
         }
     }

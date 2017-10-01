@@ -6,7 +6,7 @@
     /// <summary>
     /// http://tech.pro/tutorial/856/wpf-tutorial-using-a-visual-collection
     /// </summary>
-    public sealed class ContentAdorner : ContainerAdorner<ContentPresenter>
+    public class ContentAdorner : ContainerAdorner<ContentPresenter>
     {
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(
             "Content",
@@ -53,6 +53,12 @@
                 .OneWayTo(this, ContentTemplateSelectorProperty);
             this.Child.Bind(StyleProperty)
                 .OneWayTo(this, StyleProperty);
+        }
+
+        public override sealed ContentPresenter Child
+        {
+            get => base.Child;
+            set => base.Child = value;
         }
 
         public object Content
