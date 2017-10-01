@@ -7,6 +7,8 @@
         FontFamily="Arial"
         FontSize="12"
         SizeToContent="WidthAndHeight"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
         UseLayoutRounding="True"
         mc:Ignorable="d">
     <Window.Resources>
