@@ -6,7 +6,19 @@
         Title="FramesWindow"
         Width="300"
         Height="300"
+        FontFamily="Arial"
+        FontSize="12"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="Aliased"
+        UseLayoutRounding="True"
         mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Classic;V4.0.0.0;31bf3856ad364e35;component/themes/Classic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <TabControl>
         <TabItem Header="Tab1">
             <Frame NavigationUIVisibility="Hidden" Source="Page1.xaml" />

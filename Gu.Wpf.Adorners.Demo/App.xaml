@@ -12,7 +12,7 @@
         <Style x:Key="FrameReproAdornerTextStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="#ffdddddd" />
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontFamily" Value="Arial" />
         </Style>
     </Application.Resources>
 </Application>
