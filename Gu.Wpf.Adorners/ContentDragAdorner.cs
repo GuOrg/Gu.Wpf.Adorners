@@ -1,24 +1,28 @@
 ﻿namespace Gu.Wpf.Adorners
 {
+    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Media;
 
-    public class ContentAdorner : ContainerAdorner<ContentPresenter>
+    public class ContentDragAdorner : ContainerAdorner<ContentPresenter>
     {
+        public TranslateTransform Offset { get; }
+
         public static readonly DependencyProperty ContentProperty = ContentControl.ContentProperty.AddOwner(
-            typeof(ContentAdorner),
+            typeof(ContentDragAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty ContentTemplateProperty = ContentControl.ContentTemplateProperty.AddOwner(
-            typeof(ContentAdorner),
+            typeof(ContentDragAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty ContentTemplateSelectorProperty = ContentControl.ContentTemplateSelectorProperty.AddOwner(
-                typeof(ContentAdorner),
+                typeof(ContentDragAdorner),
                 new FrameworkPropertyMetadata(
                     null,
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
@@ -26,20 +30,19 @@
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.Register(
             "ContentPresenterStyle",
             typeof(Style),
-            typeof(ContentAdorner),
+            typeof(ContentDragAdorner),
             new PropertyMetadata(default(Style)));
 
-        static ContentAdorner()
+        static ContentDragAdorner()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentAdorner), new FrameworkPropertyMetadata(typeof(ContentAdorner)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentDragAdorner), new FrameworkPropertyMetadata(typeof(ContentDragAdorner)));
         }
 
-        public ContentAdorner(UIElement adornedElement)
+        public ContentDragAdorner(UIElement adornedElement, TranslateTransform offset)
             : base(adornedElement)
         {
+            this.Offset = offset;
             this.Child = new ContentPresenter();
-            this.Child.Bind(MarginProperty)
-                .OneWayTo(this, MarginProperty);
             this.Child.Bind(ContentPresenter.ContentProperty)
                 .OneWayTo(this, ContentProperty);
             this.Child.Bind(ContentPresenter.ContentTemplateProperty)
@@ -80,17 +83,31 @@
             set => this.SetValue(ContentPresenterStyleProperty, value);
         }
 
+        public override GeneralTransform GetDesiredTransform(GeneralTransform transform)
+        {
+            var transformGroup = new GeneralTransformGroup();
+            transformGroup.Children.Add(transform);
+            transformGroup.Children.Add(this.Offset);
+            return transformGroup;
+        }
+
         protected override Size MeasureOverride(Size constraint)
         {
-            var desiredSize = this.AdornedElement.RenderSize;
-            this.Child?.Measure(desiredSize);
-            return desiredSize;
+            Debug.WriteLine($"MeasureOverride({constraint})");
+            if (this.Child != null)
+            {
+                this.Child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                return this.Child.DesiredSize;
+            }
+
+            return new Size(0.0, 0.0);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.Child?.Arrange(new Rect(0, 0, finalSize.Width, finalSize.Height));
-            return this.Child?.RenderSize ?? base.ArrangeOverride(finalSize);
+            Debug.WriteLine($"ArrangeOverride({finalSize})");
+            this.Child?.Arrange(new Rect(finalSize));
+            return finalSize;
         }
     }
 }

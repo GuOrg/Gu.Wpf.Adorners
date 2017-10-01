@@ -59,6 +59,7 @@
     <Compile Include="AdornerService.cs" />
     <Compile Include="ContainerAdorner{T}.cs" />
     <Compile Include="ContentAdorner.cs" />
+    <Compile Include="ContentDragAdorner.cs" />
     <Compile Include="DragAdorner.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Internals\ActionDisposable.cs" />
