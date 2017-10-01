@@ -42,7 +42,7 @@
 
         <Button Content="Default visibility">
             <adorners:Overlay.Content>
-                <Border BorderBrush="Blue" BorderThickness="3" />
+                <Border BorderBrush="Blue" BorderThickness="2" />
             </adorners:Overlay.Content>
         </Button>
 
@@ -53,7 +53,7 @@
 
         <Button adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}" Content="Bound visibility">
             <adorners:Overlay.Content>
-                <Border BorderBrush="HotPink" BorderThickness="3" />
+                <Border BorderBrush="HotPink" BorderThickness="2" />
             </adorners:Overlay.Content>
         </Button>
 
@@ -63,7 +63,7 @@
                 Foreground="Blue">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="BlueViolet" BorderThickness="3">
+                    <Border BorderBrush="BlueViolet" BorderThickness="2">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
@@ -76,7 +76,7 @@
             <StackPanel adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
                 <adorners:Overlay.ContentTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="GreenYellow" BorderThickness="3">
+                        <Border BorderBrush="GreenYellow" BorderThickness="2">
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        Text="{Binding}" />

@@ -8,6 +8,12 @@
     {
         private const string WindowName = "OverlayWindow";
 
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            ImageAssert.OnFail = OnFail.SaveImageToTemp;
+        }
+
         [TestCase("No overlay", ".\\Images\\No overlay.png")]
         [TestCase("Default visibility", ".\\Images\\Default visibility.png")]
         [TestCase("With content template", ".\\Images\\With content template.png")]
@@ -18,8 +24,7 @@
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton(name);
-                ////Capture.ElementToFile(button, $@"C:\Temp\{Path.GetFileName(imageFileName)}");
-                ImageAssert.AreEqual(imageFileName, button, (_, x) => x.SaveToTemp(imageFileName));
+                ImageAssert.AreEqual(imageFileName, button);
             }
         }
 
@@ -31,10 +36,10 @@
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("Bound visibility");
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button, (_, x) => x.SaveToTemp("Bound visibility_visible.png"));
+                ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button);
 
                 window.FindButton("IsVisibleButton").Click();
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button, (_, x) => x.SaveToTemp("Bound visibility_not_visible.png"));
+                ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button);
             }
         }
 
@@ -46,7 +51,7 @@
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 var groupBox = window.FindGroupBox("Inherits");
-                ImageAssert.AreEqual(".\\Images\\WithInheritedContentTemplate.png", groupBox, (_, x) => x.SaveToTemp("WithInheritedContentTemplate.png"));
+                ImageAssert.AreEqual(".\\Images\\WithInheritedContentTemplate.png", groupBox);
             }
         }
     }

@@ -7,6 +7,12 @@
     {
         private const string WindowName = "WatermarkWindow";
 
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            ImageAssert.OnFail = OnFail.SaveImageToTemp;
+        }
+
         [Test]
         public void DefaultAdornerWhenNotFocused()
         {
@@ -86,7 +92,7 @@
             {
                 var window = app.MainWindow;
                 var groupBox = window.FindGroupBox("Inherited style");
-                ImageAssert.AreEqual(".\\Images\\WithInheritedTextStyle.png", groupBox, (_, b) => b.SaveToTemp("WithInheritedTextStyle.png"));
+                ImageAssert.AreEqual(".\\Images\\WithInheritedTextStyle.png", groupBox);
             }
         }
 
