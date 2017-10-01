@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Adorners.UiTests
 {
+    using System;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -15,6 +16,7 @@
             using (var app = Application.Launch(Info.ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
+                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton(name);
                 ////Capture.ElementToFile(button, $@"C:\Temp\{Path.GetFileName(imageFileName)}");
                 ImageAssert.AreEqual(imageFileName, button, (_, x) => x.SaveToTemp(imageFileName));
@@ -27,11 +29,12 @@
             using (var app = Application.Launch(Info.ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
+                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("Bound visibility");
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button);
+                ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button, (_, x) => x.SaveToTemp("Bound visibility_visible.png"));
 
                 window.FindButton("IsVisibleButton").Click();
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button);
+                ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button, (_, x) => x.SaveToTemp("Bound visibility_not_visible.png"));
             }
         }
 
@@ -41,8 +44,9 @@
             using (var app = Application.Launch(Info.ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
+                Wait.For(TimeSpan.FromMilliseconds(200));
                 var groupBox = window.FindGroupBox("Inherits");
-                ImageAssert.AreEqual(".\\Images\\WithInheritedContentTemplate.png", groupBox);
+                ImageAssert.AreEqual(".\\Images\\WithInheritedContentTemplate.png", groupBox, (_, x) => x.SaveToTemp("WithInheritedContentTemplate.png"));
             }
         }
     }
