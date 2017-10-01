@@ -8,7 +8,7 @@
         FontSize="12"
         SizeToContent="WidthAndHeight"
         TextOptions.TextFormattingMode="Display"
-        TextOptions.TextRenderingMode="ClearType"
+        TextOptions.TextRenderingMode="Aliased"
         UseLayoutRounding="True"
         mc:Ignorable="d">
     <Window.Resources>
