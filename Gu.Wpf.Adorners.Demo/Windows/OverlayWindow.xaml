@@ -18,6 +18,7 @@
                 <Setter Property="Height" Value="50" />
                 <Setter Property="Width" Value="200" />
                 <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="0" />
                 <Setter Property="SnapsToDevicePixels" Value="True" />
                 <Setter Property="VerticalContentAlignment" Value="Top" />
                 <Setter Property="Template">
