@@ -55,17 +55,6 @@ namespace Gu.Wpf.Adorners
                 default(WatermarkAdorner),
                 OnAdornerChanged));
 
-        static Watermark()
-        {
-            EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
-            Loaded.Track();
-            EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
-            EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
-            EventManager.RegisterClassHandler(typeof(TextBox), UIElement.GotKeyboardFocusEvent, new RoutedEventHandler(OnGotKeyboardFocus));
-            EventManager.RegisterClassHandler(typeof(TextBox), UIElement.LostKeyboardFocusEvent, new RoutedEventHandler(OnLostKeyboardFocus));
-            EventManager.RegisterClassHandler(typeof(TextBox), TextBoxBase.TextChangedEvent, new RoutedEventHandler(OnTextChanged));
-        }
-
         public static void SetText(this UIElement element, string value)
         {
             element.SetValue(TextProperty, value);
@@ -128,7 +117,7 @@ namespace Gu.Wpf.Adorners
         {
             if (o is TextBox textBox)
             {
-                IsVisibleChangedEventManager.UpdateHandler(textBox, OnIsVisibleChanged);
+                UpdateHandlers(textBox);
                 UpdateIsShowing(textBox);
             }
         }
@@ -140,17 +129,32 @@ namespace Gu.Wpf.Adorners
 
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var adorner = (d as TextBox)?.GetAdorner();
-            if (adorner == null)
+            if (d is TextBoxBase textBox)
             {
-                return;
-            }
+                UpdateHandlers(textBox);
+                var adorner = textBox.GetAdorner();
+                if (adorner == null)
+                {
+                    return;
+                }
 
-            adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, e.NewValue);
-            if (e.NewValue == null)
-            {
-                adorner.UpdateDefaultStyle();
+                adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, e.NewValue);
+                if (e.NewValue == null)
+                {
+                    adorner.UpdateDefaultStyle();
+                }
             }
+        }
+
+        private static void UpdateHandlers(TextBoxBase textBox)
+        {
+            IsVisibleChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+            LoadedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+            UnloadedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+            GotKeyboardFocusEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+            LostKeyboardFocusEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+            TextChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+            SizeChangedEventManager.UpdateHandler(textBox, OnSizeChanged);
         }
 
         private static bool TextStyleValidateValue(object value)
@@ -207,32 +211,7 @@ namespace Gu.Wpf.Adorners
             UpdateIsShowing((TextBox)sender);
         }
 
-        private static void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing((TextBox)sender);
-        }
-
-        private static void OnUnLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing((TextBox)sender);
-        }
-
-        private static void OnIsVisibleChanged(object sender, EventArgs e)
-        {
-            UpdateIsShowing((TextBox)sender);
-        }
-
-        private static void OnGotKeyboardFocus(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing((TextBox)sender);
-        }
-
-        private static void OnLostKeyboardFocus(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing((TextBox)sender);
-        }
-
-        private static void OnTextChanged(object sender, RoutedEventArgs e)
+        private static void OnAdornedElementChanged(object sender, EventArgs e)
         {
             UpdateIsShowing((TextBox)sender);
         }

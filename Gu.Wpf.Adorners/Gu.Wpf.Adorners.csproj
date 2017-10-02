@@ -66,6 +66,9 @@
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectHelper.cs" />
     <Compile Include="Internals\EmptyEnumerator.cs" />
+    <Compile Include="Internals\EventManagers\TextChangedEventManager.cs" />
+    <Compile Include="Internals\EventManagers\LostKeyboardFocusEventManager.cs" />
+    <Compile Include="Internals\EventManagers\GotKeyboardFocusEventManager.cs" />
     <Compile Include="Internals\EventManagers\IsVisibleChangedEventManager.cs" />
     <Compile Include="Internals\EventManagers\LoadedEventManager.cs" />
     <Compile Include="Internals\EventManagers\SizeChangedEventManager.cs" />
