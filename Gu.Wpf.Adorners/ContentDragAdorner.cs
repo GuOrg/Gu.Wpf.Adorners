@@ -1,14 +1,12 @@
 ﻿namespace Gu.Wpf.Adorners
 {
-    using System.Diagnostics;
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    public class ContentDragAdorner : ContainerAdorner<ContentPresenter>
+    public class ContentDragAdorner : ContainerAdorner<ContentPresenter>, IDisposable
     {
-        public TranslateTransform Offset { get; }
-
         public static readonly DependencyProperty ContentProperty = ContentControl.ContentProperty.AddOwner(
             typeof(ContentDragAdorner),
             new FrameworkPropertyMetadata(
@@ -33,16 +31,22 @@
             typeof(ContentDragAdorner),
             new PropertyMetadata(default(Style)));
 
+        private readonly Vector offset;
+        private bool disposed;
+
         static ContentDragAdorner()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentDragAdorner), new FrameworkPropertyMetadata(typeof(ContentDragAdorner)));
         }
 
-        public ContentDragAdorner(UIElement adornedElement, TranslateTransform offset)
+        public ContentDragAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
-            this.Offset = offset;
-            this.Child = new ContentPresenter();
+            this.offset = adornedElement.PointToScreen(new Point(0, 0)) - User32.GetMousePosition();
+            var mp = User32.GetMousePosition(adornedElement) + this.offset;
+
+            this.Offset = new TranslateTransform(mp.X, mp.Y);
+            this.Child = new ContentPresenter { RenderTransform = this.Offset };
             this.Child.Bind(ContentPresenter.ContentProperty)
                 .OneWayTo(this, ContentProperty);
             this.Child.Bind(ContentPresenter.ContentTemplateProperty)
@@ -51,7 +55,11 @@
                 .OneWayTo(this, ContentTemplateSelectorProperty);
             this.Child.Bind(StyleProperty)
                 .OneWayTo(this, StyleProperty);
+
+            DragDrop.AddPreviewQueryContinueDragHandler(adornedElement, this.UpdatePosition);
         }
+
+        public TranslateTransform Offset { get; }
 
         public sealed override ContentPresenter Child
         {
@@ -83,17 +91,28 @@
             set => this.SetValue(ContentPresenterStyleProperty, value);
         }
 
-        public override GeneralTransform GetDesiredTransform(GeneralTransform transform)
+        public void Dispose()
         {
-            var transformGroup = new GeneralTransformGroup();
-            transformGroup.Children.Add(transform);
-            transformGroup.Children.Add(this.Offset);
-            return transformGroup;
+            this.Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+            {
+                return;
+            }
+
+            this.disposed = true;
+            if (disposing)
+            {
+                DragDrop.RemovePreviewQueryContinueDragHandler(this.AdornedElement, this.UpdatePosition);
+                AdornerService.Remove(this);
+            }
         }
 
         protected override Size MeasureOverride(Size constraint)
         {
-            Debug.WriteLine($"MeasureOverride({constraint})");
             if (this.Child != null)
             {
                 this.Child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
@@ -105,9 +124,23 @@
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            Debug.WriteLine($"ArrangeOverride({finalSize})");
             this.Child?.Arrange(new Rect(finalSize));
             return finalSize;
+        }
+
+        protected void ThrowIfDisposed()
+        {
+            if (this.disposed)
+            {
+                throw new ObjectDisposedException(this.GetType().FullName);
+            }
+        }
+
+        private void UpdatePosition(object sender, QueryContinueDragEventArgs e)
+        {
+            var mp = User32.GetMousePosition(this.AdornedElement) + this.offset;
+            this.Offset.SetCurrentValue(TranslateTransform.XProperty, mp.X);
+            this.Offset.SetCurrentValue(TranslateTransform.YProperty, mp.Y);
         }
     }
 }

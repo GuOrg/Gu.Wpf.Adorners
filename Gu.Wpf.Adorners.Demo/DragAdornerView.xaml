@@ -24,8 +24,8 @@
         <DataTemplate x:Key="AdornerDragItemTemplate" DataType="{x:Type local:DragItem}">
             <Border Width="100"
                     Height="50"
-                    Background="Blue"
-                    Opacity="0.2">
+                    Background="LightBlue"
+                    Opacity="0.5">
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Text="{Binding Name}" />
@@ -40,6 +40,8 @@
         <ContentPresenter x:Name="ContentPresenter1"
                           Grid.Column="0"
                           AllowDrop="True"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
                           Content="{Binding Item1, Mode=TwoWay}"
                           ContentTemplate="{StaticResource DragItemTemplate}"
                           Drop="OnDrop"
@@ -48,6 +50,8 @@
         <ContentPresenter x:Name="ContentPresenter2"
                           Grid.Column="1"
                           AllowDrop="True"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
                           Content="{Binding Item2, Mode=TwoWay}"
                           ContentTemplate="{StaticResource DragItemTemplate}"
                           Drop="OnDrop"
