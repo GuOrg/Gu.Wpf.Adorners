@@ -71,15 +71,13 @@
                 handler ?? throw new ArgumentNullException(nameof(handler)));
         }
 
-        /// <summary>
-        /// Return a new list to hold listeners to the event.
-        /// </summary>
+        /// <inheritdoc />
         protected override ListenerList NewListenerList() => new ListenerList<EventArgs>();
 
         /// <inheritdoc />
         protected override void StartListening(object source)
         {
-            if (source is FrameworkElement fe)
+            if (source is UIElement fe)
             {
                 fe.IsVisibleChanged += this.OnIsVisibleChanged;
             }
@@ -92,7 +90,7 @@
         /// <inheritdoc />
         protected override void StopListening(object source)
         {
-            if (source is FrameworkElement fe)
+            if (source is UIElement fe)
             {
                 fe.IsVisibleChanged -= this.OnIsVisibleChanged;
             }

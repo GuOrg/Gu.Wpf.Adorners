@@ -14,7 +14,10 @@
             DefaultStyleKeyProperty.OverrideMetadata(typeof(VisualBrushDragAdorner), new FrameworkPropertyMetadata(typeof(VisualBrushDragAdorner)));
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VisualBrushDragAdorner"/> class.
+        /// </summary>
+        /// <param name="adornedElement">The drag source.</param>
         public VisualBrushDragAdorner(UIElement adornedElement)
             : base(adornedElement, new Rectangle())
         {
