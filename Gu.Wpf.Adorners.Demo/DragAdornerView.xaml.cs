@@ -17,11 +17,7 @@
                 contentPresenter.Content != null)
             {
                 var data = new DataObject(typeof(DragItem), contentPresenter.Content);
-                using (DragAdorner.For(
-                    contentPresenter,
-                    contentPresenter.Content,
-                    (DataTemplate)this.FindResource("AdornerDragItemTemplate"),
-                    null))
+                using (DragAdorner.Create(contentPresenter))
                 {
                     DragDrop.DoDragDrop(contentPresenter, data, DragDropEffects.Move);
                     var target = data.GetData(typeof(UIElement));

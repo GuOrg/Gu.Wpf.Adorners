@@ -6,15 +6,27 @@
 
     public static class DragAdorner
     {
-        public static IDisposable For(UIElement adornedElement, object content, DataTemplate contentTemplate, DataTemplateSelector contentTemplateSelector)
+        public static IDisposable Create(UIElement adornedElement, object content, DataTemplate contentTemplate, DataTemplateSelector contentTemplateSelector)
         {
             var adorner = new ContentDragAdorner(adornedElement)
             {
                 Content = content,
                 ContentTemplate = contentTemplate,
                 ContentTemplateSelector = contentTemplateSelector,
-                IsHitTestVisible = false,
             };
+
+            AdornerService.Show(adorner);
+            return adorner;
+        }
+
+        public static IDisposable Create(ContentPresenter adornedElement)
+        {
+            var adorner = new ContentDragAdorner(adornedElement)
+                          {
+                              Content = adornedElement.Content,
+                              ContentTemplate = adornedElement.ContentTemplate,
+                              ContentTemplateSelector = adornedElement.ContentTemplateSelector,
+                          };
 
             AdornerService.Show(adorner);
             return adorner;

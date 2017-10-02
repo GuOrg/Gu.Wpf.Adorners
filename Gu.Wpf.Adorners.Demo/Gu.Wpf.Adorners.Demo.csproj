@@ -62,6 +62,7 @@
     <Compile Include="DragItem.cs">
       <DependentUpon>DragAdornerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DragItemTemplateSelector.cs" />
     <Compile Include="InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
     </Compile>

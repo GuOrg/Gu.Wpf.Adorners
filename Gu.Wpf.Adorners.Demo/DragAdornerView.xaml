@@ -11,21 +11,34 @@
         <local:DragAdornerViewModel />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <DataTemplate x:Key="DragItemTemplate" DataType="{x:Type local:DragItem}">
-            <Border Width="100"
-                    Height="50"
-                    Background="Yellow">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Text="{Binding Name}" />
-            </Border>
-        </DataTemplate>
+        <local:DragItemTemplateSelector x:Key="DragItemTemplateSelector">
+            <local:DragItemTemplateSelector.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:DragItem}">
+                    <Border Width="100"
+                            Height="50"
+                            Background="Yellow">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Name}" />
+                    </Border>
+                </DataTemplate>
+            </local:DragItemTemplateSelector.ItemTemplate>
+            <local:DragItemTemplateSelector.EmptyTemplate>
+                <DataTemplate DataType="{x:Type local:DragItem}">
+                    <Rectangle Width="100"
+                               Height="50"
+                               Fill="Transparent"
+                               Stroke="Black"
+                               StrokeDashArray="4 4"
+                               StrokeThickness="1" />
+                </DataTemplate>
+            </local:DragItemTemplateSelector.EmptyTemplate>
+        </local:DragItemTemplateSelector>
 
         <DataTemplate x:Key="AdornerDragItemTemplate" DataType="{x:Type local:DragItem}">
             <Border Width="100"
                     Height="50"
-                    Background="LightBlue"
-                    Opacity="0.5">
+                    Background="LightBlue">
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Text="{Binding Name}" />
@@ -39,21 +52,21 @@
         </Grid.ColumnDefinitions>
         <ContentPresenter x:Name="ContentPresenter1"
                           Grid.Column="0"
-                          AllowDrop="True"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
+                          AllowDrop="True"
                           Content="{Binding Item1, Mode=TwoWay}"
-                          ContentTemplate="{StaticResource DragItemTemplate}"
+                          ContentTemplateSelector="{StaticResource DragItemTemplateSelector}"
                           Drop="OnDrop"
                           MouseLeftButtonDown="OnMouseLeftButtonDown" />
 
         <ContentPresenter x:Name="ContentPresenter2"
                           Grid.Column="1"
-                          AllowDrop="True"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
+                          AllowDrop="True"
                           Content="{Binding Item2, Mode=TwoWay}"
-                          ContentTemplate="{StaticResource DragItemTemplate}"
+                          ContentTemplateSelector="{StaticResource DragItemTemplateSelector}"
                           Drop="OnDrop"
                           MouseLeftButtonDown="OnMouseLeftButtonDown" />
     </Grid>
