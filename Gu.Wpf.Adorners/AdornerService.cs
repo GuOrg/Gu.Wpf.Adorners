@@ -12,7 +12,6 @@
 
         public static void Remove(Adorner adorner)
         {
-            ////Debug.WriteLine(nameof(Remove));
             var adornerLayer = AdornerLayer.GetAdornerLayer(adorner.AdornedElement);
             adornerLayer?.Remove(adorner);
         }
@@ -22,7 +21,6 @@
             var adornerLayer = AdornerLayer.GetAdornerLayer(adorner.AdornedElement);
             if (adornerLayer != null)
             {
-                ////Debug.WriteLine(nameof(Show));
                 adornerLayer.Remove(adorner);
                 adornerLayer.Add(adorner);
             }

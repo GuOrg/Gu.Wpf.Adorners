@@ -162,7 +162,6 @@ namespace Gu.Wpf.Adorners
 
         private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ////Debug.Print($"Visible changed to: {e.NewValue}");
             var textBox = (TextBox)d;
             if (Equals(e.NewValue, true))
             {
