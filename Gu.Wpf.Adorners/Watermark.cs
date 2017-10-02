@@ -61,7 +61,6 @@ namespace Gu.Wpf.Adorners
             Loaded.Track();
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
             EventManager.RegisterClassHandler(typeof(TextBox), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
-            EventManager.RegisterClassHandler(typeof(TextBox), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.GotKeyboardFocusEvent, new RoutedEventHandler(OnGotKeyboardFocus));
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.LostKeyboardFocusEvent, new RoutedEventHandler(OnLostKeyboardFocus));
             EventManager.RegisterClassHandler(typeof(TextBox), TextBoxBase.TextChangedEvent, new RoutedEventHandler(OnTextChanged));
@@ -127,14 +126,11 @@ namespace Gu.Wpf.Adorners
 
         private static void OnTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            var textBox = o as TextBox;
-            if (textBox == null)
+            if (o is TextBox textBox)
             {
-                return;
+                IsVisibleChangedEventManager.UpdateHandler(textBox, OnIsVisibleChanged);
+                UpdateIsShowing(textBox);
             }
-
-            Visible.Track(textBox);
-            UpdateIsShowing(textBox);
         }
 
         private static void OnVisibleWhenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -222,7 +218,7 @@ namespace Gu.Wpf.Adorners
             UpdateIsShowing((TextBox)sender);
         }
 
-        private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
+        private static void OnIsVisibleChanged(object sender, EventArgs e)
         {
             UpdateIsShowing((TextBox)sender);
         }

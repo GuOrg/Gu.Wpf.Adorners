@@ -53,6 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DebugView.xaml.cs">
+      <DependentUpon>DebugView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DragAdornerView.xaml.cs">
       <DependentUpon>DragAdornerView.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
     <Compile Include="WatermarkView.xaml.cs">
       <DependentUpon>WatermarkView.xaml</DependentUpon>
     </Compile>
+    <Page Include="DebugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DragAdornerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

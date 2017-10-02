@@ -73,7 +73,6 @@
     <Compile Include="Internals\SingleChildEnumerator.cs" />
     <Compile Include="Internals\EventManagers\UnloadedEventManager.cs" />
     <Compile Include="Internals\User32.cs" />
-    <Compile Include="Internals\Visible.cs" />
     <Compile Include="Internals\VisualTreeHelperExt.cs" />
     <Compile Include="Overlay.cs" />
     <Compile Include="Internals\TemplatedAdorner.cs" />

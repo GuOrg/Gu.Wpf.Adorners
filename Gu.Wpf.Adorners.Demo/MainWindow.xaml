@@ -26,5 +26,9 @@
         <TabItem Header="Drag">
             <local:DragAdornerView />
         </TabItem>
+
+        <TabItem Header="Debug">
+            <local:DebugView />
+        </TabItem>
     </TabControl>
 </Window>

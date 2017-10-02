@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Adorners
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
@@ -47,7 +48,6 @@
             Loaded.Track();
             EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
             EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
-            EventManager.RegisterClassHandler(typeof(UIElement), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
         }
 
         public static void SetTemplate(DependencyObject element, ControlTemplate value)
@@ -111,14 +111,14 @@
             UpdateIsShowing(sender as DependencyObject);
         }
 
-        private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
+        private static void OnIsVisibleChanged(object sender, EventArgs e)
         {
             UpdateIsShowing(sender as DependencyObject);
         }
 
         private static void OnTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Visible.Track(d as UIElement);
+            IsVisibleChangedEventManager.UpdateHandler((UIElement)d, OnIsVisibleChanged);
             UpdateIsShowing(d);
         }
 
@@ -158,29 +158,27 @@
             ((Adorner)e.OldValue)?.ClearTemplatedAdornerChild();
         }
 
-        private static void UpdateIsShowing(DependencyObject element)
+        private static void UpdateIsShowing(DependencyObject o)
         {
-            if (element == null)
+            if (o is UIElement element)
             {
-                return;
-            }
+                if (!element.IsVisible ||
+                    !Loaded.IsLoaded(element))
+                {
+                    element.SetIsShowing(false);
+                    return;
+                }
 
-            if (!Visible.IsVisible(element) ||
-                !Loaded.IsLoaded(element))
-            {
-                element.SetIsShowing(false);
-                return;
-            }
+                var template = GetTemplate(element);
+                var isVisible = GetIsVisible(element);
+                if (template != null && isVisible != null)
+                {
+                    element.SetIsShowing(isVisible.Value);
+                    return;
+                }
 
-            var template = GetTemplate(element);
-            var isVisible = GetIsVisible(element);
-            if (template != null && isVisible != null)
-            {
-                element.SetIsShowing(isVisible.Value);
-                return;
+                element.SetIsShowing(template != null);
             }
-
-            element.SetIsShowing(template != null);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Adorners
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -67,15 +68,6 @@
             new PropertyMetadata(
                 default(ContentAdorner),
                 OnAdornerChanged));
-
-        static Overlay()
-        {
-            EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
-            Loaded.Track();
-            EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
-            EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
-            EventManager.RegisterClassHandler(typeof(UIElement), Visible.IsVisibleChangedEvent, new RoutedEventHandler(OnIsVisibleChanged));
-        }
 
         public static void SetContent(DependencyObject element, object value)
         {
@@ -166,29 +158,17 @@
             UpdateIsShowing(element);
         }
 
-        private static void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing(sender as DependencyObject);
-        }
-
-        private static void OnUnLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing(sender as DependencyObject);
-        }
-
-        private static void OnIsVisibleChanged(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing(sender as DependencyObject);
-        }
+        private static void OnAdornedElementChanged(object sender, EventArgs e) => UpdateIsShowing(sender as DependencyObject);
 
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Visible.Track(d as UIElement);
+            UpdateHandlers(d);
             UpdateIsShowing(d);
         }
 
         private static void OnContentTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            UpdateHandlers(d);
             var adorner = d?.GetAdorner();
             adorner?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
             UpdateIsShowing(d);
@@ -196,6 +176,7 @@
 
         private static void OnContentTemplateSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            UpdateHandlers(d);
             var adorner = d?.GetAdorner();
             adorner?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
             UpdateIsShowing(d);
@@ -203,8 +184,17 @@
 
         private static void OnContentPresenterStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            UpdateHandlers(d);
             var adorner = d?.GetAdorner();
             adorner?.SetCurrentValue(ContentAdorner.ContentPresenterStyleProperty, GetContentPresenterStyle(d));
+        }
+
+        private static void UpdateHandlers(DependencyObject d)
+        {
+            IsVisibleChangedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
+            LoadedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
+            UnloadedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
+            SizeChangedEventManager.UpdateHandler((FrameworkElement)d, OnSizeChanged);
         }
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -247,29 +237,27 @@
             ((ContentAdorner)e.OldValue)?.ClearChild();
         }
 
-        private static void UpdateIsShowing(DependencyObject element)
+        private static void UpdateIsShowing(DependencyObject o)
         {
-            if (element == null)
+            if (o is UIElement element)
             {
-                return;
-            }
+                if (!element.IsVisible ||
+                    !Loaded.IsLoaded(element))
+                {
+                    element.SetIsShowing(false);
+                    return;
+                }
 
-            if (!Visible.IsVisible(element) ||
-                !Loaded.IsLoaded(element))
-            {
-                element.SetIsShowing(false);
-                return;
-            }
+                var isVisible = GetIsVisible(element);
+                if (isVisible != null)
+                {
+                    element.SetIsShowing(isVisible.Value);
+                    return;
+                }
 
-            var isVisible = GetIsVisible(element);
-            if (isVisible != null)
-            {
-                element.SetIsShowing(isVisible.Value);
-                return;
+                var content = GetContent(element);
+                element.SetIsShowing(content != null);
             }
-
-            var content = GetContent(element);
-            element.SetIsShowing(content != null);
         }
 
         private static void SetIfNotNull(

@@ -31,44 +31,16 @@
             }
         }
 
-        /// <summary>
-        /// Add a listener to the given source's event.
-        /// </summary>
-        public static void AddListener(FrameworkElement source, IWeakEventListener listener)
+        internal static void UpdateHandler(UIElement source, EventHandler<EventArgs> handler)
         {
-            CurrentManager.ProtectedAddListener(
+            var manager = CurrentManager;
+            manager.ProtectedRemoveHandler(
                 source ?? throw new ArgumentNullException(nameof(source)),
-                listener ?? throw new ArgumentNullException(nameof(listener)));
-        }
-
-        /// <summary>
-        /// Remove a listener to the given source's event.
-        /// </summary>
-        public static void RemoveListener(FrameworkElement source, IWeakEventListener listener)
-        {
-            CurrentManager.ProtectedRemoveListener(
-                source ?? throw new ArgumentNullException(nameof(source)),
-                listener ?? throw new ArgumentNullException(nameof(listener)));
-        }
-
-        /// <summary>
-        /// Add a handler for the given source's event.
-        /// </summary>
-        public static void AddHandler(FrameworkElement source, EventHandler handler)
-        {
-            CurrentManager.ProtectedAddHandler(
-                source,
                 handler ?? throw new ArgumentNullException(nameof(handler)));
-        }
 
-        /// <summary>
-        /// Remove a handler for the given source's event.
-        /// </summary>
-        public static void RemoveHandler(FrameworkElement source, EventHandler handler)
-        {
-            CurrentManager.ProtectedRemoveHandler(
+            manager.ProtectedAddHandler(
                 source,
-                handler ?? throw new ArgumentNullException(nameof(handler)));
+                handler);
         }
 
         /// <inheritdoc />
@@ -77,9 +49,9 @@
         /// <inheritdoc />
         protected override void StartListening(object source)
         {
-            if (source is UIElement fe)
+            if (source is UIElement element)
             {
-                fe.IsVisibleChanged += this.OnIsVisibleChanged;
+                element.IsVisibleChanged += this.OnIsVisibleChanged;
             }
             else
             {
@@ -90,9 +62,9 @@
         /// <inheritdoc />
         protected override void StopListening(object source)
         {
-            if (source is UIElement fe)
+            if (source is UIElement element)
             {
-                fe.IsVisibleChanged -= this.OnIsVisibleChanged;
+                element.IsVisibleChanged -= this.OnIsVisibleChanged;
             }
             else
             {
