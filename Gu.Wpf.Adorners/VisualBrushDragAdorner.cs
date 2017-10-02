@@ -4,6 +4,9 @@
     using System.Windows.Media;
     using System.Windows.Shapes;
 
+    /// <summary>
+    /// A drag adorner that renders a rectangle with the visual brush of the adorned element.
+    /// </summary>
     public class VisualBrushDragAdorner : DragAdorner<Rectangle>
     {
         static VisualBrushDragAdorner()
@@ -11,6 +14,7 @@
             DefaultStyleKeyProperty.OverrideMetadata(typeof(VisualBrushDragAdorner), new FrameworkPropertyMetadata(typeof(VisualBrushDragAdorner)));
         }
 
+        /// <inheritdoc />
         public VisualBrushDragAdorner(UIElement adornedElement)
             : base(adornedElement, new Rectangle())
         {

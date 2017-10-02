@@ -4,6 +4,10 @@
     using System.Windows;
     using System.Windows.Media;
 
+    /// <summary>
+    /// A base class for drag adorners.
+    /// </summary>
+    /// <typeparam name="T">The type of the content.</typeparam>
     public abstract class DragAdorner<T> : ContainerAdorner<T>, IDisposable
         where T : FrameworkElement
     {
@@ -38,6 +42,9 @@
 
         public TranslateTransform Offset { get; }
 
+        /// <summary>
+        /// Gets or sets the drop target to snap position to.
+        /// </summary>
         public UIElement DropTarget
         {
             get => (UIElement)this.GetValue(DropTargetProperty);
