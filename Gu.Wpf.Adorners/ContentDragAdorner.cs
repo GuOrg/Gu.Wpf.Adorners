@@ -31,7 +31,7 @@
             typeof(ContentDragAdorner),
             new PropertyMetadata(default(Style)));
 
-        private readonly Vector offset;
+        private readonly Vector elementOffset;
         private bool disposed;
 
         static ContentDragAdorner()
@@ -42,8 +42,8 @@
         public ContentDragAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
-            this.offset = adornedElement.PointToScreen(new Point(0, 0)) - User32.GetMousePosition();
-            var mp = User32.GetMousePosition(adornedElement) + this.offset;
+            this.elementOffset = adornedElement.PointToScreen(new Point(0, 0)) - User32.GetMousePosition();
+            var mp = User32.GetMousePosition(adornedElement) + this.elementOffset;
 
             this.Offset = new TranslateTransform(mp.X, mp.Y);
             this.Child = new ContentPresenter { RenderTransform = this.Offset };
@@ -138,7 +138,7 @@
 
         private void UpdatePosition(object sender, QueryContinueDragEventArgs e)
         {
-            var mp = User32.GetMousePosition(this.AdornedElement) + this.offset;
+            var mp = User32.GetMousePosition(this.AdornedElement) + this.elementOffset;
             this.Offset.SetCurrentValue(TranslateTransform.XProperty, mp.X);
             this.Offset.SetCurrentValue(TranslateTransform.YProperty, mp.Y);
         }

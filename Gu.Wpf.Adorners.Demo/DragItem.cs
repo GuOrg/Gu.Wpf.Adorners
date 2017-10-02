@@ -2,6 +2,11 @@
 {
     public class DragItem
     {
-        public string Name { get; } = "Johan";
+        public DragItem(string name)
+        {
+            this.Name = name;
+        }
+
+        public string Name { get; }
     }
 }

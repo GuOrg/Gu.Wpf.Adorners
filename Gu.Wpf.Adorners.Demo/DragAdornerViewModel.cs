@@ -5,7 +5,7 @@
 
     public class DragAdornerViewModel : INotifyPropertyChanged
     {
-        private DragItem item1 = new DragItem();
+        private DragItem item1 = new DragItem("Kajsa");
         private DragItem item2;
 
         public event PropertyChangedEventHandler PropertyChanged;
