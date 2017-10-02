@@ -44,6 +44,7 @@
     <Style TargetType="{x:Type local:ContentDragAdorner}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Opacity" Value="0.7" />
         <Setter Property="TextElement.FontFamily" Value="{Binding AdornedElement.(TextElement.FontFamily), RelativeSource={RelativeSource Self}}" />
         <Setter Property="TextElement.FontStyle" Value="{Binding AdornedElement.(TextElement.FontStyle), RelativeSource={RelativeSource Self}}" />
         <Setter Property="TextElement.FontWeight" Value="{Binding AdornedElement.(TextElement.FontWeight), RelativeSource={RelativeSource Self}}" />
@@ -69,6 +70,7 @@
     <Style TargetType="{x:Type local:VisualBrushDragAdorner}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Opacity" Value="0.7" />
         <Style.Triggers>
             <Trigger Property="DropTarget" Value="{x:Null}">
                 <Setter Property="Opacity" Value="0.5" />

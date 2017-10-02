@@ -63,11 +63,9 @@
     <Compile Include="DragAdorner.cs" />
     <Compile Include="DragAdorner{T}.cs" />
     <Compile Include="Info.cs" />
-    <Compile Include="Internals\ActionDisposable.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectHelper.cs" />
     <Compile Include="Internals\EmptyEnumerator.cs" />
-    <Compile Include="Internals\Ensure.cs" />
     <Compile Include="Internals\SingleChildEnumerator.cs" />
     <Compile Include="Internals\Loaded.cs" />
     <Compile Include="Internals\User32.cs" />
