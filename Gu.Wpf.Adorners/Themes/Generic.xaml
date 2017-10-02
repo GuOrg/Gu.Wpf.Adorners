@@ -42,7 +42,6 @@
     </Style>
 
     <Style TargetType="{x:Type local:ContentDragAdorner}">
-        <Setter Property="Opacity" Value="0.4" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="TextElement.FontFamily" Value="{Binding AdornedElement.(TextElement.FontFamily), RelativeSource={RelativeSource Self}}" />
@@ -60,19 +59,20 @@
                 </Style>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="DropTarget" Value="{x:Null}">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
-    <!--<Style TargetType="{x:Type local:TemplatedAdorner}">
+    <Style TargetType="{x:Type local:VisualBrushDragAdorner}">
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="TextElement.FontFamily" Value="{Binding AdornedElement.(TextElement.FontFamily), RelativeSource ={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontStyle" Value="{Binding AdornedElement.(TextElement.FontStyle), RelativeSource ={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontWeight" Value="{Binding AdornedElement.(TextElement.FontWeight), RelativeSource ={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontStretch" Value="{Binding AdornedElement.(TextElement.FontStretch), RelativeSource ={RelativeSource Self}}" />
-        <Setter Property="TextElement.FontSize" Value="{Binding AdornedElement.(TextElement.FontSize), RelativeSource ={RelativeSource Self}}" />
-        <Setter Property="TextElement.Foreground" Value="{Binding AdornedElement.(TextElement.Foreground), RelativeSource ={RelativeSource Self}}" />
-    -->
-    <!--<Setter Property="TextElement.Background" Value="{Binding AdornedElement.(TextElement.Background), RelativeSource ={RelativeSource Self}}" />-->
-    <!--
-        <Setter Property="TextElement.TextEffects" Value="{Binding AdornedElement.(TextElement.TextEffects), RelativeSource ={RelativeSource Self}}" />
-    </Style>-->
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="DropTarget" Value="{x:Null}">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

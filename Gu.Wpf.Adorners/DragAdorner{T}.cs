@@ -7,8 +7,16 @@
     public abstract class DragAdorner<T> : ContainerAdorner<T>, IDisposable
         where T : FrameworkElement
     {
+        public static readonly DependencyProperty DropTargetProperty = DependencyProperty.Register(
+            nameof(DropTarget),
+            typeof(UIElement),
+            typeof(DragAdorner<T>),
+            new PropertyMetadata(
+                default(UIElement),
+                OnDropTargetChanged));
+
         private readonly Vector elementOffset;
-        private UIElement dropTarget;
+
         private bool disposed;
 
         /// <summary>
@@ -30,39 +38,63 @@
 
         public TranslateTransform Offset { get; }
 
+        public UIElement DropTarget
+        {
+            get => (UIElement)this.GetValue(DropTargetProperty);
+            set => this.SetValue(DropTargetProperty, value);
+        }
+
         public sealed override T Child
         {
             get => base.Child;
             set => base.Child = value;
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             this.Dispose(true);
         }
 
+        /// <summary>
+        /// Set <see cref="DropTarget"/> to <paramref name="dropTarget"/> and update the position.
+        /// Provides a visual hint that the item can be dropped.
+        /// </summary>
+        /// <param name="dropTarget">The drop target to snap to.</param>
         public void SnapTo(UIElement dropTarget)
         {
-            this.dropTarget = dropTarget;
-            this.UpdatePosition();
-            this.InvalidateMeasure();
-            this.InvalidateVisual();
+            this.SetCurrentValue(DropTargetProperty, dropTarget);
         }
 
+        /// <summary>
+        /// Set <see cref="DropTarget"/> to null and start following mouse cursor again.
+        /// </summary>
         public void RemoveSnap()
         {
-            this.dropTarget = null;
-            this.UpdatePosition();
-            this.InvalidateMeasure();
-            this.InvalidateVisual();
+            this.SetCurrentValue(DropTargetProperty, null);
         }
 
+        /// <summary>
+        /// Set <see cref="DropTarget"/> to null if <see cref="DropTarget"/> is the same instance as <paramref name="dropTarget"/> and start following mouse cursor again.
+        /// </summary>
         public void RemoveSnap(UIElement dropTarget)
         {
-            if (ReferenceEquals(this.dropTarget, dropTarget))
+            if (ReferenceEquals(this.DropTarget, dropTarget))
             {
                 this.RemoveSnap();
             }
+        }
+
+        /// <summary>
+        /// Called when <see cref="DropTarget"/> changes value.
+        /// </summary>
+        /// <param name="oldValue">The old drop target.</param>
+        /// <param name="newValue">The new drop target.</param>
+        protected virtual void OnDropTargetChanged(UIElement oldValue, UIElement newValue)
+        {
+            this.UpdatePosition();
+            this.InvalidateMeasure();
+            this.InvalidateVisual();
         }
 
         protected virtual void Dispose(bool disposing)
@@ -80,11 +112,12 @@
             }
         }
 
+        /// <inheritdoc />
         protected override Size MeasureOverride(Size constraint)
         {
             if (this.Child != null)
             {
-                var size = this.dropTarget?.RenderSize ?? new Size(double.PositiveInfinity, double.PositiveInfinity);
+                var size = this.DropTarget?.RenderSize ?? new Size(double.PositiveInfinity, double.PositiveInfinity);
                 this.Child.Measure(size);
                 return this.Child.DesiredSize;
             }
@@ -92,15 +125,19 @@
             return new Size(0.0, 0.0);
         }
 
+        /// <inheritdoc />
         protected override Size ArrangeOverride(Size finalSize)
         {
-            var bounds = this.dropTarget?.TransformToVisual(this.AdornedElement)
+            var bounds = this.DropTarget?.TransformToVisual(this.AdornedElement)
                                          .TransformBounds(new Rect(finalSize)) ??
                               new Rect(finalSize);
             this.Child?.Arrange(bounds);
             return finalSize;
         }
 
+        /// <summary>
+        /// Throws <see cref="ObjectDisposedException"/> is this instance is disposed.
+        /// </summary>
         protected void ThrowIfDisposed()
         {
             if (this.disposed)
@@ -109,9 +146,13 @@
             }
         }
 
+        /// <summary>
+        /// Update the position of the adorner. This is called when QueryContinueDrag is raised or DropTarget changes.
+        /// </summary>
         protected virtual void UpdatePosition()
         {
-            if (this.dropTarget == null)
+            this.ThrowIfDisposed();
+            if (this.DropTarget == null)
             {
                 var mp = User32.GetMousePosition(this.AdornedElement) + this.elementOffset;
                 this.Offset.SetCurrentValue(TranslateTransform.XProperty, mp.X);
@@ -122,6 +163,12 @@
                 this.Offset.SetCurrentValue(TranslateTransform.XProperty, 0.0);
                 this.Offset.SetCurrentValue(TranslateTransform.YProperty, 0.0);
             }
+        }
+
+        private static void OnDropTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var adorner = (DragAdorner<T>)d;
+            adorner.OnDropTargetChanged((UIElement)e.OldValue, (UIElement)e.NewValue);
         }
 
         private void UpdatePosition(object sender, QueryContinueDragEventArgs e)
