@@ -61,7 +61,6 @@
             if (TryGetDropTarget(e.Source, out var contentPresenter) &&
                 e.Data.GetData(typeof(Adorner)) is ContentDragAdorner adorner)
             {
-                Debug.WriteLine($"Remove snap: {contentPresenter.Name}");
                 adorner.RemoveSnap(contentPresenter);
                 e.Effects = DragDropEffects.None;
                 e.Handled = true;
@@ -73,7 +72,6 @@
             if (TryGetDropTarget(e.Source, out var contentPresenter) &&
                 e.Data.GetData(typeof(Adorner)) is ContentDragAdorner adorner)
             {
-                Debug.WriteLine($"Snap to: {contentPresenter.Name}");
                 adorner.SnapTo(contentPresenter);
                 e.Effects = DragDropEffects.Move;
                 e.Handled = true;
