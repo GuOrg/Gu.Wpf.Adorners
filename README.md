@@ -5,9 +5,13 @@
 
 ## A collection of adorners for wpf.
 
-## Watermark
+# Watermark
+
+For adding watermark text to text boxes.
+
 Sample:
-```
+
+```xaml
 <UserControl.Resources>
     <Style x:Key="AdornerTextStyle"
             TargetType="{x:Type TextBlock}">
@@ -69,14 +73,14 @@ Sample:
 Renders: 
 ![watermarked](http://i.imgur.com/CGMrn3S.gif)
 
-##### TextStyle 
+## TextStyle 
 Accepts a style for `TextBlock` the text is drawn where the textbox text is drawn so no margins needed.
 
-##### VisibleWhen {`Empty`, `EmptyAndNotKeyboardFocused`}
+## VisibleWhen {`Empty`, `EmptyAndNotKeyboardFocused`}
 Default is `EmptyAndNotKeyboardFocused`
 
-##### Default style:
-```
+## Default style:
+```xaml
 <Style TargetType="{x:Type local:WatermarkAdorner}">
     <Setter Property="IsHitTestVisible" Value="False" />
     <Setter Property="Focusable" Value="False" />
@@ -99,9 +103,9 @@ Default is `EmptyAndNotKeyboardFocused`
 </Style>
 ```
 
-##### Attached properties
+## Attached properties
 All properties are attached properties so you can do:
-```
+```xaml
 <StackPanel adorners:Watermark.Text="Write something here"
             adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
             adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused">
@@ -110,10 +114,13 @@ All properties are attached properties so you can do:
 </StackPanel>
 ```
 
-## Overlay
+# Overlay
+
+For adding an overlay to an element.
 The overlay visibility is controled with adorners:Overlay.IsVisible if set to null the overlay is shown if adorners:Overlay.Content != null
+
 Sample:
-```
+```xaml
 <Button adorners:Overlay.IsVisible="{Binding IsChecked,
                                              ElementName=IsVisibleButton}">
     <adorners:Overlay.Content>
@@ -124,10 +131,11 @@ Sample:
 ```
 Renders: ![overlay](http://i.imgur.com/Csrqi6L.png)
 
-##### Attached properties
+## Attached properties
 All properties are attached properties so you can do:
 Note that this sample makes little sense overspecifying, providing it to give copy-paste friendly xaml.
-```
+
+```xaml
 <StackPanel adorners:Overlay.ContentPresenterStyle="{StaticResource OverlayStyle}"
             adorners:Overlay.ContentTemplateSelector="{StaticResource OverlayTemplateSelector}">
     <adorners:Overlay.ContentTemplate>
@@ -153,12 +161,15 @@ Note that this sample makes little sense overspecifying, providing it to give co
 </StackPanel>
 ```
 
-## Info
+# Info
+
 This is very similar to the adorner used for validation in WPF
+
 Sample:
-```
+
+```xaml
 <Button adorners:Info.IsVisible="{Binding IsChecked,
-                                            ElementName=IsVisibleButton}">
+                                          ElementName=IsVisibleButton}">
     <adorners:Info.Template>
         <ControlTemplate>
             <Grid>
