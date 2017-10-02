@@ -67,7 +67,7 @@
         /// Set <see cref="DropTarget"/> to <paramref name="dropTarget"/> and update the position.
         /// Provides a visual hint that the item can be dropped.
         /// </summary>
-        /// <param name="dropTarget">The drop target to snap to.</param>
+        /// <param name="dropTarget">The drop target to snap position to.</param>
         public void SnapTo(UIElement dropTarget)
         {
             this.SetCurrentValue(DropTargetProperty, dropTarget);
@@ -84,6 +84,7 @@
         /// <summary>
         /// Set <see cref="DropTarget"/> to null if <see cref="DropTarget"/> is the same instance as <paramref name="dropTarget"/> and start following mouse cursor again.
         /// </summary>
+        /// <param name="dropTarget">The drop target to stop snapping position to.</param>
         public void RemoveSnap(UIElement dropTarget)
         {
             if (ReferenceEquals(this.DropTarget, dropTarget))
