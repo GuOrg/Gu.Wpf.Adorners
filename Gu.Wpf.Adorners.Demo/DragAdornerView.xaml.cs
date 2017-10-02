@@ -19,12 +19,12 @@
                 var data = new DataObject(typeof(DragItem), contentPresenter.Content);
                 using (DragAdorner.Create(contentPresenter))
                 {
+                    contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, null);
                     DragDrop.DoDragDrop(contentPresenter, data, DragDropEffects.Move);
                     var target = data.GetData(typeof(UIElement));
-                    if (target != null &&
-                        !ReferenceEquals(target, contentPresenter))
+                    if (target == null)
                     {
-                        contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, null);
+                        contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, data.GetData(typeof(DragItem)));
                     }
                 }
             }
