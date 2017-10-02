@@ -5,6 +5,9 @@
     using System.Windows.Controls;
     using System.Windows.Documents;
 
+    /// <summary>
+    /// For showing adorners similar to validation errors.
+    /// </summary>
     public static class Info
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
@@ -41,14 +44,6 @@
             new PropertyMetadata(
                 default(Adorner),
                 OnAdornerChanged));
-
-        static Info()
-        {
-            EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.SizeChangedEvent, new RoutedEventHandler(OnSizeChanged));
-            Loaded.Track();
-            EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.LoadedEvent, new RoutedEventHandler(OnLoaded));
-            EventManager.RegisterClassHandler(typeof(UIElement), FrameworkElement.UnloadedEvent, new RoutedEventHandler(OnUnLoaded));
-        }
 
         public static void SetTemplate(DependencyObject element, ControlTemplate value)
         {
@@ -101,24 +96,17 @@
             UpdateIsShowing(element);
         }
 
-        private static void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing(sender as DependencyObject);
-        }
-
-        private static void OnUnLoaded(object sender, RoutedEventArgs e)
-        {
-            UpdateIsShowing(sender as DependencyObject);
-        }
-
-        private static void OnIsVisibleChanged(object sender, EventArgs e)
+        private static void OnAdornedElementChanged(object sender, EventArgs e)
         {
             UpdateIsShowing(sender as DependencyObject);
         }
 
         private static void OnTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            IsVisibleChangedEventManager.UpdateHandler((UIElement)d, OnIsVisibleChanged);
+            IsVisibleChangedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
+            LoadedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
+            UnloadedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
+            SizeChangedEventManager.UpdateHandler((FrameworkElement)d, OnSizeChanged);
             UpdateIsShowing(d);
         }
 

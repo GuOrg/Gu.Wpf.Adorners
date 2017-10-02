@@ -40,9 +40,14 @@
     </Window.Resources>
 
     <StackPanel>
+        <Slider x:Name="WidthSlider"
+                Maximum="200"
+                Minimum="0"
+                Value="200" />
+
         <Button Content="No overlay" />
 
-        <Button Content="Default visibility">
+        <Button Width="{Binding ElementName=WidthSlider, Path=Value}" Content="Default visibility">
             <adorners:Overlay.Content>
                 <Border BorderBrush="Blue" BorderThickness="2" />
             </adorners:Overlay.Content>

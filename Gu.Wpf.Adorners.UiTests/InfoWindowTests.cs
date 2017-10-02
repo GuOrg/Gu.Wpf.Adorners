@@ -4,9 +4,9 @@
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public class OverlayWindowTests
+    public class InfoWindowTests
     {
-        private const string WindowName = "OverlayWindow";
+        private const string WindowName = "InfoWindow";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -14,9 +14,8 @@
             ImageAssert.OnFail = OnFail.SaveImageToTemp;
         }
 
-        [TestCase("No overlay", ".\\Images\\No overlay.png")]
-        [TestCase("Default visibility", ".\\Images\\Default visibility.png")]
-        [TestCase("With content template", ".\\Images\\With content template.png")]
+        [TestCase("red border bound visibility", ".\\Images\\red border bound visibility_visible.png")]
+        [TestCase("red border default visibility", ".\\Images\\red border default visibility.png")]
         public void Overlay(string name, string imageFileName)
         {
             using (var app = Application.Launch(Info.ExeFileName, WindowName))
@@ -35,23 +34,11 @@
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                var button = window.FindButton("Bound visibility");
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button);
+                var button = window.FindButton("red border bound visibility");
+                ImageAssert.AreEqual(".\\Images\\red border bound visibility_visible.png", button);
 
                 window.FindButton("IsVisibleButton").Click();
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button);
-            }
-        }
-
-        [Test]
-        public void WithInheritedContentTemplate()
-        {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
-                var groupBox = window.FindGroupBox("Inherits");
-                ImageAssert.AreEqual(".\\Images\\WithInheritedContentTemplate.png", groupBox);
+                ImageAssert.AreEqual(".\\Images\\red border bound visibility_not_visible.png", button);
             }
         }
 
@@ -62,11 +49,23 @@
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                var button = window.FindButton("Default visibility");
-                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
+                var button = window.FindButton("red border default visibility");
+                ImageAssert.AreEqual(".\\Images\\red border default visibility.png", button);
 
                 window.FindSlider("WidthSlider").Value = 100;
-                ImageAssert.AreEqual(".\\Images\\Default visibility_width_100.png", button);
+                ImageAssert.AreEqual(".\\Images\\red border default visibility_width_100.png", button);
+            }
+        }
+
+        [Test]
+        public void WhenDrawsOutside()
+        {
+            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            {
+                var window = app.MainWindow;
+                Wait.For(TimeSpan.FromMilliseconds(200));
+                var groupBox = window.FindGroupBox("Draws outside");
+                ImageAssert.AreEqual(".\\Images\\Draws outside.png", groupBox);
             }
         }
     }
