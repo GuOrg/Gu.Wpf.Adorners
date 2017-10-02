@@ -4,13 +4,19 @@
     using System.Windows;
     using System.Windows.Media;
 
-    public class DragAdorner<T> : ContainerAdorner<T>, IDisposable
+    public abstract class DragAdorner<T> : ContainerAdorner<T>, IDisposable
         where T : FrameworkElement
     {
         private readonly Vector elementOffset;
+        private UIElement dropTarget;
         private bool disposed;
 
-        public DragAdorner(UIElement adornedElement, T child)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DragAdorner{T}"/> class.
+        /// </summary>
+        /// <param name="adornedElement">The drag source.</param>
+        /// <param name="child">The content to render.</param>
+        protected DragAdorner(UIElement adornedElement, T child)
             : base(adornedElement)
         {
             this.elementOffset = adornedElement.PointToScreen(new Point(0, 0)) - User32.GetMousePosition();
@@ -35,6 +41,30 @@
             this.Dispose(true);
         }
 
+        public void SnapTo(UIElement dropTarget)
+        {
+            this.dropTarget = dropTarget;
+            this.UpdatePosition();
+            this.InvalidateMeasure();
+            this.InvalidateVisual();
+        }
+
+        public void RemoveSnap()
+        {
+            this.dropTarget = null;
+            this.UpdatePosition();
+            this.InvalidateMeasure();
+            this.InvalidateVisual();
+        }
+
+        public void RemoveSnap(UIElement dropTarget)
+        {
+            if (ReferenceEquals(this.dropTarget, dropTarget))
+            {
+                this.RemoveSnap();
+            }
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)
@@ -54,7 +84,8 @@
         {
             if (this.Child != null)
             {
-                this.Child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                var size = this.dropTarget?.RenderSize ?? new Size(double.PositiveInfinity, double.PositiveInfinity);
+                this.Child.Measure(size);
                 return this.Child.DesiredSize;
             }
 
@@ -63,7 +94,10 @@
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.Child?.Arrange(new Rect(finalSize));
+            var bounds = this.dropTarget?.TransformToVisual(this.AdornedElement)
+                                         .TransformBounds(new Rect(finalSize)) ??
+                              new Rect(finalSize);
+            this.Child?.Arrange(bounds);
             return finalSize;
         }
 
@@ -75,11 +109,24 @@
             }
         }
 
+        protected virtual void UpdatePosition()
+        {
+            if (this.dropTarget == null)
+            {
+                var mp = User32.GetMousePosition(this.AdornedElement) + this.elementOffset;
+                this.Offset.SetCurrentValue(TranslateTransform.XProperty, mp.X);
+                this.Offset.SetCurrentValue(TranslateTransform.YProperty, mp.Y);
+            }
+            else
+            {
+                this.Offset.SetCurrentValue(TranslateTransform.XProperty, 0.0);
+                this.Offset.SetCurrentValue(TranslateTransform.YProperty, 0.0);
+            }
+        }
+
         private void UpdatePosition(object sender, QueryContinueDragEventArgs e)
         {
-            var mp = User32.GetMousePosition(this.AdornedElement) + this.elementOffset;
-            this.Offset.SetCurrentValue(TranslateTransform.XProperty, mp.X);
-            this.Offset.SetCurrentValue(TranslateTransform.YProperty, mp.Y);
+            this.UpdatePosition();
         }
     }
 }

@@ -45,7 +45,7 @@
             </Border>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid DragLeave="OnDragLeave">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -57,6 +57,8 @@
                           AllowDrop="True"
                           Content="{Binding Item1, Mode=TwoWay}"
                           ContentTemplateSelector="{StaticResource DragItemTemplateSelector}"
+                          DragEnter="OnDragEnter"
+                          DragLeave="OnDragLeave"
                           Drop="OnDrop"
                           MouseLeftButtonDown="OnMouseLeftButtonDown" />
 
@@ -67,6 +69,8 @@
                           AllowDrop="True"
                           Content="{Binding Item2, Mode=TwoWay}"
                           ContentTemplateSelector="{StaticResource DragItemTemplateSelector}"
+                          DragEnter="OnDragEnter"
+                          DragLeave="OnDragLeave"
                           Drop="OnDrop"
                           MouseLeftButtonDown="OnMouseLeftButtonDown" />
     </Grid>
