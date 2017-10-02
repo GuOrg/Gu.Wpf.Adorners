@@ -1,24 +1,26 @@
 ﻿namespace Gu.Wpf.Adorners
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Media;
 
-    public class ContentAdorner : ContainerAdorner<ContentPresenter>
+    public class ContentDragAdorner : ContainerAdorner<ContentPresenter>, IDisposable
     {
         public static readonly DependencyProperty ContentProperty = ContentControl.ContentProperty.AddOwner(
-            typeof(ContentAdorner),
+            typeof(ContentDragAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty ContentTemplateProperty = ContentControl.ContentTemplateProperty.AddOwner(
-            typeof(ContentAdorner),
+            typeof(ContentDragAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty ContentTemplateSelectorProperty = ContentControl.ContentTemplateSelectorProperty.AddOwner(
-                typeof(ContentAdorner),
+                typeof(ContentDragAdorner),
                 new FrameworkPropertyMetadata(
                     null,
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
@@ -26,20 +28,25 @@
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.Register(
             "ContentPresenterStyle",
             typeof(Style),
-            typeof(ContentAdorner),
+            typeof(ContentDragAdorner),
             new PropertyMetadata(default(Style)));
 
-        static ContentAdorner()
+        private readonly Vector elementOffset;
+        private bool disposed;
+
+        static ContentDragAdorner()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentAdorner), new FrameworkPropertyMetadata(typeof(ContentAdorner)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentDragAdorner), new FrameworkPropertyMetadata(typeof(ContentDragAdorner)));
         }
 
-        public ContentAdorner(UIElement adornedElement)
+        public ContentDragAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
-            this.Child = new ContentPresenter();
-            this.Child.Bind(MarginProperty)
-                .OneWayTo(this, MarginProperty);
+            this.elementOffset = adornedElement.PointToScreen(new Point(0, 0)) - User32.GetMousePosition();
+            var mp = User32.GetMousePosition(adornedElement) + this.elementOffset;
+
+            this.Offset = new TranslateTransform(mp.X, mp.Y);
+            this.Child = new ContentPresenter { RenderTransform = this.Offset };
             this.Child.Bind(ContentPresenter.ContentProperty)
                 .OneWayTo(this, ContentProperty);
             this.Child.Bind(ContentPresenter.ContentTemplateProperty)
@@ -48,7 +55,11 @@
                 .OneWayTo(this, ContentTemplateSelectorProperty);
             this.Child.Bind(StyleProperty)
                 .OneWayTo(this, StyleProperty);
+
+            DragDrop.AddPreviewQueryContinueDragHandler(adornedElement, this.UpdatePosition);
         }
+
+        public TranslateTransform Offset { get; }
 
         public sealed override ContentPresenter Child
         {
@@ -80,17 +91,56 @@
             set => this.SetValue(ContentPresenterStyleProperty, value);
         }
 
+        public void Dispose()
+        {
+            this.Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+            {
+                return;
+            }
+
+            this.disposed = true;
+            if (disposing)
+            {
+                DragDrop.RemovePreviewQueryContinueDragHandler(this.AdornedElement, this.UpdatePosition);
+                AdornerService.Remove(this);
+            }
+        }
+
         protected override Size MeasureOverride(Size constraint)
         {
-            var desiredSize = this.AdornedElement.RenderSize;
-            this.Child?.Measure(desiredSize);
-            return desiredSize;
+            if (this.Child != null)
+            {
+                this.Child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                return this.Child.DesiredSize;
+            }
+
+            return new Size(0.0, 0.0);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.Child?.Arrange(new Rect(0, 0, finalSize.Width, finalSize.Height));
-            return this.Child?.RenderSize ?? base.ArrangeOverride(finalSize);
+            this.Child?.Arrange(new Rect(finalSize));
+            return finalSize;
+        }
+
+        protected void ThrowIfDisposed()
+        {
+            if (this.disposed)
+            {
+                throw new ObjectDisposedException(this.GetType().FullName);
+            }
+        }
+
+        private void UpdatePosition(object sender, QueryContinueDragEventArgs e)
+        {
+            var mp = User32.GetMousePosition(this.AdornedElement) + this.elementOffset;
+            this.Offset.SetCurrentValue(TranslateTransform.XProperty, mp.X);
+            this.Offset.SetCurrentValue(TranslateTransform.YProperty, mp.Y);
         }
     }
 }

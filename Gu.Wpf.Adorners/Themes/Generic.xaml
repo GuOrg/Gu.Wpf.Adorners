@@ -41,6 +41,27 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type local:ContentDragAdorner}">
+        <Setter Property="Opacity" Value="0.4" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="TextElement.FontFamily" Value="{Binding AdornedElement.(TextElement.FontFamily), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStyle" Value="{Binding AdornedElement.(TextElement.FontStyle), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontWeight" Value="{Binding AdornedElement.(TextElement.FontWeight), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontStretch" Value="{Binding AdornedElement.(TextElement.FontStretch), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.FontSize" Value="{Binding AdornedElement.(TextElement.FontSize), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="TextElement.Foreground" Value="{Binding AdornedElement.(TextElement.Foreground), RelativeSource ={RelativeSource Self}}" />
+        <!--<Setter Property="TextElement.Background" Value="{Binding AdornedElement.(TextElement.Background), RelativeSource ={RelativeSource Self}}" />-->
+        <Setter Property="TextElement.TextEffects" Value="{Binding AdornedElement.(TextElement.TextEffects), RelativeSource ={RelativeSource Self}}" />
+        <Setter Property="ContentPresenterStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Setter Property="Focusable" Value="False" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--<Style TargetType="{x:Type local:TemplatedAdorner}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="TextElement.FontFamily" Value="{Binding AdornedElement.(TextElement.FontFamily), RelativeSource ={RelativeSource Self}}" />
