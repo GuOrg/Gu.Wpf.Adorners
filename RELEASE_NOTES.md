@@ -1,4 +1,4 @@
 #### 1.2.0.0
 * FEATURE: DragAdorner
-* BUGFIX: Better subscriptions for perf & elminiate memory leaks.
+* BUGFIX: Use weak event handlers to elminiate any memory leaks.
 
