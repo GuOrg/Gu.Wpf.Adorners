@@ -209,6 +209,8 @@ The DataContext of the adorner is bound to DataContext of AdornedElement.
 
 Shows an adorner that follows the mouse while draging in a drag & drop operation.
 
+![dragadorner](https://user-images.githubusercontent.com/1640096/31116961-556f2dcc-a828-11e7-941e-d967eb04fed3.gif)
+
 Sample:
 
 ```cs
