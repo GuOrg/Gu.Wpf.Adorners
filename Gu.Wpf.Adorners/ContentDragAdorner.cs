@@ -24,7 +24,7 @@
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.Register(
-            "ContentPresenterStyle",
+            nameof(ContentPresenterStyle),
             typeof(Style),
             typeof(ContentDragAdorner),
             new PropertyMetadata(default(Style)));
@@ -44,7 +44,7 @@
             this.Child.Bind(ContentPresenter.ContentTemplateSelectorProperty)
                 .OneWayTo(this, ContentTemplateSelectorProperty);
             this.Child.Bind(StyleProperty)
-                .OneWayTo(this, StyleProperty);
+                .OneWayTo(this, ContentPresenterStyleProperty);
         }
 
         public object Content

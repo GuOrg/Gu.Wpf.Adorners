@@ -56,15 +56,14 @@
     <Compile Include="DebugView.xaml.cs">
       <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DragAdornerTemplateView.xaml.cs">
+      <DependentUpon>DragAdornerTemplateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DragAdornerView.xaml.cs">
       <DependentUpon>DragAdornerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DragAdornerViewModel.cs">
-      <DependentUpon>DragAdornerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DragItem.cs">
-      <DependentUpon>DragAdornerView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="DragViewModel.cs" />
+    <Compile Include="DragItem.cs" />
     <Compile Include="DragItemTemplateSelector.cs" />
     <Compile Include="InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
@@ -94,6 +93,10 @@
       <DependentUpon>WatermarkView.xaml</DependentUpon>
     </Compile>
     <Page Include="DebugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DragAdornerTemplateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

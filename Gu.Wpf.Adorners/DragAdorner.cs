@@ -20,14 +20,26 @@
         /// A <see cref="ContentDragAdorner"/> that should be disposed when the drag operation ends.
         /// Disposing it removes subscriptions and removes the adorner.
         /// </returns>
-        public static ContentDragAdorner Create(UIElement adornedElement, object content, DataTemplate contentTemplate, DataTemplateSelector contentTemplateSelector)
+        public static ContentDragAdorner Create(
+            UIElement adornedElement,
+            object content,
+            DataTemplate contentTemplate = null,
+            DataTemplateSelector contentTemplateSelector = null)
         {
             var adorner = new ContentDragAdorner(adornedElement)
             {
-                Content = content,
-                ContentTemplate = contentTemplate,
-                ContentTemplateSelector = contentTemplateSelector,
+                Content = content
             };
+
+            if (contentTemplate != null)
+            {
+                adorner.ContentTemplate = contentTemplate;
+            }
+
+            if (contentTemplateSelector != null)
+            {
+                adorner.ContentTemplateSelector = contentTemplateSelector;
+            }
 
             AdornerService.Show(adorner);
             return adorner;
@@ -44,11 +56,11 @@
         public static ContentDragAdorner Create(ContentPresenter adornedElement)
         {
             var adorner = new ContentDragAdorner(adornedElement)
-                          {
-                              Content = adornedElement.Content,
-                              ContentTemplate = adornedElement.ContentTemplate,
-                              ContentTemplateSelector = adornedElement.ContentTemplateSelector,
-                          };
+            {
+                Content = adornedElement.Content,
+                ContentTemplate = adornedElement.ContentTemplate,
+                ContentTemplateSelector = adornedElement.ContentTemplateSelector,
+            };
 
             AdornerService.Show(adorner);
             return adorner;

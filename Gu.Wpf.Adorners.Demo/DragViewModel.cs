@@ -3,7 +3,7 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    public class DragAdornerViewModel : INotifyPropertyChanged
+    public class DragViewModel : INotifyPropertyChanged
     {
         private DragItem item1 = new DragItem("Kajsa");
         private DragItem item2;

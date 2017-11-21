@@ -1,6 +1,7 @@
 ﻿<Application x:Class="Gu.Wpf.Adorners.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo">
     <Application.StartupUri>MainWindow.xaml</Application.StartupUri>
     <!--<Application.StartupUri>Windows/NotShowingWhenInFrames/FramesWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/WatermarkWindow.xaml</Application.StartupUri>-->
