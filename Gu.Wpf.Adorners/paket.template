@@ -4,8 +4,8 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Adorners
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  FEATURE: DragAdorner
-  BUGFIX: Use weak event handlers to elminiate any memory leaks.
+  FEATURE: DataObjectExt
+  BUGFIX: Bind content style correctly
 
 excludedgroups
   Analyzers
