@@ -61,7 +61,6 @@
       </PropertyGroup>
     </When>
   </Choose>
-  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Content Include="Images\Default visibility_width_100.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -290,4 +289,5 @@
     </When>
   </Choose>
   <Import Project="..\packages\test\NETStandard.Library\build\$(__paket__NETStandard_Library_targets).targets" Condition="Exists('..\packages\test\NETStandard.Library\build\$(__paket__NETStandard_Library_targets).targets')" Label="Paket" />
+  <Import Project="..\.paket\paket.targets" />
 </Project>
