@@ -2,7 +2,6 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Documents;
     using System.Windows.Input;
 
     public partial class DragAdornerTemplateView : UserControl
@@ -32,13 +31,13 @@
                 var data = new DataObject(typeof(DragItem), contentPresenter.Content);
                 using (var adorner = DragAdorner.Create(contentPresenter, contentPresenter.Content))
                 {
-                    data.SetData(typeof(Adorner), adorner);
+                    data.SetData(adorner);
                     contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, null);
                     DragDrop.DoDragDrop(contentPresenter, data, DragDropEffects.Move);
-                    var target = data.GetData(typeof(UIElement));
+                    var target = data.GetData<ContentPresenter>();
                     if (target == null)
                     {
-                        contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, data.GetData(typeof(DragItem)));
+                        contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, data.GetData<DragItem>());
                     }
                 }
             }
@@ -50,7 +49,7 @@
             {
                 contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, e.Data.GetData(typeof(DragItem)));
                 e.Effects = DragDropEffects.Move;
-                e.Data.SetData(typeof(UIElement), contentPresenter);
+                e.Data.SetData(contentPresenter);
                 e.Handled = true;
             }
         }
@@ -58,7 +57,7 @@
         private void OnDragLeave(object sender, DragEventArgs e)
         {
             if (TryGetDropTarget(e.Source, out var contentPresenter) &&
-                e.Data.GetData(typeof(Adorner)) is ContentDragAdorner adorner)
+                e.Data.GetData<ContentDragAdorner>() is ContentDragAdorner adorner)
             {
                 adorner.RemoveSnap(contentPresenter);
                 e.Effects = DragDropEffects.None;
@@ -69,7 +68,7 @@
         private void OnDragEnter(object sender, DragEventArgs e)
         {
             if (TryGetDropTarget(e.Source, out var contentPresenter) &&
-                e.Data.GetData(typeof(Adorner)) is ContentDragAdorner adorner)
+                e.Data.GetData<ContentDragAdorner>() is ContentDragAdorner adorner)
             {
                 adorner.SnapTo(contentPresenter);
                 e.Effects = DragDropEffects.Move;

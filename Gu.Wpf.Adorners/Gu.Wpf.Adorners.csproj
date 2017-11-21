@@ -60,6 +60,7 @@
     <Compile Include="ContainerAdorner{T}.cs" />
     <Compile Include="ContentAdorner.cs" />
     <Compile Include="ContentDragAdorner.cs" />
+    <Compile Include="DataObjectExt.cs" />
     <Compile Include="DragAdorner.cs" />
     <Compile Include="DragAdorner{T}.cs" />
     <Compile Include="Info.cs" />
