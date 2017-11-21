@@ -5,26 +5,30 @@
 
     public class ContentAdorner : ContainerAdorner<ContentPresenter>
     {
+        /// <summary>Identifies the <see cref="Content"/> dependency property.</summary>
         public static readonly DependencyProperty ContentProperty = ContentControl.ContentProperty.AddOwner(
             typeof(ContentAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ContentTemplate"/> dependency property.</summary>
         public static readonly DependencyProperty ContentTemplateProperty = ContentControl.ContentTemplateProperty.AddOwner(
             typeof(ContentAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ContentTemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty ContentTemplateSelectorProperty = ContentControl.ContentTemplateSelectorProperty.AddOwner(
                 typeof(ContentAdorner),
                 new FrameworkPropertyMetadata(
                     null,
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ContentPresenterStyle"/> dependency property.</summary>
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.Register(
-            "ContentPresenterStyle",
+            nameof(ContentPresenterStyle),
             typeof(Style),
             typeof(ContentAdorner),
             new PropertyMetadata(default(Style)));

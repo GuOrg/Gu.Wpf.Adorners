@@ -1,15 +1,16 @@
 source http://www.nuget.org/api/v2/
-framework >= net4
 
 group Analyzers
-  source http://www.nuget.org/api/v2/
-  nuget JetBrains.Annotations
+  source http://nuget.org/api/v2
+  nuget AsyncUsageAnalyzers
+  nuget IDisposableAnalyzers
+  nuget PropertyChangedAnalyzers
   nuget StyleCop.Analyzers
   nuget WpfAnalyzers
   nuget Gu.Analyzers
+  nuget JetBrains.Annotations
 
 group Test
   source http://www.nuget.org/api/v2/
-  framework >= net45
   nuget NUnit
   nuget Gu.Wpf.UiAutomation

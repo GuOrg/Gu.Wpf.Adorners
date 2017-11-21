@@ -7,8 +7,5 @@ releasenotes
   FEATURE: DragAdorner
   BUGFIX: Use weak event handlers to elminiate any memory leaks.
 
-excludeddependencies
-  JetBrains.Annotations
-  StyleCop.Analyzers
-  WpfAnalyzers
-  Gu.Analyzers
+excludedgroups
+  Analyzers

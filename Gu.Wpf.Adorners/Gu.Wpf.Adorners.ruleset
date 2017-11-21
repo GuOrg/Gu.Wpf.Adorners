@@ -74,4 +74,12 @@
     <Rule Id="SA1611" Action="None" />
     <Rule Id="SA1633" Action="None" />
   </Rules>
+  <Rules AnalyzerId="WpfAnalyzers.Analyzers" RuleNamespace="WpfAnalyzers.Analyzers">
+    <Rule Id="WPF0052" Action="Warning" />
+    <Rule Id="WPF0060" Action="Warning" />
+    <Rule Id="WPF0061" Action="Warning" />
+    <Rule Id="WPF0070" Action="Warning" />
+    <Rule Id="WPF0071" Action="Warning" />
+    <Rule Id="WPF0080" Action="Warning" />
+  </Rules>
 </RuleSet>
