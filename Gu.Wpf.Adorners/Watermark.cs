@@ -55,11 +55,21 @@ namespace Gu.Wpf.Adorners
                 default(WatermarkAdorner),
                 OnAdornerChanged));
 
+        /// <summary>
+        /// Helper for setting Text property on a UIElement.
+        /// </summary>
+        /// <param name="element">UIElement to set Text property on.</param>
+        /// <param name="value">Text property value.</param>
         public static void SetText(this UIElement element, string value)
         {
             element.SetValue(TextProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading Text property from a UIElement.
+        /// </summary>
+        /// <param name="element">UIElement to read Text property from.</param>
+        /// <returns>Text property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static string GetText(this UIElement element)
@@ -67,11 +77,21 @@ namespace Gu.Wpf.Adorners
             return (string)element.GetValue(TextProperty);
         }
 
+        /// <summary>
+        /// Helper for setting VisibleWhen property on a UIElement.
+        /// </summary>
+        /// <param name="element">UIElement to set VisibleWhen property on.</param>
+        /// <param name="value">VisibleWhen property value.</param>
         public static void SetVisibleWhen(this UIElement element, WatermarkVisibleWhen value)
         {
             element.SetValue(VisibleWhenProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading VisibleWhen property from a UIElement.
+        /// </summary>
+        /// <param name="element">UIElement to read VisibleWhen property from.</param>
+        /// <returns>VisibleWhen property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static WatermarkVisibleWhen GetVisibleWhen(this UIElement element)
@@ -79,11 +99,21 @@ namespace Gu.Wpf.Adorners
             return (WatermarkVisibleWhen)element.GetValue(VisibleWhenProperty);
         }
 
+        /// <summary>
+        /// Helper for setting TextStyle property on a UIElement.
+        /// </summary>
+        /// <param name="element">UIElement to set TextStyle property on.</param>
+        /// <param name="value">TextStyle property value.</param>
         public static void SetTextStyle(this UIElement element, Style value)
         {
             element.SetValue(TextStyleProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading TextStyle property from a UIElement.
+        /// </summary>
+        /// <param name="element">UIElement to read TextStyle property from.</param>
+        /// <returns>TextStyle property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static Style GetTextStyle(this UIElement element)
@@ -96,6 +126,11 @@ namespace Gu.Wpf.Adorners
             element.SetValue(IsShowingPropertyKey, value);
         }
 
+        /// <summary>
+        /// Helper for reading IsShowing property from a TextBox.
+        /// </summary>
+        /// <param name="element">TextBox to read IsShowing property from.</param>
+        /// <returns>IsShowing property value.</returns>
         public static bool GetIsShowing(this TextBox element)
         {
             return (bool)element.GetValue(IsShowingProperty);

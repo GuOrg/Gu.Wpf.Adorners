@@ -5,24 +5,28 @@
 
     public class ContentDragAdorner : DragAdorner<ContentPresenter>
     {
+        /// <summary>Identifies the <see cref="Content"/> dependency property.</summary>
         public static readonly DependencyProperty ContentProperty = ContentControl.ContentProperty.AddOwner(
             typeof(ContentDragAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ContentTemplate"/> dependency property.</summary>
         public static readonly DependencyProperty ContentTemplateProperty = ContentControl.ContentTemplateProperty.AddOwner(
             typeof(ContentDragAdorner),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ContentTemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty ContentTemplateSelectorProperty = ContentControl.ContentTemplateSelectorProperty.AddOwner(
                 typeof(ContentDragAdorner),
                 new FrameworkPropertyMetadata(
                     null,
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ContentPresenterStyle"/> dependency property.</summary>
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.Register(
             nameof(ContentPresenterStyle),
             typeof(Style),

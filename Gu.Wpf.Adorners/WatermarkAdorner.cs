@@ -7,6 +7,7 @@
 
     public sealed class WatermarkAdorner : ContainerAdorner<TextBlock>
     {
+        /// <summary>Identifies the <see cref="TextStyle"/> dependency property.</summary>
         public static readonly DependencyProperty TextStyleProperty = Watermark.TextStyleProperty.AddOwner(
             typeof(WatermarkAdorner),
             new FrameworkPropertyMetadata(default(Style)));

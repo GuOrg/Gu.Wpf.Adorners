@@ -11,6 +11,7 @@
     public abstract class DragAdorner<T> : ContainerAdorner<T>, IDisposable
         where T : FrameworkElement
     {
+        /// <summary>Identifies the <see cref="DropTarget"/> dependency property.</summary>
         public static readonly DependencyProperty DropTargetProperty = DependencyProperty.Register(
             nameof(DropTarget),
             typeof(UIElement),
@@ -36,7 +37,7 @@
 
             this.Offset = new TranslateTransform(mp.X, mp.Y);
             child.RenderTransform = this.Offset;
-            this.Child = child;
+            base.Child = child;
             DragDrop.AddPreviewQueryContinueDragHandler(adornedElement, this.UpdatePosition);
         }
 

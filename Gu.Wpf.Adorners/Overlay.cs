@@ -69,11 +69,21 @@
                 default(ContentAdorner),
                 OnAdornerChanged));
 
+        /// <summary>
+        /// Helper for setting Content property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set Content property on.</param>
+        /// <param name="value">Content property value.</param>
         public static void SetContent(DependencyObject element, object value)
         {
             element.SetValue(ContentProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading Content property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read Content property from.</param>
+        /// <returns>Content property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static object GetContent(DependencyObject element)
@@ -81,11 +91,21 @@
             return element.GetValue(ContentProperty);
         }
 
+        /// <summary>
+        /// Helper for setting ContentTemplate property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set ContentTemplate property on.</param>
+        /// <param name="value">ContentTemplate property value.</param>
         public static void SetContentTemplate(DependencyObject element, DataTemplate value)
         {
             element.SetValue(ContentTemplateProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading ContentTemplate property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read ContentTemplate property from.</param>
+        /// <returns>ContentTemplate property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static DataTemplate GetContentTemplate(DependencyObject element)
@@ -93,11 +113,21 @@
             return (DataTemplate)element.GetValue(ContentTemplateProperty);
         }
 
+        /// <summary>
+        /// Helper for setting ContentTemplateSelector property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set ContentTemplateSelector property on.</param>
+        /// <param name="value">ContentTemplateSelector property value.</param>
         public static void SetContentTemplateSelector(DependencyObject element, DataTemplateSelector value)
         {
             element.SetValue(ContentTemplateSelectorProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading ContentTemplateSelector property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read ContentTemplateSelector property from.</param>
+        /// <returns>ContentTemplateSelector property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static DataTemplateSelector GetContentTemplateSelector(DependencyObject element)
@@ -105,11 +135,21 @@
             return (DataTemplateSelector)element.GetValue(ContentTemplateSelectorProperty);
         }
 
+        /// <summary>
+        /// Helper for setting ContentPresenterStyle property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set ContentPresenterStyle property on.</param>
+        /// <param name="value">ContentPresenterStyle property value.</param>
         public static void SetContentPresenterStyle(DependencyObject element, Style value)
         {
             element.SetValue(ContentPresenterStyleProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading ContentPresenterStyle property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read ContentPresenterStyle property from.</param>
+        /// <returns>ContentPresenterStyle property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static Style GetContentPresenterStyle(DependencyObject element)
@@ -117,11 +157,21 @@
             return (Style)element.GetValue(ContentPresenterStyleProperty);
         }
 
+        /// <summary>
+        /// Helper for setting IsVisible property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set IsVisible property on.</param>
+        /// <param name="value">IsVisible property value.</param>
         public static void SetIsVisible(DependencyObject element, bool? value)
         {
             element.SetValue(IsVisibleProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading IsVisible property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read IsVisible property from.</param>
+        /// <returns>IsVisible property value.</returns>
         public static bool? GetIsVisible(DependencyObject element)
         {
             return (bool?)element.GetValue(IsVisibleProperty);
@@ -132,6 +182,11 @@
             element.SetValue(IsShowingPropertyKey, value);
         }
 
+        /// <summary>
+        /// Helper for reading IsShowing property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read IsShowing property from.</param>
+        /// <returns>IsShowing property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static bool GetIsShowing(this DependencyObject element)

@@ -45,21 +45,41 @@
                 default(Adorner),
                 OnAdornerChanged));
 
+        /// <summary>
+        /// Helper for setting Template property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set Template property on.</param>
+        /// <param name="value">Template property value.</param>
         public static void SetTemplate(DependencyObject element, ControlTemplate value)
         {
             element.SetValue(TemplateProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading Template property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read Template property from.</param>
+        /// <returns>Template property value.</returns>
         public static ControlTemplate GetTemplate(DependencyObject element)
         {
             return (ControlTemplate)element.GetValue(TemplateProperty);
         }
 
+        /// <summary>
+        /// Helper for setting IsVisible property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set IsVisible property on.</param>
+        /// <param name="value">IsVisible property value.</param>
         public static void SetIsVisible(DependencyObject element, bool? value)
         {
             element.SetValue(IsVisibleProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading IsVisible property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read IsVisible property from.</param>
+        /// <returns>IsVisible property value.</returns>
         public static bool? GetIsVisible(DependencyObject element)
         {
             return (bool?)element.GetValue(IsVisibleProperty);
@@ -70,6 +90,11 @@
             element.SetValue(IsShowingPropertyKey, value);
         }
 
+        /// <summary>
+        /// Helper for reading IsShowing property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read IsShowing property from.</param>
+        /// <returns>IsShowing property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static bool GetIsShowing(this DependencyObject element)
