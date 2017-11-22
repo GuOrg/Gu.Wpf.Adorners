@@ -1,4 +1,4 @@
-﻿<Page x:Class="Gu.Wpf.Adorners.Demo.Repros.NotShowingWhenInFrames.Page1"
+﻿<Page x:Class="Gu.Wpf.Adorners.Demo.Windows.NotShowingWhenInFrames.Page1"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:adorners="http://gu.se/Adorners"

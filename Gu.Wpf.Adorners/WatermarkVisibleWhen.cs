@@ -1,14 +1,17 @@
 ﻿namespace Gu.Wpf.Adorners
 {
+    /// <summary>
+    /// For specifying how visibility of a <see cref="WatermarkAdorner"/> behaves.
+    /// </summary>
     public enum WatermarkVisibleWhen
     {
         /// <summary>
-        /// Shows the watermark as long as the textbox is empty
+        /// Shows the watermark as long as the <see cref="System.Windows.Controls.TextBox"/> is empty
         /// </summary>
         Empty,
 
         /// <summary>
-        ///  Shows the watermark as long as the textbox is empty and not focused.
+        ///  Shows the watermark as long as the <see cref="System.Windows.Controls.TextBox"/> is empty and not focused.
         /// </summary>
         EmptyAndNotKeyboardFocused
     }

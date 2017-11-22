@@ -3,13 +3,25 @@
     using System.Windows.Documents;
     using System.Windows.Threading;
 
+    /// <summary>
+    /// Helper class for adding and removing adorners to the <see cref="AdornerLayer"/>
+    /// </summary>
     public static class AdornerService
     {
+        /// <summary>
+        /// Adds <paramref name="adorner"/> to the <see cref="AdornerLayer"/>
+        /// If no adorner layer is present a retry is performed with  DispatcherPriority.Loaded
+        /// </summary>
+        /// <param name="adorner">The <see cref="Adorner"/></param>
         public static void Show(Adorner adorner)
         {
             Show(adorner, retry: true);
         }
 
+        /// <summary>
+        /// Removes <paramref name="adorner"/> from the <see cref="AdornerLayer"/>
+        /// </summary>
+        /// <param name="adorner">The <see cref="Adorner"/></param>
         public static void Remove(Adorner adorner)
         {
             var adornerLayer = AdornerLayer.GetAdornerLayer(adorner.AdornedElement);

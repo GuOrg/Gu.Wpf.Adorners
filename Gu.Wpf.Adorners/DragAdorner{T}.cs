@@ -41,6 +41,10 @@
             DragDrop.AddPreviewQueryContinueDragHandler(adornedElement, this.UpdatePosition);
         }
 
+        /// <summary>
+        /// Gets a transform that specifies the offset for the position.
+        /// By default the adorner is positioned so that the mouse is glued to the position where the drag started.
+        /// </summary>
         public TranslateTransform Offset { get; }
 
         /// <summary>
@@ -52,6 +56,7 @@
             set => this.SetValue(DropTargetProperty, value);
         }
 
+        /// <inheritdoc />
         public sealed override T Child
         {
             get => base.Child;

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners.Demo.Repros.NotShowingWhenInFrames
+﻿namespace Gu.Wpf.Adorners.Demo.Windows.NotShowingWhenInFrames
 {
     using System.Windows.Controls;
 

@@ -3,7 +3,7 @@
     using System.Windows;
 
     /// <summary>
-    /// Extnsion methods for <see cref="IDataObject"/>
+    /// Extension methods for <see cref="IDataObject"/>
     /// </summary>
     public static class DataObjectExt
     {
@@ -16,6 +16,19 @@
         public static T GetData<T>(this IDataObject dataObject)
         {
             return (T)dataObject.GetData(typeof(T));
+        }
+
+        /// <summary>
+        /// Calls return (T)dataObject.GetData(typeof(T));
+        /// </summary>
+        /// <typeparam name="T">The type of the key and the data</typeparam>
+        /// <param name="dataObject">The <see cref="IDataObject"/></param>
+        /// <param name="data">The data keyed by <typeparamref name="T"/></param>
+        /// <returns>True if <see cref="IDataObject.GetData(System.Type)"/> returns not null</returns>
+        public static bool TryGetData<T>(this IDataObject dataObject, out T data)
+        {
+            data = (T)dataObject.GetData(typeof(T));
+            return data != null;
         }
 
         /// <summary>

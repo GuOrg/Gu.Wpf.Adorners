@@ -19,8 +19,12 @@
             DefaultStyleKeyProperty.OverrideMetadata(typeof(WatermarkAdorner), new FrameworkPropertyMetadata(typeof(WatermarkAdorner)));
         }
 
-        public WatermarkAdorner(TextBox textBox)
-            : base(textBox)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WatermarkAdorner"/> class.
+        /// </summary>
+        /// <param name="adornedElement">The adorned element</param>
+        public WatermarkAdorner(TextBoxBase adornedElement)
+            : base(adornedElement)
         {
             var textBlock = new TextBlock
             {
@@ -34,11 +38,17 @@
                 .OneWayTo(this, TextStyleProperty);
 
             this.Child.Bind(TextBlock.TextProperty)
-                .OneWayTo(textBox, Watermark.TextProperty);
+                .OneWayTo(adornedElement, Watermark.TextProperty);
         }
 
+        /// <summary>
+        /// Gets the adorned <see cref="TextBoxBase"/>
+        /// </summary>
         public TextBoxBase AdornedTextBox => (TextBoxBase)this.AdornedElement;
 
+        /// <summary>
+        /// Gets or sets the style for the <see cref="TextBlock"/> rendering <see cref="Watermark.TextProperty"/> for <see cref="AdornedTextBox"/>
+        /// </summary>
         public Style TextStyle
         {
             get => (Style)this.GetValue(TextStyleProperty);
@@ -68,6 +78,7 @@
             }
         }
 
+        /// <inheritdoc />
         protected override Size MeasureOverride(Size constraint)
         {
             var desiredSize = this.AdornedElement.RenderSize;
@@ -75,6 +86,7 @@
             return desiredSize;
         }
 
+        /// <inheritdoc />
         protected override Size ArrangeOverride(Size size)
         {
             var view = this.TextView;

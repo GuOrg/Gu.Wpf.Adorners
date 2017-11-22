@@ -4,10 +4,15 @@
     using System.Windows;
     using System.Windows.Controls;
 
+    /// <summary>
+    /// Attached properties for creating overlays.
+    /// </summary>
     public static class Overlay
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-
+        /// <summary>
+        /// Gets or sets the content is the data used to generate the child elements of this control.
+        /// </summary>
         public static readonly DependencyProperty ContentProperty = DependencyProperty.RegisterAttached(
             "Content",
             typeof(object),
@@ -16,6 +21,9 @@
                 default(object),
                 OnContentChanged));
 
+        /// <summary>
+        /// Gets or sets the <see cref="DataTemplate"/> used to display the content of the control.
+        /// </summary>
         public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.RegisterAttached(
             "ContentTemplate",
             typeof(DataTemplate),
@@ -25,6 +33,13 @@
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnContentTemplateChanged));
 
+        /// <summary>
+        /// Gets or sets the <see cref="DataTemplateSelector"/> that allows the application writer to provide custom logic
+        /// for choosing the template used to display the content of the control.
+        /// </summary>
+        /// <remarks>
+        /// This property is ignored if <seealso cref="ContentTemplateProperty"/> is set.
+        /// </remarks>
         public static readonly DependencyProperty ContentTemplateSelectorProperty = DependencyProperty.RegisterAttached(
             "ContentTemplateSelector",
             typeof(DataTemplateSelector),
@@ -34,6 +49,9 @@
                  FrameworkPropertyMetadataOptions.Inherits,
                 OnContentTemplateSelectorChanged));
 
+        /// <summary>
+        /// Gets or sets the <see cref="Style"/> for rendering <see cref="ContentProperty"/>
+        /// </summary>
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.RegisterAttached(
             "ContentPresenterStyle",
             typeof(Style),
@@ -43,6 +61,9 @@
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnContentPresenterStyleChanged));
 
+        /// <summary>
+        /// Gets or sets visibility of the adorner. Note that setting it to visible does not need to trigger a show.
+        /// </summary>
         public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached(
             "IsVisible",
             typeof(bool?),
@@ -59,6 +80,9 @@
                 default(bool),
                 OnIsShowingChanged));
 
+        /// <summary>
+        /// Gets or sets if the adorner is currently visible
+        /// </summary>
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(

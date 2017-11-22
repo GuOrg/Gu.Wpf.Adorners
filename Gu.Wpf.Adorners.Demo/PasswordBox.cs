@@ -23,6 +23,11 @@
             element.SetValue(IsEmptyPropertyKey, value);
         }
 
+        /// <summary>
+        /// Helper for reading IsEmpty property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read IsEmpty property from.</param>
+        /// <returns>IsEmpty property value.</returns>
         public static bool GetIsEmpty(DependencyObject element)
         {
             return (bool)element.GetValue(IsEmptyProperty);

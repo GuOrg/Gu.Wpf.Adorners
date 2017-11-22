@@ -51,24 +51,40 @@
                 .OneWayTo(this, ContentPresenterStyleProperty);
         }
 
+        /// <summary>
+        /// Gets or sets the content is the data used to generate the child elements of this control.
+        /// </summary>
         public object Content
         {
             get => this.GetValue(ContentProperty);
             set => this.SetValue(ContentProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="DataTemplate"/> used to display the content of the control.
+        /// </summary>
         public DataTemplate ContentTemplate
         {
             get => (DataTemplate)this.GetValue(ContentTemplateProperty);
             set => this.SetValue(ContentTemplateProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="DataTemplateSelector"/> that allows the application writer to provide custom logic
+        /// for choosing the template used to display the content of the control.
+        /// </summary>
+        /// <remarks>
+        /// This property is ignored if <seealso cref="ContentTemplate"/> is set.
+        /// </remarks>
         public DataTemplateSelector ContentTemplateSelector
         {
             get => (DataTemplateSelector)this.GetValue(ContentTemplateSelectorProperty);
             set => this.SetValue(ContentTemplateSelectorProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="Style"/> for the <see cref="ContentPresenter"/>
+        /// </summary>
         public Style ContentPresenterStyle
         {
             get => (Style)this.GetValue(ContentPresenterStyleProperty);

@@ -8,18 +8,28 @@
     using System.Windows.Markup;
     using System.Windows.Media;
 
+    /// <summary>
+    /// Base class for adorners rendering content
+    /// </summary>
+    /// <typeparam name="T">The type of visual to use for rendering content.</typeparam>
     [ContentProperty("Child")]
     public abstract class ContainerAdorner<T> : Adorner
         where T : Visual
     {
         private T child;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContainerAdorner{T}"/> class.
+        /// </summary>
         protected ContainerAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
         }
 
-        // marked virtual because AddVisualChild calls the virtual OnVisualChildrenChanged
+        /// <summary>
+        /// Gets or sets the visual that renders the content.
+        /// marked virtual because AddVisualChild calls the virtual OnVisualChildrenChanged
+        /// </summary>
         [DefaultValue(null)]
         public virtual T Child
         {
@@ -41,12 +51,17 @@
             }
         }
 
+        /// <inheritdoc />
         protected override int VisualChildrenCount => this.child == null ? 0 : 1;
 
+        /// <inheritdoc />
         protected override IEnumerator LogicalChildren => this.child == null
                                               ? EmptyEnumerator.Instance
                                               : new SingleChildEnumerator(this.child);
 
+        /// <summary>
+        /// Set child to null and remove it as visual and logical child
+        /// </summary>
         public virtual void ClearChild()
         {
             this.RemoveVisualChild(this.child);
@@ -54,6 +69,7 @@
             this.child = null;
         }
 
+        /// <inheritdoc />
         protected override Visual GetVisualChild(int index)
         {
             if (this.child == null || index != 0)

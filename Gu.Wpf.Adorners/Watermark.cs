@@ -6,9 +6,16 @@ namespace Gu.Wpf.Adorners
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
 
+    /// <summary>
+    /// Attached properties for showing watermarks.
+    /// </summary>
     public static class Watermark
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
+
+        /// <summary>
+        /// The watermark text.
+        /// </summary>
         public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
             "Text",
             typeof(string),
@@ -18,6 +25,9 @@ namespace Gu.Wpf.Adorners
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnTextChanged));
 
+        /// <summary>
+        /// Controls visibility of the adorner, default is WatermarkVisibleWhen.EmptyAndNotKeyboardFocused
+        /// </summary>
         public static readonly DependencyProperty VisibleWhenProperty = DependencyProperty.RegisterAttached(
             "VisibleWhen",
             typeof(WatermarkVisibleWhen),
@@ -27,6 +37,9 @@ namespace Gu.Wpf.Adorners
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnVisibleWhenChanged));
 
+        /// <summary>
+        /// The style for the <see cref="TextBlock"/> rendering <see cref="TextProperty"/>
+        /// </summary>
         public static readonly DependencyProperty TextStyleProperty = DependencyProperty.RegisterAttached(
             "TextStyle",
             typeof(Style),
@@ -45,6 +58,9 @@ namespace Gu.Wpf.Adorners
                 default(bool),
                 OnIsShowingChanged));
 
+        /// <summary>
+        /// Gets or sets if the adorner is currently visible
+        /// </summary>
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
