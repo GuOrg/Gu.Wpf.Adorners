@@ -1,3 +1,7 @@
+#### 1.3.1
+* FEATURE: DataObjectExt.TryGetData
+* FEATURE: Docs
+
 #### 1.3.0
 * FEATURE: DataObjectExt
 * BUGFIX: Bind content style correctly

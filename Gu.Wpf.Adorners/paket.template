@@ -4,8 +4,8 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Adorners
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  FEATURE: DataObjectExt
-  BUGFIX: Bind content style correctly
+  FEATURE: DataObjectExt.TryGetData
+  FEATURE: Docs
 
 excludedgroups
   Analyzers
