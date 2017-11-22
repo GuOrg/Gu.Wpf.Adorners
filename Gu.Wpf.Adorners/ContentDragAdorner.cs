@@ -3,6 +3,9 @@
     using System.Windows;
     using System.Windows.Controls;
 
+    /// <summary>
+    /// An <see cref="System.Windows.Documents.Adorner"/> that renders content using a <see cref="ContentPresenter"/>
+    /// </summary>
     public class ContentDragAdorner : DragAdorner<ContentPresenter>
     {
         /// <summary>Identifies the <see cref="Content"/> dependency property.</summary>
@@ -38,6 +41,9 @@
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentDragAdorner), new FrameworkPropertyMetadata(typeof(ContentDragAdorner)));
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContentDragAdorner"/> class.
+        /// </summary>
         public ContentDragAdorner(UIElement adornedElement)
             : base(adornedElement, new ContentPresenter())
         {

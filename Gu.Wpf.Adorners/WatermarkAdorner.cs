@@ -5,6 +5,9 @@
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
 
+    /// <summary>
+    /// Adorner that shows watermark text.
+    /// </summary>
     public sealed class WatermarkAdorner : ContainerAdorner<TextBlock>
     {
         /// <summary>Identifies the <see cref="TextStyle"/> dependency property.</summary>
@@ -64,6 +67,7 @@
                     return textView;
                 }
 
+                // ReSharper disable once ConstantConditionalAccessQualifier
                 textView = (FrameworkElement)this.AdornedElement
                     ?.NestedChildren()
                     .SingleOrNull<ScrollContentPresenter>()

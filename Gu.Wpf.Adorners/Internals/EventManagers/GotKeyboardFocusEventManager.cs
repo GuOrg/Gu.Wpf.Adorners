@@ -59,6 +59,8 @@
             }
             else
             {
+                // ReSharper disable once ConstantConditionalAccessQualifier R# dumbs it here
+                // ReSharper disable once ConstantNullCoalescingCondition
                 throw new ArgumentException($"Cannot start listening to {source?.GetType().Name ?? "null"}");
             }
         }
@@ -76,6 +78,8 @@
             }
             else
             {
+                // ReSharper disable once ConstantConditionalAccessQualifier
+                // ReSharper disable once ConstantNullCoalescingCondition
                 throw new ArgumentException($"Cannot stop listening to {source?.GetType().Name ?? "null"}");
             }
         }

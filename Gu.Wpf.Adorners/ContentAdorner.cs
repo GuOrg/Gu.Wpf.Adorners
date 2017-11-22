@@ -47,7 +47,7 @@
         public ContentAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
-            this.Child = new ContentPresenter();
+            base.Child = new ContentPresenter();
             this.Child.Bind(MarginProperty)
                 .OneWayTo(this, MarginProperty);
             this.Child.Bind(ContentPresenter.ContentProperty)

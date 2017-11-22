@@ -111,6 +111,10 @@
             this.InvalidateVisual();
         }
 
+        /// <summary>
+        /// Called by <see cref="Dispose()"/>
+        /// </summary>
+        /// <param name="disposing">True if called by <see cref="Dispose()"/>, false if called by finalizer</param>
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)

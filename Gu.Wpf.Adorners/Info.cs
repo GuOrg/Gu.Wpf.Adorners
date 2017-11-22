@@ -11,6 +11,9 @@
     public static class Info
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
+        /// <summary>
+        /// Template used to generate info feedback on the AdornerLayer.
+        /// </summary>
         public static readonly DependencyProperty TemplateProperty = DependencyProperty.RegisterAttached(
             "Template",
             typeof(ControlTemplate),
@@ -19,6 +22,9 @@
                 default(ControlTemplate),
                 OnTemplateChanged));
 
+        /// <summary>
+        /// Gets or sets visibility of the adorner. Note that setting it to visible does not need to trigger a show.
+        /// </summary>
         public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached(
             "IsVisible",
             typeof(bool?),
@@ -35,6 +41,9 @@
                 default(bool),
                 OnIsShowingChanged));
 
+        /// <summary>
+        /// Gets or sets if the adorner is currently visible
+        /// </summary>
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(

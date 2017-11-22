@@ -38,8 +38,10 @@
         </local:DragItemTemplateSelector>
 
         <Style BasedOn="{StaticResource {x:Type adorners:ContentDragAdorner}}" TargetType="{x:Type adorners:ContentDragAdorner}">
+            <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
             <Setter Property="Height" Value="{Binding RelativeSource={RelativeSource Self}, Path=AdornedElement.ActualHeight}" />
             <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Self}, Path=AdornedElement.ActualWidth}" />
+            <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
         </Style>
 
         <DataTemplate DataType="{x:Type local:DragItem}">

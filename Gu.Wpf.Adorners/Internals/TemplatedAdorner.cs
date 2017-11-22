@@ -1,3 +1,5 @@
+// ReSharper disable UnusedMember.Global
+// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Local
 namespace Gu.Wpf.Adorners
 {
     using System;
@@ -18,10 +20,10 @@ namespace Gu.Wpf.Adorners
         static TemplatedAdorner()
         {
             var fullName = "MS.Internal.Controls.TemplatedAdorner, " + typeof(AdornedElementPlaceholder).Assembly.FullName;
-            TemplatedAdornerType = Type.GetType(fullName, throwOnError: true);
-            Constructor = TemplatedAdornerType.GetConstructor(new[] { typeof(UIElement), typeof(ControlTemplate) });
-            ClearChildMethod = TemplatedAdornerType.GetMethod("ClearChild");
-            ReferenceElementProperty = TemplatedAdornerType.GetProperty("ReferenceElement");
+            TemplatedAdornerType = Type.GetType(fullName, throwOnError: true) ?? throw new InvalidOperationException("Could not find type: MS.Internal.Controls.TemplatedAdorner");
+            Constructor = TemplatedAdornerType.GetConstructor(new[] { typeof(UIElement), typeof(ControlTemplate) }) ?? throw new InvalidOperationException("Could not find constructor for TemplatedAdorner");
+            ClearChildMethod = TemplatedAdornerType.GetMethod("ClearChild") ?? throw new InvalidOperationException("Could not find method ClearChild");
+            ReferenceElementProperty = TemplatedAdornerType.GetProperty("ReferenceElement") ?? throw new InvalidOperationException("Could not find property ReferenceElement");
         }
 
         internal static Adorner Create(UIElement element, ControlTemplate template)
@@ -34,24 +36,24 @@ namespace Gu.Wpf.Adorners
 
         internal static void ClearTemplatedAdornerChild(this Adorner adorner)
         {
-            AssertTemplatedAdornerTypee(adorner);
+            AssertTemplatedAdornerType(adorner);
             ClearChildMethod.Invoke(adorner, null);
         }
 
         internal static FrameworkElement GetTemplatedAdornerReferenceElement(this Adorner adorner)
         {
-            AssertTemplatedAdornerTypee(adorner);
+            AssertTemplatedAdornerType(adorner);
             return (FrameworkElement)ReferenceElementProperty.GetValue(adorner);
         }
 
         internal static void SetTemplatedAdornerReferenceElement(this Adorner adorner, FrameworkElement referenceElement)
         {
-            AssertTemplatedAdornerTypee(adorner);
+            AssertTemplatedAdornerType(adorner);
             ReferenceElementProperty.SetValue(adorner, referenceElement);
         }
 
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-        private static void AssertTemplatedAdornerTypee(Adorner adorner, [CallerMemberName] string caller = null)
+        private static void AssertTemplatedAdornerType(Adorner adorner, [CallerMemberName] string caller = null)
         {
             if (adorner?.GetType() != TemplatedAdornerType)
             {
