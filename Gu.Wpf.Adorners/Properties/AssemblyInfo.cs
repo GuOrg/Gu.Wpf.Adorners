@@ -15,8 +15,8 @@ using System.Windows.Markup;
 
 [assembly:ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 
-[assembly: AssemblyVersion("1.3.0.0")]
-[assembly: AssemblyFileVersion("1.3.0.0")]
+[assembly: AssemblyVersion("1.3.1.0")]
+[assembly: AssemblyFileVersion("1.3.1.0")]
 
 [assembly: XmlnsDefinition("http://gu.se/Adorners", "Gu.Wpf.Adorners")]
 [assembly: XmlnsPrefix("http://gu.se/Adorners", "adorners")]
