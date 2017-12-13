@@ -48,7 +48,7 @@ namespace Gu.Wpf.Adorners
                 default(Style),
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnTextStyleChanged),
-            TextStyleValidateValue);
+            ValidateTextStyle);
 
         private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsShowing",
@@ -147,6 +147,7 @@ namespace Gu.Wpf.Adorners
         /// </summary>
         /// <param name="element">TextBox to read IsShowing property from.</param>
         /// <returns>IsShowing property value.</returns>
+        [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static bool GetIsShowing(this TextBox element)
         {
             return (bool)element.GetValue(IsShowingProperty);
@@ -208,7 +209,7 @@ namespace Gu.Wpf.Adorners
             SizeChangedEventManager.UpdateHandler(textBox, OnSizeChanged);
         }
 
-        private static bool TextStyleValidateValue(object value)
+        private static bool ValidateTextStyle(object value)
         {
             var style = (Style)value;
             return style?.TargetType == null ||
