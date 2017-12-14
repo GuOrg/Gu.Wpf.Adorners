@@ -53,6 +53,7 @@
                 ImageAssert.AreEqual(".\\Images\\red border default visibility.png", button);
 
                 window.FindSlider("WidthSlider").Value = 100;
+                Wait.For(TimeSpan.FromMilliseconds(200));
                 ImageAssert.AreEqual(".\\Images\\red border default visibility_width_100.png", button);
             }
         }
