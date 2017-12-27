@@ -9,7 +9,7 @@
         public void ClickAllTabs()
         {
             // Just a smoke test so we don't crash.
-            using (var app = Application.Launch(Info.ExeFileName))
+            using (var app = Application.Launch("Gu.Wpf.Adorners.Demo.exe"))
             {
                 var window = app.MainWindow;
                 var tab = window.FindTabControl();
