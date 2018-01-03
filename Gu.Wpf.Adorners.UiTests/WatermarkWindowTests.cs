@@ -1,10 +1,12 @@
-﻿namespace Gu.Wpf.Adorners.UiTests
+namespace Gu.Wpf.Adorners.UiTests
 {
+    using System;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
     public class WatermarkWindowTests
     {
+        private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
         private const string WindowName = "WatermarkWindow";
 
         [OneTimeSetUp]
@@ -16,7 +18,7 @@
         [Test]
         public void DefaultAdornerWhenNotFocused()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("WithDefaultAdorner");
@@ -27,7 +29,7 @@
         [Test]
         public void DefaultAdornerWhenFocused()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("WithDefaultAdorner");
@@ -39,7 +41,7 @@
         [Test]
         public void DefaultAdornerWhenNotEmpty()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("WithDefaultAdorner");
@@ -52,13 +54,14 @@
         [Test]
         public void WithBoundText()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("WithBoundAdornerText");
                 ImageAssert.AreEqual(".\\Images\\WithBoundAdornerText_AAA.png", textBox);
                 window.FindTextBox("AdornerText").Text = "abc";
-                window.FindButton("Lose focus").Click();
+                window.FindButton("Lose focus").Invoke();
+                Wait.For(TimeSpan.FromMilliseconds(50));
                 ImageAssert.AreEqual(".\\Images\\WithBoundAdornerText_abc.png", textBox);
             }
         }
@@ -66,7 +69,7 @@
         [Test]
         public void WithWithInheritedFontSize()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("WithInheritedFontSize");
@@ -77,7 +80,7 @@
         [Test]
         public void WithExplicitTextStyle()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("WithExplicitTextStyle");
@@ -88,7 +91,7 @@
         [Test]
         public void WithInheritedTextStyle()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var groupBox = window.FindGroupBox("Inherited style");
@@ -99,7 +102,7 @@
         [Test]
         public void WhenVisibleWhenEmpty()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("VisibleWhenEmpty");
@@ -110,7 +113,7 @@
         [Test]
         public void VisibleWhenEmptyWhenFocused()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("VisibleWhenEmpty");
@@ -122,7 +125,7 @@
         [Test]
         public void VisibleWhenEmptyWhenNotEmpty()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("VisibleWhenEmpty");
@@ -135,7 +138,7 @@
         [Test]
         public void WhenVisibleWhenEmptyAndNotFocused()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("VisibleWhenEmptyAndNotFocused");
@@ -146,7 +149,7 @@
         [Test]
         public void VisibleWhenEmptyAndNotFocusedWhenFocused()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("VisibleWhenEmptyAndNotFocused");
@@ -158,7 +161,7 @@
         [Test]
         public void VisibleWhenEmptyAndNotFocusedWhenNotEmpty()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var textBox = window.FindTextBox("VisibleWhenEmptyAndNotFocused");

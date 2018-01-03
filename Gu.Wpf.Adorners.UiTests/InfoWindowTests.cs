@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners.UiTests
+namespace Gu.Wpf.Adorners.UiTests
 {
     using System;
     using Gu.Wpf.UiAutomation;
@@ -6,6 +6,7 @@
 
     public class InfoWindowTests
     {
+        private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
         private const string WindowName = "InfoWindow";
 
         [OneTimeSetUp]
@@ -18,7 +19,7 @@
         [TestCase("red border default visibility", ".\\Images\\red border default visibility.png")]
         public void Overlay(string name, string imageFileName)
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
@@ -30,14 +31,14 @@
         [Test]
         public void BoundVisibility()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("red border bound visibility");
                 ImageAssert.AreEqual(".\\Images\\red border bound visibility_visible.png", button);
 
-                window.FindButton("IsVisibleButton").Click();
+                window.FindToggleButton("IsVisibleButton").IsChecked = false;
                 ImageAssert.AreEqual(".\\Images\\red border bound visibility_not_visible.png", button);
             }
         }
@@ -45,7 +46,7 @@
         [Test]
         public void WhenSizeChanges()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
@@ -61,7 +62,7 @@
         [Test]
         public void WhenDrawsOutside()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));

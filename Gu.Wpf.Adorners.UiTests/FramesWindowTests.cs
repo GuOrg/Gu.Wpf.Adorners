@@ -1,10 +1,11 @@
-﻿namespace Gu.Wpf.Adorners.UiTests
+namespace Gu.Wpf.Adorners.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
     public class FramesWindowTests
     {
+        private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
         private const string WindowName = "NotShowingWhenInFrames/FramesWindow";
 
         [OneTimeSetUp]
@@ -17,7 +18,7 @@
         public void ClickAllTabs()
         {
             // Just a smoke test so we don't crash.
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 var tab = window.FindTabControl();

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners.UiTests
+namespace Gu.Wpf.Adorners.UiTests
 {
     using System;
     using Gu.Wpf.UiAutomation;
@@ -6,6 +6,7 @@
 
     public class OverlayWindowTests
     {
+        private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
         private const string WindowName = "OverlayWindow";
 
         [OneTimeSetUp]
@@ -19,7 +20,7 @@
         [TestCase("With content template", ".\\Images\\With content template.png")]
         public void Overlay(string name, string imageFileName)
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
@@ -31,14 +32,14 @@
         [Test]
         public void BoundVisibility()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("Bound visibility");
                 ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button);
 
-                window.FindButton("IsVisibleButton").Click();
+                window.FindToggleButton("IsVisibleButton").IsChecked = false;
                 ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button);
             }
         }
@@ -46,7 +47,7 @@
         [Test]
         public void WithInheritedContentTemplate()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));
@@ -58,7 +59,7 @@
         [Test]
         public void WhenSizeChanges()
         {
-            using (var app = Application.Launch(Info.ExeFileName, WindowName))
+            using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
                 Wait.For(TimeSpan.FromMilliseconds(200));

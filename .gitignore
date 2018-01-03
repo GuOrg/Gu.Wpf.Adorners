@@ -30,3 +30,4 @@ $tf*/
 publish/*
 packages/*
 .vs/*
+/paket-files/*
