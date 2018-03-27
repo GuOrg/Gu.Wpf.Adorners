@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners.Demo
+namespace Gu.Wpf.Adorners.Demo
 {
     using System;
     using System.Globalization;
@@ -10,7 +10,8 @@
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return Equals(values[0], false) && Equals(values[1], true);
+            return Equals(values[0], false) &&
+                   Equals(values[1], true);
         }
 
         object[] IMultiValueConverter.ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
