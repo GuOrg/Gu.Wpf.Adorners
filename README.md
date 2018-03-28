@@ -17,14 +17,28 @@
 
 # Watermark
 
-For adding watermark text to text boxes.
+For adding watermark text to text boxes, password boxes and combo boxes.
 
-Sample:
+Simple sample:
+```xaml
+<StackPanel>
+    <TextBox x:Name="TextBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
+
+    <PasswordBox x:Name="PasswordBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
+
+    <ComboBox x:Name="ComboBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here">
+        <ComboBoxItem>abc</ComboBoxItem>
+        <ComboBoxItem>cde</ComboBoxItem>
+        <ComboBoxItem>fgh</ComboBoxItem>
+    </ComboBox>
+</StackPanel>
+```
+
+Full sample with many combinations:
 
 ```xaml
 <UserControl.Resources>
-    <Style x:Key="AdornerTextStyle"
-            TargetType="{x:Type TextBlock}">
+    <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="Green" />
         <Setter Property="Opacity" Value="1" />
     </Style>
@@ -33,50 +47,180 @@ Sample:
         <Setter Property="BorderBrush" Value="Blue" />
         <Setter Property="BorderThickness" Value="1" />
     </Style>
-
 </UserControl.Resources>
 
 <StackPanel>
-    <TextBlock Text="Simple" />
-    <TextBox adorners:Watermark.Text="Write something here" />
-
-    <TextBlock Text="Bound text" />
-    <TextBox adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
-    <TextBox x:Name="AdornerText"
-                Text="AAA" />
-
-    <TextBlock Text="Inherits Fontsize via default style" />
-    <TextBox FontSize="32"
-                adorners:Watermark.Text="Foo" />
-
-    <TextBlock Text="Explicit style" />
-    <TextBox adorners:Watermark.Text="Explicit style"
-                adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
-
-    <GroupBox Header="Inherited style"
-                adorners:Watermark.Text="Inherited style"
-                adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}">
+    <UniformGrid Rows="1">
         <StackPanel>
-            <TextBox />
-            <TextBox />
-        </StackPanel>
-    </GroupBox>
+            <TextBlock Text="TextBox with watermark" />
+            <TextBox x:Name="TextBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
 
-    <GroupBox Header="Inherited text"
-                adorners:Watermark.Text="Inherited text">
+            <TextBlock Text="Bound text" />
+            <TextBox x:Name="TextBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+
+            <TextBlock Text="Inherits Fontsize via default style" />
+            <TextBox x:Name="TextBoxWithWatermarkWithInheritedFontSize"
+                     adorners:Watermark.Text="Foo"
+                     FontSize="32" />
+
+            <TextBlock Text="Explicit style" />
+            <TextBox x:Name="TextBoxWithWatermarkWithExplicitTextStyle"
+                     adorners:Watermark.Text="Explicit style"
+                     adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
+
+            <GroupBox adorners:Watermark.Text="Inherited style"
+                      adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
+                      Header="Inherited style">
+                <StackPanel>
+                    <TextBox />
+                    <TextBox />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
+                <StackPanel>
+                    <TextBox />
+                    <TextBox />
+                </StackPanel>
+            </GroupBox>
+
+            <TextBlock Text="VisibleWhen=Empty" />
+            <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmpty"
+                     adorners:Watermark.Text="visible when empty"
+                     adorners:Watermark.VisibleWhen="Empty" />
+
+            <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+            <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
+                     adorners:Watermark.Text="visible when not keyboard focused (default)"
+                     adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
+        </StackPanel>
+
         <StackPanel>
-            <TextBox />
-            <TextBox />
+            <TextBlock Text="PasswordBox with watermark" />
+            <PasswordBox x:Name="PasswordBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
+
+            <TextBlock Text="Bound text" />
+            <PasswordBox x:Name="PasswordBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+
+            <TextBlock Text="Inherits Fontsize via default style" />
+            <PasswordBox x:Name="PasswordBoxWithWatermarkWithInheritedFontSize"
+                         adorners:Watermark.Text="Foo"
+                         FontSize="32" />
+
+            <TextBlock Text="Explicit style" />
+            <PasswordBox x:Name="PasswordBoxWithWatermarkWithExplicitTextStyle"
+                         adorners:Watermark.Text="Explicit style"
+                         adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
+
+            <GroupBox adorners:Watermark.Text="Inherited style"
+                      adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
+                      Header="Inherited style">
+                <StackPanel>
+                    <PasswordBox />
+                    <PasswordBox />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
+                <StackPanel>
+                    <PasswordBox />
+                    <PasswordBox />
+                </StackPanel>
+            </GroupBox>
+
+            <TextBlock Text="VisibleWhen=Empty" />
+            <PasswordBox x:Name="PasswordBoxWithWatermarkVisibleWhenEmpty"
+                         adorners:Watermark.Text="visible when empty"
+                         adorners:Watermark.VisibleWhen="Empty" />
+
+            <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+            <PasswordBox x:Name="PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
+                         adorners:Watermark.Text="visible when not keyboard focused (default)"
+                         adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
         </StackPanel>
-    </GroupBox>
 
-    <TextBlock Text="VisibleWhen=Empty" />
-    <TextBox adorners:Watermark.Text="visible when empty"
-                adorners:Watermark.VisibleWhen="Empty" />
+        <StackPanel>
+            <TextBlock Text="ComboBox with watermark" />
+            <ComboBox x:Name="ComboBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here">
+                <ComboBoxItem>abc</ComboBoxItem>
+                <ComboBoxItem>cde</ComboBoxItem>
+                <ComboBoxItem>fgh</ComboBoxItem>
+            </ComboBox>
 
-    <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-    <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)"
-                adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
+            <TextBlock Text="Bound text" />
+            <ComboBox x:Name="ComboBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}">
+                <ComboBoxItem>abc</ComboBoxItem>
+                <ComboBoxItem>cde</ComboBoxItem>
+                <ComboBoxItem>fgh</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="Inherits Fontsize via default style" />
+            <ComboBox x:Name="ComboBoxWithWatermarkWithInheritedFontSize"
+                      adorners:Watermark.Text="Foo"
+                      FontSize="32">
+                <ComboBoxItem>abc</ComboBoxItem>
+                <ComboBoxItem>cde</ComboBoxItem>
+                <ComboBoxItem>fgh</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="Explicit style" />
+            <ComboBox x:Name="ComboBoxWithWatermarkWithExplicitTextStyle"
+                      adorners:Watermark.Text="Explicit style"
+                      adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
+
+            <GroupBox adorners:Watermark.Text="Inherited style"
+                      adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
+                      Header="Inherited style">
+                <StackPanel>
+                    <ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
+                <StackPanel>
+                    <ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+            <TextBlock Text="VisibleWhen=Empty" />
+            <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmpty"
+                      adorners:Watermark.Text="visible when empty"
+                      adorners:Watermark.VisibleWhen="Empty">
+                <ComboBoxItem>abc</ComboBoxItem>
+                <ComboBoxItem>cde</ComboBoxItem>
+                <ComboBoxItem>fgh</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+            <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
+                      adorners:Watermark.Text="visible when not keyboard focused (default)"
+                      adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused">
+                <ComboBoxItem>abc</ComboBoxItem>
+                <ComboBoxItem>cde</ComboBoxItem>
+                <ComboBoxItem>fgh</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+    </UniformGrid>
+    <TextBox x:Name="AdornerText" Text="AAA" />
+    <Button Content="Lose focus" />
 </StackPanel>
 ```
 
