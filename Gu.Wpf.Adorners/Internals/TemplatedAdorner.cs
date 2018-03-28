@@ -30,14 +30,15 @@ namespace Gu.Wpf.Adorners
         {
             var adorner = (Adorner)Constructor.Invoke(new object[] { element, template });
             adorner.Bind(FrameworkElement.DataContextProperty)
-                   .OneWayTo(element, FrameworkElement.DataContextProperty);
+                   .OneWayTo(element, FrameworkElement.DataContextProperty)
+                   .IgnoreReturnValue();
             return adorner;
         }
 
         internal static void ClearTemplatedAdornerChild(this Adorner adorner)
         {
             AssertTemplatedAdornerType(adorner);
-            ClearChildMethod.Invoke(adorner, null);
+            ClearChildMethod.Invoke(adorner, null).IgnoreReturnValue();
         }
 
         internal static FrameworkElement GetTemplatedAdornerReferenceElement(this Adorner adorner)

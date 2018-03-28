@@ -1,5 +1,6 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
     using System.Windows;
     using System.Windows.Media;
@@ -9,14 +10,14 @@
         internal static Point GetMousePosition()
         {
             var p = default(Win32Point);
-            GetCursorPos(ref p);
+            GetCursorPos(ref p).IgnoreReturnValue();
             return new Point(p.X, p.Y);
         }
 
         internal static Point GetMousePosition(Visual relativeTo)
         {
             var p = default(Win32Point);
-            GetCursorPos(ref p);
+            GetCursorPos(ref p).IgnoreReturnValue();
             return relativeTo.PointFromScreen(new Point(p.X, p.Y));
         }
 
@@ -24,6 +25,7 @@
         private static extern bool GetCursorPos(ref Win32Point pt);
 
         [StructLayout(LayoutKind.Sequential)]
+        [SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Local")]
         private struct Win32Point
         {
             public int X;

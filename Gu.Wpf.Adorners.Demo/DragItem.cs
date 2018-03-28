@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners.Demo
+namespace Gu.Wpf.Adorners.Demo
 {
     public class DragItem
     {

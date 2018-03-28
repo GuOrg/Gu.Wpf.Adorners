@@ -38,10 +38,12 @@ namespace Gu.Wpf.Adorners
             // For some reason setting the style directly in PropertyChangedCallback did not work.
             // Binding it instead.
             this.Child.Bind(StyleProperty)
-                .OneWayTo(this, TextStyleProperty);
+                .OneWayTo(this, TextStyleProperty)
+                .IgnoreReturnValue();
 
             this.Child.Bind(TextBlock.TextProperty)
-                .OneWayTo(adornedElement, Watermark.TextProperty);
+                .OneWayTo(adornedElement, Watermark.TextProperty)
+                .IgnoreReturnValue();
         }
 
         /// <summary>

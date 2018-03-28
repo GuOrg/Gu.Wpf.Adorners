@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -49,15 +49,20 @@
         {
             base.Child = new ContentPresenter();
             this.Child.Bind(MarginProperty)
-                .OneWayTo(this, MarginProperty);
+                .OneWayTo(this, MarginProperty)
+                .IgnoreReturnValue();
             this.Child.Bind(ContentPresenter.ContentProperty)
-                .OneWayTo(this, ContentProperty);
+                .OneWayTo(this, ContentProperty)
+                .IgnoreReturnValue();
             this.Child.Bind(ContentPresenter.ContentTemplateProperty)
-                .OneWayTo(this, ContentTemplateProperty);
+                .OneWayTo(this, ContentTemplateProperty)
+                .IgnoreReturnValue();
             this.Child.Bind(ContentPresenter.ContentTemplateSelectorProperty)
-                .OneWayTo(this, ContentTemplateSelectorProperty);
+                .OneWayTo(this, ContentTemplateSelectorProperty)
+                .IgnoreReturnValue();
             this.Child.Bind(StyleProperty)
-                .OneWayTo(this, StyleProperty);
+                .OneWayTo(this, StyleProperty)
+                .IgnoreReturnValue();
         }
 
         /// <inheritdoc />

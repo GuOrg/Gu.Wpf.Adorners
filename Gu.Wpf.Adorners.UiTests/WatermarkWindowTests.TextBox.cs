@@ -8,7 +8,6 @@ namespace Gu.Wpf.Adorners.UiTests
     {
         public class TextBox
         {
-
             [OneTimeSetUp]
             public void OneTimeSetUp()
             {

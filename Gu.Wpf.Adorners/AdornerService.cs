@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System.Windows.Documents;
     using System.Windows.Threading;
@@ -40,9 +40,10 @@
             {
                 // try again later, perhaps giving layout a chance to create the adorner layer
                 adorner.Dispatcher.BeginInvoke(
-                    DispatcherPriority.Loaded,
-                    new DispatcherOperationCallback(ShowAdornerOperation),
-                    new object[] { adorner });
+                           DispatcherPriority.Loaded,
+                           new DispatcherOperationCallback(ShowAdornerOperation),
+                           new object[] { adorner })
+                       .IgnoreReturnValue();
             }
         }
 

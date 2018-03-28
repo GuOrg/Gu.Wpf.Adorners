@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System.Windows;
     using System.Windows.Media;
@@ -22,9 +22,11 @@
             : base(adornedElement, new Rectangle())
         {
             this.Child.Bind(WidthProperty)
-                .OneWayTo(adornedElement, ActualWidthProperty);
+                .OneWayTo(adornedElement, ActualWidthProperty)
+                .IgnoreReturnValue();
             this.Child.Bind(HeightProperty)
-                .OneWayTo(adornedElement, ActualHeightProperty);
+                .OneWayTo(adornedElement, ActualHeightProperty)
+                .IgnoreReturnValue();
             this.Child.Fill = new VisualBrush(adornedElement);
         }
     }
