@@ -16,8 +16,6 @@
             <Setter Property="BorderBrush" Value="Blue" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
-
-        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF3399FF" />
     </UserControl.Resources>
 
     <StackPanel>
