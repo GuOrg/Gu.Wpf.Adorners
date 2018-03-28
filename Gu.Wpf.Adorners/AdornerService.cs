@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Adorners
 {
+    using System.Windows;
     using System.Windows.Documents;
     using System.Windows.Threading;
 
@@ -24,13 +25,30 @@ namespace Gu.Wpf.Adorners
         /// <param name="adorner">The <see cref="Adorner"/></param>
         public static void Remove(Adorner adorner)
         {
-            var adornerLayer = AdornerLayer.GetAdornerLayer(adorner.AdornedElement);
+            var adornerLayer = GetAdornerLayer(adorner.AdornedElement);
             adornerLayer?.Remove(adorner);
+        }
+
+        /// <summary>
+        /// Calls <see cref="AdornerLayer.GetAdornerLayer"/> unless <paramref name="adornedElement"/> is a window
+        /// For window we fall back on finding the first <see cref="AdornerDecorator"/> and returning its <see cref="AdornerDecorator.AdornerLayer"/>
+        /// </summary>
+        /// <param name="adornedElement">The adorned element.</param>
+        /// <returns>First AdornerLayer above given element, or null</returns>
+        public static AdornerLayer GetAdornerLayer(UIElement adornedElement)
+        {
+            if (adornedElement is Window window)
+            {
+                return AdornerLayer.GetAdornerLayer(adornedElement) ??
+                       window.FirstOrDefaultRecursiveVisualChild<AdornerDecorator>()?.AdornerLayer;
+            }
+
+            return AdornerLayer.GetAdornerLayer(adornedElement);
         }
 
         private static void Show(Adorner adorner, bool retry)
         {
-            var adornerLayer = AdornerLayer.GetAdornerLayer(adorner.AdornedElement);
+            var adornerLayer = GetAdornerLayer(adorner.AdornedElement);
             if (adornerLayer != null)
             {
                 adornerLayer.Remove(adorner);
