@@ -4,8 +4,7 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Adorners
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  FEATURE: DataObjectExt.TryGetData
-  FEATURE: Docs
+  FEATURE: Watermark support for ComboBox & PasswordBox
 
 excludedgroups
   Analyzers

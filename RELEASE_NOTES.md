@@ -1,3 +1,6 @@
+#### 1.4.0
+* FEATURE: Watermark support for ComboBox & PasswordBox
+
 #### 1.3.1
 * FEATURE: DataObjectExt.TryGetData
 * FEATURE: Docs
