@@ -37,6 +37,9 @@ Simple sample:
 Full sample with many combinations:
 
 ```xaml
+<UserControl ...
+             xmlns:adorners="http://gu.se/Adorners">
+...
 <UserControl.Resources>
     <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="Green" />
@@ -222,6 +225,7 @@ Full sample with many combinations:
     <TextBox x:Name="AdornerText" Text="AAA" />
     <Button Content="Lose focus" />
 </StackPanel>
+...
 ```
 
 Renders: 
