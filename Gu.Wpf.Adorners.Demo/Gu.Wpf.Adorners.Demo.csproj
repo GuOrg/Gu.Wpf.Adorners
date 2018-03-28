@@ -56,6 +56,9 @@
     <Compile Include="DebugView.xaml.cs">
       <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogOverlayView.xaml.cs">
+      <DependentUpon>DialogOverlayView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DragAdornerTemplateView.xaml.cs">
       <DependentUpon>DragAdornerTemplateView.xaml</DependentUpon>
     </Compile>
@@ -68,17 +71,8 @@
     <Compile Include="InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IsNotFocusedAndEmptyToTrueConverter.cs">
-      <DependentUpon>PasswordView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="OverlayView.xaml.cs">
       <DependentUpon>OverlayView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PasswordBox.cs">
-      <DependentUpon>PasswordView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PasswordView.xaml.cs">
-      <DependentUpon>PasswordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\NotShowingWhenInFrames\FramesWindow.xaml.cs">
       <DependentUpon>FramesWindow.xaml</DependentUpon>
@@ -99,6 +93,10 @@
       <DependentUpon>SandboxWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="DebugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogOverlayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,10 +125,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OverlayView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PasswordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,7 +190,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\AsyncUsageAnalyzers\analyzers\dotnet\AsyncUsageAnalyzers.dll">
       <Paket>True</Paket>
@@ -318,4 +311,5 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
+  <Import Project="..\.paket\paket.targets" />
 </Project>

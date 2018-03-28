@@ -1,11 +1,17 @@
-﻿<Window x:Class="Gu.Wpf.Adorners.Demo.MainWindow"
+<Window x:Class="Gu.Wpf.Adorners.Demo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:adorners="http://gu.se/Adorners"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
+        adorners:Overlay.IsVisible="False"
         mc:Ignorable="d">
+    <adorners:Overlay.Content>
+        <Border Background="Black" Opacity="0.2" />
+    </adorners:Overlay.Content>
+
     <TabControl>
         <TabItem Header="Watermark">
             <local:WatermarkView />
@@ -19,8 +25,8 @@
             <local:InfoView />
         </TabItem>
 
-        <TabItem Header="Password">
-            <local:PasswordView />
+        <TabItem Header="Dialog overlay">
+            <local:DialogOverlayView />
         </TabItem>
 
         <TabItem Header="Drag">
@@ -30,7 +36,7 @@
         <TabItem Header="Drag Template">
             <local:DragAdornerTemplateView />
         </TabItem>
-        
+
         <TabItem Header="Debug">
             <local:DebugView />
         </TabItem>

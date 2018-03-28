@@ -9,7 +9,7 @@ namespace Gu.Wpf.Adorners.Demo.Windows
             this.InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void OnShowMessageBoxClick(object sender, RoutedEventArgs e)
         {
             this.SetCurrentValue(Overlay.IsVisibleProperty, true);
             MessageBox.Show("Text", "Caption");
