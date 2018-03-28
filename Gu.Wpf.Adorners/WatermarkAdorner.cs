@@ -86,8 +86,10 @@ namespace Gu.Wpf.Adorners
                 }
                 else if (this.AdornedElement is ComboBox comboBox)
                 {
-                    contentPresenter = comboBox.NestedChildren()
-                                               .SingleOrNull<ContentPresenter>();
+                    contentPresenter = (FrameworkElement)comboBox.NestedChildren()
+                                                                 .SingleOrNull<ContentPresenter>() ??
+                                                         comboBox.NestedChildren()
+                                                                 .SingleOrNull<ToggleButton>();
                     if (contentPresenter != null)
                     {
                         this.placementReference.SetTarget(contentPresenter);
