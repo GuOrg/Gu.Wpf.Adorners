@@ -73,9 +73,14 @@ namespace Gu.Wpf.Adorners
 
         private static readonly DependencyProperty HandlerProperty = DependencyProperty.RegisterAttached(
             "Handler",
-            typeof(TextBoxHandler),
+            typeof(IWatermarked),
             typeof(Watermark),
-            new PropertyMetadata(default(TextBoxHandler)));
+            new PropertyMetadata(default(IWatermarked)));
+
+        private interface IWatermarked
+        {
+            string Text { get; }
+        }
 
         /// <summary>
         /// Helper for setting Text property on a UIElement.
@@ -149,11 +154,11 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Helper for reading IsShowing property from a TextBox.
+        /// Helper for reading IsShowing property from a Control.
         /// </summary>
-        /// <param name="element">TextBox to read IsShowing property from.</param>
+        /// <param name="element">Control to read IsShowing property from.</param>
         /// <returns>IsShowing property value.</returns>
-        [AttachedPropertyBrowsableForType(typeof(TextBox))]
+        [AttachedPropertyBrowsableForType(typeof(Control))]
         public static bool GetIsShowing(this Control element)
         {
             return (bool)element.GetValue(IsShowingProperty);
@@ -173,24 +178,24 @@ namespace Gu.Wpf.Adorners
 
         private static void OnTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            if (o is TextBox textBox)
+            if (o is Control adornedElement)
             {
-                UpdateHandlers(textBox);
-                UpdateIsShowing(textBox);
+                UpdateHandlers(adornedElement);
+                UpdateIsShowing(adornedElement);
             }
         }
 
         private static void OnVisibleWhenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            UpdateIsShowing(d as TextBox);
+            UpdateIsShowing(d as Control);
         }
 
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is TextBoxBase textBox)
+            if (d is Control adornedElement)
             {
-                UpdateHandlers(textBox);
-                var adorner = textBox.GetAdorner();
+                UpdateHandlers(adornedElement);
+                var adorner = adornedElement.GetAdorner();
                 if (adorner == null)
                 {
                     return;
@@ -208,9 +213,14 @@ namespace Gu.Wpf.Adorners
         {
             if (adornedElement.GetValue(HandlerProperty) == null)
             {
-                if (adornedElement is TextBox textBox)
+                switch (adornedElement)
                 {
-                    adornedElement.SetCurrentValue(HandlerProperty, new TextBoxHandler(textBox));
+                    case TextBox textBox:
+                        adornedElement.SetCurrentValue(HandlerProperty, new TextBoxListener(textBox));
+                        break;
+                    case PasswordBox passwordBox:
+                        adornedElement.SetCurrentValue(HandlerProperty, new PasswordBoxListener(passwordBox));
+                        break;
                 }
             }
         }
@@ -271,13 +281,13 @@ namespace Gu.Wpf.Adorners
 
         private static void OnAdornedElementChanged(object sender, EventArgs e)
         {
-            UpdateIsShowing((TextBox)sender);
+            UpdateIsShowing(sender as Control);
         }
 
         private static void UpdateIsShowing(Control adornedElement)
         {
-            var handler = (TextBoxHandler)adornedElement?.GetValue(HandlerProperty);
-            if (handler == null)
+            var watermarked = (IWatermarked)adornedElement?.GetValue(HandlerProperty);
+            if (watermarked == null)
             {
                 return;
             }
@@ -292,10 +302,10 @@ namespace Gu.Wpf.Adorners
                 switch (adornedElement.GetVisibleWhen())
                 {
                     case WatermarkVisibleWhen.Empty:
-                        adornedElement.SetIsShowing(string.IsNullOrEmpty(handler.Text));
+                        adornedElement.SetIsShowing(string.IsNullOrEmpty(watermarked.Text));
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                        adornedElement.SetIsShowing(string.IsNullOrEmpty(handler.Text) && !adornedElement.IsKeyboardFocused);
+                        adornedElement.SetIsShowing(string.IsNullOrEmpty(watermarked.Text) && !adornedElement.IsKeyboardFocused);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -303,11 +313,11 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private class TextBoxHandler
+        private class TextBoxListener : IWatermarked
         {
             private readonly TextBox textBox;
 
-            public TextBoxHandler(TextBox textBox)
+            public TextBoxListener(TextBox textBox)
             {
                 this.textBox = textBox;
                 IsVisibleChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
@@ -320,6 +330,25 @@ namespace Gu.Wpf.Adorners
             }
 
             public string Text => this.textBox.Text;
+        }
+
+        private class PasswordBoxListener : IWatermarked
+        {
+            private readonly PasswordBox passwordBox;
+
+            public PasswordBoxListener(PasswordBox passwordBox)
+            {
+                this.passwordBox = passwordBox;
+                IsVisibleChangedEventManager.UpdateHandler(passwordBox, OnAdornedElementChanged);
+                LoadedEventManager.UpdateHandler(passwordBox, OnAdornedElementChanged);
+                UnloadedEventManager.UpdateHandler(passwordBox, OnAdornedElementChanged);
+                GotKeyboardFocusEventManager.UpdateHandler(passwordBox, OnAdornedElementChanged);
+                LostKeyboardFocusEventManager.UpdateHandler(passwordBox, OnAdornedElementChanged);
+                PasswordChangedEventManager.UpdateHandler(passwordBox, OnAdornedElementChanged);
+                SizeChangedEventManager.UpdateHandler(passwordBox, OnSizeChanged);
+            }
+
+            public string Text => this.passwordBox.Password;
         }
     }
 }

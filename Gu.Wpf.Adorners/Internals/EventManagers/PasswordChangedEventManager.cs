@@ -1,30 +1,30 @@
-namespace Gu.Wpf.Adorners
+﻿namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
-    using System.Windows.Controls.Primitives;
+    using System.Windows.Controls;
 
     /// <summary>
-    /// Manager for the TextBoxBase.TextChanged event.
+    /// Manager for the PasswordBox.PasswordChanged event.
     /// </summary>
-    internal class TextChangedEventManager : WeakEventManager
+    internal class PasswordChangedEventManager : WeakEventManager
     {
-        private TextChangedEventManager()
+        private PasswordChangedEventManager()
         {
         }
 
         // get the event manager for the current thread
-        private static TextChangedEventManager CurrentManager
+        private static PasswordChangedEventManager CurrentManager
         {
             get
             {
-                var managerType = typeof(TextChangedEventManager);
-                var manager = (TextChangedEventManager)GetCurrentManager(managerType);
+                var managerType = typeof(PasswordChangedEventManager);
+                var manager = (PasswordChangedEventManager)GetCurrentManager(managerType);
 
                 // at first use, create and register a new manager
                 if (manager == null)
                 {
-                    manager = new TextChangedEventManager();
+                    manager = new PasswordChangedEventManager();
                     SetCurrentManager(managerType, manager);
                 }
 
@@ -32,7 +32,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        internal static void UpdateHandler(TextBoxBase source, EventHandler<RoutedEventArgs> handler)
+        internal static void UpdateHandler(PasswordBox source, EventHandler<RoutedEventArgs> handler)
         {
             var manager = CurrentManager;
             manager.ProtectedRemoveHandler(
@@ -50,9 +50,9 @@ namespace Gu.Wpf.Adorners
         /// <inheritdoc />
         protected override void StartListening(object source)
         {
-            if (source is TextBoxBase textBox)
+            if (source is PasswordBox textBox)
             {
-                textBox.TextChanged += this.OnTextChanged;
+                textBox.PasswordChanged += this.OnPasswordChanged;
             }
             else
             {
@@ -65,9 +65,9 @@ namespace Gu.Wpf.Adorners
         /// <inheritdoc />
         protected override void StopListening(object source)
         {
-            if (source is TextBoxBase textBox)
+            if (source is PasswordBox textBox)
             {
-                textBox.TextChanged -= this.OnTextChanged;
+                textBox.PasswordChanged -= this.OnPasswordChanged;
             }
             else
             {
@@ -77,8 +77,8 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        // event handler for TextChanged event
-        private void OnTextChanged(object sender, RoutedEventArgs args)
+        // event handler for PasswordChanged event
+        private void OnPasswordChanged(object sender, RoutedEventArgs args)
         {
             this.DeliverEvent(sender, args);
         }
