@@ -3,7 +3,6 @@
         xmlns:adorners="http://gu.se/Adorners"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
         Title="WatermarkWindow"
         FontFamily="Arial"
         FontSize="12"
@@ -29,8 +28,6 @@
 
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF3399FF" />
             <SolidColorBrush x:Key="{x:Static SystemColors.WindowTextBrushKey}" Color="Black" />
-            <!-- ReSharper disable once Xaml.RedundantResource -->
-            <SolidColorBrush x:Key="{x:Static theme:ClassicBorderDecorator.ClassicBorderBrush}" Color="Black" />
         </ResourceDictionary>
     </Window.Resources>
 
@@ -126,14 +123,18 @@
 
             <StackPanel>
                 <TextBlock Text="ComboBox with watermark" />
-                <ComboBox x:Name="ComboBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here">
+                <ComboBox x:Name="ComboBoxWithDefaultWatermark"
+                          adorners:Watermark.Text="Write something here"
+                          BorderBrush="Black">
                     <ComboBoxItem>abc</ComboBoxItem>
                     <ComboBoxItem>cde</ComboBoxItem>
                     <ComboBoxItem>fgh</ComboBoxItem>
                 </ComboBox>
 
                 <TextBlock Text="Bound text" />
-                <ComboBox x:Name="ComboBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}">
+                <ComboBox x:Name="ComboBoxWithWatermarkWithBoundText"
+                          adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}"
+                          BorderBrush="Black">
                     <ComboBoxItem>abc</ComboBoxItem>
                     <ComboBoxItem>cde</ComboBoxItem>
                     <ComboBoxItem>fgh</ComboBoxItem>
@@ -142,6 +143,7 @@
                 <TextBlock Text="Inherits Fontsize via default style" />
                 <ComboBox x:Name="ComboBoxWithWatermarkWithInheritedFontSize"
                           adorners:Watermark.Text="Foo"
+                          BorderBrush="Black"
                           FontSize="32">
                     <ComboBoxItem>abc</ComboBoxItem>
                     <ComboBoxItem>cde</ComboBoxItem>
@@ -151,7 +153,8 @@
                 <TextBlock Text="Explicit style" />
                 <ComboBox x:Name="ComboBoxWithWatermarkWithExplicitTextStyle"
                           adorners:Watermark.Text="Explicit style"
-                          adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}">
+                          adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
+                          BorderBrush="Black">
                     <ComboBoxItem>abc</ComboBoxItem>
                     <ComboBoxItem>cde</ComboBoxItem>
                     <ComboBoxItem>fgh</ComboBoxItem>
@@ -161,12 +164,12 @@
                           adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
                           Header="Inherited style">
                     <StackPanel>
-                        <ComboBox>
+                        <ComboBox BorderBrush="Black">
                             <ComboBoxItem>abc</ComboBoxItem>
                             <ComboBoxItem>cde</ComboBoxItem>
                             <ComboBoxItem>fgh</ComboBoxItem>
                         </ComboBox>
-                        <ComboBox>
+                        <ComboBox BorderBrush="Black">
                             <ComboBoxItem>abc</ComboBoxItem>
                             <ComboBoxItem>cde</ComboBoxItem>
                             <ComboBoxItem>fgh</ComboBoxItem>
@@ -176,12 +179,12 @@
 
                 <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
                     <StackPanel>
-                        <ComboBox>
+                        <ComboBox BorderBrush="Black">
                             <ComboBoxItem>abc</ComboBoxItem>
                             <ComboBoxItem>cde</ComboBoxItem>
                             <ComboBoxItem>fgh</ComboBoxItem>
                         </ComboBox>
-                        <ComboBox>
+                        <ComboBox BorderBrush="Black">
                             <ComboBoxItem>abc</ComboBoxItem>
                             <ComboBoxItem>cde</ComboBoxItem>
                             <ComboBoxItem>fgh</ComboBoxItem>
@@ -192,7 +195,8 @@
                 <TextBlock Text="VisibleWhen=Empty" />
                 <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmpty"
                           adorners:Watermark.Text="visible when empty"
-                          adorners:Watermark.VisibleWhen="Empty">
+                          adorners:Watermark.VisibleWhen="Empty"
+                          BorderBrush="Black">
                     <ComboBoxItem>abc</ComboBoxItem>
                     <ComboBoxItem>cde</ComboBoxItem>
                     <ComboBoxItem>fgh</ComboBoxItem>
@@ -201,7 +205,8 @@
                 <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
                 <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
                           adorners:Watermark.Text="visible when not keyboard focused (default)"
-                          adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused">
+                          adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused"
+                          BorderBrush="Black">
                     <ComboBoxItem>abc</ComboBoxItem>
                     <ComboBoxItem>cde</ComboBoxItem>
                     <ComboBoxItem>fgh</ComboBoxItem>
