@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
@@ -26,7 +26,7 @@
         /// Initializes a new instance of the <see cref="WatermarkAdorner"/> class.
         /// </summary>
         /// <param name="adornedElement">The adorned element</param>
-        public WatermarkAdorner(TextBoxBase adornedElement)
+        public WatermarkAdorner(Control adornedElement)
             : base(adornedElement)
         {
             var textBlock = new TextBlock
@@ -47,10 +47,11 @@
         /// <summary>
         /// Gets the adorned <see cref="TextBoxBase"/>
         /// </summary>
-        public TextBoxBase AdornedTextBox => (TextBoxBase)this.AdornedElement;
+        [Obsolete("This property will be removed, use AdornedElement.")]
+        public TextBoxBase AdornedTextBox => this.AdornedElement as TextBoxBase;
 
         /// <summary>
-        /// Gets or sets the style for the <see cref="TextBlock"/> rendering <see cref="Watermark.TextProperty"/> for <see cref="AdornedTextBox"/>
+        /// Gets or sets the style for the <see cref="TextBlock"/> rendering <see cref="Watermark.TextProperty"/> for <see cref="System.Windows.Documents.Adorner.AdornedElement"/>
         /// </summary>
         public Style TextStyle
         {
@@ -62,7 +63,7 @@
         {
             get
             {
-                if (this.textViewRef.TryGetTarget(out FrameworkElement textView))
+                if (this.textViewRef.TryGetTarget(out var textView))
                 {
                     return textView;
                 }

@@ -71,6 +71,12 @@ namespace Gu.Wpf.Adorners
                 default(WatermarkAdorner),
                 OnAdornerChanged));
 
+        private static readonly DependencyProperty HandlerProperty = DependencyProperty.RegisterAttached(
+            "Handler",
+            typeof(TextBoxHandler),
+            typeof(Watermark),
+            new PropertyMetadata(default(TextBoxHandler)));
+
         /// <summary>
         /// Helper for setting Text property on a UIElement.
         /// </summary>
@@ -137,7 +143,7 @@ namespace Gu.Wpf.Adorners
             return (Style)element.GetValue(TextStyleProperty);
         }
 
-        private static void SetIsShowing(this TextBox element, bool value)
+        private static void SetIsShowing(this Control element, bool value)
         {
             element.SetValue(IsShowingPropertyKey, value);
         }
@@ -148,7 +154,7 @@ namespace Gu.Wpf.Adorners
         /// <param name="element">TextBox to read IsShowing property from.</param>
         /// <returns>IsShowing property value.</returns>
         [AttachedPropertyBrowsableForType(typeof(TextBox))]
-        public static bool GetIsShowing(this TextBox element)
+        public static bool GetIsShowing(this Control element)
         {
             return (bool)element.GetValue(IsShowingProperty);
         }
@@ -198,15 +204,15 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void UpdateHandlers(TextBoxBase textBox)
+        private static void UpdateHandlers(Control adornedElement)
         {
-            IsVisibleChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
-            LoadedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
-            UnloadedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
-            GotKeyboardFocusEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
-            LostKeyboardFocusEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
-            TextChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
-            SizeChangedEventManager.UpdateHandler(textBox, OnSizeChanged);
+            if (adornedElement.GetValue(HandlerProperty) == null)
+            {
+                if (adornedElement is TextBox textBox)
+                {
+                    adornedElement.SetCurrentValue(HandlerProperty, new TextBoxHandler(textBox));
+                }
+            }
         }
 
         private static bool ValidateTextStyle(object value)
@@ -218,22 +224,22 @@ namespace Gu.Wpf.Adorners
 
         private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var textBox = (TextBox)d;
+            var adornedElement = (Control)d;
             if (Equals(e.NewValue, true))
             {
-                var adorner = textBox.GetAdorner();
+                var adorner = adornedElement.GetAdorner();
                 if (adorner == null)
                 {
-                    adorner = new WatermarkAdorner(textBox);
-                    textBox.SetAdorner(adorner);
-                    var textStyle = textBox.GetTextStyle();
+                    adorner = new WatermarkAdorner(adornedElement);
+                    adornedElement.SetAdorner(adorner);
+                    var textStyle = adornedElement.GetTextStyle();
                     if (textStyle != null)
                     {
                         adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, textStyle);
                     }
 
                     AdornerService.Show(adorner);
-                    textBox.SetCurrentValue(AdornerProperty, adorner);
+                    adornedElement.SetCurrentValue(AdornerProperty, adorner);
                 }
                 else
                 {
@@ -242,11 +248,11 @@ namespace Gu.Wpf.Adorners
             }
             else
             {
-                var adorner = textBox.GetAdorner();
+                var adorner = adornedElement.GetAdorner();
                 if (adorner != null)
                 {
                     AdornerService.Remove(adorner);
-                    textBox.ClearValue(AdornerProperty);
+                    adornedElement.ClearValue(AdornerProperty);
                 }
             }
         }
@@ -260,7 +266,7 @@ namespace Gu.Wpf.Adorners
         {
             var element = sender as FrameworkElement;
             element?.GetAdorner()?.InvalidateMeasure();
-            UpdateIsShowing((TextBox)sender);
+            UpdateIsShowing(sender as Control);
         }
 
         private static void OnAdornedElementChanged(object sender, EventArgs e)
@@ -268,31 +274,52 @@ namespace Gu.Wpf.Adorners
             UpdateIsShowing((TextBox)sender);
         }
 
-        private static void UpdateIsShowing(TextBox textBox)
+        private static void UpdateIsShowing(Control adornedElement)
         {
-            if (textBox == null)
+            var handler = (TextBoxHandler)adornedElement?.GetValue(HandlerProperty);
+            if (handler == null)
             {
                 return;
             }
 
-            if (!textBox.IsVisible || string.IsNullOrEmpty(GetText(textBox)))
+            if (!adornedElement.IsVisible ||
+                string.IsNullOrEmpty(GetText(adornedElement)))
             {
-                textBox.SetIsShowing(false);
+                adornedElement.SetIsShowing(false);
             }
             else
             {
-                switch (textBox.GetVisibleWhen())
+                switch (adornedElement.GetVisibleWhen())
                 {
                     case WatermarkVisibleWhen.Empty:
-                        textBox.SetIsShowing(string.IsNullOrEmpty(textBox.Text));
+                        adornedElement.SetIsShowing(string.IsNullOrEmpty(handler.Text));
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                        textBox.SetIsShowing(string.IsNullOrEmpty(textBox.Text) && !textBox.IsKeyboardFocused);
+                        adornedElement.SetIsShowing(string.IsNullOrEmpty(handler.Text) && !adornedElement.IsKeyboardFocused);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
+        }
+
+        private class TextBoxHandler
+        {
+            private readonly TextBox textBox;
+
+            public TextBoxHandler(TextBox textBox)
+            {
+                this.textBox = textBox;
+                IsVisibleChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+                LoadedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+                UnloadedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+                GotKeyboardFocusEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+                LostKeyboardFocusEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+                TextChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
+                SizeChangedEventManager.UpdateHandler(textBox, OnSizeChanged);
+            }
+
+            public string Text => this.textBox.Text;
         }
     }
 }
