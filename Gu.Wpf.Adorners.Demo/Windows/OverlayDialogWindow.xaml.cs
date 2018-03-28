@@ -11,9 +11,9 @@ namespace Gu.Wpf.Adorners.Demo.Windows
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            this.SetCurrentValue(Adorners.Overlay.IsVisibleProperty, true);
+            this.SetCurrentValue(Overlay.IsVisibleProperty, true);
             MessageBox.Show("Text", "Caption");
-            this.SetCurrentValue(Adorners.Overlay.IsVisibleProperty, false);
+            this.SetCurrentValue(Overlay.IsVisibleProperty, false);
         }
     }
 }
