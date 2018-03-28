@@ -22,6 +22,9 @@ For adding watermark text to text boxes.
 Sample:
 
 ```xaml
+<UserControl ...
+             xmlns:adorners="http://gu.se/Adorners">
+...
 <UserControl.Resources>
     <Style x:Key="AdornerTextStyle"
             TargetType="{x:Type TextBlock}">
@@ -78,6 +81,7 @@ Sample:
     <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)"
                 adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
 </StackPanel>
+...
 ```
 
 Renders: 
