@@ -47,6 +47,7 @@
     <Compile Include="MainWindowTests.cs" />
     <Compile Include="OverlayWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WatermarkWindowTests.ComboBox.cs" />
     <Compile Include="WatermarkWindowTests.cs" />
     <Compile Include="WatermarkWindowTests.PasswordBox.cs" />
     <Compile Include="WatermarkWindowTests.TextBox.cs" />
@@ -64,6 +65,48 @@
     </When>
   </Choose>
   <ItemGroup>
+    <Content Include="Images\ComboBoxesWithInheritedTextStyle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithDefaultWatermark_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithDefaultWatermark_not_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithDefaultWatermark_not_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkVisibleWhenEmpty_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkVisibleWhenEmpty_not_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkVisibleWhenEmpty_not_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkWithBoundText_AAA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkWithBoundText_abc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkWithExplicitTextStyle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ComboBoxWithWatermarkWithInheritedFontSize.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Default visibility_width_100.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

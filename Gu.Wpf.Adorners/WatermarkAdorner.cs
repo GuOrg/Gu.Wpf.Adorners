@@ -15,7 +15,7 @@ namespace Gu.Wpf.Adorners
             typeof(WatermarkAdorner),
             new FrameworkPropertyMetadata(default(Style)));
 
-        private readonly WeakReference<FrameworkElement> textViewRef = new WeakReference<FrameworkElement>(null);
+        private readonly WeakReference<FrameworkElement> placementReference = new WeakReference<FrameworkElement>(null);
 
         static WatermarkAdorner()
         {
@@ -61,27 +61,40 @@ namespace Gu.Wpf.Adorners
             set => this.SetValue(TextStyleProperty, value);
         }
 
-        private FrameworkElement TextView
+        private FrameworkElement PlacementReference
         {
             get
             {
-                if (this.textViewRef.TryGetTarget(out var textView))
+                if (this.placementReference.TryGetTarget(out var contentPresenter))
                 {
-                    return textView;
+                    return contentPresenter;
                 }
 
-                // ReSharper disable once ConstantConditionalAccessQualifier
-                textView = (FrameworkElement)this.AdornedElement
-                    ?.NestedChildren()
-                    .SingleOrNull<ScrollContentPresenter>()
-                    ?.VisualChildren()
-                    .SingleOrNull<IScrollInfo>(); // The TextView is internal but implements IScrollInfo
-                if (textView != null)
+                if (this.AdornedElement is TextBoxBase ||
+                    this.AdornedElement is PasswordBox)
                 {
-                    this.textViewRef.SetTarget(textView);
+                    // ReSharper disable once ConstantConditionalAccessQualifier
+                    contentPresenter = (FrameworkElement)this.AdornedElement
+                                                     ?.NestedChildren()
+                                                     .SingleOrNull<ScrollContentPresenter>()
+                                                     ?.VisualChildren()
+                                                     .SingleOrNull<IScrollInfo>(); // The TextView is internal but implements IScrollInfo
+                    if (contentPresenter != null)
+                    {
+                        this.placementReference.SetTarget(contentPresenter);
+                    }
+                }
+                else if (this.AdornedElement is ComboBox comboBox)
+                {
+                    contentPresenter = comboBox.NestedChildren()
+                                               .SingleOrNull<ContentPresenter>();
+                    if (contentPresenter != null)
+                    {
+                        this.placementReference.SetTarget(contentPresenter);
+                    }
                 }
 
-                return textView;
+                return contentPresenter;
             }
         }
 
@@ -96,22 +109,37 @@ namespace Gu.Wpf.Adorners
         /// <inheritdoc />
         protected override Size ArrangeOverride(Size size)
         {
-            var view = this.TextView;
-            if (view != null)
+            var finalRect = GetFinalRect();
+            if (finalRect.Width < 0 ||
+                finalRect.Height < 0)
             {
-                var aSize = this.AdornedElement.RenderSize;
-                var wSize = view.RenderSize;
-                var x = (aSize.Width - wSize.Width) / 2;
-                var y = (aSize.Height - wSize.Height) / 2;
-                var location = new Point(x, y);
-                this.Child?.Arrange(new Rect(location, wSize));
-            }
-            else
-            {
-                this.Child?.Arrange(new Rect(new Point(0, 0), size));
+                finalRect = new Rect(size);
             }
 
+            this.Child?.Arrange(finalRect);
             return size;
+
+            Rect GetFinalRect()
+            {
+                var reference = this.PlacementReference;
+                switch (reference)
+                {
+                    case IScrollInfo _:
+                        var aSize = this.AdornedElement.RenderSize;
+                        var wSize = reference.RenderSize;
+                        var x = (aSize.Width - wSize.Width) / 2;
+                        var y = (aSize.Height - wSize.Height) / 2;
+                        var location = new Point(x, y);
+                        return new Rect(location, wSize);
+                    case ContentPresenter _:
+                        var margin = reference.Margin;
+                        var rect = new Rect(this.AdornedElement.RenderSize);
+                        rect.Inflate(-margin.Left, -margin.Top);
+                        return rect;
+                    default:
+                        return new Rect(new Point(0, 0), size);
+                }
+            }
         }
     }
 }

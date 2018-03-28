@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="SandboxWindow" Height="450" Width="800">
     <StackPanel>
-        <PasswordBox adorners:Watermark.Text="Write the secret here" />
+        <ComboBox adorners:Watermark.Text="Write the secret here" />
+        <TextBox adorners:Watermark.Text="Write the text here" />
     </StackPanel>
 </Window>

@@ -50,9 +50,9 @@ namespace Gu.Wpf.Adorners
         /// <inheritdoc />
         protected override void StartListening(object source)
         {
-            if (source is ComboBox ComboBox)
+            if (source is ComboBox comboBox)
             {
-                ComboBox.SelectionChanged += this.OnSelectionChanged;
+                comboBox.SelectionChanged += this.OnSelectionChanged;
             }
             else
             {
@@ -65,9 +65,9 @@ namespace Gu.Wpf.Adorners
         /// <inheritdoc />
         protected override void StopListening(object source)
         {
-            if (source is ComboBox ComboBox)
+            if (source is ComboBox comboBox)
             {
-                ComboBox.SelectionChanged -= this.OnSelectionChanged;
+                comboBox.SelectionChanged -= this.OnSelectionChanged;
             }
             else
             {
