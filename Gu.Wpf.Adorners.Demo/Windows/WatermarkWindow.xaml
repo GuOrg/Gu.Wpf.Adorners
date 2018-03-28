@@ -30,22 +30,19 @@
 
     <StackPanel>
         <TextBlock Text="TextBox with watermark" />
-        <TextBox x:Name="TextBoxWithDefaultWaterMark" adorners:Watermark.Text="Write something here" />
-
-        <TextBlock Text="PasswordBox with watermark" />
-        <PasswordBox adorners:Watermark.Text="Write the secret here" />
+        <TextBox x:Name="TextBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
 
         <TextBlock Text="Bound text" />
-        <TextBox x:Name="TextBoxWithWaterMarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+        <TextBox x:Name="TextBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
         <TextBox x:Name="AdornerText" Text="AAA" />
 
         <TextBlock Text="Inherits Fontsize via default style" />
-        <TextBox x:Name="WithInheritedFontSize"
+        <TextBox x:Name="TextBoxWithWatermarkWithInheritedFontSize"
                  adorners:Watermark.Text="Foo"
                  FontSize="32" />
 
         <TextBlock Text="Explicit style" />
-        <TextBox x:Name="WithExplicitTextStyle"
+        <TextBox x:Name="TextBoxWithWatermarkWithExplicitTextStyle"
                  adorners:Watermark.Text="Explicit style"
                  adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
 
@@ -66,12 +63,12 @@
         </GroupBox>
 
         <TextBlock Text="VisibleWhen=Empty" />
-        <TextBox x:Name="VisibleWhenEmpty"
+        <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmpty"
                  adorners:Watermark.Text="visible when empty"
                  adorners:Watermark.VisibleWhen="Empty" />
 
         <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-        <TextBox x:Name="VisibleWhenEmptyAndNotFocused"
+        <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
                  adorners:Watermark.Text="visible when not keyboard focused (default)"
                  adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
         <Button Content="Lose focus" />

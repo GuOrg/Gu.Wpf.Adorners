@@ -48,6 +48,7 @@
     <Compile Include="OverlayWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WatermarkWindowTests.cs" />
+    <Compile Include="WatermarkWindowTests.TextBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gu.Wpf.Adorners.UiTests.ruleset" />
@@ -98,52 +99,52 @@
     <Content Include="Images\No overlay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\VisibleWhenEmptyAndNotFocused_focused.png">
+    <Content Include="Images\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\VisibleWhenEmptyAndNotFocused_not_empty.png">
+    <Content Include="Images\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\VisibleWhenEmptyAndNotFocused_not_focused.png">
+    <Content Include="Images\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\VisibleWhenEmpty_focused.png">
+    <Content Include="Images\TextBoxWithWatermarkVisibleWhenEmpty_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\VisibleWhenEmpty_not_empty.png">
+    <Content Include="Images\TextBoxWithWatermarkVisibleWhenEmpty_not_empty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\VisibleWhenEmpty_not_focused.png">
+    <Content Include="Images\TextBoxWithWatermarkVisibleWhenEmpty_not_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\With content template.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\TextBoxWithWaterMarkWithBoundText_AAA.png">
+    <Content Include="Images\TextBoxWithWatermarkWithBoundText_AAA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\TextBoxWithWaterMarkWithBoundText_abc.png">
+    <Content Include="Images\TextBoxWithWatermarkWithBoundText_abc.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\TextBoxWithDefaultWaterMark_focused.png">
+    <Content Include="Images\TextBoxWithDefaultWatermark_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\TextBoxWithDefaultWaterMark_not_empty.png">
+    <Content Include="Images\TextBoxWithDefaultWatermark_not_empty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\TextBoxWithDefaultWaterMark_not_focused.png">
+    <Content Include="Images\TextBoxWithDefaultWatermark_not_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithExplicitTextStyle.png">
+    <Content Include="Images\TextBoxWithWatermarkWithExplicitTextStyle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\WithInheritedContentTemplate.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithInheritedFontSize.png">
+    <Content Include="Images\TextBoxWithWatermarkWithInheritedFontSize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithInheritedTextStyle.png">
+    <Content Include="Images\TextBoxesWithInheritedTextStyle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
