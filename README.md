@@ -230,6 +230,18 @@ Renders:
 ## TextStyle 
 Accepts a style for `TextBlock` the text is drawn where the textbox text is drawn so no margins needed.
 
+```xaml
+<PasswordBox adorners:Watermark.Text="PASSWORD">
+    <adorners:Watermark.TextStyle>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="FontStyle" Value="Oblique" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </adorners:Watermark.TextStyle>
+</PasswordBox>
+```
+
 ## VisibleWhen {`Empty`, `EmptyAndNotKeyboardFocused`}
 Default is `EmptyAndNotKeyboardFocused`
 
