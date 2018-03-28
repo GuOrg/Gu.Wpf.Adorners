@@ -68,6 +68,7 @@
     <Compile Include="Internals\DependencyObjectHelper.cs" />
     <Compile Include="Internals\EmptyEnumerator.cs" />
     <Compile Include="Internals\EventManagers\PasswordChangedEventManager.cs" />
+    <Compile Include="Internals\EventManagers\SelectionChangedEventManager.cs" />
     <Compile Include="Internals\EventManagers\TextChangedEventManager.cs" />
     <Compile Include="Internals\EventManagers\LostKeyboardFocusEventManager.cs" />
     <Compile Include="Internals\EventManagers\GotKeyboardFocusEventManager.cs" />

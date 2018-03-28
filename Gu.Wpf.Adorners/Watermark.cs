@@ -220,6 +220,9 @@ namespace Gu.Wpf.Adorners
                     case PasswordBox passwordBox:
                         adornedElement.SetCurrentValue(HandlerProperty, new PasswordBoxListener(passwordBox));
                         break;
+                    case ComboBox comboBox:
+                        adornedElement.SetCurrentValue(HandlerProperty, new ComboBoxListener(comboBox));
+                        break;
                 }
             }
         }
@@ -348,6 +351,25 @@ namespace Gu.Wpf.Adorners
             }
 
             public string Text => this.passwordBox.Password;
+        }
+
+        private class ComboBoxListener : IWatermarked
+        {
+            private readonly ComboBox comboBox;
+
+            public ComboBoxListener(ComboBox comboBox)
+            {
+                this.comboBox = comboBox;
+                IsVisibleChangedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
+                LoadedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
+                UnloadedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
+                GotKeyboardFocusEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
+                LostKeyboardFocusEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
+                SelectionChangedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
+                SizeChangedEventManager.UpdateHandler(comboBox, OnSizeChanged);
+            }
+
+            public string Text => this.comboBox.Text;
         }
     }
 }
