@@ -4,6 +4,7 @@ namespace Gu.Wpf.Adorners
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Media;
 
@@ -44,7 +45,14 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        internal static IEnumerable<DependencyObject> NestedChildren(this DependencyObject parent)
+        internal static T FirstOrDefaultRecursiveVisualChild<T>(this DependencyObject parent)
+        {
+            return RecursiveChildren(parent)
+                   .OfType<T>()
+                   .FirstOrDefault();
+        }
+
+        internal static IEnumerable<DependencyObject> RecursiveChildren(this DependencyObject parent)
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
@@ -52,7 +60,7 @@ namespace Gu.Wpf.Adorners
                 yield return child;
                 if (VisualTreeHelper.GetChildrenCount(child) != 0)
                 {
-                    foreach (var nestedChild in NestedChildren(child))
+                    foreach (var nestedChild in RecursiveChildren(child))
                     {
                         yield return nestedChild;
                     }

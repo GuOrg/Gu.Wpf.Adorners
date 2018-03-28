@@ -75,10 +75,8 @@ namespace Gu.Wpf.Adorners
                 {
                     // ReSharper disable once ConstantConditionalAccessQualifier
                     contentPresenter = (FrameworkElement)this.AdornedElement
-                                                     ?.NestedChildren()
-                                                     .SingleOrNull<ScrollContentPresenter>()
-                                                     ?.VisualChildren()
-                                                     .SingleOrNull<IScrollInfo>(); // The TextView is internal but implements IScrollInfo
+                                                     ?.FirstOrDefaultRecursiveVisualChild<ScrollContentPresenter>()
+                                                     ?.FirstOrDefaultRecursiveVisualChild<IScrollInfo>(); // The TextView is internal but implements IScrollInfo
                     if (contentPresenter != null)
                     {
                         this.placementReference.SetTarget(contentPresenter);
@@ -86,10 +84,8 @@ namespace Gu.Wpf.Adorners
                 }
                 else if (this.AdornedElement is ComboBox comboBox)
                 {
-                    contentPresenter = (FrameworkElement)comboBox.NestedChildren()
-                                                                 .SingleOrNull<ContentPresenter>() ??
-                                                         comboBox.NestedChildren()
-                                                                 .SingleOrNull<ToggleButton>();
+                    contentPresenter = (FrameworkElement)comboBox.FirstOrDefaultRecursiveVisualChild<ContentPresenter>() ??
+                                                         comboBox.FirstOrDefaultRecursiveVisualChild<ToggleButton>();
                     if (contentPresenter != null)
                     {
                         this.placementReference.SetTarget(contentPresenter);
