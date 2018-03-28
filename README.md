@@ -22,11 +22,11 @@ For adding watermark text to text boxes, password boxes and combo boxes.
 Simple sample:
 ```xaml
 <StackPanel>
-    <TextBox x:Name="TextBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
+    <TextBox adorners:Watermark.Text="Write something here" />
 
-    <PasswordBox x:Name="PasswordBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
+    <PasswordBox adorners:Watermark.Text="Write something here" />
 
-    <ComboBox x:Name="ComboBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here">
+    <ComboBox adorners:Watermark.Text="Write something here">
         <ComboBoxItem>abc</ComboBoxItem>
         <ComboBoxItem>cde</ComboBoxItem>
         <ComboBoxItem>fgh</ComboBoxItem>
