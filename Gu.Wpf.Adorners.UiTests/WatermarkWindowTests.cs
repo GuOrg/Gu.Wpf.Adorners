@@ -16,53 +16,53 @@ namespace Gu.Wpf.Adorners.UiTests
         }
 
         [Test]
-        public void DefaultAdornerWhenNotFocused()
+        public void TextBoxWithDefaultWaterMarkWhenNotFocused()
         {
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                var textBox = window.FindTextBox("WithDefaultAdorner");
-                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_not_focused.png", textBox);
+                var textBox = window.FindTextBox("TextBoxWithDefaultWaterMark");
+                ImageAssert.AreEqual(".\\Images\\TextBoxWithDefaultWaterMark_not_focused.png", textBox);
             }
         }
 
         [Test]
-        public void DefaultAdornerWhenFocused()
+        public void TextBoxWithDefaultWaterMarkWhenFocused()
         {
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                var textBox = window.FindTextBox("WithDefaultAdorner");
+                var textBox = window.FindTextBox("TextBoxWithDefaultWaterMark");
                 textBox.Focus();
-                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_focused.png", textBox);
+                ImageAssert.AreEqual(".\\Images\\TextBoxWithDefaultWaterMark_focused.png", textBox);
             }
         }
 
         [Test]
-        public void DefaultAdornerWhenNotEmpty()
+        public void TextBoxWithDefaultWaterMarkWhenNotEmpty()
         {
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                var textBox = window.FindTextBox("WithDefaultAdorner");
+                var textBox = window.FindTextBox("TextBoxWithDefaultWaterMark");
                 textBox.Text = "abc";
                 window.FindButton("Lose focus").Click();
-                ImageAssert.AreEqual(".\\Images\\WithDefaultAdorner_not_empty.png", textBox);
+                ImageAssert.AreEqual(".\\Images\\TextBoxWithDefaultWaterMark_not_empty.png", textBox);
             }
         }
 
         [Test]
-        public void WithBoundText()
+        public void TextBoxWithWaterMarkWithBoundText()
         {
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                var textBox = window.FindTextBox("WithBoundAdornerText");
-                ImageAssert.AreEqual(".\\Images\\WithBoundAdornerText_AAA.png", textBox);
+                var textBox = window.FindTextBox("TextBoxWithWaterMarkWithBoundText");
+                ImageAssert.AreEqual(".\\Images\\TextBoxWithWaterMarkWithBoundText_AAA.png", textBox);
                 window.FindTextBox("AdornerText").Text = "abc";
                 window.FindButton("Lose focus").Invoke();
                 Wait.For(TimeSpan.FromMilliseconds(50));
-                ImageAssert.AreEqual(".\\Images\\WithBoundAdornerText_abc.png", textBox);
+                ImageAssert.AreEqual(".\\Images\\TextBoxWithWaterMarkWithBoundText_abc.png", textBox);
             }
         }
 

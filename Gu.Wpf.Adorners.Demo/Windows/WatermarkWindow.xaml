@@ -1,4 +1,4 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:adorners="http://gu.se/Adorners"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -29,11 +29,14 @@
     </Window.Resources>
 
     <StackPanel>
-        <TextBlock Text="Simple" />
-        <TextBox x:Name="WithDefaultAdorner" adorners:Watermark.Text="Write something here" />
+        <TextBlock Text="TextBox with watermark" />
+        <TextBox x:Name="TextBoxWithDefaultWaterMark" adorners:Watermark.Text="Write something here" />
+
+        <TextBlock Text="PasswordBox with watermark" />
+        <PasswordBox adorners:Watermark.Text="Write the secret here" />
 
         <TextBlock Text="Bound text" />
-        <TextBox x:Name="WithBoundAdornerText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+        <TextBox x:Name="TextBoxWithWaterMarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
         <TextBox x:Name="AdornerText" Text="AAA" />
 
         <TextBlock Text="Inherits Fontsize via default style" />

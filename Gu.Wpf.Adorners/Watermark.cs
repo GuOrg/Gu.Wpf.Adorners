@@ -4,7 +4,6 @@ namespace Gu.Wpf.Adorners
     using System.Diagnostics;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
 
     /// <summary>
     /// Attached properties for showing watermarks.

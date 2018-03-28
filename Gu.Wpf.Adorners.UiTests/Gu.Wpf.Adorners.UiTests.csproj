@@ -119,19 +119,19 @@
     <Content Include="Images\With content template.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithBoundAdornerText_AAA.png">
+    <Content Include="Images\TextBoxWithWaterMarkWithBoundText_AAA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithBoundAdornerText_abc.png">
+    <Content Include="Images\TextBoxWithWaterMarkWithBoundText_abc.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithDefaultAdorner_focused.png">
+    <Content Include="Images\TextBoxWithDefaultWaterMark_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithDefaultAdorner_not_empty.png">
+    <Content Include="Images\TextBoxWithDefaultWaterMark_not_empty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\WithDefaultAdorner_not_focused.png">
+    <Content Include="Images\TextBoxWithDefaultWaterMark_not_focused.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\WithExplicitTextStyle.png">
