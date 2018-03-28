@@ -1,8 +1,9 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Documents;
 
     /// <summary>
     /// Attached properties for creating overlays.
@@ -289,7 +290,11 @@
                 var adorner = element.GetAdorner();
                 if (adorner == null)
                 {
-                    adorner = new ContentAdorner(element);
+                    var adornedElement = element is Window
+                        ? element.FirstOrDefaultRecursiveVisualChild<AdornerDecorator>()?.Child
+                        : element;
+
+                    adorner = new ContentAdorner(adornedElement);
                     element.SetAdorner(adorner);
                 }
 

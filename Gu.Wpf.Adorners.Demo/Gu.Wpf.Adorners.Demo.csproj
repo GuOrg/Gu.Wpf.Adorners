@@ -92,6 +92,9 @@
     <Compile Include="WatermarkView.xaml.cs">
       <DependentUpon>WatermarkView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\OverlayDialogWindow.xaml.cs">
+      <DependentUpon>OverlayDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SandboxWindow.xaml.cs">
       <DependentUpon>SandboxWindow.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,10 @@
     <Page Include="Windows\InfoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\OverlayDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\OverlayWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

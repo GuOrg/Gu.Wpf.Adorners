@@ -1,0 +1,19 @@
+<Window x:Class="Gu.Wpf.Adorners.Demo.Windows.OverlayDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:adorners="http://gu.se/Adorners"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="OverlayDialogWindow"
+        Width="800"
+        Height="450"
+        adorners:Overlay.IsVisible="False"
+        mc:Ignorable="d">
+    <adorners:Overlay.Content>
+        <Border Background="Black" Opacity="0.2" />
+    </adorners:Overlay.Content>
+    <StackPanel>
+        <TextBox Text="Some text" />
+        <Button Content="Show dialog" Click="ButtonBase_OnClick" />
+    </StackPanel>
+</Window>
