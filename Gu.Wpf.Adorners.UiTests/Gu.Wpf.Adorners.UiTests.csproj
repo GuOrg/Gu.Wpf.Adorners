@@ -48,6 +48,7 @@
     <Compile Include="OverlayWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WatermarkWindowTests.cs" />
+    <Compile Include="WatermarkWindowTests.PasswordBox.cs" />
     <Compile Include="WatermarkWindowTests.TextBox.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +68,48 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Draws outside.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxesWithInheritedTextStyle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithDefaultWatermark_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithDefaultWatermark_not_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithDefaultWatermark_not_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkVisibleWhenEmpty_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkVisibleWhenEmpty_not_empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkVisibleWhenEmpty_not_focused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkWithBoundText_AAA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkWithBoundText_abc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkWithExplicitTextStyle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PasswordBoxWithWatermarkWithInheritedFontSize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\red border bound visibility_not_visible.png">

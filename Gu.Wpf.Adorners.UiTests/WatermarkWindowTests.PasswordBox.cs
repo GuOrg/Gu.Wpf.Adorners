@@ -6,7 +6,7 @@ namespace Gu.Wpf.Adorners.UiTests
 
     public partial class WatermarkWindowTests
     {
-        public class TextBox
+        public class PasswordBox
         {
             [OneTimeSetUp]
             public void OneTimeSetUp()
@@ -20,8 +20,8 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithDefaultWatermark");
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithDefaultWatermark_not_focused.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithDefaultWatermark_not_focused.png", passwordBox);
                 }
             }
 
@@ -31,9 +31,9 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithDefaultWatermark");
-                    textBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithDefaultWatermark_focused.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
+                    passwordBox.Focus();
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithDefaultWatermark_focused.png", passwordBox);
                 }
             }
 
@@ -43,10 +43,10 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithDefaultWatermark");
-                    textBox.Text = "abc";
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
+                    passwordBox.SetValue("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithDefaultWatermark_not_empty.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithDefaultWatermark_not_empty.png", passwordBox);
                 }
             }
 
@@ -56,12 +56,12 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkWithBoundText");
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkWithBoundText_AAA.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithBoundText");
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkWithBoundText_AAA.png", passwordBox);
                     window.FindTextBox("AdornerText").Text = "abc";
                     window.FindButton("Lose focus").Invoke();
                     Wait.For(TimeSpan.FromMilliseconds(50));
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkWithBoundText_abc.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkWithBoundText_abc.png", passwordBox);
                 }
             }
 
@@ -71,8 +71,8 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkWithInheritedFontSize");
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkWithInheritedFontSize.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithInheritedFontSize");
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkWithInheritedFontSize.png", passwordBox);
                 }
             }
 
@@ -82,8 +82,8 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkWithExplicitTextStyle");
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkWithExplicitTextStyle.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithExplicitTextStyle");
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkWithExplicitTextStyle.png", passwordBox);
                 }
             }
 
@@ -94,7 +94,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var groupBox = window.FindGroupBox("Inherited style");
-                    ImageAssert.AreEqual(".\\Images\\TextBoxesWithInheritedTextStyle.png", groupBox);
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxesWithInheritedTextStyle.png", groupBox);
                 }
             }
 
@@ -104,8 +104,8 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmpty");
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkVisibleWhenEmpty_not_focused.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkVisibleWhenEmpty_not_focused.png", passwordBox);
                 }
             }
 
@@ -115,9 +115,9 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmpty");
-                    textBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkVisibleWhenEmpty_focused.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
+                    passwordBox.Focus();
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkVisibleWhenEmpty_focused.png", passwordBox);
                 }
             }
 
@@ -127,10 +127,10 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmpty");
-                    textBox.Text = "abc";
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
+                    passwordBox.SetValue("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkVisibleWhenEmpty_not_empty.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkVisibleWhenEmpty_not_empty.png", passwordBox);
                 }
             }
 
@@ -140,8 +140,8 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png", passwordBox);
                 }
             }
 
@@ -151,9 +151,9 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
-                    textBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png", textBox);
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
+                    passwordBox.Focus();
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png", passwordBox);
                 }
             }
 
@@ -163,10 +163,10 @@ namespace Gu.Wpf.Adorners.UiTests
                 using (var app = Application.Launch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
-                    var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
-                    textBox.Text = "abc";
+                    var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
+                    passwordBox.SetValue("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png", passwordBox);
                 }
             }
         }
