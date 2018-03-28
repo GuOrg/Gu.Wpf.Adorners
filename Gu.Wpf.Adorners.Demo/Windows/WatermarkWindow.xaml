@@ -3,6 +3,7 @@
         xmlns:adorners="http://gu.se/Adorners"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
         Title="WatermarkWindow"
         FontFamily="Arial"
         FontSize="12"
@@ -28,6 +29,8 @@
 
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF3399FF" />
             <SolidColorBrush x:Key="{x:Static SystemColors.WindowTextBrushKey}" Color="Black" />
+            <!-- ReSharper disable once Xaml.RedundantResource -->
+            <SolidColorBrush x:Key="{x:Static theme:ClassicBorderDecorator.ClassicBorderBrush}" Color="Black" />
         </ResourceDictionary>
     </Window.Resources>
 
