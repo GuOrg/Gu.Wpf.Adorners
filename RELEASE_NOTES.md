@@ -1,3 +1,6 @@
+#### 1.5.0
+* FEATURE: Support overlay for window.
+
 #### 1.4.0
 * FEATURE: Watermark support for ComboBox & PasswordBox
 

@@ -4,7 +4,7 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Adorners
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  FEATURE: Watermark support for ComboBox & PasswordBox
+  FEATURE: Support overlay for window.
 
 excludedgroups
   Analyzers
