@@ -21,7 +21,7 @@ namespace Gu.Wpf.Adorners.UiTests
             // Just a smoke test so we don't crash.
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
-                Wait.For(TimeSpan.FromMilliseconds(100));
+                Wait.For(TimeSpan.FromMilliseconds(200));
                 var window = app.MainWindow;
                 var tab = window.FindTabControl();
                 ImageAssert.AreEqual(".\\Images\\Tab1.png", tab.FindTextBox("Tab1"));
