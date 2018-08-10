@@ -34,7 +34,7 @@ namespace Gu.Wpf.Adorners
             new FrameworkPropertyMetadata(
                 WatermarkVisibleWhen.EmptyAndNotKeyboardFocused,
                 FrameworkPropertyMetadataOptions.Inherits,
-                OnVisibleWhenChanged));
+                (d, e) => UpdateIsShowing(d as Control)));
 
         /// <summary>
         /// The style for the <see cref="TextBlock"/> rendering <see cref="TextProperty"/>
@@ -68,7 +68,7 @@ namespace Gu.Wpf.Adorners
             typeof(Watermark),
             new PropertyMetadata(
                 default(WatermarkAdorner),
-                OnAdornerChanged));
+                (d, e) => ((WatermarkAdorner)e.OldValue)?.ClearChild()));
 
         private static readonly DependencyProperty HandlerProperty = DependencyProperty.RegisterAttached(
             "Handler",
@@ -170,11 +170,6 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void OnVisibleWhenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            UpdateIsShowing(d as Control);
-        }
-
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is Control adornedElement)
@@ -253,11 +248,6 @@ namespace Gu.Wpf.Adorners
                     adornedElement.ClearValue(AdornerProperty);
                 }
             }
-        }
-
-        private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((WatermarkAdorner)e.OldValue)?.ClearChild();
         }
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
