@@ -92,7 +92,7 @@ namespace Gu.Wpf.Adorners
             typeof(Overlay),
             new PropertyMetadata(
                 default(ContentAdorner),
-                OnAdornerChanged));
+                (d, e) => ((ContentAdorner)e.OldValue)?.ClearChild()));
 
         /// <summary>Helper for setting <see cref="ContentProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to set <see cref="ContentProperty"/> on.</param>
@@ -287,11 +287,6 @@ namespace Gu.Wpf.Adorners
 
                 element.ClearValue(AdornerProperty);
             }
-        }
-
-        private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((ContentAdorner)e.OldValue)?.ClearChild();
         }
 
         private static void UpdateIsShowing(DependencyObject o)
