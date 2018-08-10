@@ -71,7 +71,7 @@ namespace Gu.Wpf.Adorners
             typeof(Overlay),
             new PropertyMetadata(
                 default(bool?),
-                OnIsVisibleChanged));
+                (d, e) => UpdateIsShowing(d)));
 
         private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsShowing",
@@ -255,11 +255,6 @@ namespace Gu.Wpf.Adorners
             SizeChangedEventManager.UpdateHandler((FrameworkElement)d, OnSizeChanged);
         }
 
-        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            UpdateIsShowing(d);
-        }
-
         private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var element = (UIElement)d;
@@ -304,7 +299,7 @@ namespace Gu.Wpf.Adorners
             if (o is UIElement element)
             {
                 if (!element.IsVisible ||
-                    !Loaded.IsLoaded(element))
+                    !element.IsLoaded())
                 {
                     element.SetIsShowing(false);
                     return;
