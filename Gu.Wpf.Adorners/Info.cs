@@ -52,7 +52,7 @@ namespace Gu.Wpf.Adorners
             typeof(Info),
             new PropertyMetadata(
                 default(Adorner),
-                OnAdornerChanged));
+                (d, e) => ((Adorner)e.OldValue)?.ClearTemplatedAdornerChild()));
 
         /// <summary>Helper for setting <see cref="TemplateProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to set <see cref="TemplateProperty"/> on.</param>
@@ -158,11 +158,6 @@ namespace Gu.Wpf.Adorners
 
                 element.ClearValue(AdornerProperty);
             }
-        }
-
-        private static void OnAdornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((Adorner)e.OldValue)?.ClearTemplatedAdornerChild();
         }
 
         private static void UpdateIsShowing(DependencyObject o)
