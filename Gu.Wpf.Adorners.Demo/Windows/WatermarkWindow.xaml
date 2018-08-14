@@ -35,7 +35,9 @@
         <UniformGrid Rows="1">
             <StackPanel>
                 <TextBlock Text="TextBox with watermark" />
-                <TextBox x:Name="TextBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
+                <TextBox x:Name="TextBoxWithDefaultWatermark"
+                         adorners:Watermark.Text="Write something here"
+                         Visibility="{Binding ElementName=VisibilityCbx, Path=SelectedItem}" />
 
                 <TextBlock Text="Bound text" />
                 <TextBox x:Name="TextBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
@@ -79,7 +81,9 @@
 
             <StackPanel>
                 <TextBlock Text="PasswordBox with watermark" />
-                <PasswordBox x:Name="PasswordBoxWithDefaultWatermark" adorners:Watermark.Text="Write something here" />
+                <PasswordBox x:Name="PasswordBoxWithDefaultWatermark"
+                             adorners:Watermark.Text="Write something here"
+                             Visibility="{Binding ElementName=VisibilityCbx, Path=SelectedItem}" />
 
                 <TextBlock Text="Bound text" />
                 <PasswordBox x:Name="PasswordBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
@@ -124,8 +128,9 @@
             <StackPanel>
                 <TextBlock Text="ComboBox with watermark" />
                 <ComboBox x:Name="ComboBoxWithDefaultWatermark"
-                          adorners:Watermark.Text="Write something here" 
-                          BorderBrush="#FF707070">
+                          adorners:Watermark.Text="Write something here"
+                          BorderBrush="#FF707070"
+                          Visibility="{Binding ElementName=VisibilityCbx, Path=SelectedItem}">
                     <ComboBoxItem>abc</ComboBoxItem>
                     <ComboBoxItem>cde</ComboBoxItem>
                     <ComboBoxItem>fgh</ComboBoxItem>
@@ -214,6 +219,11 @@
             </StackPanel>
         </UniformGrid>
         <TextBox x:Name="AdornerText" Text="AAA" />
+        <ComboBox x:Name="VisibilityCbx" SelectedIndex="0">
+            <Visibility>Visible</Visibility>
+            <Visibility>Hidden</Visibility>
+            <Visibility>Collapsed</Visibility>
+        </ComboBox>
         <Button Content="Lose focus" />
     </StackPanel>
 </Window>
