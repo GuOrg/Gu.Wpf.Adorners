@@ -71,5 +71,24 @@ namespace Gu.Wpf.Adorners.UiTests
                 ImageAssert.AreEqual(".\\Images\\Draws outside.png", groupBox);
             }
         }
+
+        [TestCase("Collapsed")]
+        [TestCase("Hidden")]
+        public void WhenAdornedElementIs(string visibility)
+        {
+            using (var app = Application.Launch(ExeFileName, WindowName))
+            {
+                var window = app.MainWindow;
+                Wait.For(TimeSpan.FromMilliseconds(200));
+                var button = window.FindButton("red border default visibility");
+                ImageAssert.AreEqual(".\\Images\\red border default visibility.png", button);
+
+                var comboBox = window.FindComboBox("VisibilityCbx");
+                comboBox.Select(visibility);
+
+                comboBox.Select("Visible");
+                ImageAssert.AreEqual(".\\Images\\red border default visibility.png", button);
+            }
+        }
     }
 }
