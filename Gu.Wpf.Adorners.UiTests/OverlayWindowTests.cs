@@ -70,5 +70,27 @@ namespace Gu.Wpf.Adorners.UiTests
                 ImageAssert.AreEqual(".\\Images\\Default visibility_width_100.png", button);
             }
         }
+
+        [TestCase("Collapsed")]
+        [TestCase("Hidden")]
+        public void WhenAdornedElementIs(string visibility)
+        {
+            using (var app = Application.Launch(ExeFileName, WindowName))
+            {
+                var window = app.MainWindow;
+                Wait.For(TimeSpan.FromMilliseconds(200));
+                var button = window.FindButton("Default visibility");
+                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
+
+                var comboBox = window.FindComboBox("VisibilityCbx");
+                comboBox.Select(visibility);
+                Wait.For(TimeSpan.FromMilliseconds(200));
+
+                // Checking that we don't crash here. See issue #24
+                comboBox.Select("Visible");
+                Wait.For(TimeSpan.FromMilliseconds(200));
+                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
+            }
+        }
     }
 }

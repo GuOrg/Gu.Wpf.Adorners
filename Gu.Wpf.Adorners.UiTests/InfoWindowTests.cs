@@ -85,8 +85,11 @@ namespace Gu.Wpf.Adorners.UiTests
 
                 var comboBox = window.FindComboBox("VisibilityCbx");
                 comboBox.Select(visibility);
+                Wait.For(TimeSpan.FromMilliseconds(200));
 
+                // Checking that we don't crash here. See issue #24
                 comboBox.Select("Visible");
+                Wait.For(TimeSpan.FromMilliseconds(200));
                 ImageAssert.AreEqual(".\\Images\\red border default visibility.png", button);
             }
         }
