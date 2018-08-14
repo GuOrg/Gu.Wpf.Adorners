@@ -75,6 +75,7 @@
     <Rule Id="SA1633" Action="None" />
   </Rules>
   <Rules AnalyzerId="WpfAnalyzers" RuleNamespace="WpfAnalyzers">
+    <Rule Id="WPF0023" Action="Warning" />
     <Rule Id="WPF0033" Action="Hidden" />
     <Rule Id="WPF0034" Action="Warning" />
     <Rule Id="WPF0052" Action="Warning" />
@@ -83,7 +84,10 @@
     <Rule Id="WPF0062" Action="Warning" />
     <Rule Id="WPF0070" Action="Warning" />
     <Rule Id="WPF0071" Action="Warning" />
+    <Rule Id="WPF0073" Action="Warning" />
     <Rule Id="WPF0080" Action="Warning" />
     <Rule Id="WPF0083" Action="Warning" />
+    <Rule Id="WPF0090" Action="Warning" />
+    <Rule Id="WPF0091" Action="Warning" />
   </Rules>
 </RuleSet>
