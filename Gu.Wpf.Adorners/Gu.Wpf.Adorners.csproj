@@ -91,7 +91,9 @@
     </Compile>
     <Compile Include="WatermarkAdorner.cs" />
     <Compile Include="WatermarkVisibleWhen.cs" />
-    <None Include="Gu.Wpf.Adorners.ruleset" />
+    <None Include="Gu.Wpf.Adorners.ruleset">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="paket.references" />
     <None Include="paket.template" />
     <AppDesigner Include="Properties\" />

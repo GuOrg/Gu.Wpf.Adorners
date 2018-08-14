@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
@@ -99,11 +99,9 @@
             }
         }
 
-        /// <summary>
-        /// Called when <see cref="DropTarget"/> changes value.
-        /// </summary>
-        /// <param name="oldValue">The old drop target.</param>
-        /// <param name="newValue">The new drop target.</param>
+        /// <summary>This method is invoked when the <see cref="DropTargetProperty"/> changes.</summary>
+        /// <param name="oldValue">The old value of <see cref="DropTargetProperty"/>.</param>
+        /// <param name="newValue">The new value of <see cref="DropTargetProperty"/>.</param>
         protected virtual void OnDropTargetChanged(UIElement oldValue, UIElement newValue)
         {
             this.UpdatePosition();
