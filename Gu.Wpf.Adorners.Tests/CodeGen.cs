@@ -1,15 +1,15 @@
-﻿namespace Gu.Wpf.Adorners.Tests
+namespace Gu.Wpf.Adorners.Tests
 {
     using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Documents;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [Explicit("Code gen.")]
     public class CodeGen
     {
-        [TestMethod]
+        [Test]
         public void DumpTextElementProps()
         {
             var dependencyProperties = typeof(TextElement).GetFields()
