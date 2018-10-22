@@ -47,11 +47,11 @@ namespace Gu.Wpf.Adorners
             typeof(Overlay),
             new FrameworkPropertyMetadata(
                 default(DataTemplateSelector),
-                 FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.Inherits,
                 OnContentTemplateSelectorChanged));
 
         /// <summary>
-        /// Gets or sets the <see cref="Style"/> for rendering <see cref="ContentProperty"/>
+        /// Gets or sets the <see cref="Style"/> for rendering <see cref="ContentProperty"/>.
         /// </summary>
         public static readonly DependencyProperty ContentPresenterStyleProperty = DependencyProperty.RegisterAttached(
             "ContentPresenterStyle",
@@ -82,7 +82,7 @@ namespace Gu.Wpf.Adorners
                 OnIsShowingChanged));
 
         /// <summary>
-        /// Gets or sets if the adorner is currently visible
+        /// Gets or sets if the adorner is currently visible.
         /// </summary>
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 

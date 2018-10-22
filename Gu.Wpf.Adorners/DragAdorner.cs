@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -28,7 +28,7 @@
         {
             var adorner = new ContentDragAdorner(adornedElement)
             {
-                Content = content
+                Content = content,
             };
 
             if (contentTemplate != null)
@@ -46,7 +46,7 @@
         }
 
         /// <summary>
-        /// Create a <see cref="ContentDragAdorner"/> that renders a <see cref="ContentPresenter"/> with Content, ContentTemplate and ContentTemplateSelector from <paramref name="adornedElement"/>
+        /// Create a <see cref="ContentDragAdorner"/> that renders a <see cref="ContentPresenter"/> with Content, ContentTemplate and ContentTemplateSelector from <paramref name="adornedElement"/>.
         /// </summary>
         /// <param name="adornedElement">The drag source.</param>
         /// <returns>

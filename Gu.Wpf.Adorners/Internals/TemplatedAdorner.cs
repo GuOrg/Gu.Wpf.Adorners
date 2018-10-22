@@ -20,7 +20,7 @@ namespace Gu.Wpf.Adorners
         static TemplatedAdorner()
         {
             var fullName = "MS.Internal.Controls.TemplatedAdorner, " + typeof(AdornedElementPlaceholder).Assembly.FullName;
-            TemplatedAdornerType = Type.GetType(fullName, throwOnError: true) ?? throw new InvalidOperationException("Could not find type: MS.Internal.Controls.TemplatedAdorner");
+            TemplatedAdornerType = Type.GetType(fullName, throwOnError: true);
             Constructor = TemplatedAdornerType.GetConstructor(new[] { typeof(UIElement), typeof(ControlTemplate) }) ?? throw new InvalidOperationException("Could not find constructor for TemplatedAdorner");
             ClearChildMethod = TemplatedAdornerType.GetMethod("ClearChild") ?? throw new InvalidOperationException("Could not find method ClearChild");
             ReferenceElementProperty = TemplatedAdornerType.GetProperty("ReferenceElement") ?? throw new InvalidOperationException("Could not find property ReferenceElement");

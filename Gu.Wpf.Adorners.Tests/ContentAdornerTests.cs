@@ -9,8 +9,8 @@ namespace Gu.Wpf.Adorners.Tests
     [Apartment(ApartmentState.STA)]
     public class ContentAdornerTests
     {
-        private static readonly MethodInfo MeasureOverrideMethod = typeof(ContentAdorner).GetMethod("MeasureOverride", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static readonly MethodInfo ArrangeOverrideMethod = typeof(ContentAdorner).GetMethod("ArrangeOverride", BindingFlags.Instance | BindingFlags.NonPublic);
+        private static readonly MethodInfo MeasureOverrideMethod = typeof(ContentAdorner).GetMethod("MeasureOverride", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly, null, new[] { typeof(Size) }, null);
+        private static readonly MethodInfo ArrangeOverrideMethod = typeof(ContentAdorner).GetMethod("ArrangeOverride", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly, null, new[] { typeof(Size) }, null);
 
         [Test]
         public void MeasureOverrideWhenChildIsNull()

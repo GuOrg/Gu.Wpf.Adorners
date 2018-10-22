@@ -1,70 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Images\Bound visibility_not_visible.png" />
-    <None Remove="Images\Bound visibility_visible.png" />
-    <None Remove="Images\ComboBoxesWithInheritedTextStyle.png" />
-    <None Remove="Images\ComboBoxWithDefaultWatermark_focused.png" />
-    <None Remove="Images\ComboBoxWithDefaultWatermark_not_empty.png" />
-    <None Remove="Images\ComboBoxWithDefaultWatermark_not_focused.png" />
-    <None Remove="Images\ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png" />
-    <None Remove="Images\ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png" />
-    <None Remove="Images\ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png" />
-    <None Remove="Images\ComboBoxWithWatermarkVisibleWhenEmpty_focused.png" />
-    <None Remove="Images\ComboBoxWithWatermarkVisibleWhenEmpty_not_empty.png" />
-    <None Remove="Images\ComboBoxWithWatermarkVisibleWhenEmpty_not_focused.png" />
-    <None Remove="Images\ComboBoxWithWatermarkWithBoundText_AAA.png" />
-    <None Remove="Images\ComboBoxWithWatermarkWithBoundText_abc.png" />
-    <None Remove="Images\ComboBoxWithWatermarkWithExplicitTextStyle.png" />
-    <None Remove="Images\ComboBoxWithWatermarkWithInheritedFontSize.png" />
-    <None Remove="Images\Default visibility.png" />
-    <None Remove="Images\Default visibility_width_100.png" />
-    <None Remove="Images\Draws outside.png" />
-    <None Remove="Images\No overlay.png" />
-    <None Remove="Images\PasswordBoxesWithInheritedTextStyle.png" />
-    <None Remove="Images\PasswordBoxWithDefaultWatermark_focused.png" />
-    <None Remove="Images\PasswordBoxWithDefaultWatermark_not_empty.png" />
-    <None Remove="Images\PasswordBoxWithDefaultWatermark_not_focused.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkVisibleWhenEmpty_focused.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkVisibleWhenEmpty_not_empty.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkVisibleWhenEmpty_not_focused.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkWithBoundText_AAA.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkWithBoundText_abc.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkWithExplicitTextStyle.png" />
-    <None Remove="Images\PasswordBoxWithWatermarkWithInheritedFontSize.png" />
-    <None Remove="Images\red border bound visibility_not_visible.png" />
-    <None Remove="Images\red border bound visibility_visible.png" />
-    <None Remove="Images\red border default visibility.png" />
-    <None Remove="Images\red border default visibility_width_100.png" />
-    <None Remove="Images\Tab1.png" />
-    <None Remove="Images\Tab2.png" />
-    <None Remove="Images\TextBoxesWithInheritedTextStyle.png" />
-    <None Remove="Images\TextBoxWithDefaultWaterMark_focused.png" />
-    <None Remove="Images\TextBoxWithDefaultWaterMark_not_empty.png" />
-    <None Remove="Images\TextBoxWithDefaultWaterMark_not_focused.png" />
-    <None Remove="Images\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_focused.png" />
-    <None Remove="Images\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png" />
-    <None Remove="Images\TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png" />
-    <None Remove="Images\TextBoxWithWatermarkVisibleWhenEmpty_focused.png" />
-    <None Remove="Images\TextBoxWithWatermarkVisibleWhenEmpty_not_empty.png" />
-    <None Remove="Images\TextBoxWithWatermarkVisibleWhenEmpty_not_focused.png" />
-    <None Remove="Images\TextBoxWithWaterMarkWithBoundText_AAA.png" />
-    <None Remove="Images\TextBoxWithWaterMarkWithBoundText_abc.png" />
-    <None Remove="Images\TextBoxWithWatermarkWithExplicitTextStyle.png" />
-    <None Remove="Images\TextBoxWithWatermarkWithInheritedFontSize.png" />
-    <None Remove="Images\With content template.png" />
-    <None Remove="Images\WithInheritedContentTemplate.png" />
-  </ItemGroup>
+
   <ItemGroup>
     <Content Include="Images\Bound visibility_not_visible.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -235,8 +177,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
   <ItemGroup>
     <Reference Include="PresentationCore" />
   </ItemGroup>
+
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

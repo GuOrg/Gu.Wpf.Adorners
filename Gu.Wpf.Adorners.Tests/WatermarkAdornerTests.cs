@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners.Tests
+namespace Gu.Wpf.Adorners.Tests
 {
     using System.Reflection;
     using System.Threading;
@@ -9,8 +9,8 @@
     [Apartment(ApartmentState.STA)]
     public class WatermarkAdornerTests
     {
-        private static readonly MethodInfo MeasureOverrideMethod = typeof(WatermarkAdorner).GetMethod("MeasureOverride", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static readonly MethodInfo ArrangeOverrideMethod = typeof(WatermarkAdorner).GetMethod("ArrangeOverride", BindingFlags.Instance | BindingFlags.NonPublic);
+        private static readonly MethodInfo MeasureOverrideMethod = typeof(WatermarkAdorner).GetMethod("MeasureOverride", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly, null, new[] { typeof(Size) }, null);
+        private static readonly MethodInfo ArrangeOverrideMethod = typeof(WatermarkAdorner).GetMethod("ArrangeOverride", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly, null, new[] { typeof(Size) }, null);
 
         [Test]
         public void MeasureOverrideWhenChildIsNull()

@@ -4,7 +4,7 @@ namespace Gu.Wpf.Adorners.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public partial class WatermarkWindowTests
+    public static partial class WatermarkWindowTests
     {
         public class PasswordBox
         {

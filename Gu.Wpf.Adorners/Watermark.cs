@@ -25,7 +25,7 @@ namespace Gu.Wpf.Adorners
                 OnTextChanged));
 
         /// <summary>
-        /// Controls visibility of the adorner, default is WatermarkVisibleWhen.EmptyAndNotKeyboardFocused
+        /// Controls visibility of the adorner, default is WatermarkVisibleWhen.EmptyAndNotKeyboardFocused.
         /// </summary>
         public static readonly DependencyProperty VisibleWhenProperty = DependencyProperty.RegisterAttached(
             "VisibleWhen",
@@ -37,7 +37,7 @@ namespace Gu.Wpf.Adorners
                 (d, e) => UpdateIsShowing(d as Control)));
 
         /// <summary>
-        /// The style for the <see cref="TextBlock"/> rendering <see cref="TextProperty"/>
+        /// The style for the <see cref="TextBlock"/> rendering <see cref="TextProperty"/>.
         /// </summary>
         public static readonly DependencyProperty TextStyleProperty = DependencyProperty.RegisterAttached(
             "TextStyle",
@@ -58,7 +58,7 @@ namespace Gu.Wpf.Adorners
                 OnIsShowingChanged));
 
         /// <summary>
-        /// Gets or sets if the adorner is currently visible
+        /// Gets or sets if the adorner is currently visible.
         /// </summary>
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 
@@ -286,7 +286,7 @@ namespace Gu.Wpf.Adorners
                         adornedElement.SetIsShowing(string.IsNullOrEmpty(watermarked.Text) && !adornedElement.IsKeyboardFocused);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException(nameof(adornedElement), "Should never get here, bug in Gu.Wpf.Adorners.");
                 }
             }
         }

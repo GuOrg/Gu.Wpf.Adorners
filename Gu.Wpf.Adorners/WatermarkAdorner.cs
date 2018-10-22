@@ -25,7 +25,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Initializes a new instance of the <see cref="WatermarkAdorner"/> class.
         /// </summary>
-        /// <param name="adornedElement">The adorned element</param>
+        /// <param name="adornedElement">The adorned element.</param>
         public WatermarkAdorner(Control adornedElement)
             : base(adornedElement)
         {
@@ -47,13 +47,13 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Gets the adorned <see cref="TextBoxBase"/>
+        /// Gets the adorned <see cref="TextBoxBase"/>.
         /// </summary>
         [Obsolete("This property will be removed, use AdornedElement.")]
         public TextBoxBase AdornedTextBox => this.AdornedElement as TextBoxBase;
 
         /// <summary>
-        /// Gets or sets the style for the <see cref="TextBlock"/> rendering <see cref="Watermark.TextProperty"/> for <see cref="System.Windows.Documents.Adorner.AdornedElement"/>
+        /// Gets or sets the style for the <see cref="TextBlock"/> rendering <see cref="Watermark.TextProperty"/> for <see cref="System.Windows.Documents.Adorner.AdornedElement"/>.
         /// </summary>
         public Style TextStyle
         {

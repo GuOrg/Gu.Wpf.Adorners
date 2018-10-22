@@ -5,7 +5,7 @@ namespace Gu.Wpf.Adorners
     using System.Windows.Markup.Primitives;
 
     /// <summary>
-    /// https://social.msdn.microsoft.com/Forums/vstudio/en-US/580234cb-e870-4af1-9a91-3e3ba118c89c/getting-list-of-all-dependencyattached-properties-of-an-object?forum=wpf
+    /// https://social.msdn.microsoft.com/Forums/vstudio/en-US/580234cb-e870-4af1-9a91-3e3ba118c89c/getting-list-of-all-dependencyattached-properties-of-an-object?forum=wpf.
     /// </summary>
     internal static class DependencyObjectHelper
     {

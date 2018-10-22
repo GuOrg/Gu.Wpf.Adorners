@@ -42,7 +42,7 @@ namespace Gu.Wpf.Adorners
                 OnIsShowingChanged));
 
         /// <summary>
-        /// Gets or sets if the adorner is currently visible
+        /// Gets or sets if the adorner is currently visible.
         /// </summary>
         public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
 

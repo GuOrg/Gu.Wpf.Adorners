@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
@@ -7,17 +7,15 @@
     {
         internal static bool IsLoaded(this DependencyObject element)
         {
-            if (element is FrameworkElement fe)
+            switch (element)
             {
-                return fe.IsLoaded;
+                case FrameworkElement fe:
+                    return fe.IsLoaded;
+                case FrameworkContentElement fce:
+                    return fce.IsLoaded;
+                default:
+                    throw new ArgumentException($"Did not find an IsLoaded property on the element: {element}.", nameof(element));
             }
-
-            if (element is FrameworkContentElement fce)
-            {
-                return fce.IsLoaded;
-            }
-
-            throw new ArgumentException(nameof(element));
         }
     }
 }

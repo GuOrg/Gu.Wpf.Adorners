@@ -19,7 +19,7 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Gets throws <see cref="InvalidOperationException"/>
+        /// Gets throws <see cref="InvalidOperationException"/>.
         /// </summary>
         object IEnumerator.Current => throw new InvalidOperationException();
 
@@ -33,7 +33,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Returns false.
         /// </summary>
-        /// <returns>false</returns>
+        /// <returns>false.</returns>
         public bool MoveNext()
         {
             return false;

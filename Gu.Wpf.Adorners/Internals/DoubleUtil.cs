@@ -5,7 +5,7 @@
     using System.Windows;
 
     /// <summary>
-    /// ~Inspired~ by: http://referencesource.microsoft.com/#WindowsBase/Shared/MS/Internal/DoubleUtil.cs,ef2a956bcf846761
+    /// ~Inspired~ by: http://referencesource.microsoft.com/#WindowsBase/Shared/MS/Internal/DoubleUtil.cs,ef2a956bcf846761.
     /// </summary>
     internal static class DoubleUtil
     {
@@ -159,11 +159,11 @@
         /// <summary>
         /// Compares two points for fuzzy equality.  This function
         /// helps compensate for the fact that double values can
-        /// acquire error when operated upon
+        /// acquire error when operated upon.
         /// </summary>
-        /// <param name='point1'>The first point to compare</param>
-        /// <param name='point2'>The second point to compare</param>
-        /// <returns>Whether or not the two points are equal</returns>
+        /// <param name='point1'>The first point to compare.</param>
+        /// <param name='point2'>The second point to compare.</param>
+        /// <returns>Whether or not the two points are equal.</returns>
         public static bool AreClose(Point point1, Point point2)
         {
             return AreClose(point1.X, point2.X) &&
@@ -173,11 +173,11 @@
         /// <summary>
         /// Compares two Size instances for fuzzy equality.  This function
         /// helps compensate for the fact that double values can
-        /// acquire error when operated upon
+        /// acquire error when operated upon.
         /// </summary>
-        /// <param name='size1'>The first size to compare</param>
-        /// <param name='size2'>The second size to compare</param>
-        /// <returns>Whether or not the two Size instances are equal</returns>
+        /// <param name='size1'>The first size to compare.</param>
+        /// <param name='size2'>The second size to compare.</param>
+        /// <returns>Whether or not the two Size instances are equal.</returns>
         public static bool AreClose(Size size1, Size size2)
         {
             return AreClose(size1.Width, size2.Width) &&
@@ -187,11 +187,11 @@
         /// <summary>
         /// Compares two Vector instances for fuzzy equality.  This function
         /// helps compensate for the fact that double values can
-        /// acquire error when operated upon
+        /// acquire error when operated upon.
         /// </summary>
-        /// <param name='vector1'>The first Vector to compare</param>
-        /// <param name='vector2'>The second Vector to compare</param>
-        /// <returns>Whether or not the two Vector instances are equal</returns>
+        /// <param name='vector1'>The first Vector to compare.</param>
+        /// <param name='vector2'>The second Vector to compare.</param>
+        /// <returns>Whether or not the two Vector instances are equal.</returns>
         public static bool AreClose(Vector vector1, Vector vector2)
         {
             return AreClose(vector1.X, vector2.X) &&
@@ -201,11 +201,11 @@
         /// <summary>
         /// Compares two rectangles for fuzzy equality.  This function
         /// helps compensate for the fact that double values can
-        /// acquire error when operated upon
+        /// acquire error when operated upon.
         /// </summary>
-        /// <param name='rect1'>The first rectangle to compare</param>
-        /// <param name='rect2'>The second rectangle to compare</param>
-        /// <returns>Whether or not the two rectangles are equal</returns>
+        /// <param name='rect1'>The first rectangle to compare.</param>
+        /// <param name='rect2'>The second rectangle to compare.</param>
+        /// <returns>Whether or not the two rectangles are equal.</returns>
         public static bool AreClose(Rect rect1, Rect rect2)
         {
             // If they're both empty, don't bother with the double logic.
@@ -236,8 +236,8 @@
         /// <summary>
         /// rectHasNaN - this returns true if this rect has X, Y , Height or Width as NaN.
         /// </summary>
-        /// <param name='r'>The rectangle to test</param>
-        /// <returns>returns whether the Rect has NaN</returns>
+        /// <param name='r'>The rectangle to test.</param>
+        /// <returns>returns whether the Rect has NaN.</returns>
         public static bool RectHasNaN(Rect r)
         {
             return double.IsNaN(r.X) ||

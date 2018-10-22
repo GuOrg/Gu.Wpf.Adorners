@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for OverlayView.xaml
+    /// Interaction logic for OverlayView.xaml.
     /// </summary>
     public partial class OverlayView : UserControl
     {

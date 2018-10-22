@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for WatermarkView.xaml
+    /// Interaction logic for WatermarkView.xaml.
     /// </summary>
     public partial class WatermarkView : UserControl
     {

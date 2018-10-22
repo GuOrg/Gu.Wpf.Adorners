@@ -27,7 +27,7 @@ namespace Gu.Wpf.Adorners
                 Path = path,
                 Source = source,
                 Mode = BindingMode.OneWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
             };
             return (BindingExpression)BindingOperations.SetBinding(target, targetProperty, binding);
         }
@@ -79,7 +79,7 @@ namespace Gu.Wpf.Adorners
                     Source = source,
                     Path = sourcePath,
                     Mode = BindingMode.TwoWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 };
 
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
@@ -103,7 +103,7 @@ namespace Gu.Wpf.Adorners
                     Path = sourcePath,
                     Source = source,
                     Mode = BindingMode.OneWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 };
 
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);

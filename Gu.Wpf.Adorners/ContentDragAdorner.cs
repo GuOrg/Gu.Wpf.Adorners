@@ -4,7 +4,7 @@ namespace Gu.Wpf.Adorners
     using System.Windows.Controls;
 
     /// <summary>
-    /// An <see cref="System.Windows.Documents.Adorner"/> that renders content using a <see cref="ContentPresenter"/>
+    /// An <see cref="System.Windows.Documents.Adorner"/> that renders content using a <see cref="ContentPresenter"/>.
     /// </summary>
     public class ContentDragAdorner : DragAdorner<ContentPresenter>
     {
@@ -93,7 +93,7 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="Style"/> for the <see cref="ContentPresenter"/>
+        /// Gets or sets the <see cref="Style"/> for the <see cref="ContentPresenter"/>.
         /// </summary>
         public Style ContentPresenterStyle
         {

@@ -67,6 +67,7 @@ namespace Gu.Wpf.Adorners
         public void Dispose()
         {
             this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -110,9 +111,9 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Called by <see cref="Dispose()"/>
+        /// Called by <see cref="Dispose()"/>.
         /// </summary>
-        /// <param name="disposing">True if called by <see cref="Dispose()"/>, false if called by finalizer</param>
+        /// <param name="disposing">True if called by <see cref="Dispose()"/>, false if called by finalizer.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)

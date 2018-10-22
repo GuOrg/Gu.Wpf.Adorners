@@ -9,7 +9,7 @@
     using System.Windows.Media;
 
     /// <summary>
-    /// Base class for adorners rendering content
+    /// Base class for adorners rendering content.
     /// </summary>
     /// <typeparam name="T">The type of visual to use for rendering content.</typeparam>
     [ContentProperty("Child")]
@@ -28,7 +28,7 @@
 
         /// <summary>
         /// Gets or sets the visual that renders the content.
-        /// marked virtual because AddVisualChild calls the virtual OnVisualChildrenChanged
+        /// marked virtual because AddVisualChild calls the virtual OnVisualChildrenChanged.
         /// </summary>
         [DefaultValue(null)]
         public virtual T Child
@@ -60,7 +60,7 @@
                                               : new SingleChildEnumerator(this.child);
 
         /// <summary>
-        /// Set child to null and remove it as visual and logical child
+        /// Set child to null and remove it as visual and logical child.
         /// </summary>
         public virtual void ClearChild()
         {

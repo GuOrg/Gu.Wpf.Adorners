@@ -4,7 +4,7 @@ namespace Gu.Wpf.Adorners
     using System.Windows.Controls;
 
     /// <summary>
-    /// An <see cref="System.Windows.Documents.Adorner"/>
+    /// An <see cref="System.Windows.Documents.Adorner"/>.
     /// </summary>
     public class ContentAdorner : ContainerAdorner<ContentPresenter>
     {
@@ -104,7 +104,7 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="Style"/> for <see cref="Child"/>
+        /// Gets or sets the <see cref="Style"/> for <see cref="Child"/>.
         /// </summary>
         public Style ContentPresenterStyle
         {
