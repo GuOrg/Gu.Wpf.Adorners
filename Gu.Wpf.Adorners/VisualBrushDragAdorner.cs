@@ -21,12 +21,10 @@ namespace Gu.Wpf.Adorners
         public VisualBrushDragAdorner(UIElement adornedElement)
             : base(adornedElement, new Rectangle())
         {
-            this.Child.Bind(WidthProperty)
-                .OneWayTo(adornedElement, ActualWidthProperty)
-                .IgnoreReturnValue();
-            this.Child.Bind(HeightProperty)
-                .OneWayTo(adornedElement, ActualHeightProperty)
-                .IgnoreReturnValue();
+            _ = this.Child.Bind(WidthProperty)
+                    .OneWayTo(adornedElement, ActualWidthProperty);
+            _ = this.Child.Bind(HeightProperty)
+                    .OneWayTo(adornedElement, ActualHeightProperty);
             this.Child.Fill = new VisualBrush(adornedElement);
         }
     }

@@ -47,18 +47,14 @@ namespace Gu.Wpf.Adorners
         public ContentDragAdorner(UIElement adornedElement)
             : base(adornedElement, new ContentPresenter())
         {
-            this.Child.Bind(ContentPresenter.ContentProperty)
-                .OneWayTo(this, ContentProperty)
-                .IgnoreReturnValue();
-            this.Child.Bind(ContentPresenter.ContentTemplateProperty)
-                .OneWayTo(this, ContentTemplateProperty)
-                .IgnoreReturnValue();
-            this.Child.Bind(ContentPresenter.ContentTemplateSelectorProperty)
-                .OneWayTo(this, ContentTemplateSelectorProperty)
-                .IgnoreReturnValue();
-            this.Child.Bind(StyleProperty)
-                .OneWayTo(this, ContentPresenterStyleProperty)
-                .IgnoreReturnValue();
+            _ = this.Child.Bind(ContentPresenter.ContentProperty)
+                    .OneWayTo(this, ContentProperty);
+            _ = this.Child.Bind(ContentPresenter.ContentTemplateProperty)
+                    .OneWayTo(this, ContentTemplateProperty);
+            _ = this.Child.Bind(ContentPresenter.ContentTemplateSelectorProperty)
+                    .OneWayTo(this, ContentTemplateSelectorProperty);
+            _ = this.Child.Bind(StyleProperty)
+                    .OneWayTo(this, ContentPresenterStyleProperty);
         }
 
         /// <summary>

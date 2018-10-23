@@ -79,7 +79,6 @@
     <Compile Include="Internals\EventManagers\IsVisibleChangedEventManager.cs" />
     <Compile Include="Internals\EventManagers\LoadedEventManager.cs" />
     <Compile Include="Internals\EventManagers\SizeChangedEventManager.cs" />
-    <Compile Include="Internals\Ignore.cs" />
     <Compile Include="Internals\Loaded.cs" />
     <Compile Include="Internals\SingleChildEnumerator.cs" />
     <Compile Include="Internals\EventManagers\UnloadedEventManager.cs" />

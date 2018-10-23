@@ -10,14 +10,14 @@ namespace Gu.Wpf.Adorners
         internal static Point GetMousePosition()
         {
             var p = default(Win32Point);
-            GetCursorPos(ref p).IgnoreReturnValue();
+            _ = GetCursorPos(ref p);
             return new Point(p.X, p.Y);
         }
 
         internal static Point GetMousePosition(Visual relativeTo)
         {
             var p = default(Win32Point);
-            GetCursorPos(ref p).IgnoreReturnValue();
+            _ = GetCursorPos(ref p);
             return relativeTo.PointFromScreen(new Point(p.X, p.Y));
         }
 

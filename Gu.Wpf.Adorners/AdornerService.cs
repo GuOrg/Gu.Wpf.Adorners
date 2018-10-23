@@ -57,11 +57,10 @@ namespace Gu.Wpf.Adorners
             else if (retry)
             {
                 // try again later, perhaps giving layout a chance to create the adorner layer
-                adorner.Dispatcher.BeginInvoke(
+                _ = adorner.Dispatcher.BeginInvoke(
                            DispatcherPriority.Loaded,
                            new DispatcherOperationCallback(ShowAdornerOperation),
-                           new object[] { adorner })
-                       .IgnoreReturnValue();
+                           new object[] { adorner });
             }
         }
 
