@@ -15,7 +15,6 @@ namespace Gu.Wpf.Adorners
         private static readonly Type TemplatedAdornerType = typeof(AdornedElementPlaceholder).Assembly.GetType("MS.Internal.Controls.TemplatedAdorner", throwOnError: true);
         private static readonly ConstructorInfo Constructor = TemplatedAdornerType.GetConstructor(new[] { typeof(UIElement), typeof(ControlTemplate) }) ?? throw new InvalidOperationException("Could not find constructor for TemplatedAdorner");
         private static readonly MethodInfo ClearChildMethod = TemplatedAdornerType.GetMethod("ClearChild") ?? throw new InvalidOperationException("Could not find method ClearChild");
-        private static readonly PropertyInfo ReferenceElementProperty = TemplatedAdornerType.GetProperty("ReferenceElement") ?? throw new InvalidOperationException("Could not find property ReferenceElement");
 
         internal static Adorner Create(UIElement element, ControlTemplate template)
         {
@@ -29,18 +28,6 @@ namespace Gu.Wpf.Adorners
         {
             AssertTemplatedAdornerType(adorner);
             _ = ClearChildMethod.Invoke(adorner, null);
-        }
-
-        internal static FrameworkElement GetTemplatedAdornerReferenceElement(this Adorner adorner)
-        {
-            AssertTemplatedAdornerType(adorner);
-            return (FrameworkElement)ReferenceElementProperty.GetValue(adorner);
-        }
-
-        internal static void SetTemplatedAdornerReferenceElement(this Adorner adorner, FrameworkElement referenceElement)
-        {
-            AssertTemplatedAdornerType(adorner);
-            ReferenceElementProperty.SetValue(adorner, referenceElement);
         }
 
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
