@@ -16,13 +16,31 @@ namespace Gu.Wpf.Adorners.UiTests
         }
 
         [Test]
-        public void ClickAllTabs()
+        public void Resize()
         {
-            // Just a smoke test so we don't crash.
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 Wait.For(TimeSpan.FromMilliseconds(200));
                 var window = app.MainWindow;
+                while (window.ActualHeight > 100)
+                {
+                    window.Resize((int)window.ActualWidth, (int)(window.ActualHeight - 10));
+                }
+
+                while (window.ActualHeight < 600)
+                {
+                    window.Resize((int)window.ActualWidth, (int)(window.ActualHeight + 10));
+                }
+
+                while (window.ActualHeight > 100)
+                {
+                    window.Resize((int)window.ActualWidth, (int)(window.ActualHeight - 10));
+                }
+
+                while (window.ActualHeight < 600)
+                {
+                    window.Resize((int)window.ActualWidth, (int)(window.ActualHeight + 10));
+                }
             }
         }
     }
