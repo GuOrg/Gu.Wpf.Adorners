@@ -9,6 +9,12 @@ namespace Gu.Wpf.Adorners
     /// </summary>
     public static class AdornerService
     {
+        private static readonly DependencyProperty AdornerLayerProperty = DependencyProperty.RegisterAttached(
+            "AdornerLayer",
+            typeof(AdornerLayer),
+            typeof(AdornerService),
+            new PropertyMetadata(default(AdornerLayer)));
+
         /// <summary>
         /// Adds <paramref name="adorner"/> to the <see cref="AdornerLayer"/>
         /// If no adorner layer is present a retry is performed with  DispatcherPriority.Loaded.
@@ -25,7 +31,8 @@ namespace Gu.Wpf.Adorners
         /// <param name="adorner">The <see cref="Adorner"/>.</param>
         public static void Remove(Adorner adorner)
         {
-            var adornerLayer = GetAdornerLayer(adorner.AdornedElement);
+            var adornerLayer = (AdornerLayer)adorner.GetValue(AdornerLayerProperty) ??
+                               GetAdornerLayer(adorner.AdornedElement);
             adornerLayer?.Remove(adorner);
         }
 
@@ -53,6 +60,7 @@ namespace Gu.Wpf.Adorners
             {
                 adornerLayer.Remove(adorner);
                 adornerLayer.Add(adorner);
+                adorner.SetCurrentValue(AdornerLayerProperty, adornerLayer);
             }
             else if (retry)
             {
