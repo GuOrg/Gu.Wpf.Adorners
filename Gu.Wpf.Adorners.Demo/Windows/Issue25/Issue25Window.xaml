@@ -12,15 +12,13 @@
     <Window.DataContext>
         <local:Issue25ViewModel />
     </Window.DataContext>
-    <DataGrid ItemsSource="{Binding People}">
+    <DataGrid ItemsSource="{Binding Items}">
         <DataGrid.RowStyle>
             <Style TargetType="DataGridRow">
                 <Setter Property="adorners:Info.Template">
                     <Setter.Value>
                         <ControlTemplate>
-                            <Border HorizontalAlignment="Stretch"
-                                    BorderBrush="HotPink"
-                                    BorderThickness="3">
+                            <Border BorderBrush="HotPink" BorderThickness="3">
                                 <AdornedElementPlaceholder />
                             </Border>
                         </ControlTemplate>

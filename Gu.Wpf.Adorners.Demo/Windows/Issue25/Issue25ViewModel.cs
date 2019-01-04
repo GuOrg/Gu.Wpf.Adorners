@@ -5,6 +5,6 @@ namespace Gu.Wpf.Adorners.Demo.Windows.Issue25
 
     public class Issue25ViewModel
     {
-        public ObservableCollection<Issue25Item> People { get; } = new ObservableCollection<Issue25Item>(Enumerable.Range(0, 100).Select(x => new Issue25Item(x)));
+        public ObservableCollection<Issue25Item> Items { get; } = new ObservableCollection<Issue25Item>(Enumerable.Range(0, 100).Select(x => new Issue25Item(x)));
     }
 }
