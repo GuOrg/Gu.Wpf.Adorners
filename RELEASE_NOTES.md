@@ -1,3 +1,6 @@
+#### 1.5.1
+* BUGFIX: Handle virtualization.
+
 #### 1.5.0
 * FEATURE: Support overlay for window.
 

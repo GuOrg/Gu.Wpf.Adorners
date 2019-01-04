@@ -4,7 +4,7 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Adorners
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  FEATURE: Support overlay for window.
+  BUGFIX: Handle virtualization.
 
 excludedgroups
   Analyzers
