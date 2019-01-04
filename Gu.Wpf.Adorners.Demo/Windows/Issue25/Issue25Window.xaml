@@ -1,0 +1,51 @@
+<Window x:Class="Gu.Wpf.Adorners.Demo.Windows.Issue25.Issue25Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:adorners="http://gu.se/Adorners"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Gu.Wpf.Adorners.Demo.Windows.Issue25"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="Issue25Window"
+        Width="800"
+        Height="450"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <local:Issue25ViewModel />
+    </Window.DataContext>
+    <DataGrid ItemsSource="{Binding People}">
+        <DataGrid.RowStyle>
+            <Style TargetType="DataGridRow">
+                <!--<Setter Property="adorners:Info.IsVisible">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource Equal2BoolConverter}">
+                            <Binding Mode="OneWay"
+                                     Path="DataContext"
+                                     RelativeSource="{RelativeSource Self}" />
+                            <Binding ElementName="PageRoot"
+                                     FallbackValue="{x:Null}"
+                                     Mode="OneWay"
+                                     Path="DataContext.CurrentLowestPriceSellOrder" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>-->
+                <Setter Property="adorners:Info.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Border HorizontalAlignment="Stretch"
+                                        BorderBrush="HotPink"
+                                        BorderThickness="0,0,0,1">
+                                    <AdornedElementPlaceholder />
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </DataGrid.RowStyle>
+    </DataGrid>
+</Window>

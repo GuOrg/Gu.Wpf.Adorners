@@ -78,6 +78,15 @@
     <Compile Include="OverlayView.xaml.cs">
       <DependentUpon>OverlayView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Issue25\Issue25Item.cs">
+      <DependentUpon>Issue25Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Issue25\Issue25ViewModel.cs">
+      <DependentUpon>Issue25Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Issue25\Issue25Window.xaml.cs">
+      <DependentUpon>Issue25Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\NotShowingWhenInFrames\FramesWindow.xaml.cs">
       <DependentUpon>FramesWindow.xaml</DependentUpon>
     </Compile>
@@ -129,6 +138,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OverlayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Issue25\Issue25Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
