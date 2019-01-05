@@ -38,7 +38,7 @@ With Gu.Wpf.Adorners you can Overlay / Watermark multiple controls.
 
   In a WPF application, install from NuGet.
 
-    ```
+    ```powershell
     PM> install-package Gu.Wpf.Adorners
     ```
 
@@ -81,13 +81,13 @@ The below examples apply to `TextBox`, `PasswordBox` and `ComboBox`.
 ### Binding
 Instead of setting a static text as watermark, you can bind its value:
 ```xaml
-// Bind to the Text property of a different Element
+<!--Bind to the Text property of a different Element-->
 <TextBox adorners:Watermark.Text="{Binding Text, ElementName=ElementNameHere}" />
 
-// Bind to a property in your ViewModel/codebehind (make sure to set Datacontext)
+<!--Bind to a property in your ViewModel/codebehind (make sure to set Datacontext)-->
 <TextBox adorners:Watermark.Text="{Binding Path=SomeProperty}" />
 
-// Bind to a static resource using the Gu.Wpf.Localization localization plugin
+<!--Bind to a static resource using the Gu.Wpf.Localization localization plugin-->
 <TextBox adorners:Watermark.Text="{l:Static p:Resources.Label_Password}" />
 ```
 *For more info about the localization plugin, have a look at [Gu.Wpf.Localization](https://github.com/GuOrg/Gu.Localization)*
@@ -133,13 +133,13 @@ Beside inheriting style, you can explicitly set it.
 </UserControl.Resources>
 ...
 <Grid>
-    // Style is set explicitly. The Watermark will render with a green Foreground.
+    <!--Style is set explicitly. The Watermark will render with a green Foreground.-->
     <TextBox adorners:Watermark.Text="Explicit style"
              adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
 </Grid>
 ```
 
-By setting the `adorners:Watermark` to a Content Contol/Panel (Grid, GroupBox, StackPanel, etc.), all TextBox, PasswordBox and ComboBox children inherit the value.
+By setting the `adorners:Watermark` to a ContentControl/Panel (Grid, GroupBox, StackPanel, etc.), all TextBox, PasswordBox and ComboBox children inherit the value.
 ```xaml
 <UserControl.Resources>
     <Style x:Key="AdornerTextStyle" TargetType="{x:Type TextBlock}">
@@ -153,8 +153,8 @@ By setting the `adorners:Watermark` to a Content Contol/Panel (Grid, GroupBox, S
 </UserControl.Resources>
 ...
 <Grid>
-    // By setting the Watermark.TextStyle on the ContentContol/Panel, all children inherit the TextStyle.
-    // Same goes for Text and VisibleWhen (see below)
+    <!--By setting the Watermark.TextStyle on the ContentContol/Panel, all children inherit the TextStyle.-->
+    <!--Same goes for Text and VisibleWhen (see below)-->
     <GroupBox adorners:Watermark.Text="Inherited style"
               adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
               Header="Inherited style">
@@ -164,7 +164,7 @@ By setting the `adorners:Watermark` to a Content Contol/Panel (Grid, GroupBox, S
         </StackPanel>
     </GroupBox>
 
-    // Both TextBox will render with the same Watermark Text: "Inherited text"
+    <!--Both TextBox will render with the same Watermark Text: "Inherited text"-->
     <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
         <StackPanel>
             <TextBox />
@@ -172,7 +172,7 @@ By setting the `adorners:Watermark` to a Content Contol/Panel (Grid, GroupBox, S
         </StackPanel>
     </GroupBox>
 
-    // The top 3 elements inherit the same Watermark Text, the last one will use its own.
+    <!--The top 3 elements inherit the same Watermark Text, the last one will use its own.-->
     <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
         <StackPanel>
             <TextBox />
@@ -203,11 +203,11 @@ TextStyle accepts a style for `TextBlock` the text is drawn where the textbox te
 The behaviour of the watermark can be set with the `VisibleWhen` property.
 
 ```xaml
-// The watermark shows as long as the control has no value.
+<!--The watermark shows as long as the control has no value.-->
 <TextBox adorners:Watermark.Text="visible when empty"
          adorners:Watermark.VisibleWhen="Empty" />
 
-// The watermark shows as long as the control has no value and is not focused.
+<!--The watermark shows as long as the control has no value and is not focused.-->
 <TextBox adorners:Watermark.Text="visible when not keyboard focused (default)"
          adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
 ```
