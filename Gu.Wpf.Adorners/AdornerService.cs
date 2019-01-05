@@ -34,6 +34,7 @@ namespace Gu.Wpf.Adorners
             var adornerLayer = (AdornerLayer)adorner.GetValue(AdornerLayerProperty) ??
                                GetAdornerLayer(adorner.AdornedElement);
             adornerLayer?.Remove(adorner);
+            adorner.ClearValue(AdornerLayerProperty);
         }
 
         /// <summary>
