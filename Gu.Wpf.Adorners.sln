@@ -7,11 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners", "Gu.Wpf.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners.Demo", "Gu.Wpf.Adorners.Demo\Gu.Wpf.Adorners.Demo.csproj", "{F6E9A3FD-DE68-4A76-AA71-362DD333635B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners.Tests", "Gu.Wpf.Adorners.Tests\Gu.Wpf.Adorners.Tests.csproj", "{C7423414-C8C1-4484-A7F6-CAFFC92F0150}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Adorners.Tests", "Gu.Wpf.Adorners.Tests\Gu.Wpf.Adorners.Tests.csproj", "{C7423414-C8C1-4484-A7F6-CAFFC92F0150}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{4A04C09C-1598-448C-BA67-80E052F72CB9}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
+		azure-devops.yml = azure-devops.yml
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
 		.paket\Paket.Restore.targets = .paket\Paket.Restore.targets
@@ -19,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{4A04C0
 		.paket\Readme.paket.md = .paket\Readme.paket.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Adorners.UiTests", "Gu.Wpf.Adorners.UiTests\Gu.Wpf.Adorners.UiTests.csproj", "{EBE66C3B-EE19-48E7-90F4-9FCF50689674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Adorners.UiTests", "Gu.Wpf.Adorners.UiTests\Gu.Wpf.Adorners.UiTests.csproj", "{EBE66C3B-EE19-48E7-90F4-9FCF50689674}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{F402CCC1-AF91-4C70-B0FE-94C907035A23}"
 	ProjectSection(SolutionItems) = preProject
