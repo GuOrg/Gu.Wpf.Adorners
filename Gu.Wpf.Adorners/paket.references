@@ -4,7 +4,7 @@ group Analyzers
   IDisposableAnalyzers
   Microsoft.CodeAnalysis.FxCopAnalyzers
   PropertyChangedAnalyzers
-  PublicApiAnalyzer
+  Microsoft.CodeAnalysis.PublicApiAnalyzers
   ReflectionAnalyzers
   StyleCop.Analyzers
   WpfAnalyzers
