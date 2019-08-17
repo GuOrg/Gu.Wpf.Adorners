@@ -3,7 +3,6 @@ namespace Gu.Wpf.Adorners.Demo.Windows.Issue25
     using System.Globalization;
 
     public class Issue25Item
-
     {
         public Issue25Item(int value)
         {

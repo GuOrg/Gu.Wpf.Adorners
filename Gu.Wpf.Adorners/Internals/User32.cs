@@ -28,8 +28,8 @@ namespace Gu.Wpf.Adorners
         [SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Local")]
         private struct Win32Point
         {
-            public int X;
-            public int Y;
+            internal int X;
+            internal int Y;
         }
     }
 }

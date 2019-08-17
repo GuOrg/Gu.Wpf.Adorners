@@ -295,7 +295,7 @@ namespace Gu.Wpf.Adorners
         {
             private readonly TextBox textBox;
 
-            public TextBoxListener(TextBox textBox)
+            internal TextBoxListener(TextBox textBox)
             {
                 this.textBox = textBox;
                 IsVisibleChangedEventManager.UpdateHandler(textBox, OnAdornedElementChanged);
@@ -314,7 +314,7 @@ namespace Gu.Wpf.Adorners
         {
             private readonly PasswordBox passwordBox;
 
-            public PasswordBoxListener(PasswordBox passwordBox)
+            internal PasswordBoxListener(PasswordBox passwordBox)
             {
                 this.passwordBox = passwordBox;
                 IsVisibleChangedEventManager.UpdateHandler(passwordBox, OnAdornedElementChanged);
@@ -333,7 +333,7 @@ namespace Gu.Wpf.Adorners
         {
             private readonly ComboBox comboBox;
 
-            public ComboBoxListener(ComboBox comboBox)
+            internal ComboBoxListener(ComboBox comboBox)
             {
                 this.comboBox = comboBox;
                 IsVisibleChangedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);

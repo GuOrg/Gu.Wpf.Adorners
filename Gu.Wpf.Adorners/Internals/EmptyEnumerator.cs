@@ -11,7 +11,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Read-Only instance of an Empty Enumerator.
         /// </summary>
-        public static readonly IEnumerator Instance = new EmptyEnumerator();
+        internal static readonly IEnumerator Instance = new EmptyEnumerator();
 
         // singleton class, private ctor
         private EmptyEnumerator()

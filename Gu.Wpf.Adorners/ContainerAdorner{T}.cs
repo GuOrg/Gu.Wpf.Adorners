@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Collections;
@@ -12,7 +12,7 @@
     /// Base class for adorners rendering content.
     /// </summary>
     /// <typeparam name="T">The type of visual to use for rendering content.</typeparam>
-    [ContentProperty("Child")]
+    [ContentProperty(nameof(Child))]
     public abstract class ContainerAdorner<T> : Adorner
         where T : Visual
     {

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -29,7 +29,7 @@
         /// <param name="value1"> The first double to compare. </param>
         /// <param name="value2"> The second double to compare. </param>
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
-        public static bool AreClose(double value1, double value2)
+        internal static bool AreClose(double value1, double value2)
         {
             // in case they are Infinities (then epsilon check does not work)
             if (value1 == value2)
@@ -59,7 +59,7 @@
         /// </returns>
         /// <param name="value1"> The first double to compare. </param>
         /// <param name="value2"> The second double to compare. </param>
-        public static bool LessThan(double value1, double value2)
+        internal static bool LessThan(double value1, double value2)
         {
             return (value1 < value2) && !AreClose(value1, value2);
         }
@@ -80,7 +80,7 @@
         /// </returns>
         /// <param name="value1"> The first double to compare. </param>
         /// <param name="value2"> The second double to compare. </param>
-        public static bool GreaterThan(double value1, double value2)
+        internal static bool GreaterThan(double value1, double value2)
         {
             return (value1 > value2) && !AreClose(value1, value2);
         }
@@ -101,7 +101,7 @@
         /// </returns>
         /// <param name="value1"> The first double to compare. </param>
         /// <param name="value2"> The second double to compare. </param>
-        public static bool LessThanOrClose(double value1, double value2)
+        internal static bool LessThanOrClose(double value1, double value2)
         {
             return (value1 < value2) || AreClose(value1, value2);
         }
@@ -122,7 +122,7 @@
         /// </returns>
         /// <param name="value1"> The first double to compare. </param>
         /// <param name="value2"> The second double to compare. </param>
-        public static bool GreaterThanOrClose(double value1, double value2)
+        internal static bool GreaterThanOrClose(double value1, double value2)
         {
             return (value1 > value2) || AreClose(value1, value2);
         }
@@ -135,7 +135,7 @@
         /// bool - the result of the AreClose comparison.
         /// </returns>
         /// <param name="value"> The double to compare to 1. </param>
-        public static bool IsOne(double value)
+        internal static bool IsOne(double value)
         {
             return Math.Abs(value - 1.0) < 10.0 * DblEpsilon;
         }
@@ -148,7 +148,7 @@
         /// bool - the result of the AreClose comparison.
         /// </returns>
         /// <param name="value"> The double to compare to 0. </param>
-        public static bool IsZero(double value)
+        internal static bool IsZero(double value)
         {
             return Math.Abs(value) < 10.0 * DblEpsilon;
         }
@@ -164,7 +164,7 @@
         /// <param name='point1'>The first point to compare.</param>
         /// <param name='point2'>The second point to compare.</param>
         /// <returns>Whether or not the two points are equal.</returns>
-        public static bool AreClose(Point point1, Point point2)
+        internal static bool AreClose(Point point1, Point point2)
         {
             return AreClose(point1.X, point2.X) &&
             AreClose(point1.Y, point2.Y);
@@ -178,7 +178,7 @@
         /// <param name='size1'>The first size to compare.</param>
         /// <param name='size2'>The second size to compare.</param>
         /// <returns>Whether or not the two Size instances are equal.</returns>
-        public static bool AreClose(Size size1, Size size2)
+        internal static bool AreClose(Size size1, Size size2)
         {
             return AreClose(size1.Width, size2.Width) &&
                    AreClose(size1.Height, size2.Height);
@@ -192,7 +192,7 @@
         /// <param name='vector1'>The first Vector to compare.</param>
         /// <param name='vector2'>The second Vector to compare.</param>
         /// <returns>Whether or not the two Vector instances are equal.</returns>
-        public static bool AreClose(Vector vector1, Vector vector2)
+        internal static bool AreClose(Vector vector1, Vector vector2)
         {
             return AreClose(vector1.X, vector2.X) &&
                    AreClose(vector1.Y, vector2.Y);
@@ -206,7 +206,7 @@
         /// <param name='rect1'>The first rectangle to compare.</param>
         /// <param name='rect2'>The second rectangle to compare.</param>
         /// <returns>Whether or not the two rectangles are equal.</returns>
-        public static bool AreClose(Rect rect1, Rect rect2)
+        internal static bool AreClose(Rect rect1, Rect rect2)
         {
             // If they're both empty, don't bother with the double logic.
             if (rect1.IsEmpty)
@@ -223,12 +223,12 @@
                 AreClose(rect1.Width, rect2.Width);
         }
 
-        public static bool IsBetweenZeroAndOne(double val)
+        internal static bool IsBetweenZeroAndOne(double val)
         {
             return GreaterThanOrClose(val, 0) && LessThanOrClose(val, 1);
         }
 
-        public static int DoubleToInt(double val)
+        internal static int DoubleToInt(double val)
         {
             return val > 0 ? (int)(val + 0.5) : (int)(val - 0.5);
         }
@@ -238,7 +238,7 @@
         /// </summary>
         /// <param name='r'>The rectangle to test.</param>
         /// <returns>returns whether the Rect has NaN.</returns>
-        public static bool RectHasNaN(Rect r)
+        internal static bool RectHasNaN(Rect r)
         {
             return double.IsNaN(r.X) ||
                    double.IsNaN(r.Y) ||
