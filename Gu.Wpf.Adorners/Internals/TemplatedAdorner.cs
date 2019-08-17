@@ -14,7 +14,7 @@ namespace Gu.Wpf.Adorners
     {
         private static readonly Type TemplatedAdornerType = typeof(AdornedElementPlaceholder).Assembly.GetType("MS.Internal.Controls.TemplatedAdorner", throwOnError: true);
         private static readonly ConstructorInfo Constructor = TemplatedAdornerType.GetConstructor(new[] { typeof(UIElement), typeof(ControlTemplate) }) ?? throw new InvalidOperationException("Could not find constructor for TemplatedAdorner");
-        private static readonly MethodInfo ClearChildMethod = TemplatedAdornerType.GetMethod("ClearChild") ?? throw new InvalidOperationException("Could not find method ClearChild");
+        private static readonly MethodInfo ClearChildMethod = TemplatedAdornerType.GetMethod("ClearChild", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly, null, Type.EmptyTypes, null) ?? throw new InvalidOperationException("Could not find method ClearChild");
 
         internal static Adorner Create(UIElement element, ControlTemplate template)
         {
