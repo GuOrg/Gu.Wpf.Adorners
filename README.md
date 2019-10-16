@@ -1,6 +1,6 @@
 # Gu.Wpf.Adorners
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.Adorners.svg)](https://www.nuget.org/packages/Gu.Wpf.Adorners/)
-[![Build Status](https://dev.azure.com/johan-larsson/Gu.Wpf.Adorners/_apis/build/status/Gu.Wpf.Adorners-CI?branchName=master)](https://dev.azure.com/johan-larsson/Gu.Wpf.Adorners/_build/latest?definitionId=7&branchName=master)
+[![Build Status](https://dev.azure.com/guorg/Gu.Wpf.Adorners/_apis/build/status/GuOrg.Gu.Wpf.Adorners?branchName=master)](https://dev.azure.com/guorg/Gu.Wpf.Adorners/_build/latest?definitionId=5&branchName=master)
 [![Build status](https://ci.appveyor.com/api/projects/status/7jwv4kskke9kraa0?svg=true)](https://ci.appveyor.com/project/JohanLarsson/gu-wpf-adorners)
 
 ## A collection of adorners for wpf.
