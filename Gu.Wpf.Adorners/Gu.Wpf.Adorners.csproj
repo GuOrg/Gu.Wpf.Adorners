@@ -1,7 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>library</OutputType>
-    <TargetFramework>net45</TargetFramework>
+    <UseWpf>true</UseWpf>
+    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -25,19 +26,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationCore" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationFramework" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System.Xaml" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="WindowsBase" />
   </ItemGroup>
 
   <ItemGroup>
