@@ -1,13 +1,13 @@
-﻿namespace Gu.Wpf.Adorners.Demo
+namespace Gu.Wpf.Adorners.Demo
 {
     using System;
     using System.Windows;
 
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs? e)
         {
-            if (e.Args.Length == 1)
+            if (e is { Args: { Length: 1 } })
             {
                 var window = e.Args[0];
                 this.StartupUri = new Uri($"Windows/{window}.xaml", UriKind.Relative);

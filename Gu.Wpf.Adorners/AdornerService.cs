@@ -22,6 +22,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="adorner">The <see cref="Adorner"/>.</param>
         public static void Show(Adorner adorner)
         {
+            if (adorner is null)
+            {
+                throw new System.ArgumentNullException(nameof(adorner));
+            }
+
             Show(adorner, retry: true);
         }
 
@@ -31,6 +36,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="adorner">The <see cref="Adorner"/>.</param>
         public static void Remove(Adorner adorner)
         {
+            if (adorner is null)
+            {
+                throw new System.ArgumentNullException(nameof(adorner));
+            }
+
             var adornerLayer = (AdornerLayer)adorner.GetValue(AdornerLayerProperty) ??
                                GetAdornerLayer(adorner.AdornedElement);
             adornerLayer?.Remove(adorner);
