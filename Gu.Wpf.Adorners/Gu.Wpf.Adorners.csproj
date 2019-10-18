@@ -20,7 +20,7 @@
     <Description>Watermark and overlay adorners for WPF.</Description>
     <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</RepositoryUrl>
-    <NeutralLanguage>English</NeutralLanguage>
+    <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
     <PackageReleaseNotes>FEATURE: netcoreapp3.</PackageReleaseNotes>
   </PropertyGroup>
