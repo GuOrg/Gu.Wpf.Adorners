@@ -2,7 +2,6 @@
   <PropertyGroup>
     <OutputType>library</OutputType>
     <TargetFramework>net45</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -10,6 +9,19 @@
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../Gu.Wpf.Adorners.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.5.1</Version>
+    <Authors>Johan Larsson</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Watermark and overlay adorners for WPF.</Description>
+    <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</RepositoryUrl>
+    <NeutralLanguage>English</NeutralLanguage>
+    <PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
+    <PackageReleaseNotes>BUGFIX: Handle virtualization.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,10 +38,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
