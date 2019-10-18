@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.5.1</Version>
+    <Version>1.5.2</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -22,7 +22,7 @@
     <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</RepositoryUrl>
     <NeutralLanguage>English</NeutralLanguage>
     <PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
-    <PackageReleaseNotes>BUGFIX: Handle virtualization.</PackageReleaseNotes>
+    <PackageReleaseNotes>FEATURE: netcoreapp3.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>
