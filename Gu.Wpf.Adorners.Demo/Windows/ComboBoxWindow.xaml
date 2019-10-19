@@ -13,5 +13,6 @@
         <ComboBox Margin="5"
                   adorners:Watermark.Text="Watermark text"
                   IsEditable="True" />
+        <Button Content="Lose focus"></Button>
     </StackPanel>
 </Window>
