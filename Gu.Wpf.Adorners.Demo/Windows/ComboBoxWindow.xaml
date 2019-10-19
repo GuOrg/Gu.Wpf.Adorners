@@ -13,6 +13,21 @@
         <ComboBox Margin="5"
                   adorners:Watermark.Text="Watermark text"
                   IsEditable="True" />
+        <GroupBox>
+            <GroupBox.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Classic;V4.0.0.0;31bf3856ad364e35;component/themes/Classic.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </GroupBox.Resources>
+            <StackPanel>
+                <ComboBox Margin="5" adorners:Watermark.Text="Watermark text" />
+                <ComboBox Margin="5"
+                          adorners:Watermark.Text="Watermark text"
+                          IsEditable="True" />
+            </StackPanel>
+        </GroupBox>
         <Button Content="Lose focus"></Button>
     </StackPanel>
 </Window>
