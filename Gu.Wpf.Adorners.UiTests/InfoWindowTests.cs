@@ -15,15 +15,20 @@ namespace Gu.Wpf.Adorners.UiTests
             ImageAssert.OnFail = OnFail.SaveImageToTemp;
         }
 
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            // Close the shared window after the last test.
+            Application.KillLaunched(ExeFileName, WindowName);
+        }
+
         [TestCase("red border bound visibility", ".\\Images\\red border bound visibility_visible.png")]
         [TestCase("red border default visibility", ".\\Images\\red border default visibility.png")]
         public void Overlay(string name, string imageFileName)
         {
-            using (var app = Application.Launch(ExeFileName, WindowName))
+            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
             {
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton(name);
                 ImageAssert.AreEqual(imageFileName, button);
             }
@@ -35,7 +40,6 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("red border bound visibility");
                 ImageAssert.AreEqual(".\\Images\\red border bound visibility_visible.png", button);
 
@@ -50,12 +54,10 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("red border default visibility");
                 ImageAssert.AreEqual(".\\Images\\red border default visibility.png", button);
 
                 window.FindSlider("WidthSlider").Value = 100;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 ImageAssert.AreEqual(".\\Images\\red border default visibility_width_100.png", button);
             }
         }
@@ -63,10 +65,9 @@ namespace Gu.Wpf.Adorners.UiTests
         [Test]
         public void WhenDrawsOutside()
         {
-            using (var app = Application.Launch(ExeFileName, WindowName))
+            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var groupBox = window.FindGroupBox("Draws outside");
                 ImageAssert.AreEqual(".\\Images\\Draws outside.png", groupBox);
             }
@@ -79,7 +80,6 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("red border default visibility");
                 ImageAssert.AreEqual(".\\Images\\red border default visibility.png", button);
 

@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Adorners.UiTests
 {
-    using System;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -20,7 +19,6 @@ namespace Gu.Wpf.Adorners.UiTests
         {
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var window = app.MainWindow;
                 while (window.ActualHeight > 100)
                 {

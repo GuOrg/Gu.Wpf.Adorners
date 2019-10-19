@@ -15,6 +15,13 @@ namespace Gu.Wpf.Adorners.UiTests
             ImageAssert.OnFail = OnFail.SaveImageToTemp;
         }
 
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            // Close the shared window after the last test.
+            Application.KillLaunched(ExeFileName, WindowName);
+        }
+
         [TestCase("No overlay", ".\\Images\\No overlay.png")]
         [TestCase("Default visibility", ".\\Images\\Default visibility.png")]
         [TestCase("With content template", ".\\Images\\With content template.png")]
@@ -23,7 +30,6 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton(name);
                 ImageAssert.AreEqual(imageFileName, button);
             }
@@ -32,10 +38,10 @@ namespace Gu.Wpf.Adorners.UiTests
         [Test]
         public void BoundVisibility()
         {
-            using (var app = Application.Launch(ExeFileName, WindowName))
+            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
+                window.FindToggleButton("IsVisibleButton").IsChecked = true;
                 var button = window.FindButton("Bound visibility");
                 ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button);
 
@@ -50,7 +56,6 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var groupBox = window.FindGroupBox("Inherits");
                 ImageAssert.AreEqual(".\\Images\\WithInheritedContentTemplate.png", groupBox);
             }
@@ -59,10 +64,10 @@ namespace Gu.Wpf.Adorners.UiTests
         [Test]
         public void WhenSizeChanges()
         {
-            using (var app = Application.Launch(ExeFileName, WindowName))
+            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
+                window.FindSlider("WidthSlider").Value = 200;
                 var button = window.FindButton("Default visibility");
                 ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
 
@@ -78,7 +83,6 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.Launch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                Wait.For(TimeSpan.FromMilliseconds(200));
                 var button = window.FindButton("Default visibility");
                 ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
 

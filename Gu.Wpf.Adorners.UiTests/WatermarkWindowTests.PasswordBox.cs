@@ -14,6 +14,13 @@ namespace Gu.Wpf.Adorners.UiTests
                 ImageAssert.OnFail = OnFail.SaveImageToTemp;
             }
 
+            [OneTimeTearDown]
+            public void OneTimeTearDown()
+            {
+                // Close the shared window after the last test.
+                Application.KillLaunched(ExeFileName, WindowName);
+            }
+
             [Test]
             public void WithDefaultWatermarkWhenNotFocused()
             {
@@ -21,6 +28,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
+                    window.FindButton("Lose focus").Click();
                     ImageAssert.AreEqual(".\\Images\\PasswordBoxWithDefaultWatermark_not_focused.png", passwordBox);
                 }
             }
@@ -28,7 +36,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithDefaultWatermarkWhenFocused()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
@@ -40,7 +48,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithDefaultWatermarkWhenNotEmpty()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
@@ -53,7 +61,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkWithBoundText()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithBoundText");
@@ -68,7 +76,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkWithInheritedFontSize()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithInheritedFontSize");
@@ -79,7 +87,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkWithExplicitTextStyle()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithExplicitTextStyle");
@@ -90,7 +98,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithInheritedTextStyle()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var groupBox = window.FindGroupBox("Inherited style");
@@ -101,7 +109,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkVisibleWhenEmpty()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
@@ -112,7 +120,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkVisibleWhenEmptyWhenFocused()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
@@ -124,7 +132,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkVisibleWhenEmptyWhenNotEmpty()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
@@ -137,7 +145,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkVisibleWhenEmptyAndNotFocused()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
@@ -148,7 +156,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkVisibleWhenEmptyAndNotFocusedWhenFocused()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
@@ -160,7 +168,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [Test]
             public void WithWatermarkVisibleWhenEmptyAndNotFocusedWhenNotEmpty()
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
@@ -174,7 +182,7 @@ namespace Gu.Wpf.Adorners.UiTests
             [TestCase("Hidden")]
             public void WhenAdornedElementIs(string visibility)
             {
-                using (var app = Application.Launch(ExeFileName, WindowName))
+                using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
                 {
                     var window = app.MainWindow;
                     Wait.For(TimeSpan.FromMilliseconds(200));
