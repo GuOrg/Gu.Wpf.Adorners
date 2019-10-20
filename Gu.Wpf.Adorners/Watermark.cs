@@ -8,6 +8,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Attached properties for showing watermarks.
     /// </summary>
+    [StyleTypedProperty(Property = "TextStyle", StyleTargetType = typeof(TextBlock))]
     public static class Watermark
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
