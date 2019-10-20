@@ -69,13 +69,13 @@ namespace Gu.Wpf.Adorners
                 default(WatermarkAdorner),
                 (d, e) => ((WatermarkAdorner)e.OldValue)?.ClearChild()));
 
-        private static readonly DependencyProperty HandlerProperty = DependencyProperty.RegisterAttached(
-            "Handler",
-            typeof(IWatermarked),
+        private static readonly DependencyProperty ListenerProperty = DependencyProperty.RegisterAttached(
+            "Listener",
+            typeof(IListener),
             typeof(Watermark),
-            new PropertyMetadata(default(IWatermarked)));
+            new PropertyMetadata(default(IListener)));
 
-        private interface IWatermarked
+        private interface IListener
         {
             string Text { get; }
         }
@@ -162,10 +162,39 @@ namespace Gu.Wpf.Adorners
 
         private static void OnTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            if (o is Control adornedElement)
+            switch (o)
             {
-                UpdateHandlers(adornedElement);
-                UpdateIsShowing(adornedElement);
+                case ComboBox comboBox:
+                    UpdateListener(comboBox);
+                    UpdateIsShowing(comboBox);
+                    break;
+                case PasswordBox passwordBox:
+                    UpdateListener(passwordBox);
+                    UpdateIsShowing(passwordBox);
+                    break;
+                case TextBox textBox:
+                    UpdateListener(textBox);
+                    UpdateIsShowing(textBox);
+                    break;
+            }
+
+            void UpdateListener(Control adornedElement)
+            {
+                if (adornedElement.GetValue(ListenerProperty) == null)
+                {
+                    switch (adornedElement)
+                    {
+                        case TextBox textBox:
+                            adornedElement.SetCurrentValue(ListenerProperty, new TextBoxListener(textBox));
+                            break;
+                        case PasswordBox passwordBox:
+                            adornedElement.SetCurrentValue(ListenerProperty, new PasswordBoxListener(passwordBox));
+                            break;
+                        case ComboBox comboBox:
+                            adornedElement.SetCurrentValue(ListenerProperty, new ComboBoxListener(comboBox));
+                            break;
+                    }
+                }
             }
         }
 
@@ -173,7 +202,6 @@ namespace Gu.Wpf.Adorners
         {
             if (d is Control adornedElement)
             {
-                UpdateHandlers(adornedElement);
                 var adorner = adornedElement.GetAdorner();
                 if (adorner == null)
                 {
@@ -184,25 +212,6 @@ namespace Gu.Wpf.Adorners
                 if (e.NewValue == null)
                 {
                     adorner.UpdateDefaultStyle();
-                }
-            }
-        }
-
-        private static void UpdateHandlers(Control adornedElement)
-        {
-            if (adornedElement.GetValue(HandlerProperty) == null)
-            {
-                switch (adornedElement)
-                {
-                    case TextBox textBox:
-                        adornedElement.SetCurrentValue(HandlerProperty, new TextBoxListener(textBox));
-                        break;
-                    case PasswordBox passwordBox:
-                        adornedElement.SetCurrentValue(HandlerProperty, new PasswordBoxListener(passwordBox));
-                        break;
-                    case ComboBox comboBox:
-                        adornedElement.SetCurrentValue(HandlerProperty, new ComboBoxListener(comboBox));
-                        break;
                 }
             }
         }
@@ -263,8 +272,8 @@ namespace Gu.Wpf.Adorners
 
         private static void UpdateIsShowing(Control adornedElement)
         {
-            var watermarked = (IWatermarked)adornedElement?.GetValue(HandlerProperty);
-            if (watermarked == null)
+            var listener = (IListener)adornedElement?.GetValue(ListenerProperty);
+            if (listener == null)
             {
                 return;
             }
@@ -279,10 +288,10 @@ namespace Gu.Wpf.Adorners
                 switch (adornedElement.GetVisibleWhen())
                 {
                     case WatermarkVisibleWhen.Empty:
-                        adornedElement.SetIsShowing(string.IsNullOrEmpty(watermarked.Text));
+                        adornedElement.SetIsShowing(string.IsNullOrEmpty(listener.Text));
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                        adornedElement.SetIsShowing(string.IsNullOrEmpty(watermarked.Text) && !adornedElement.IsKeyboardFocused);
+                        adornedElement.SetIsShowing(string.IsNullOrEmpty(listener.Text) && !adornedElement.IsKeyboardFocused);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(adornedElement), "Should never get here, bug in Gu.Wpf.Adorners.");
@@ -290,7 +299,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private class TextBoxListener : IWatermarked
+        private class TextBoxListener : IListener
         {
             private readonly TextBox textBox;
 
@@ -309,7 +318,7 @@ namespace Gu.Wpf.Adorners
             public string Text => this.textBox.Text;
         }
 
-        private class PasswordBoxListener : IWatermarked
+        private class PasswordBoxListener : IListener
         {
             private readonly PasswordBox passwordBox;
 
@@ -328,7 +337,7 @@ namespace Gu.Wpf.Adorners
             public string Text => this.passwordBox.Password;
         }
 
-        private class ComboBoxListener : IWatermarked
+        private class ComboBoxListener : IListener
         {
             private readonly ComboBox comboBox;
 

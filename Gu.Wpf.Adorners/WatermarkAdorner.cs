@@ -64,12 +64,6 @@ namespace Gu.Wpf.Adorners
         {
             get
             {
-                if (this.AdornedElement is null)
-                {
-                    this.placementReference.SetTarget(null);
-                    return null;
-                }
-
                 if (this.placementReference.TryGetTarget(out var contentPresenter))
                 {
                     return contentPresenter;

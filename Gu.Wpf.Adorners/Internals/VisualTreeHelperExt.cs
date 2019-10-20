@@ -10,13 +10,23 @@ namespace Gu.Wpf.Adorners
 
     internal static class VisualTreeHelperExt
     {
-        internal static IEnumerable<DependencyObject> Ancestors(this DependencyObject o)
+        internal static IEnumerable<DependencyObject> VisualAncestors(this DependencyObject o)
         {
             var parent = VisualTreeHelper.GetParent(o);
             while (parent != null)
             {
                 yield return parent;
                 parent = VisualTreeHelper.GetParent(parent);
+            }
+        }
+
+        internal static IEnumerable<DependencyObject> LogicalAncestors(this DependencyObject o)
+        {
+            var parent = LogicalTreeHelper.GetParent(o);
+            while (parent != null)
+            {
+                yield return parent;
+                parent = LogicalTreeHelper.GetParent(parent);
             }
         }
 
@@ -60,9 +70,9 @@ namespace Gu.Wpf.Adorners
                 yield return child;
                 if (VisualTreeHelper.GetChildrenCount(child) != 0)
                 {
-                    foreach (var nestedChild in RecursiveVisualChildren(child))
+                    foreach (var recursiveChild in RecursiveVisualChildren(child))
                     {
-                        yield return nestedChild;
+                        yield return recursiveChild;
                     }
                 }
             }
