@@ -1,15 +1,19 @@
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:adorners="http://gu.se/Adorners"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="TextBoxWindow"
         Width="200"
         Height="450"
+        WindowStartupLocation="Manual"
+        Style="{StaticResource UiTestWindow}"
         mc:Ignorable="d">
     <AdornerDecorator>
         <StackPanel>
-            <TextBox Margin="5" adorners:Watermark.Text="Watermark text" />
+            <TextBox x:Name="Default"  Margin="5" adorners:Watermark.Text="Watermark text" />
             <TextBox Margin="5"
+                     x:Name="DefaultWithZeroBorder"
                      adorners:Watermark.Text="Watermark text"
                      BorderThickness="0"
                      Text="" />
