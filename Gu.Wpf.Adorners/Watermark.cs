@@ -142,7 +142,7 @@ namespace Gu.Wpf.Adorners
 
         /// <summary>Helper for getting <see cref="IsVisibleProperty"/> from <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="Control"/> to read <see cref="IsVisibleProperty"/> from.</param>
-        /// <returns>IsShowing property value.</returns>
+        /// <returns>IsVisible property value.</returns>
         [AttachedPropertyBrowsableForType(typeof(Control))]
         public static bool GetIsVisible(this Control element)
         {
@@ -226,36 +226,28 @@ namespace Gu.Wpf.Adorners
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var adornedElement = (Control)d;
             if (Equals(e.NewValue, true))
             {
-                var adorner = adornedElement.GetAdorner();
-                if (adorner == null)
+                if (d.GetValue(AdornerProperty) == null)
                 {
-                    adorner = new WatermarkAdorner(adornedElement);
-                    adornedElement.SetAdorner(adorner);
-                    var textStyle = adornedElement.GetTextStyle();
-                    if (textStyle != null)
+                    var adorner = new WatermarkAdorner((Control)d);
+                    d.SetCurrentValue(AdornerProperty, adorner);
+                    if (d.GetValue(TextStyleProperty) is Style textStyle)
                     {
                         adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, textStyle);
                     }
 
                     AdornerService.Show(adorner);
-                    adornedElement.SetCurrentValue(AdornerProperty, adorner);
                 }
                 else
                 {
-                    Debug.Assert(condition: false, message: "Already visible");
+                    Debug.Assert(condition: false, message: $"Element {d} already has a watermark.");
                 }
             }
-            else
+            else if (d.GetValue(AdornerProperty) is WatermarkAdorner adorner)
             {
-                var adorner = adornedElement.GetAdorner();
-                if (adorner != null)
-                {
-                    AdornerService.Remove(adorner);
-                    adornedElement.ClearValue(AdornerProperty);
-                }
+                AdornerService.Remove(adorner);
+                d.ClearValue(AdornerProperty);
             }
         }
 
