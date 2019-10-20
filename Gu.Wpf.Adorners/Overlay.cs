@@ -257,11 +257,13 @@ namespace Gu.Wpf.Adorners
                         ? element.FirstOrDefaultRecursiveVisualChild<AdornerDecorator>()?.Child
                         : element;
 
-                    var adorner = new ContentAdorner(adornedElement);
-                    SetIfNotNull(d, ContentProperty, adorner, ContentAdorner.ContentProperty);
-                    SetIfNotNull(d, ContentTemplateProperty, adorner, ContentAdorner.ContentTemplateProperty);
-                    SetIfNotNull(d, ContentTemplateSelectorProperty, adorner, ContentAdorner.ContentTemplateSelectorProperty);
-                    SetIfNotNull(d, ContentPresenterStyleProperty, adorner, ContentAdorner.ContentPresenterStyleProperty);
+                    var adorner = new ContentAdorner(adornedElement)
+                    {
+                        Content = GetContent(d),
+                        ContentTemplate = GetContentTemplate(d),
+                        ContentTemplateSelector = GetContentTemplateSelector(d),
+                        ContentPresenterStyle = GetContentPresenterStyle(d),
+                    };
                     d.SetCurrentValue(AdornerProperty, adorner);
                     AdornerService.Show(adorner);
                 }
@@ -293,19 +295,6 @@ namespace Gu.Wpf.Adorners
 
                 var content = GetContent(element);
                 element.SetIsShowing(content != null);
-            }
-        }
-
-        private static void SetIfNotNull(
-            DependencyObject source,
-            DependencyProperty sourceProperty,
-            ContentAdorner adorner,
-            DependencyProperty adornerProperty)
-        {
-            var value = source.GetValue(sourceProperty);
-            if (value != null)
-            {
-                adorner.SetValue(adornerProperty, value);
             }
         }
     }
