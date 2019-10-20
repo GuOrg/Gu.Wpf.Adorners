@@ -4,7 +4,7 @@
     <UseWpf>true</UseWpf>
     <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
