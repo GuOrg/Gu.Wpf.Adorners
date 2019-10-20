@@ -30,7 +30,8 @@
                                     Background="White"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -47,38 +48,48 @@
 
         <Button Content="No overlay" />
 
-        <Button Width="{Binding ElementName=WidthSlider, Path=Value}"
+        <Button Width="{Binding ElementName=WidthSlider,
+                                Path=Value}"
                 Content="Default visibility"
-                Visibility="{Binding ElementName=VisibilityCbx, Path=SelectedItem}">
+                Visibility="{Binding ElementName=VisibilityCbx,
+                                     Path=SelectedItem}">
             <adorners:Overlay.Content>
-                <Border BorderBrush="Blue" BorderThickness="2" />
+                <Border BorderBrush="Blue"
+                        BorderThickness="2" />
             </adorners:Overlay.Content>
         </Button>
 
-        <TextBlock HorizontalAlignment="Center" Text="Bound visibility" />
+        <TextBlock HorizontalAlignment="Center"
+                   Text="Bound visibility" />
         <ToggleButton x:Name="IsVisibleButton"
                       Content="IsVisible"
                       IsChecked="True" />
 
-        <ComboBox x:Name="VisibilityCbx" SelectedIndex="0">
+        <ComboBox x:Name="VisibilityCbx"
+                  SelectedIndex="0">
             <Visibility>Visible</Visibility>
             <Visibility>Hidden</Visibility>
             <Visibility>Collapsed</Visibility>
         </ComboBox>
 
-        <Button adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}" Content="Bound visibility">
+        <Button adorners:Overlay.IsVisible="{Binding IsChecked,
+                                                     ElementName=IsVisibleButton}"
+                Content="Bound visibility">
             <adorners:Overlay.Content>
-                <Border BorderBrush="HotPink" BorderThickness="2" />
+                <Border BorderBrush="HotPink"
+                        BorderThickness="2" />
             </adorners:Overlay.Content>
         </Button>
 
         <Button adorners:Overlay.Content="yeah"
-                adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}"
+                adorners:Overlay.IsVisible="{Binding IsChecked,
+                                                     ElementName=IsVisibleButton}"
                 Content="With content template"
                 Foreground="Blue">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="BlueViolet" BorderThickness="2">
+                    <Border BorderBrush="BlueViolet"
+                            BorderThickness="2">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
@@ -91,7 +102,8 @@
             <StackPanel adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
                 <adorners:Overlay.ContentTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="GreenYellow" BorderThickness="2">
+                        <Border BorderBrush="GreenYellow"
+                                BorderThickness="2">
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        Text="{Binding}" />

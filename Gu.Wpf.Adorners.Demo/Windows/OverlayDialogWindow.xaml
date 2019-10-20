@@ -10,10 +10,12 @@
         adorners:Overlay.IsVisible="False"
         mc:Ignorable="d">
     <adorners:Overlay.Content>
-        <Border Background="Black" Opacity="0.2" />
+        <Border Background="Black"
+                Opacity="0.2" />
     </adorners:Overlay.Content>
     <StackPanel>
         <TextBox Text="Some text" />
-        <Button Click="OnShowMessageBoxClick" Content="Show dialog" />
+        <Button Click="OnShowMessageBoxClick"
+                Content="Show dialog" />
     </StackPanel>
 </Window>
