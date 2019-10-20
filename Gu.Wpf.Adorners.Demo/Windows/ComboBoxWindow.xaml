@@ -8,11 +8,11 @@
         mc:Ignorable="d">
     <AdornerDecorator>
         <StackPanel>
-            <ComboBox Margin="5" adorners:Watermark.Text="Watermark text" />
+            <!--<ComboBox Margin="5" adorners:Watermark.Text="Watermark text" />-->
             <ComboBox Margin="5"
                   adorners:Watermark.Text="Watermark text"
                   IsEditable="True" />
-            <GroupBox>
+            <!--<GroupBox>
                 <GroupBox.Resources>
                     <ResourceDictionary>
                         <ResourceDictionary.MergedDictionaries>
@@ -26,7 +26,7 @@
                           adorners:Watermark.Text="Watermark text"
                           IsEditable="True" />
                 </StackPanel>
-            </GroupBox>
+            </GroupBox>-->
             <Button Content="Lose focus"></Button>
         </StackPanel>
     </AdornerDecorator>

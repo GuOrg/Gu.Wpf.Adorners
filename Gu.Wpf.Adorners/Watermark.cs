@@ -33,7 +33,7 @@ namespace Gu.Wpf.Adorners
             new FrameworkPropertyMetadata(
                 WatermarkVisibleWhen.EmptyAndNotKeyboardFocused,
                 FrameworkPropertyMetadataOptions.Inherits,
-                (d, e) => UpdateIsShowing(d as Control)));
+                (d, e) => OnAdornedElementChanged(d, e)));
 
         /// <summary>
         /// The style for the <see cref="TextBlock"/> rendering <see cref="TextProperty"/>.
@@ -260,42 +260,44 @@ namespace Gu.Wpf.Adorners
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            var element = sender as FrameworkElement;
-            element?.GetAdorner()?.InvalidateMeasure();
-            UpdateIsShowing(sender as Control);
+            if (sender is Control control)
+            {
+                control.GetAdorner()?.InvalidateMeasure();
+                UpdateIsShowing(control);
+            }
         }
 
-        private static void OnAdornedElementChanged(object sender, EventArgs e)
+        private static void OnAdornedElementChanged(object sender, object _)
         {
-            UpdateIsShowing(sender as Control);
+            if (sender is Control control)
+            {
+                UpdateIsShowing(control);
+            }
         }
 
         private static void UpdateIsShowing(Control adornedElement)
         {
-            var listener = (IListener)adornedElement?.GetValue(ListenerProperty);
-            if (listener == null)
-            {
-                return;
-            }
-
-            if (!adornedElement.IsVisible ||
-                string.IsNullOrEmpty(GetText(adornedElement)))
-            {
-                adornedElement.SetIsShowing(false);
-            }
-            else
+            if (adornedElement.IsVisible &&
+                adornedElement.IsLoaded &&
+                !string.IsNullOrEmpty(GetText(adornedElement)) &&
+                adornedElement.GetValue(ListenerProperty) is IListener listener &&
+                string.IsNullOrEmpty(listener.Text))
             {
                 switch (adornedElement.GetVisibleWhen())
                 {
                     case WatermarkVisibleWhen.Empty:
-                        adornedElement.SetIsShowing(string.IsNullOrEmpty(listener.Text));
+                        adornedElement.SetIsShowing(true);
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                        adornedElement.SetIsShowing(string.IsNullOrEmpty(listener.Text) && !adornedElement.IsKeyboardFocused);
+                        adornedElement.SetIsShowing(!adornedElement.IsKeyboardFocused);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(adornedElement), "Should never get here, bug in Gu.Wpf.Adorners.");
                 }
+            }
+            else
+            {
+                adornedElement.SetIsShowing(false);
             }
         }
 

@@ -2,11 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.StartupUri>MainWindow.xaml</Application.StartupUri>
+    <!--<Application.StartupUri>Windows/SandboxWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/InfoWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/NotShowingWhenInFrames/FramesWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/Issue25/Issue25Window.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/WatermarkWindow.xaml</Application.StartupUri>-->
-    <!--<Application.StartupUri>Windows/SandboxWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/OverlayDialogWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/ComboBoxWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/PasswordBoxWindow.xaml</Application.StartupUri>-->
