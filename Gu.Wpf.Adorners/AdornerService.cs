@@ -53,7 +53,7 @@ namespace Gu.Wpf.Adorners
         /// </summary>
         /// <param name="adornedElement">The adorned element.</param>
         /// <returns>First AdornerLayer above given element, or null.</returns>
-        public static AdornerLayer GetAdornerLayer(UIElement adornedElement)
+        public static AdornerLayer? GetAdornerLayer(UIElement adornedElement)
         {
             if (adornedElement is Window window)
             {

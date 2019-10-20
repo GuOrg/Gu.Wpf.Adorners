@@ -14,5 +14,10 @@ namespace Gu.Wpf.Adorners
         ///  Shows the watermark as long as the <see cref="System.Windows.Controls.TextBox"/> is empty and not focused.
         /// </summary>
         EmptyAndNotKeyboardFocused,
+
+        /// <summary>
+        ///  Don't show the watermark.
+        /// </summary>
+        Never,
     }
 }

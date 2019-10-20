@@ -150,11 +150,6 @@ namespace Gu.Wpf.Adorners
             return (bool)element.GetValue(IsVisibleProperty);
         }
 
-        private static void SetAdorner(this DependencyObject element, WatermarkAdorner value)
-        {
-            element.SetValue(AdornerProperty, value);
-        }
-
         private static WatermarkAdorner GetAdorner(this DependencyObject element)
         {
             return (WatermarkAdorner)element.GetValue(AdornerProperty);
@@ -285,6 +280,9 @@ namespace Gu.Wpf.Adorners
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
                         adornedElement.SetIsVisible(!adornedElement.IsKeyboardFocused && !adornedElement.IsKeyboardFocusWithin);
+                        break;
+                    case WatermarkVisibleWhen.Never:
+                        adornedElement.SetIsVisible(false);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(adornedElement), "Should never get here, bug in Gu.Wpf.Adorners.");
