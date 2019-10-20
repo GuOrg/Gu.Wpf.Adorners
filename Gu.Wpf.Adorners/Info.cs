@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Adorners
 {
     using System;
+    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
@@ -32,7 +33,7 @@ namespace Gu.Wpf.Adorners
             typeof(Info),
             new PropertyMetadata(
                 default(bool?),
-                (d, e) => UpdateIsShowing(d)));
+                (d, e) => OnAdornedElementChanged(d, e)));
 
         private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsShowing",
@@ -116,71 +117,70 @@ namespace Gu.Wpf.Adorners
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            var element = sender as DependencyObject;
-            element?.GetAdorner()?.InvalidateMeasure();
-            UpdateIsShowing(element);
+            if (sender is UIElement adornedElement)
+            {
+                adornedElement.GetAdorner()?.InvalidateMeasure();
+                UpdateIsShowing(adornedElement);
+            }
         }
 
-        private static void OnAdornedElementChanged(object sender, EventArgs e)
+        private static void OnAdornedElementChanged(object sender, object _)
         {
-            UpdateIsShowing(sender as DependencyObject);
+            if (sender is UIElement adornedElement)
+            {
+                UpdateIsShowing(adornedElement);
+            }
         }
 
         private static void OnTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            IsVisibleChangedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
-            LoadedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
-            UnloadedEventManager.UpdateHandler((UIElement)d, OnAdornedElementChanged);
-            SizeChangedEventManager.UpdateHandler((FrameworkElement)d, OnSizeChanged);
-            UpdateIsShowing(d);
+            if (d is FrameworkElement adornedElement)
+            {
+                IsVisibleChangedEventManager.UpdateHandler(adornedElement, OnAdornedElementChanged);
+                LoadedEventManager.UpdateHandler(adornedElement, OnAdornedElementChanged);
+                UnloadedEventManager.UpdateHandler(adornedElement, OnAdornedElementChanged);
+                SizeChangedEventManager.UpdateHandler(adornedElement, OnSizeChanged);
+                UpdateIsShowing(adornedElement);
+            }
         }
 
         private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var element = (UIElement)d;
-            if (Equals(e.NewValue, true))
+            if (Equals(e.NewValue, true) &&
+                d is UIElement element &&
+                d.GetValue(TemplateProperty) is ControlTemplate template)
             {
-                var adorner = element.GetAdorner();
-                if (adorner == null)
+                if (d.GetValue(AdornerProperty) is null)
                 {
-                    adorner = TemplatedAdorner.Create(element, (ControlTemplate)element.GetValue(TemplateProperty));
-                    element.SetAdorner(adorner);
+                    var adorner = TemplatedAdorner.Create(element, template);
+                    d.SetCurrentValue(AdornerProperty, adorner);
+                    AdornerService.Show(adorner);
                 }
-
-                AdornerService.Show(adorner);
+                else
+                {
+                    Debug.Assert(condition: false, message: $"Element {d} already has an info adorner.");
+                }
             }
-            else
+            else if (d.GetValue(AdornerProperty) is Adorner adorner)
             {
-                var adorner = element.GetAdorner();
-                if (adorner != null)
-                {
-                    AdornerService.Remove(adorner);
-                }
-
-                element.ClearValue(AdornerProperty);
+                AdornerService.Remove(adorner);
+                d.ClearValue(AdornerProperty);
             }
         }
 
-        private static void UpdateIsShowing(DependencyObject o)
+        private static void UpdateIsShowing(UIElement element)
         {
-            if (o is UIElement element)
+            if (element.IsVisible &&
+                element.IsLoaded() &&
+                GetTemplate(element) is { } &&
+                GetIsVisible(element) == true)
             {
-                if (!element.IsVisible ||
-                    !element.IsLoaded())
-                {
-                    element.SetIsShowing(false);
-                    return;
-                }
-
-                var template = GetTemplate(element);
-                var isVisible = GetIsVisible(element);
-                if (template != null && isVisible != null)
-                {
-                    element.SetIsShowing(isVisible.Value);
-                    return;
-                }
-
-                element.SetIsShowing(template != null);
+                element.SetIsShowing(true);
+                return;
+            }
+            else
+            {
+                element.SetIsShowing(false);
             }
         }
     }
