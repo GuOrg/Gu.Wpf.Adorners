@@ -6,6 +6,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// An <see cref="System.Windows.Documents.Adorner"/>.
     /// </summary>
+    [StyleTypedProperty(Property = nameof(ContentPresenterStyle), StyleTargetType = typeof(ContentPresenter))]
     public class ContentAdorner : ContainerAdorner<ContentPresenter>
     {
         /// <summary>Identifies the <see cref="Content"/> dependency property.</summary>

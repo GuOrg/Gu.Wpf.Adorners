@@ -8,6 +8,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Attached properties for creating overlays.
     /// </summary>
+    [StyleTypedProperty(Property = "ContentPresenterStyle", StyleTargetType = typeof(ContentPresenter))]
     public static class Overlay
     {
 #pragma warning disable SA1202 // Elements must be ordered by access

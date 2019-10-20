@@ -6,6 +6,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// An <see cref="System.Windows.Documents.Adorner"/> that renders content using a <see cref="ContentPresenter"/>.
     /// </summary>
+    [StyleTypedProperty(Property = nameof(ContentPresenterStyle), StyleTargetType = typeof(ContentPresenter))]
     public class ContentDragAdorner : DragAdorner<ContentPresenter>
     {
         /// <summary>Identifies the <see cref="Content"/> dependency property.</summary>

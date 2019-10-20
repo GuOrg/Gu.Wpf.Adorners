@@ -1,16 +1,16 @@
-﻿namespace Gu.Wpf.Adorners.Demo
+namespace Gu.Wpf.Adorners.Demo
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
     public class DragViewModel : INotifyPropertyChanged
     {
-        private DragItem item1 = new DragItem("Kajsa");
-        private DragItem item2;
+        private DragItem? item1 = new DragItem("Kajsa");
+        private DragItem? item2;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public DragItem Item1
+        public DragItem? Item1
         {
             get => this.item1;
 
@@ -26,7 +26,7 @@
             }
         }
 
-        public DragItem Item2
+        public DragItem? Item2
         {
             get => this.item2;
 
@@ -42,7 +42,7 @@
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

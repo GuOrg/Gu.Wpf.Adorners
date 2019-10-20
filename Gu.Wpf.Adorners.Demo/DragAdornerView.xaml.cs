@@ -1,5 +1,6 @@
-﻿namespace Gu.Wpf.Adorners.Demo
+namespace Gu.Wpf.Adorners.Demo
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -11,7 +12,7 @@
             this.InitializeComponent();
         }
 
-        private static bool TryGetDropTarget(object sender, out ContentPresenter target)
+        private static bool TryGetDropTarget(object sender, [NotNullWhen(true)] out ContentPresenter? target)
         {
             target = null;
             if (sender is ContentPresenter cp &&
