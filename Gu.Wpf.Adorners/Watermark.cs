@@ -355,6 +355,7 @@ namespace Gu.Wpf.Adorners
                 IsKeyboardFocusWithinChangedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
                 SelectionChangedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
                 SizeChangedEventManager.UpdateHandler(comboBox, OnSizeChanged);
+                TextInputEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
             }
 
             public string Text => this.comboBox.Text;
