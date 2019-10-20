@@ -31,199 +31,201 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <StackPanel>
-        <UniformGrid Rows="1">
-            <StackPanel>
-                <TextBlock Text="TextBox with watermark" />
-                <TextBox x:Name="TextBoxWithDefaultWatermark"
+    <AdornerDecorator>
+        <StackPanel>
+            <UniformGrid Rows="1">
+                <StackPanel>
+                    <TextBlock Text="TextBox with watermark" />
+                    <TextBox x:Name="TextBoxWithDefaultWatermark"
                          adorners:Watermark.Text="Write something here"
                          Visibility="{Binding ElementName=VisibilityCbx, Path=SelectedItem}" />
 
-                <TextBlock Text="Bound text" />
-                <TextBox x:Name="TextBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+                    <TextBlock Text="Bound text" />
+                    <TextBox x:Name="TextBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
 
-                <TextBlock Text="Inherits Fontsize via default style" />
-                <TextBox x:Name="TextBoxWithWatermarkWithInheritedFontSize"
+                    <TextBlock Text="Inherits Fontsize via default style" />
+                    <TextBox x:Name="TextBoxWithWatermarkWithInheritedFontSize"
                          adorners:Watermark.Text="Foo"
                          FontSize="32" />
 
-                <TextBlock Text="Explicit style" />
-                <TextBox x:Name="TextBoxWithWatermarkWithExplicitTextStyle"
+                    <TextBlock Text="Explicit style" />
+                    <TextBox x:Name="TextBoxWithWatermarkWithExplicitTextStyle"
                          adorners:Watermark.Text="Explicit style"
                          adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
 
-                <GroupBox adorners:Watermark.Text="Inherited style"
+                    <GroupBox adorners:Watermark.Text="Inherited style"
                           adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
                           Header="Inherited style">
-                    <StackPanel>
-                        <TextBox />
-                        <TextBox />
-                    </StackPanel>
-                </GroupBox>
+                        <StackPanel>
+                            <TextBox />
+                            <TextBox />
+                        </StackPanel>
+                    </GroupBox>
 
-                <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
-                    <StackPanel>
-                        <TextBox />
-                        <TextBox />
-                    </StackPanel>
-                </GroupBox>
+                    <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
+                        <StackPanel>
+                            <TextBox />
+                            <TextBox />
+                        </StackPanel>
+                    </GroupBox>
 
-                <TextBlock Text="VisibleWhen=Empty" />
-                <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmpty"
+                    <TextBlock Text="VisibleWhen=Empty" />
+                    <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmpty"
                          adorners:Watermark.Text="visible when empty"
                          adorners:Watermark.VisibleWhen="Empty" />
 
-                <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-                <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
+                    <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+                    <TextBox x:Name="TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
                          adorners:Watermark.Text="visible when not keyboard focused (default)"
                          adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel>
-                <TextBlock Text="PasswordBox with watermark" />
-                <PasswordBox x:Name="PasswordBoxWithDefaultWatermark"
+                <StackPanel>
+                    <TextBlock Text="PasswordBox with watermark" />
+                    <PasswordBox x:Name="PasswordBoxWithDefaultWatermark"
                              adorners:Watermark.Text="Write something here"
                              Visibility="{Binding ElementName=VisibilityCbx, Path=SelectedItem}" />
 
-                <TextBlock Text="Bound text" />
-                <PasswordBox x:Name="PasswordBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
+                    <TextBlock Text="Bound text" />
+                    <PasswordBox x:Name="PasswordBoxWithWatermarkWithBoundText" adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}" />
 
-                <TextBlock Text="Inherits Fontsize via default style" />
-                <PasswordBox x:Name="PasswordBoxWithWatermarkWithInheritedFontSize"
+                    <TextBlock Text="Inherits Fontsize via default style" />
+                    <PasswordBox x:Name="PasswordBoxWithWatermarkWithInheritedFontSize"
                              adorners:Watermark.Text="Foo"
                              FontSize="32" />
 
-                <TextBlock Text="Explicit style" />
-                <PasswordBox x:Name="PasswordBoxWithWatermarkWithExplicitTextStyle"
+                    <TextBlock Text="Explicit style" />
+                    <PasswordBox x:Name="PasswordBoxWithWatermarkWithExplicitTextStyle"
                              adorners:Watermark.Text="Explicit style"
                              adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}" />
 
-                <GroupBox adorners:Watermark.Text="Inherited style"
+                    <GroupBox adorners:Watermark.Text="Inherited style"
                           adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
                           Header="Inherited style">
-                    <StackPanel>
-                        <PasswordBox />
-                        <PasswordBox />
-                    </StackPanel>
-                </GroupBox>
+                        <StackPanel>
+                            <PasswordBox />
+                            <PasswordBox />
+                        </StackPanel>
+                    </GroupBox>
 
-                <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
-                    <StackPanel>
-                        <PasswordBox />
-                        <PasswordBox />
-                    </StackPanel>
-                </GroupBox>
+                    <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
+                        <StackPanel>
+                            <PasswordBox />
+                            <PasswordBox />
+                        </StackPanel>
+                    </GroupBox>
 
-                <TextBlock Text="VisibleWhen=Empty" />
-                <PasswordBox x:Name="PasswordBoxWithWatermarkVisibleWhenEmpty"
+                    <TextBlock Text="VisibleWhen=Empty" />
+                    <PasswordBox x:Name="PasswordBoxWithWatermarkVisibleWhenEmpty"
                              adorners:Watermark.Text="visible when empty"
                              adorners:Watermark.VisibleWhen="Empty" />
 
-                <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-                <PasswordBox x:Name="PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
+                    <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+                    <PasswordBox x:Name="PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
                              adorners:Watermark.Text="visible when not keyboard focused (default)"
                              adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused" />
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel>
-                <TextBlock Text="ComboBox with watermark" />
-                <ComboBox x:Name="ComboBoxWithDefaultWatermark"
+                <StackPanel>
+                    <TextBlock Text="ComboBox with watermark" />
+                    <ComboBox x:Name="ComboBoxWithDefaultWatermark"
                           adorners:Watermark.Text="Write something here"
                           BorderBrush="#FF707070"
                           Visibility="{Binding ElementName=VisibilityCbx, Path=SelectedItem}">
-                    <ComboBoxItem>abc</ComboBoxItem>
-                    <ComboBoxItem>cde</ComboBoxItem>
-                    <ComboBoxItem>fgh</ComboBoxItem>
-                </ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
 
-                <TextBlock Text="Bound text" />
-                <ComboBox x:Name="ComboBoxWithWatermarkWithBoundText"
+                    <TextBlock Text="Bound text" />
+                    <ComboBox x:Name="ComboBoxWithWatermarkWithBoundText"
                           adorners:Watermark.Text="{Binding Text, ElementName=AdornerText}"
                           BorderBrush="#FF707070">
-                    <ComboBoxItem>abc</ComboBoxItem>
-                    <ComboBoxItem>cde</ComboBoxItem>
-                    <ComboBoxItem>fgh</ComboBoxItem>
-                </ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
 
-                <TextBlock Text="Inherits Fontsize via default style" />
-                <ComboBox x:Name="ComboBoxWithWatermarkWithInheritedFontSize"
+                    <TextBlock Text="Inherits Fontsize via default style" />
+                    <ComboBox x:Name="ComboBoxWithWatermarkWithInheritedFontSize"
                           adorners:Watermark.Text="Foo"
                           BorderBrush="#FF707070"
                           FontSize="32">
-                    <ComboBoxItem>abc</ComboBoxItem>
-                    <ComboBoxItem>cde</ComboBoxItem>
-                    <ComboBoxItem>fgh</ComboBoxItem>
-                </ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
 
-                <TextBlock Text="Explicit style" />
-                <ComboBox x:Name="ComboBoxWithWatermarkWithExplicitTextStyle"
+                    <TextBlock Text="Explicit style" />
+                    <ComboBox x:Name="ComboBoxWithWatermarkWithExplicitTextStyle"
                           adorners:Watermark.Text="Explicit style"
                           adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
                           BorderBrush="#FF707070">
-                    <ComboBoxItem>abc</ComboBoxItem>
-                    <ComboBoxItem>cde</ComboBoxItem>
-                    <ComboBoxItem>fgh</ComboBoxItem>
-                </ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
 
-                <GroupBox adorners:Watermark.Text="Inherited style"
+                    <GroupBox adorners:Watermark.Text="Inherited style"
                           adorners:Watermark.TextStyle="{StaticResource AdornerTextStyle}"
                           Header="Inherited style">
-                    <StackPanel>
-                        <ComboBox BorderBrush="#FF707070">
-                            <ComboBoxItem>abc</ComboBoxItem>
-                            <ComboBoxItem>cde</ComboBoxItem>
-                            <ComboBoxItem>fgh</ComboBoxItem>
-                        </ComboBox>
-                        <ComboBox BorderBrush="#FF707070">
-                            <ComboBoxItem>abc</ComboBoxItem>
-                            <ComboBoxItem>cde</ComboBoxItem>
-                            <ComboBoxItem>fgh</ComboBoxItem>
-                        </ComboBox>
-                    </StackPanel>
-                </GroupBox>
+                        <StackPanel>
+                            <ComboBox BorderBrush="#FF707070">
+                                <ComboBoxItem>abc</ComboBoxItem>
+                                <ComboBoxItem>cde</ComboBoxItem>
+                                <ComboBoxItem>fgh</ComboBoxItem>
+                            </ComboBox>
+                            <ComboBox BorderBrush="#FF707070">
+                                <ComboBoxItem>abc</ComboBoxItem>
+                                <ComboBoxItem>cde</ComboBoxItem>
+                                <ComboBoxItem>fgh</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </GroupBox>
 
-                <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
-                    <StackPanel>
-                        <ComboBox BorderBrush="#FF707070">
-                            <ComboBoxItem>abc</ComboBoxItem>
-                            <ComboBoxItem>cde</ComboBoxItem>
-                            <ComboBoxItem>fgh</ComboBoxItem>
-                        </ComboBox>
-                        <ComboBox BorderBrush="#FF707070">
-                            <ComboBoxItem>abc</ComboBoxItem>
-                            <ComboBoxItem>cde</ComboBoxItem>
-                            <ComboBoxItem>fgh</ComboBoxItem>
-                        </ComboBox>
-                    </StackPanel>
-                </GroupBox>
+                    <GroupBox adorners:Watermark.Text="Inherited text" Header="Inherited text">
+                        <StackPanel>
+                            <ComboBox BorderBrush="#FF707070">
+                                <ComboBoxItem>abc</ComboBoxItem>
+                                <ComboBoxItem>cde</ComboBoxItem>
+                                <ComboBoxItem>fgh</ComboBoxItem>
+                            </ComboBox>
+                            <ComboBox BorderBrush="#FF707070">
+                                <ComboBoxItem>abc</ComboBoxItem>
+                                <ComboBoxItem>cde</ComboBoxItem>
+                                <ComboBoxItem>fgh</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </GroupBox>
 
-                <TextBlock Text="VisibleWhen=Empty" />
-                <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmpty"
+                    <TextBlock Text="VisibleWhen=Empty" />
+                    <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmpty"
                           adorners:Watermark.Text="visible when empty"
                           adorners:Watermark.VisibleWhen="Empty"
                           BorderBrush="#FF707070">
-                    <ComboBoxItem>abc</ComboBoxItem>
-                    <ComboBoxItem>cde</ComboBoxItem>
-                    <ComboBoxItem>fgh</ComboBoxItem>
-                </ComboBox>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
 
-                <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
-                <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
+                    <TextBlock Text="VisibleWhen=EmptyAndNotKeyboardFocused" />
+                    <ComboBox x:Name="ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused"
                           adorners:Watermark.Text="visible when not keyboard focused (default)"
                           adorners:Watermark.VisibleWhen="EmptyAndNotKeyboardFocused"
                           BorderBrush="#FF707070">
-                    <ComboBoxItem>abc</ComboBoxItem>
-                    <ComboBoxItem>cde</ComboBoxItem>
-                    <ComboBoxItem>fgh</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-        </UniformGrid>
-        <TextBox x:Name="AdornerText" Text="AAA" />
-        <ComboBox x:Name="VisibilityCbx" SelectedIndex="0">
-            <Visibility>Visible</Visibility>
-            <Visibility>Hidden</Visibility>
-            <Visibility>Collapsed</Visibility>
-        </ComboBox>
-        <Button Content="Lose focus" />
-    </StackPanel>
+                        <ComboBoxItem>abc</ComboBoxItem>
+                        <ComboBoxItem>cde</ComboBoxItem>
+                        <ComboBoxItem>fgh</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </UniformGrid>
+            <TextBox x:Name="AdornerText" Text="AAA" />
+            <ComboBox x:Name="VisibilityCbx" SelectedIndex="0">
+                <Visibility>Visible</Visibility>
+                <Visibility>Hidden</Visibility>
+                <Visibility>Collapsed</Visibility>
+            </ComboBox>
+            <Button Content="Lose focus" />
+        </StackPanel>
+    </AdornerDecorator>
 </Window>

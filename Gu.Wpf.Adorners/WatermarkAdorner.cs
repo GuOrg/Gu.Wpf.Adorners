@@ -1,10 +1,10 @@
 namespace Gu.Wpf.Adorners
 {
     using System;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
 
     /// <summary>
     /// Adorner that shows watermark text.
@@ -12,12 +12,14 @@ namespace Gu.Wpf.Adorners
     [StyleTypedProperty(Property = nameof(TextStyle), StyleTargetType = typeof(TextBlock))]
     public sealed class WatermarkAdorner : ContainerAdorner<TextBlock>
     {
+        private const string TextBoxView = "TextBoxView";
+
         /// <summary>Identifies the <see cref="TextStyle"/> dependency property.</summary>
         public static readonly DependencyProperty TextStyleProperty = Watermark.TextStyleProperty.AddOwner(
             typeof(WatermarkAdorner),
             new FrameworkPropertyMetadata(default(Style)));
 
-        private readonly WeakReference<FrameworkElement> placementReference = new WeakReference<FrameworkElement>(null);
+        private readonly WeakReference<FrameworkElement> referenceElement = new WeakReference<FrameworkElement>(null);
 
         static WatermarkAdorner()
         {
@@ -55,82 +57,90 @@ namespace Gu.Wpf.Adorners
             set => this.SetValue(TextStyleProperty, value);
         }
 
-        private FrameworkElement PlacementReference
+        private FrameworkElement ReferenceElement
         {
             get
             {
-                if (this.placementReference.TryGetTarget(out var contentPresenter))
+                if (this.referenceElement.TryGetTarget(out var reference))
                 {
-                    return contentPresenter;
+                    return reference;
                 }
 
-                if (this.AdornedElement is TextBoxBase ||
-                    this.AdornedElement is PasswordBox)
+                foreach (var child in this.AdornedElement.RecursiveVisualChildren())
                 {
-                    // ReSharper disable once ConstantConditionalAccessQualifier
-                    contentPresenter = (FrameworkElement)this.AdornedElement
-                                                     ?.FirstOrDefaultRecursiveVisualChild<ScrollContentPresenter>()
-                                                     ?.FirstOrDefaultRecursiveVisualChild<IScrollInfo>(); // The TextView is internal but implements IScrollInfo
-                    if (contentPresenter != null)
+                    if (child is FrameworkElement candidate &&
+                        candidate.DependencyObjectType is DependencyObjectType objectType &&
+                        objectType.Name == TextBoxView)
                     {
-                        this.placementReference.SetTarget(contentPresenter);
-                    }
-                }
-                else if (this.AdornedElement is ComboBox comboBox)
-                {
-                    contentPresenter = (FrameworkElement)comboBox.FirstOrDefaultRecursiveVisualChild<ContentPresenter>() ??
-                                                         comboBox.FirstOrDefaultRecursiveVisualChild<ToggleButton>();
-                    if (contentPresenter != null)
-                    {
-                        this.placementReference.SetTarget(contentPresenter);
+                        this.referenceElement.SetTarget(candidate);
+                        return candidate;
                     }
                 }
 
-                return contentPresenter;
+                if (this.AdornedElement is ComboBox comboBox)
+                {
+                    reference = (FrameworkElement)comboBox.FirstOrDefaultRecursiveVisualChild<ContentPresenter>() ??
+                                                  comboBox.FirstOrDefaultRecursiveVisualChild<ToggleButton>();
+                    if (reference != null)
+                    {
+                        this.referenceElement.SetTarget(reference);
+                        return reference;
+                    }
+                }
+
+                return this.AdornedElement as FrameworkElement;
             }
         }
 
         /// <inheritdoc />
         protected override Size MeasureOverride(Size constraint)
         {
-            var desiredSize = this.AdornedElement.RenderSize;
-            this.Child?.Measure(desiredSize);
-            return desiredSize;
+            if (this.ReferenceElement != null &&
+                this.AdornedElement.IsMeasureValid &&
+                !DoubleUtil.AreClose(this.ReferenceElement.DesiredSize, this.AdornedElement.DesiredSize))
+            {
+                this.ReferenceElement.InvalidateMeasure();
+            }
+
+            if (this.Child is TextBlock child)
+            {
+                child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                return child.DesiredSize;
+            }
+
+            return Size.Empty;
         }
 
         /// <inheritdoc />
         protected override Size ArrangeOverride(Size size)
         {
             var finalRect = GetFinalRect();
-            if (finalRect.Width < 0 ||
-                finalRect.Height < 0)
+            if (this.Child is TextBlock child)
             {
-                finalRect = new Rect(size);
+                child.Arrange(finalRect);
             }
 
-            this.Child?.Arrange(finalRect);
-            return size;
+            return finalRect.Size;
 
             Rect GetFinalRect()
             {
-                var reference = this.PlacementReference;
-                switch (reference)
+                if (ReferenceEquals(this.AdornedElement, this.ReferenceElement))
                 {
-                    case IScrollInfo _:
-                        var aSize = this.AdornedElement.RenderSize;
-                        var wSize = reference.RenderSize;
-                        var x = (aSize.Width - wSize.Width) / 2;
-                        var y = (aSize.Height - wSize.Height) / 2;
-                        var location = new Point(x, y);
-                        return new Rect(location, wSize);
-                    case ContentPresenter _:
-                        var margin = reference.Margin;
-                        var rect = new Rect(this.AdornedElement.RenderSize);
-                        rect.Inflate(-margin.Left, -margin.Top);
-                        return rect;
-                    default:
-                        return new Rect(new Point(0, 0), size);
+                    // Add default text margin.
+                    return new Rect(new Point(2, 0), new Size(this.AdornedElement.RenderSize.Width - 4, this.AdornedElement.RenderSize.Height));
                 }
+
+                if (this.ReferenceElement.DependencyObjectType?.Name == TextBoxView)
+                {
+                    return this.ReferenceElement.TransformToAncestor(this.AdornedElement)
+                               .TransformBounds(LayoutInformation.GetLayoutSlot(this.ReferenceElement));
+                }
+
+                return this.ReferenceElement.TransformToAncestor(this.AdornedElement)
+                                            .TransformBounds(LayoutInformation.GetLayoutSlot(this.ReferenceElement));
+
+                // Add default text margin.
+                //return new Rect(bounds.TopLeft + new Vector(2, 0), bounds.BottomRight - new Vector(4, 0));
             }
         }
     }
