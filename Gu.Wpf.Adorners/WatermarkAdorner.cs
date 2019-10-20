@@ -9,6 +9,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Adorner that shows watermark text.
     /// </summary>
+    [StyleTypedProperty(Property = nameof(TextStyle), StyleTargetType = typeof(TextBlock))]
     public sealed class WatermarkAdorner : ContainerAdorner<TextBlock>
     {
         /// <summary>Identifies the <see cref="TextStyle"/> dependency property.</summary>
