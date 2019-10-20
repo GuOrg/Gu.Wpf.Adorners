@@ -43,7 +43,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 var button = window.FindButton("red border bound visibility");
                 ImageAssert.AreEqual(".\\Images\\red border bound visibility_visible.png", button);
 
-                window.FindToggleButton("IsVisibleButton").IsChecked = false;
+                window.FindToggleButton("IsVisibleToggleButton").IsChecked = false;
                 ImageAssert.AreEqual(".\\Images\\red border bound visibility_not_visible.png", button);
             }
         }

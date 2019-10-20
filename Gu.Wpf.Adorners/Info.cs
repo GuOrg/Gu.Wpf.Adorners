@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Adorners
 {
-    using System;
     using System.Diagnostics;
     using System.Windows;
     using System.Windows.Controls;
@@ -27,26 +26,26 @@ namespace Gu.Wpf.Adorners
         /// Gets or sets visibility of the adorner.
         /// Note that setting it to visible does not need to mean it will be rendered. This can happen if the adorned element is collapsed for example.
         /// </summary>
-        public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached(
-            "IsVisible",
-            typeof(bool?),
+        public static readonly DependencyProperty VisibilityProperty = DependencyProperty.RegisterAttached(
+            "Visibility",
+            typeof(Visibility),
             typeof(Info),
             new PropertyMetadata(
-                default(bool?),
+                Visibility.Visible,
                 (d, e) => OnAdornedElementChanged(d, e)));
 
-        private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "IsShowing",
+        private static readonly DependencyPropertyKey IsVisiblePropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "IsVisible",
             typeof(bool),
             typeof(Info),
             new PropertyMetadata(
                 default(bool),
-                OnIsShowingChanged));
+                OnIsVisibleChanged));
 
         /// <summary>
         /// Gets or sets if the adorner is currently visible.
         /// </summary>
-        public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty IsVisibleProperty = IsVisiblePropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
@@ -72,45 +71,35 @@ namespace Gu.Wpf.Adorners
             return (ControlTemplate)element.GetValue(TemplateProperty);
         }
 
-        /// <summary>Helper for setting <see cref="IsVisibleProperty"/> on <paramref name="element"/>.</summary>
-        /// <param name="element"><see cref="DependencyObject"/> to set <see cref="IsVisibleProperty"/> on.</param>
-        /// <param name="value">IsVisible property value.</param>
-        public static void SetIsVisible(DependencyObject element, bool? value)
+        /// <summary>Helper for setting <see cref="VisibilityProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DependencyObject"/> to set <see cref="VisibilityProperty"/> on.</param>
+        /// <param name="value">Visibility property value.</param>
+        public static void SetVisibility(DependencyObject element, Visibility value)
         {
-            element.SetValue(IsVisibleProperty, value);
+            element.SetValue(VisibilityProperty, value);
+        }
+
+        /// <summary>Helper for getting <see cref="VisibilityProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DependencyObject"/> to read <see cref="VisibilityProperty"/> from.</param>
+        /// <returns>Visibility property value.</returns>
+        public static Visibility GetVisibility(DependencyObject element)
+        {
+            return (Visibility)element.GetValue(VisibilityProperty);
+        }
+
+        private static void SetIsVisible(this DependencyObject element, bool value)
+        {
+            element.SetValue(IsVisiblePropertyKey, value);
         }
 
         /// <summary>Helper for getting <see cref="IsVisibleProperty"/> from <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to read <see cref="IsVisibleProperty"/> from.</param>
         /// <returns>IsVisible property value.</returns>
-        public static bool? GetIsVisible(DependencyObject element)
-        {
-            return (bool?)element.GetValue(IsVisibleProperty);
-        }
-
-        private static void SetIsShowing(this DependencyObject element, bool value)
-        {
-            element.SetValue(IsShowingPropertyKey, value);
-        }
-
-        /// <summary>Helper for getting <see cref="IsShowingProperty"/> from <paramref name="element"/>.</summary>
-        /// <param name="element"><see cref="DependencyObject"/> to read <see cref="IsShowingProperty"/> from.</param>
-        /// <returns>IsShowing property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
-        public static bool GetIsShowing(this DependencyObject element)
+        public static bool GetIsVisible(this DependencyObject element)
         {
-            return (bool)element.GetValue(IsShowingProperty);
-        }
-
-        private static void SetAdorner(this DependencyObject element, Adorner value)
-        {
-            element.SetValue(AdornerProperty, value);
-        }
-
-        private static Adorner GetAdorner(this DependencyObject element)
-        {
-            return (Adorner)element.GetValue(AdornerProperty);
+            return (bool)element.GetValue(IsVisibleProperty);
         }
 
 #pragma warning restore SA1202 // Elements must be ordered by access
@@ -119,8 +108,8 @@ namespace Gu.Wpf.Adorners
         {
             if (sender is UIElement adornedElement)
             {
-                adornedElement.GetAdorner()?.InvalidateMeasure();
-                UpdateIsShowing(adornedElement);
+                (adornedElement.GetValue(AdornerProperty) as Adorner)?.InvalidateMeasure();
+                UpdateIsVisible(adornedElement);
             }
         }
 
@@ -128,7 +117,7 @@ namespace Gu.Wpf.Adorners
         {
             if (sender is UIElement adornedElement)
             {
-                UpdateIsShowing(adornedElement);
+                UpdateIsVisible(adornedElement);
             }
         }
 
@@ -140,11 +129,11 @@ namespace Gu.Wpf.Adorners
                 LoadedEventManager.UpdateHandler(adornedElement, OnAdornedElementChanged);
                 UnloadedEventManager.UpdateHandler(adornedElement, OnAdornedElementChanged);
                 SizeChangedEventManager.UpdateHandler(adornedElement, OnSizeChanged);
-                UpdateIsShowing(adornedElement);
+                UpdateIsVisible(adornedElement);
             }
         }
 
-        private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (Equals(e.NewValue, true) &&
                 d is UIElement element &&
@@ -168,19 +157,19 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void UpdateIsShowing(UIElement element)
+        private static void UpdateIsVisible(UIElement element)
         {
             if (element.IsVisible &&
                 element.IsLoaded() &&
                 GetTemplate(element) is { } &&
-                GetIsVisible(element) == true)
+                GetVisibility(element) == Visibility.Visible)
             {
-                element.SetIsShowing(true);
+                element.SetIsVisible(true);
                 return;
             }
             else
             {
-                element.SetIsShowing(false);
+                element.SetIsVisible(false);
             }
         }
     }
