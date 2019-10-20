@@ -198,23 +198,15 @@ namespace Gu.Wpf.Adorners
             return (bool)element.GetValue(IsShowingProperty);
         }
 
-        private static void SetAdorner(this DependencyObject element, ContentAdorner value)
-        {
-            element.SetValue(AdornerProperty, value);
-        }
-
-        private static ContentAdorner GetAdorner(this DependencyObject element)
-        {
-            return (ContentAdorner)element.GetValue(AdornerProperty);
-        }
-
 #pragma warning restore SA1202 // Elements must be ordered by access
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            var element = sender as DependencyObject;
-            element?.GetAdorner()?.InvalidateMeasure();
-            UpdateIsShowing(element);
+            if (sender is UIElement element)
+            {
+                (element.GetValue(AdornerProperty) as ContentAdorner)?.InvalidateMeasure();
+                UpdateIsShowing(element);
+            }
         }
 
         private static void OnAdornedElementChanged(object sender, EventArgs e) => UpdateIsShowing(sender as DependencyObject);
@@ -228,24 +220,21 @@ namespace Gu.Wpf.Adorners
         private static void OnContentTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             UpdateHandlers(d);
-            var adorner = d?.GetAdorner();
-            adorner?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
+            (d.GetValue(AdornerProperty) as ContentAdorner)?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
             UpdateIsShowing(d);
         }
 
         private static void OnContentTemplateSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             UpdateHandlers(d);
-            var adorner = d?.GetAdorner();
-            adorner?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
+            (d.GetValue(AdornerProperty) as ContentAdorner)?.SetCurrentValue(ContentAdorner.ContentTemplateProperty, GetContentTemplate(d));
             UpdateIsShowing(d);
         }
 
         private static void OnContentPresenterStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             UpdateHandlers(d);
-            var adorner = d?.GetAdorner();
-            adorner?.SetCurrentValue(ContentAdorner.ContentPresenterStyleProperty, GetContentPresenterStyle(d));
+            (d.GetValue(AdornerProperty) as ContentAdorner)?.SetCurrentValue(ContentAdorner.ContentPresenterStyleProperty, GetContentPresenterStyle(d));
         }
 
         private static void UpdateHandlers(DependencyObject d)
@@ -258,35 +247,29 @@ namespace Gu.Wpf.Adorners
 
         private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var element = (UIElement)d;
             if (Equals(e.NewValue, true))
             {
-                var adorner = element.GetAdorner();
-                if (adorner == null)
+                if (d.GetValue(AdornerProperty) is null)
                 {
+                    var element = (UIElement)d;
+
                     var adornedElement = element is Window
                         ? element.FirstOrDefaultRecursiveVisualChild<AdornerDecorator>()?.Child
                         : element;
 
-                    adorner = new ContentAdorner(adornedElement);
-                    element.SetAdorner(adorner);
+                    var adorner = new ContentAdorner(adornedElement);
+                    SetIfNotNull(d, ContentProperty, adorner, ContentAdorner.ContentProperty);
+                    SetIfNotNull(d, ContentTemplateProperty, adorner, ContentAdorner.ContentTemplateProperty);
+                    SetIfNotNull(d, ContentTemplateSelectorProperty, adorner, ContentAdorner.ContentTemplateSelectorProperty);
+                    SetIfNotNull(d, ContentPresenterStyleProperty, adorner, ContentAdorner.ContentPresenterStyleProperty);
+                    d.SetCurrentValue(AdornerProperty, adorner);
+                    AdornerService.Show(adorner);
                 }
-
-                SetIfNotNull(d, ContentProperty, adorner, ContentAdorner.ContentProperty);
-                SetIfNotNull(d, ContentTemplateProperty, adorner, ContentAdorner.ContentTemplateProperty);
-                SetIfNotNull(d, ContentTemplateSelectorProperty, adorner, ContentAdorner.ContentTemplateSelectorProperty);
-                SetIfNotNull(d, ContentPresenterStyleProperty, adorner, ContentAdorner.ContentPresenterStyleProperty);
-                AdornerService.Show(adorner);
             }
-            else
+            else if (d.GetValue(AdornerProperty) is ContentAdorner adorner)
             {
-                var adorner = element.GetAdorner();
-                if (adorner != null)
-                {
-                    AdornerService.Remove(adorner);
-                }
-
-                element.ClearValue(AdornerProperty);
+                AdornerService.Remove(adorner);
+                d.ClearValue(AdornerProperty);
             }
         }
 
