@@ -46,12 +46,6 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Gets the adorned <see cref="TextBoxBase"/>.
-        /// </summary>
-        [Obsolete("This property will be removed, use AdornedElement.")]
-        public TextBoxBase AdornedTextBox => this.AdornedElement as TextBoxBase;
-
-        /// <summary>
         /// Gets or sets the style for the <see cref="TextBlock"/> rendering <see cref="Watermark.TextProperty"/> for <see cref="System.Windows.Documents.Adorner.AdornedElement"/>.
         /// </summary>
         public Style TextStyle
