@@ -1,10 +1,10 @@
 namespace Gu.Wpf.Adorners
 {
     using System;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
-    using System.Windows.Media;
 
     /// <summary>
     /// Adorner that shows watermark text.
@@ -12,12 +12,12 @@ namespace Gu.Wpf.Adorners
     [StyleTypedProperty(Property = nameof(TextStyle), StyleTargetType = typeof(TextBlock))]
     public sealed class WatermarkAdorner : ContainerAdorner<TextBlock>
     {
-        private const string TextBoxView = "TextBoxView";
-
         /// <summary>Identifies the <see cref="TextStyle"/> dependency property.</summary>
         public static readonly DependencyProperty TextStyleProperty = Watermark.TextStyleProperty.AddOwner(
             typeof(WatermarkAdorner),
             new FrameworkPropertyMetadata(default(Style)));
+
+        private const string TextBoxView = "TextBoxView";
 
         private readonly WeakReference<FrameworkElement> referenceElement = new WeakReference<FrameworkElement>(null);
 
@@ -79,12 +79,25 @@ namespace Gu.Wpf.Adorners
 
                 if (this.AdornedElement is ComboBox comboBox)
                 {
-                    reference = (FrameworkElement)comboBox.FirstOrDefaultRecursiveVisualChild<ContentPresenter>() ??
-                                                  comboBox.FirstOrDefaultRecursiveVisualChild<ToggleButton>();
-                    if (reference != null)
+                    if (comboBox.TryFirstRecursiveVisualChild(out ContentPresenter contentPresenter))
                     {
-                        this.referenceElement.SetTarget(reference);
-                        return reference;
+                        this.referenceElement.SetTarget(contentPresenter);
+                        return contentPresenter;
+                    }
+
+                    if (comboBox.TryFirstRecursiveVisualChild(out ToggleButton toggleButton))
+                    {
+                        if (toggleButton.VisualChildren().SingleOrDefault() is Border border &&
+                            border.VisualChildren().SingleOrDefault() is FrameworkElement borderChild)
+                        {
+                            this.referenceElement.SetTarget(borderChild);
+                            return borderChild;
+                        }
+                        else
+                        {
+                            this.referenceElement.SetTarget(toggleButton);
+                            return toggleButton;
+                        }
                     }
                 }
 
@@ -126,8 +139,8 @@ namespace Gu.Wpf.Adorners
             {
                 if (ReferenceEquals(this.AdornedElement, this.ReferenceElement))
                 {
-                    // Add default text margin.
-                    return new Rect(new Point(2, 0), new Size(this.AdornedElement.RenderSize.Width - 4, this.AdornedElement.RenderSize.Height));
+                    var slot = LayoutInformation.GetLayoutSlot(this.ReferenceElement);
+                    return CenteredVertically(slot);
                 }
 
                 if (this.ReferenceElement.DependencyObjectType?.Name == TextBoxView)
@@ -136,11 +149,21 @@ namespace Gu.Wpf.Adorners
                                .TransformBounds(LayoutInformation.GetLayoutSlot(this.ReferenceElement));
                 }
 
-                return this.ReferenceElement.TransformToAncestor(this.AdornedElement)
-                                            .TransformBounds(LayoutInformation.GetLayoutSlot(this.ReferenceElement));
+                var bounds = this.ReferenceElement.TransformToAncestor(this.AdornedElement)
+                                                  .TransformBounds(LayoutInformation.GetLayoutSlot(this.ReferenceElement));
 
-                // Add default text margin.
-                //return new Rect(bounds.TopLeft + new Vector(2, 0), bounds.BottomRight - new Vector(4, 0));
+                if (this.ReferenceElement is ContentPresenter)
+                {
+                    return new Rect(bounds.TopLeft, bounds.BottomRight);
+                }
+
+                return CenteredVertically(bounds);
+
+                Rect CenteredVertically(Rect rect)
+                {
+                    var y = rect.Height > size.Height ? (rect.Height - size.Height) / 2 : 0;
+                    return new Rect(rect.TopLeft + new Vector(0, y), rect.BottomRight - new Vector(0, y));
+                }
             }
         }
     }

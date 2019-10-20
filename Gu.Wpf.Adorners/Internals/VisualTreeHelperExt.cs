@@ -55,6 +55,22 @@ namespace Gu.Wpf.Adorners
             }
         }
 
+        internal static bool TryFirstRecursiveVisualChild<T>(this DependencyObject parent, out T match)
+            where T : FrameworkElement
+        {
+            foreach (DependencyObject child in RecursiveVisualChildren(parent))
+            {
+                if (child is T temp)
+                {
+                    match = temp;
+                    return true;
+                }
+            }
+
+            match = null;
+            return false;
+        }
+
         internal static T FirstOrDefaultRecursiveVisualChild<T>(this DependencyObject parent)
         {
             return RecursiveVisualChildren(parent)
