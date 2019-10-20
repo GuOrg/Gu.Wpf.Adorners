@@ -150,11 +150,6 @@ namespace Gu.Wpf.Adorners
             return (bool)element.GetValue(IsVisibleProperty);
         }
 
-        private static WatermarkAdorner GetAdorner(this DependencyObject element)
-        {
-            return (WatermarkAdorner)element.GetValue(AdornerProperty);
-        }
-
 #pragma warning restore SA1202 // Elements must be ordered by access
 
         private static void OnTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -197,14 +192,9 @@ namespace Gu.Wpf.Adorners
 
         private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control adornedElement)
+            if (d is Control adornedElement &&
+                adornedElement.GetValue(AdornerProperty) is WatermarkAdorner adorner)
             {
-                var adorner = adornedElement.GetAdorner();
-                if (adorner == null)
-                {
-                    return;
-                }
-
                 adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, e.NewValue);
                 if (e.NewValue == null)
                 {
@@ -249,18 +239,18 @@ namespace Gu.Wpf.Adorners
 
         private static void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            if (sender is Control control)
+            if (sender is Control adornedElement)
             {
-                control.GetAdorner()?.InvalidateMeasure();
-                UpdateIsVisible(control);
+                (adornedElement.GetValue(AdornerProperty) as WatermarkAdorner)?.InvalidateMeasure();
+                UpdateIsVisible(adornedElement);
             }
         }
 
         private static void OnAdornedElementChanged(object sender, object _)
         {
-            if (sender is Control control)
+            if (sender is Control adornedElement)
             {
-                UpdateIsVisible(control);
+                UpdateIsVisible(adornedElement);
             }
         }
 
