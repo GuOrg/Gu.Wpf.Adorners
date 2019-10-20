@@ -214,7 +214,7 @@ namespace Gu.Wpf.Adorners
         {
             if (Equals(e.NewValue, true))
             {
-                if (d.GetValue(AdornerProperty) == null)
+                if (d.GetValue(AdornerProperty) is null)
                 {
                     var adorner = new WatermarkAdorner((Control)d);
                     d.SetCurrentValue(AdornerProperty, adorner);
