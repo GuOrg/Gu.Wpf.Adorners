@@ -214,7 +214,6 @@ The behaviour of the watermark can be set with the `VisibleWhen` property.
 ```
 
 
-
 ### Rendered Example
 The above examples render to the following visualisation:
 
@@ -255,7 +254,6 @@ TextStyle accepts a style for `TextBlock` the text is drawn where the textbox te
     </Setter>
 </Style>
 ```
-
 
 
 # Overlay

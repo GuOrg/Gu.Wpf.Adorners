@@ -23,7 +23,8 @@ namespace Gu.Wpf.Adorners
                 OnTemplateChanged));
 
         /// <summary>
-        /// Gets or sets visibility of the adorner. Note that setting it to visible does not need to trigger a show.
+        /// Gets or sets visibility of the adorner.
+        /// Note that setting it to visible does not need to mean it will be rendered. This can happen if the adorned element is collapsed for example.
         /// </summary>
         public static readonly DependencyProperty IsVisibleProperty = DependencyProperty.RegisterAttached(
             "IsVisible",
