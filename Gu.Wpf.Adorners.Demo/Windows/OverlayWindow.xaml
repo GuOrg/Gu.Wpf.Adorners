@@ -17,6 +17,8 @@
                 <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Classic;V4.0.0.0;31bf3856ad364e35;component/themes/Classic.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Height" Value="50" />
                 <Setter Property="Width" Value="200" />
@@ -41,69 +43,58 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <StackPanel>
-        <Slider x:Name="WidthSlider"
-                Maximum="200"
-                Minimum="0"
-                Value="200" />
+    <AdornerDecorator>
+        <StackPanel>
+            <Slider x:Name="WidthSlider"
+                    Maximum="200"
+                    Minimum="0"
+                    Value="200" />
 
-        <Button Content="No overlay" />
+            <Button Content="No overlay" />
 
-        <Button Width="{Binding ElementName=WidthSlider,
-                                Path=Value}"
-                Content="Default visibility"
-                Visibility="{Binding ElementName=VisibilityCbx,
-                                     Path=SelectedItem}">
-            <adorners:Overlay.Content>
-                <Border BorderBrush="Blue"
-                        BorderThickness="2" />
-            </adorners:Overlay.Content>
-        </Button>
+            <Button Width="{Binding ElementName=WidthSlider,
+                                    Path=Value}"
+                    Content="Default visibility"
+                    Visibility="{Binding ElementName=VisibilityCbx,
+                                         Path=SelectedItem}">
+                <adorners:Overlay.Content>
+                    <Border BorderBrush="Blue"
+                            BorderThickness="2" />
+                </adorners:Overlay.Content>
+            </Button>
 
-        <TextBlock HorizontalAlignment="Center"
-                   Text="Bound visibility" />
-        <ToggleButton x:Name="IsVisibleButton"
-                      Content="IsVisible"
-                      IsChecked="True" />
+            <TextBlock HorizontalAlignment="Center"
+                       Text="Bound visibility" />
+            <ToggleButton x:Name="IsVisibleButton"
+                          Content="IsVisible"
+                          IsChecked="True" />
 
-        <ComboBox x:Name="VisibilityCbx"
-                  SelectedIndex="0">
-            <Visibility>Visible</Visibility>
-            <Visibility>Hidden</Visibility>
-            <Visibility>Collapsed</Visibility>
-        </ComboBox>
+            <ComboBox x:Name="VisibilityCbx"
+                      SelectedIndex="0">
+                <Visibility>Visible</Visibility>
+                <Visibility>Hidden</Visibility>
+                <Visibility>Collapsed</Visibility>
+            </ComboBox>
 
-        <Button adorners:Overlay.IsVisible="{Binding IsChecked,
-                                                     ElementName=IsVisibleButton}"
-                Content="Bound visibility">
-            <adorners:Overlay.Content>
-                <Border BorderBrush="HotPink"
-                        BorderThickness="2" />
-            </adorners:Overlay.Content>
-        </Button>
+            <Button adorners:Overlay.Visibility="{Binding IsChecked,
+                                                          ElementName=IsVisibleButton,
+                                                          Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Content="Bound visibility">
+                <adorners:Overlay.Content>
+                    <Border BorderBrush="HotPink"
+                            BorderThickness="2" />
+                </adorners:Overlay.Content>
+            </Button>
 
-        <Button adorners:Overlay.Content="yeah"
-                adorners:Overlay.IsVisible="{Binding IsChecked,
-                                                     ElementName=IsVisibleButton}"
-                Content="With content template"
-                Foreground="Blue">
-            <adorners:Overlay.ContentTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="BlueViolet"
-                            BorderThickness="2">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Text="{Binding}" />
-                    </Border>
-                </DataTemplate>
-            </adorners:Overlay.ContentTemplate>
-        </Button>
-
-        <GroupBox Header="Inherits">
-            <StackPanel adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
+            <Button adorners:Overlay.Content="yeah"
+                    adorners:Overlay.Visibility="{Binding IsChecked,
+                                                          ElementName=IsVisibleButton,
+                                                          Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Content="With content template"
+                    Foreground="Blue">
                 <adorners:Overlay.ContentTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="GreenYellow"
+                        <Border BorderBrush="BlueViolet"
                                 BorderThickness="2">
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -111,15 +102,32 @@
                         </Border>
                     </DataTemplate>
                 </adorners:Overlay.ContentTemplate>
+            </Button>
 
-                <Button adorners:Overlay.Content="inherited"
-                        Content="1"
-                        Foreground="Yellow" />
+            <GroupBox Header="Inherits">
+                <StackPanel adorners:Overlay.Visibility="{Binding IsChecked,
+                                                                  ElementName=IsVisibleButton,
+                                                                  Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <adorners:Overlay.ContentTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="GreenYellow"
+                                    BorderThickness="2">
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding}" />
+                            </Border>
+                        </DataTemplate>
+                    </adorners:Overlay.ContentTemplate>
 
-                <Button adorners:Overlay.Content="inherited"
-                        Content="2"
-                        Foreground="Blue" />
-            </StackPanel>
-        </GroupBox>
-    </StackPanel>
+                    <Button adorners:Overlay.Content="inherited"
+                            Content="1"
+                            Foreground="Yellow" />
+
+                    <Button adorners:Overlay.Content="inherited"
+                            Content="2"
+                            Foreground="Blue" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </AdornerDecorator>
 </Window>

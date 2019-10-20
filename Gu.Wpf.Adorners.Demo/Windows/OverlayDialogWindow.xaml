@@ -7,7 +7,7 @@
         Title="OverlayDialogWindow"
         Width="800"
         Height="450"
-        adorners:Overlay.IsVisible="False"
+        adorners:Overlay.Visibility="Hidden"
         mc:Ignorable="d">
     <adorners:Overlay.Content>
         <Border Background="Black"
