@@ -48,18 +48,18 @@ namespace Gu.Wpf.Adorners
                 OnTextStyleChanged),
             ValidateTextStyle);
 
-        private static readonly DependencyPropertyKey IsShowingPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "IsShowing",
+        private static readonly DependencyPropertyKey IsVisiblePropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "IsVisible",
             typeof(bool),
             typeof(Watermark),
             new PropertyMetadata(
                 default(bool),
-                OnIsShowingChanged));
+                OnIsVisibleChanged));
 
         /// <summary>
         /// Gets or sets if the adorner is currently visible.
         /// </summary>
-        public static readonly DependencyProperty IsShowingProperty = IsShowingPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty IsVisibleProperty = IsVisiblePropertyKey.DependencyProperty;
 
         private static readonly DependencyProperty AdornerProperty = DependencyProperty.RegisterAttached(
             "Adorner",
@@ -134,18 +134,18 @@ namespace Gu.Wpf.Adorners
             return (Style)element.GetValue(TextStyleProperty);
         }
 
-        private static void SetIsShowing(this Control element, bool value)
+        private static void SetIsVisible(this Control element, bool value)
         {
-            element.SetValue(IsShowingPropertyKey, value);
+            element.SetValue(IsVisiblePropertyKey, value);
         }
 
-        /// <summary>Helper for getting <see cref="IsShowingProperty"/> from <paramref name="element"/>.</summary>
-        /// <param name="element"><see cref="Control"/> to read <see cref="IsShowingProperty"/> from.</param>
+        /// <summary>Helper for getting <see cref="IsVisibleProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="Control"/> to read <see cref="IsVisibleProperty"/> from.</param>
         /// <returns>IsShowing property value.</returns>
         [AttachedPropertyBrowsableForType(typeof(Control))]
-        public static bool GetIsShowing(this Control element)
+        public static bool GetIsVisible(this Control element)
         {
-            return (bool)element.GetValue(IsShowingProperty);
+            return (bool)element.GetValue(IsVisibleProperty);
         }
 
         private static void SetAdorner(this DependencyObject element, WatermarkAdorner value)
@@ -223,7 +223,7 @@ namespace Gu.Wpf.Adorners
                    typeof(TextBlock).IsAssignableFrom(style.TargetType);
         }
 
-        private static void OnIsShowingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var adornedElement = (Control)d;
             if (Equals(e.NewValue, true))
@@ -286,10 +286,10 @@ namespace Gu.Wpf.Adorners
                 switch (adornedElement.GetVisibleWhen())
                 {
                     case WatermarkVisibleWhen.Empty:
-                        adornedElement.SetIsShowing(true);
+                        adornedElement.SetIsVisible(true);
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                        adornedElement.SetIsShowing(!adornedElement.IsKeyboardFocused);
+                        adornedElement.SetIsVisible(!adornedElement.IsKeyboardFocused);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(adornedElement), "Should never get here, bug in Gu.Wpf.Adorners.");
@@ -297,7 +297,7 @@ namespace Gu.Wpf.Adorners
             }
             else
             {
-                adornedElement.SetIsShowing(false);
+                adornedElement.SetIsVisible(false);
             }
         }
 

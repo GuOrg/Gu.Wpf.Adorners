@@ -1,1 +1,4 @@
-﻿
+﻿XamlGeneratedNamespace.GeneratedInternalTypeHelper
+XamlGeneratedNamespace.GeneratedInternalTypeHelper.GeneratedInternalTypeHelper() -> void
+static Gu.Wpf.Adorners.Watermark.GetIsVisible(this System.Windows.Controls.Control element) -> bool
+static readonly Gu.Wpf.Adorners.Watermark.IsVisibleProperty -> System.Windows.DependencyProperty
