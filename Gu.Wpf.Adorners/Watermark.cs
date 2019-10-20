@@ -284,7 +284,7 @@ namespace Gu.Wpf.Adorners
                         adornedElement.SetIsVisible(true);
                         break;
                     case WatermarkVisibleWhen.EmptyAndNotKeyboardFocused:
-                        adornedElement.SetIsVisible(!adornedElement.IsKeyboardFocused);
+                        adornedElement.SetIsVisible(!adornedElement.IsKeyboardFocused && !adornedElement.IsKeyboardFocusWithin);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(adornedElement), "Should never get here, bug in Gu.Wpf.Adorners.");
@@ -352,6 +352,7 @@ namespace Gu.Wpf.Adorners
                 UnloadedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
                 GotKeyboardFocusEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
                 LostKeyboardFocusEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
+                IsKeyboardFocusWithinChangedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
                 SelectionChangedEventManager.UpdateHandler(comboBox, OnAdornedElementChanged);
                 SizeChangedEventManager.UpdateHandler(comboBox, OnSizeChanged);
             }
