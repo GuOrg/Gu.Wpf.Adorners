@@ -2,6 +2,7 @@ namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Diagnostics;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -167,15 +168,15 @@ namespace Gu.Wpf.Adorners
             {
                 case ComboBox comboBox:
                     UpdateListener(comboBox);
-                    UpdateIsShowing(comboBox);
+                    UpdateIsVisible(comboBox);
                     break;
                 case PasswordBox passwordBox:
                     UpdateListener(passwordBox);
-                    UpdateIsShowing(passwordBox);
+                    UpdateIsVisible(passwordBox);
                     break;
                 case TextBox textBox:
                     UpdateListener(textBox);
-                    UpdateIsShowing(textBox);
+                    UpdateIsVisible(textBox);
                     break;
             }
 
@@ -256,7 +257,7 @@ namespace Gu.Wpf.Adorners
             if (sender is Control control)
             {
                 control.GetAdorner()?.InvalidateMeasure();
-                UpdateIsShowing(control);
+                UpdateIsVisible(control);
             }
         }
 
@@ -264,17 +265,18 @@ namespace Gu.Wpf.Adorners
         {
             if (sender is Control control)
             {
-                UpdateIsShowing(control);
+                UpdateIsVisible(control);
             }
         }
 
-        private static void UpdateIsShowing(Control adornedElement)
+        private static void UpdateIsVisible(Control adornedElement)
         {
             if (adornedElement.IsVisible &&
                 adornedElement.IsLoaded &&
                 !string.IsNullOrEmpty(GetText(adornedElement)) &&
                 adornedElement.GetValue(ListenerProperty) is IListener listener &&
-                string.IsNullOrEmpty(listener.Text))
+                string.IsNullOrEmpty(listener.Text) &&
+                !IsInsideComboBox())
             {
                 switch (adornedElement.GetVisibleWhen())
                 {
@@ -291,6 +293,12 @@ namespace Gu.Wpf.Adorners
             else
             {
                 adornedElement.SetIsVisible(false);
+            }
+
+            bool IsInsideComboBox()
+            {
+                return adornedElement.VisualAncestors()
+                                     .Any(x => x is ComboBox);
             }
         }
 
