@@ -32,9 +32,18 @@ namespace Gu.Wpf.Adorners
         protected DragAdorner(UIElement adornedElement, T child)
             : base(adornedElement)
         {
+            if (adornedElement is null)
+            {
+                throw new ArgumentNullException(nameof(adornedElement));
+            }
+
+            if (child is null)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             this.elementOffset = adornedElement.PointToScreen(new Point(0, 0)) - User32.GetMousePosition();
             var mp = User32.GetMousePosition(adornedElement) + this.elementOffset;
-
             this.Offset = new TranslateTransform(mp.X, mp.Y);
             child.RenderTransform = this.Offset;
             base.Child = child;

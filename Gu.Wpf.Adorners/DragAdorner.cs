@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Adorners
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -23,8 +24,8 @@ namespace Gu.Wpf.Adorners
         public static ContentDragAdorner Create(
             UIElement adornedElement,
             object content,
-            DataTemplate contentTemplate = null,
-            DataTemplateSelector contentTemplateSelector = null)
+            DataTemplate? contentTemplate = null,
+            DataTemplateSelector? contentTemplateSelector = null)
         {
             var adorner = new ContentDragAdorner(adornedElement)
             {
@@ -55,6 +56,11 @@ namespace Gu.Wpf.Adorners
         /// </returns>
         public static ContentDragAdorner Create(ContentPresenter adornedElement)
         {
+            if (adornedElement is null)
+            {
+                throw new ArgumentNullException(nameof(adornedElement));
+            }
+
             var adorner = new ContentDragAdorner(adornedElement)
             {
                 Content = adornedElement.Content,
