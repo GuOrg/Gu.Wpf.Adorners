@@ -47,12 +47,12 @@ namespace Gu.Wpf.Adorners
 
         internal static T FirstOrDefaultRecursiveVisualChild<T>(this DependencyObject parent)
         {
-            return RecursiveChildren(parent)
+            return RecursiveVisualChildren(parent)
                    .OfType<T>()
                    .FirstOrDefault();
         }
 
-        internal static IEnumerable<DependencyObject> RecursiveChildren(this DependencyObject parent)
+        internal static IEnumerable<DependencyObject> RecursiveVisualChildren(this DependencyObject parent)
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
@@ -60,7 +60,7 @@ namespace Gu.Wpf.Adorners
                 yield return child;
                 if (VisualTreeHelper.GetChildrenCount(child) != 0)
                 {
-                    foreach (var nestedChild in RecursiveChildren(child))
+                    foreach (var nestedChild in RecursiveVisualChildren(child))
                     {
                         yield return nestedChild;
                     }

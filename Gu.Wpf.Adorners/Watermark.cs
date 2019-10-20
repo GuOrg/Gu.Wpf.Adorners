@@ -11,7 +11,6 @@ namespace Gu.Wpf.Adorners
     public static class Watermark
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-
         /// <summary>
         /// The watermark text.
         /// </summary>

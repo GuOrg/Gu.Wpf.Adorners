@@ -36,4 +36,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.Adorners\Gu.Wpf.Adorners.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Windows\PasswordBoxWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
 </Project>

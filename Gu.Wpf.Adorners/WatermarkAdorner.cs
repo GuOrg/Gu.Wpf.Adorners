@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Adorners
 {
     using System;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -63,6 +64,12 @@ namespace Gu.Wpf.Adorners
         {
             get
             {
+                if (this.AdornedElement is null)
+                {
+                    this.placementReference.SetTarget(null);
+                    return null;
+                }
+
                 if (this.placementReference.TryGetTarget(out var contentPresenter))
                 {
                     return contentPresenter;

@@ -2,16 +2,17 @@
         xmlns:adorners="http://gu.se/Adorners"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="ComboBoxWindow"
+        Title="TextBoxWindow"
         Width="200"
         Height="450"
         mc:Ignorable="d">
     <AdornerDecorator>
         <StackPanel>
-            <ComboBox Margin="5" adorners:Watermark.Text="Watermark text" />
-            <ComboBox Margin="5"
-                  adorners:Watermark.Text="Watermark text"
-                  IsEditable="True" />
+            <TextBox Margin="5" adorners:Watermark.Text="Watermark text" />
+            <TextBox Margin="5"
+                     adorners:Watermark.Text="Watermark text"
+                     BorderThickness="0"
+                     Text="" />
             <GroupBox>
                 <GroupBox.Resources>
                     <ResourceDictionary>
@@ -21,13 +22,15 @@
                     </ResourceDictionary>
                 </GroupBox.Resources>
                 <StackPanel>
-                    <ComboBox Margin="5" adorners:Watermark.Text="Watermark text" />
-                    <ComboBox Margin="5"
-                          adorners:Watermark.Text="Watermark text"
-                          IsEditable="True" />
+                    <TextBox Margin="5"
+                             adorners:Watermark.Text="Watermark text"
+                             Text="" />
+                    <TextBox Margin="5"
+                             adorners:Watermark.Text="Watermark text"
+                             BorderThickness="0" />
                 </StackPanel>
             </GroupBox>
-            <Button Content="Lose focus"></Button>
+            <Button Content="Lose focus" />
         </StackPanel>
     </AdornerDecorator>
 </Window>

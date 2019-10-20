@@ -9,6 +9,8 @@
     <!--<Application.StartupUri>Windows/SandboxWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/OverlayDialogWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/ComboBoxWindow.xaml</Application.StartupUri>-->
+    <!--<Application.StartupUri>Windows/PasswordBoxWindow.xaml</Application.StartupUri>-->
+    <!--<Application.StartupUri>Windows/TextBoxWindow.xaml</Application.StartupUri>-->
     <Application.Resources>
         <!--<Style TargetType="{x:Type adorners:WatermarkAdorner}">
             <Setter Property="TextElement.Foreground" Value="HotPink" />
@@ -18,6 +20,12 @@
             <Setter Property="Foreground" Value="#ffdddddd" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="FontFamily" Value="Arial" />
+        </Style>
+
+        <Style x:Key="UiTestWindow" TargetType="{x:Type Window}">
+            <Setter Property="Left" Value="200" />
+            <Setter Property="Top" Value="200" />
+            <Setter Property="UseLayoutRounding" Value="True" />
         </Style>
     </Application.Resources>
 </Application>
