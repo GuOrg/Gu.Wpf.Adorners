@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWpf>true</UseWpf>
+    <Nullable>enable</Nullable>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>

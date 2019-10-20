@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System.Windows;
 
@@ -15,6 +15,11 @@
         /// <returns>The value returned by <see cref="IDataObject.GetData(System.Type)"/>.</returns>
         public static T GetData<T>(this IDataObject dataObject)
         {
+            if (dataObject is null)
+            {
+                throw new System.ArgumentNullException(nameof(dataObject));
+            }
+
             return (T)dataObject.GetData(typeof(T));
         }
 
@@ -27,6 +32,11 @@
         /// <returns>True if <see cref="IDataObject.GetData(System.Type)"/> returns not null.</returns>
         public static bool TryGetData<T>(this IDataObject dataObject, out T data)
         {
+            if (dataObject is null)
+            {
+                throw new System.ArgumentNullException(nameof(dataObject));
+            }
+
             data = (T)dataObject.GetData(typeof(T));
             return data != null;
         }
@@ -39,6 +49,11 @@
         /// <param name="data">The value to set.</param>
         public static void SetData<T>(this IDataObject dataObject, T data)
         {
+            if (dataObject is null)
+            {
+                throw new System.ArgumentNullException(nameof(dataObject));
+            }
+
             dataObject.SetData(typeof(T), data);
         }
     }
