@@ -16,6 +16,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Classic;V4.0.0.0;31bf3856ad364e35;component/themes/Classic.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Height" Value="50" />
                 <Setter Property="Width" Value="200" />

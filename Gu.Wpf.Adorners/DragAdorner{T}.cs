@@ -162,7 +162,7 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <summary>
-        /// Throws <see cref="ObjectDisposedException"/> is this instance is disposed.
+        /// Throws <see cref="ObjectDisposedException"/> if this instance is disposed.
         /// </summary>
         protected void ThrowIfDisposed()
         {
