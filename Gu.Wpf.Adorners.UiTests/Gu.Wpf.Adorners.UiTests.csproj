@@ -4,12 +4,6 @@
     <TargetFramework>net472</TargetFramework>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Images\DefaultEditable_ComboBox_Watermark_Win10.png" />
-    <None Remove="Images\DefaultWithZeroBorder_TextBox_Watermark_Win10.png" />
-    <None Remove="Images\Default_ComboBox_Watermark_Win10.png" />
-    <None Remove="Images\Default_TextBox_Watermark_Win10.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Images\Bound visibility_not_visible.png">
