@@ -28,7 +28,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithDefaultWatermark");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithDefaultWatermark_not_focused.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Default_not_focused.png", comboBox);
                 }
             }
 
@@ -53,7 +53,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var comboBox = window.FindComboBox("ComboBoxWithDefaultWatermark");
                     comboBox.Select("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithDefaultWatermark_not_empty.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Default_not_empty.png", comboBox);
                 }
             }
 
@@ -112,7 +112,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkVisibleWhenEmpty");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkVisibleWhenEmpty_not_focused.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Visible_when_empty_not_focused.png", comboBox);
                 }
             }
 
@@ -124,7 +124,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkVisibleWhenEmpty");
                     comboBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkVisibleWhenEmpty_focused.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Visible_when_empty_focused.png", comboBox);
                 }
             }
 
@@ -137,7 +137,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkVisibleWhenEmpty");
                     comboBox.Select("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkVisibleWhenEmpty_not_empty.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Visible_when_empty_not_empty.png", comboBox);
                 }
             }
 
@@ -186,7 +186,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     Wait.For(TimeSpan.FromMilliseconds(200));
                     var button = window.FindComboBox("ComboBoxWithDefaultWatermark");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithDefaultWatermark_not_focused.png", button);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Default_not_focused.png", button);
 
                     var comboBox = window.FindComboBox("VisibilityCbx");
                     comboBox.Select(visibility);
@@ -195,7 +195,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     // Checking that we don't crash here. See issue #24
                     comboBox.Select("Visible");
                     Wait.For(TimeSpan.FromMilliseconds(200));
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithDefaultWatermark_not_focused.png", button);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Default_not_focused.png", button);
                 }
             }
         }

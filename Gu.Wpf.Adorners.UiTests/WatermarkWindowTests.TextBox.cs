@@ -28,7 +28,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithDefaultWatermark");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithDefaultWatermark_not_focused.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Default_not_focused.png", textBox);
                 }
             }
 
@@ -53,7 +53,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var textBox = window.FindTextBox("TextBoxWithDefaultWatermark");
                     textBox.Text = "abc";
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithDefaultWatermark_not_empty.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Default_not_empty.png", textBox);
                 }
             }
 
@@ -112,7 +112,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmpty");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkVisibleWhenEmpty_not_focused.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Visible_when_empty_not_focused.png", textBox);
                 }
             }
 
@@ -124,7 +124,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmpty");
                     textBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkVisibleWhenEmpty_focused.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Visible_when_empty_focused.png", textBox);
                 }
             }
 
@@ -137,7 +137,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmpty");
                     textBox.Text = "abc";
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkVisibleWhenEmpty_not_empty.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Visible_when_empty_not_empty.png", textBox);
                 }
             }
 
@@ -186,7 +186,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     Wait.For(TimeSpan.FromMilliseconds(200));
                     var button = window.FindTextBox("TextBoxWithDefaultWatermark");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithDefaultWatermark_not_focused.png", button);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Default_not_focused.png", button);
 
                     var comboBox = window.FindComboBox("VisibilityCbx");
                     comboBox.Select(visibility);
@@ -195,7 +195,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     // Checking that we don't crash here. See issue #24
                     comboBox.Select("Visible");
                     Wait.For(TimeSpan.FromMilliseconds(200));
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithDefaultWatermark_not_focused.png", button);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Default_not_focused.png", button);
                 }
             }
         }

@@ -29,7 +29,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithDefaultWatermark_not_focused.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Default_not_focused.png", passwordBox);
                 }
             }
 
@@ -54,7 +54,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
                     passwordBox.SetValue("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithDefaultWatermark_not_empty.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Default_not_empty.png", passwordBox);
                 }
             }
 
@@ -113,7 +113,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkVisibleWhenEmpty_not_focused.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Visible_when_empty_not_focused.png", passwordBox);
                 }
             }
 
@@ -125,7 +125,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
                     passwordBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkVisibleWhenEmpty_focused.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Visible_when_empty_focused.png", passwordBox);
                 }
             }
 
@@ -138,7 +138,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmpty");
                     passwordBox.SetValue("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkVisibleWhenEmpty_not_empty.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Visible_when_empty_not_empty.png", passwordBox);
                 }
             }
 
@@ -187,7 +187,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     Wait.For(TimeSpan.FromMilliseconds(200));
                     var button = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithDefaultWatermark_not_focused.png", button);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Default_not_focused.png", button);
 
                     var comboBox = window.FindComboBox("VisibilityCbx");
                     comboBox.Select(visibility);
@@ -196,7 +196,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     // Checking that we don't crash here. See issue #24
                     comboBox.Select("Visible");
                     Wait.For(TimeSpan.FromMilliseconds(200));
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithDefaultWatermark_not_focused.png", button);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Default_not_focused.png", button);
                 }
             }
         }
