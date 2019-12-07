@@ -8,8 +8,8 @@ namespace Gu.Wpf.Adorners.UiTests
         public static void Rename()
         {
             var folder = @"C:\Git\_GuOrg\Gu.Wpf.Adorners\Gu.Wpf.Adorners.UiTests";
-            var oldName = "Bound_text_abc.png";
-            var newName = "Bound_text_abc.png";
+            var oldName = "WithInheritedContentTemplate.png";
+            var newName = "Inherited_content_template.png";
 
             foreach (var file in Directory.EnumerateFiles(folder, oldName, SearchOption.AllDirectories))
             {

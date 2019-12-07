@@ -22,16 +22,16 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var tab = window.FindTabControl();
-                ImageAssert.AreEqual(".\\Images\\Tab1.png", tab.FindTextBox("Tab1"));
+                ImageAssert.AreEqual(".\\Images\\FramesWindow\\Tab1.png", tab.FindTextBox("Tab1"));
 
                 tab.SelectedIndex = 1;
-                ImageAssert.AreEqual(".\\Images\\Tab2.png", tab.FindTextBox("Tab2"));
+                ImageAssert.AreEqual(".\\Images\\FramesWindow\\Tab2.png", tab.FindTextBox("Tab2"));
 
                 tab.SelectedIndex = 0;
-                ImageAssert.AreEqual(".\\Images\\Tab1.png", tab.FindTextBox("Tab1"));
+                ImageAssert.AreEqual(".\\Images\\FramesWindow\\Tab1.png", tab.FindTextBox("Tab1"));
 
                 tab.SelectedIndex = 1;
-                ImageAssert.AreEqual(".\\Images\\Tab2.png", tab.FindTextBox("Tab2"));
+                ImageAssert.AreEqual(".\\Images\\FramesWindow\\Tab2.png", tab.FindTextBox("Tab2"));
             }
         }
     }

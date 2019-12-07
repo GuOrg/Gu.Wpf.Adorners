@@ -30,7 +30,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 var comboBox = window.FindComboBox("Default");
                 if (WindowsVersion.IsWindows10())
                 {
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Default_Win10.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\ComboBoxWindow\\Default_Win10.png", comboBox);
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 var comboBox = window.FindComboBox("DefaultEditable");
                 if (WindowsVersion.IsWindows10())
                 {
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Default_editable_Win10.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\ComboBoxWindow\\Default_editable_Win10.png", comboBox);
                 }
                 else
                 {
