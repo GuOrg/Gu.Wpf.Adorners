@@ -27,10 +27,10 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                var comboBox = window.FindTextBox("Default");
+                var textBox = window.FindTextBox("Default");
                 if (WindowsVersion.IsWindows10())
                 {
-                    ImageAssert.AreEqual(".\\Images\\Default_TextBox_Watermark_Win10.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Default_watermark_Win10.png", textBox);
                 }
                 else
                 {
@@ -45,10 +45,10 @@ namespace Gu.Wpf.Adorners.UiTests
             using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
             {
                 var window = app.MainWindow;
-                var comboBox = window.FindTextBox("DefaultWithZeroBorder");
+                var textBox = window.FindTextBox("DefaultWithZeroBorder");
                 if (WindowsVersion.IsWindows10())
                 {
-                    ImageAssert.AreEqual(".\\Images\\DefaultWithZeroBorder_TextBox_Watermark_Win10.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Default_zero_border_watermark_Win10.png", textBox);
                 }
                 else
                 {
