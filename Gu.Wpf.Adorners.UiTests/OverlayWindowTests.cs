@@ -57,7 +57,7 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var groupBox = window.FindGroupBox("Inherits");
-                ImageAssert.AreEqual(".\\Images\\WithInheritedContentTemplate.png", groupBox);
+                ImageAssert.AreEqual(".\\Images\\Inherited_content_template.png", groupBox);
             }
         }
 
