@@ -40,7 +40,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithDefaultWatermark");
                     comboBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithDefaultWatermark_focused.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Default_focused.png", comboBox);
                 }
             }
 

@@ -30,7 +30,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 var textBox = window.FindTextBox("Default");
                 if (WindowsVersion.IsWindows10())
                 {
-                    ImageAssert.AreEqual(".\\Images\\Default_watermark_Win10.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Default_Win10.png", textBox);
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 var textBox = window.FindTextBox("DefaultWithZeroBorder");
                 if (WindowsVersion.IsWindows10())
                 {
-                    ImageAssert.AreEqual(".\\Images\\Default_zero_border_watermark_Win10.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Default_zero_border_Win10.png", textBox);
                 }
                 else
                 {

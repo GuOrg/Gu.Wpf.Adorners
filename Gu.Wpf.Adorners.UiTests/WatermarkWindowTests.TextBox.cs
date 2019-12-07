@@ -40,7 +40,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithDefaultWatermark");
                     textBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithDefaultWatermark_focused.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Default_focused.png", textBox);
                 }
             }
 

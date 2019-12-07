@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners.UiTests
+namespace Gu.Wpf.Adorners.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;

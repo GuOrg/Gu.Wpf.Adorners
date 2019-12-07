@@ -41,7 +41,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithDefaultWatermark");
                     passwordBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithDefaultWatermark_focused.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Default_focused.png", passwordBox);
                 }
             }
 
