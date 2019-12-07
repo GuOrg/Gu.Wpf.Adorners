@@ -22,9 +22,9 @@ namespace Gu.Wpf.Adorners.UiTests
             Application.KillLaunched(ExeFileName, WindowName);
         }
 
-        [TestCase("No overlay", ".\\Images\\No overlay.png")]
-        [TestCase("Default visibility", ".\\Images\\Default visibility.png")]
-        [TestCase("With content template", ".\\Images\\With content template.png")]
+        [TestCase("No overlay", ".\\Images\\OverlayWindow\\No overlay.png")]
+        [TestCase("Default visibility", ".\\Images\\OverlayWindow\\Default visibility.png")]
+        [TestCase("With content template", ".\\Images\\OverlayWindow\\With content template.png")]
         public void Overlay(string name, string imageFileName)
         {
             using (var app = Application.Launch(ExeFileName, WindowName))
@@ -43,10 +43,10 @@ namespace Gu.Wpf.Adorners.UiTests
                 var window = app.MainWindow;
                 window.FindToggleButton("IsVisibleButton").IsChecked = true;
                 var button = window.FindButton("Bound visibility");
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_visible.png", button);
+                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Bound visibility_visible.png", button);
 
                 window.FindToggleButton("IsVisibleButton").IsChecked = false;
-                ImageAssert.AreEqual(".\\Images\\Bound visibility_not_visible.png", button);
+                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Bound visibility_not_visible.png", button);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var groupBox = window.FindGroupBox("Inherits");
-                ImageAssert.AreEqual(".\\Images\\Inherited_content_template.png", groupBox);
+                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Inherited_content_template.png", groupBox);
             }
         }
 
@@ -69,10 +69,10 @@ namespace Gu.Wpf.Adorners.UiTests
                 var window = app.MainWindow;
                 window.FindSlider("WidthSlider").Value = 200;
                 var button = window.FindButton("Default visibility");
-                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
+                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Default visibility.png", button);
 
                 window.FindSlider("WidthSlider").Value = 100;
-                ImageAssert.AreEqual(".\\Images\\Default visibility_width_100.png", button);
+                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Default visibility_width_100.png", button);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var button = window.FindButton("Default visibility");
-                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
+                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Default visibility.png", button);
 
                 var comboBox = window.FindComboBox("VisibilityCbx");
                 comboBox.Select(visibility);
@@ -93,7 +93,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 // Checking that we don't crash here. See issue #24
                 comboBox.Select("Visible");
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                ImageAssert.AreEqual(".\\Images\\Default visibility.png", button);
+                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Default visibility.png", button);
             }
         }
     }
