@@ -4,8 +4,6 @@
     <OutputType>Library</OutputType>
     <TargetFramework>net472</TargetFramework>
     <UseWpf>true</UseWpf>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
