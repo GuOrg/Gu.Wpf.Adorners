@@ -22,8 +22,8 @@ namespace Gu.Wpf.Adorners.UiTests
             Application.KillLaunched(ExeFileName, WindowName);
         }
 
-        [TestCase("red border bound visibility", ".\\Images\\InfoWindow\\red border bound visibility_visible.png")]
-        [TestCase("red border default visibility", ".\\Images\\InfoWindow\\red border default visibility.png")]
+        [TestCase("red border bound visibility", ".\\Images\\InfoWindow\\Red_border_bound_visibility_visible.png")]
+        [TestCase("red border default visibility", ".\\Images\\InfoWindow\\Red_border_default_visibility.png")]
         public void Overlay(string name, string imageFileName)
         {
             using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
@@ -41,10 +41,10 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var button = window.FindButton("red border bound visibility");
-                ImageAssert.AreEqual(".\\Images\\InfoWindow\\red border bound visibility_visible.png", button);
+                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Red_border_bound_visibility_visible.png", button);
 
                 window.FindToggleButton("IsVisibleToggleButton").IsChecked = false;
-                ImageAssert.AreEqual(".\\Images\\InfoWindow\\red border bound visibility_not_visible.png", button);
+                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Red_border_bound_visibility_not_visible.png", button);
             }
         }
 
@@ -55,10 +55,10 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var button = window.FindButton("red border default visibility");
-                ImageAssert.AreEqual(".\\Images\\InfoWindow\\red border default visibility.png", button);
+                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Red_border_default_visibility.png", button);
 
                 window.FindSlider("WidthSlider").Value = 100;
-                ImageAssert.AreEqual(".\\Images\\InfoWindow\\red border default visibility_width_100.png", button);
+                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Red_border_default_visibility_width_100.png", button);
             }
         }
 
@@ -69,7 +69,7 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var groupBox = window.FindGroupBox("Draws outside");
-                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Draws outside.png", groupBox);
+                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Draws_outside.png", groupBox);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Gu.Wpf.Adorners.UiTests
             {
                 var window = app.MainWindow;
                 var button = window.FindButton("red border default visibility");
-                ImageAssert.AreEqual(".\\Images\\InfoWindow\\red border default visibility.png", button);
+                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Red_border_default_visibility.png", button);
 
                 var comboBox = window.FindComboBox("VisibilityCbx");
                 comboBox.Select(visibility);
@@ -90,7 +90,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 // Checking that we don't crash here. See issue #24
                 comboBox.Select("Visible");
                 Wait.For(TimeSpan.FromMilliseconds(200));
-                ImageAssert.AreEqual(".\\Images\\InfoWindow\\red border default visibility.png", button);
+                ImageAssert.AreEqual(".\\Images\\InfoWindow\\Red_border_default_visibility.png", button);
             }
         }
     }
