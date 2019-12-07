@@ -4,12 +4,12 @@ namespace Gu.Wpf.Adorners.UiTests
 
     public static class JanitorScript
     {
-        //// [NUnit.Framework.Test]
+        [Script]
         public static void Rename()
         {
             var folder = @"C:\Git\_GuOrg\Gu.Wpf.Adorners\Gu.Wpf.Adorners.UiTests";
-            var oldName = "Default_not_empty.png";
-            var newName = "Default_not_empty.png";
+            var oldName = "Bound_text_abc.png";
+            var newName = "Bound_text_abc.png";
 
             foreach (var file in Directory.EnumerateFiles(folder, oldName, SearchOption.AllDirectories))
             {
