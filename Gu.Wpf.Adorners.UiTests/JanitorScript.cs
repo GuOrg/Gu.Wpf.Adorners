@@ -1,11 +1,10 @@
 namespace Gu.Wpf.Adorners.UiTests
 {
     using System.IO;
-    using NUnit.Framework;
 
     public static class JanitorScript
     {
-        [Test]
+        //// [NUnit.Framework.Test]
         public static void Rename()
         {
             var folder = @"C:\Git\_GuOrg\Gu.Wpf.Adorners\Gu.Wpf.Adorners.UiTests";
