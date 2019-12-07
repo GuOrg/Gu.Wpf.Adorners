@@ -65,11 +65,11 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithBoundText");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkWithBoundText_AAA.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Bound_text_AAA.png", passwordBox);
                     window.FindTextBox("AdornerText").Text = "abc";
                     window.FindButton("Lose focus").Invoke();
                     Wait.For(TimeSpan.FromMilliseconds(50));
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkWithBoundText_abc.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Bound_text_abc.png", passwordBox);
                 }
             }
 
@@ -80,7 +80,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithInheritedFontSize");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkWithInheritedFontSize.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Inherited_font_size.png", passwordBox);
                 }
             }
 
@@ -91,7 +91,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkWithExplicitTextStyle");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkWithExplicitTextStyle.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Explicit_text_style.png", passwordBox);
                 }
             }
 
@@ -102,7 +102,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var groupBox = window.FindGroupBox("Inherited style");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithInheritedTextStyle.png", groupBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Inherited_text_style.png", groupBox);
                 }
             }
 
@@ -149,7 +149,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Visible_when_empty_and_not_focused_not_focused.png", passwordBox);
                 }
             }
 
@@ -161,7 +161,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
                     passwordBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_focused.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Visible_when_empty_and_not_focused_focused.png", passwordBox);
                 }
             }
 
@@ -174,7 +174,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var passwordBox = window.FindPasswordBox("PasswordBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
                     passwordBox.SetValue("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png", passwordBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\PasswordBox\\Visible_when_empty_and_not_focused_not_empty.png", passwordBox);
                 }
             }
 

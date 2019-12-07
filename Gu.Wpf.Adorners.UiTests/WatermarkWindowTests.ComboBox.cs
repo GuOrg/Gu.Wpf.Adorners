@@ -64,11 +64,11 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkWithBoundText");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkWithBoundText_AAA.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Bound_text_AAA.png", comboBox);
                     window.FindTextBox("AdornerText").Text = "abc";
                     window.FindButton("Lose focus").Invoke();
                     Wait.For(TimeSpan.FromMilliseconds(50));
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkWithBoundText_abc.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Bound_text_abc.png", comboBox);
                 }
             }
 
@@ -79,7 +79,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkWithInheritedFontSize");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkWithInheritedFontSize.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Inherited_font_size.png", comboBox);
                 }
             }
 
@@ -90,7 +90,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkWithExplicitTextStyle");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkWithExplicitTextStyle.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Explicit_text_style.png", comboBox);
                 }
             }
 
@@ -101,7 +101,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var groupBox = window.FindGroupBox("Inherited style");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithInheritedTextStyle.png", groupBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Inherited_text_style.png", groupBox);
                 }
             }
 
@@ -148,7 +148,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Visible_when_empty_and_not_focused_not_focused.png", comboBox);
                 }
             }
 
@@ -160,7 +160,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
                     comboBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_focused.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Visible_when_empty_and_not_focused_focused.png", comboBox);
                 }
             }
 
@@ -173,7 +173,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var comboBox = window.FindComboBox("ComboBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
                     comboBox.Select("abc");
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png", comboBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\ComboBox\\Visible_when_empty_and_not_focused_not_empty.png", comboBox);
                 }
             }
 

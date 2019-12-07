@@ -64,11 +64,11 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithWatermarkWithBoundText");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkWithBoundText_AAA.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Bound_text_AAA.png", textBox);
                     window.FindTextBox("AdornerText").Text = "abc";
                     window.FindButton("Lose focus").Invoke();
                     Wait.For(TimeSpan.FromMilliseconds(50));
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkWithBoundText_abc.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Bound_text_abc.png", textBox);
                 }
             }
 
@@ -79,7 +79,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithWatermarkWithInheritedFontSize");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkWithInheritedFontSize.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Inherited_font_size.png", textBox);
                 }
             }
 
@@ -90,7 +90,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithWatermarkWithExplicitTextStyle");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkWithExplicitTextStyle.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Explicit_text_style.png", textBox);
                 }
             }
 
@@ -101,7 +101,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var groupBox = window.FindGroupBox("Inherited style");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithInheritedTextStyle.png", groupBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Inherited_text_style.png", groupBox);
                 }
             }
 
@@ -148,7 +148,7 @@ namespace Gu.Wpf.Adorners.UiTests
                 {
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_not_focused.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Visible_when_empty_and_not_focused_not_focused.png", textBox);
                 }
             }
 
@@ -160,7 +160,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var window = app.MainWindow;
                     var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
                     textBox.Focus();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_focused.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Visible_when_empty_and_not_focused_focused.png", textBox);
                 }
             }
 
@@ -173,7 +173,7 @@ namespace Gu.Wpf.Adorners.UiTests
                     var textBox = window.FindTextBox("TextBoxWithWatermarkVisibleWhenEmptyAndNotFocused");
                     textBox.Text = "abc";
                     window.FindButton("Lose focus").Click();
-                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\WithWatermarkVisibleWhenEmptyAndNotFocused_not_empty.png", textBox);
+                    ImageAssert.AreEqual(".\\Images\\Watermark\\TextBox\\Visible_when_empty_and_not_focused_not_empty.png", textBox);
                 }
             }
 
