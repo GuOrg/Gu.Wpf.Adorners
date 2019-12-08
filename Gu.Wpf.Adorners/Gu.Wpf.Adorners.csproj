@@ -15,6 +15,18 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  
+  <PropertyGroup>
+    <AnnotatedReferenceAssemblyVersion>3.0.0</AnnotatedReferenceAssemblyVersion>
+    <GenerateNullableAttributes>true</GenerateNullableAttributes>
+  </PropertyGroup>
+  
+
+  <PropertyGroup>
     <Version>1.5.2</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -25,11 +37,6 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
     <PackageReleaseNotes>FEATURE: netcoreapp3.</PackageReleaseNotes>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
@@ -50,10 +57,12 @@
     <PackageReference Include="IDisposableAnalyzers" Version="3.2.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="2.9.8" PrivateAssets="all" />
+    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[$(AnnotatedReferenceAssemblyVersion)]" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
     <PackageReference Include="PropertyChangedAnalyzers" Version="2.7.5" PrivateAssets="all" />
     <PackageReference Include="ReflectionAnalyzers" Version="0.1.21-dev" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113" PrivateAssets="all" />
+    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.97" PrivateAssets="all" />
     <PackageReference Include="WpfAnalyzers" Version="2.4.4" PrivateAssets="all" />
   </ItemGroup>
 </Project>

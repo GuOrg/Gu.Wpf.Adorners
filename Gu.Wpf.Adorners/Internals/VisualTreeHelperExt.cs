@@ -3,6 +3,7 @@ namespace Gu.Wpf.Adorners
     using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Windows;
@@ -55,7 +56,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        internal static bool TryFirstRecursiveVisualChild<T>(this DependencyObject parent, out T match)
+        internal static bool TryFirstRecursiveVisualChild<T>(this DependencyObject parent, [NotNullWhen(true)] out T? match)
             where T : FrameworkElement
         {
             foreach (DependencyObject child in RecursiveVisualChildren(parent))
