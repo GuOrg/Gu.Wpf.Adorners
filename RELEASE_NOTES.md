@@ -1,3 +1,8 @@
+#### 2.0
+* BREAKING: Rename Visibility and IsVisible to be consistent with framework.
+* BREAKING: Remove property inheritance from Overlay.
+* BUGFIX: Update nullable annotations.
+
 #### 1.5.1
 * BUGFIX: Handle virtualization.
 
