@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Adorners
 {
-    using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
     using System.IO;
@@ -20,33 +19,6 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        internal static IEnumerable<DependencyObject> LogicalAncestors(this DependencyObject o)
-        {
-            var parent = LogicalTreeHelper.GetParent(o);
-            while (parent != null)
-            {
-                yield return parent;
-                parent = LogicalTreeHelper.GetParent(parent);
-            }
-        }
-
-        internal static T? VisualChild<T>(this Visual parent)
-            where T : Visual
-        {
-            var count = VisualTreeHelper.GetChildrenCount(parent);
-            if (count > 1)
-            {
-                throw new InvalidOperationException("Expected single child");
-            }
-
-            if (count == 0)
-            {
-                return default;
-            }
-
-            return (T)VisualTreeHelper.GetChild(parent, 0);
-        }
-
         internal static IEnumerable<Visual> VisualChildren(this Visual parent)
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
@@ -55,23 +27,8 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        internal static bool TryFirstRecursiveVisualChild<T>(this DependencyObject parent, out T match)
-            where T : FrameworkElement
-        {
-            foreach (DependencyObject child in RecursiveVisualChildren(parent))
-            {
-                if (child is T temp)
-                {
-                    match = temp;
-                    return true;
-                }
-            }
-
-            match = null;
-            return false;
-        }
-
-        internal static T FirstOrDefaultRecursiveVisualChild<T>(this DependencyObject parent)
+        internal static T? FirstRecursiveVisualChild<T>(this DependencyObject parent)
+            where T : Visual
         {
             return RecursiveVisualChildren(parent)
                    .OfType<T>()
@@ -92,26 +49,6 @@ namespace Gu.Wpf.Adorners
                     }
                 }
             }
-        }
-
-        internal static T? SingleOrNull<T>(this IEnumerable<object> items)
-            where T : class
-        {
-            T? match = null;
-            foreach (var item in items)
-            {
-                if (item is T temp)
-                {
-                    if (match != null)
-                    {
-                        return null;
-                    }
-
-                    match = temp;
-                }
-            }
-
-            return match;
         }
 
         internal static string DumpVisualTree(this DependencyObject parent)

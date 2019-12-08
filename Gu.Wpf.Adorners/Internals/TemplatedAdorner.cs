@@ -31,7 +31,7 @@ namespace Gu.Wpf.Adorners
         }
 
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-        private static void AssertTemplatedAdornerType(Adorner adorner, [CallerMemberName] string caller = null)
+        private static void AssertTemplatedAdornerType(Adorner adorner, [CallerMemberName] string? caller = null)
         {
             if (adorner?.GetType() != TemplatedAdornerType)
             {

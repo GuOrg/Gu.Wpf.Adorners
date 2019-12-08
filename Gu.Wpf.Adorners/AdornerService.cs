@@ -58,7 +58,7 @@ namespace Gu.Wpf.Adorners
             if (adornedElement is Window window)
             {
                 return AdornerLayer.GetAdornerLayer(adornedElement) ??
-                       window.FirstOrDefaultRecursiveVisualChild<AdornerDecorator>()?.AdornerLayer;
+                       window.FirstRecursiveVisualChild<AdornerDecorator>()?.AdornerLayer;
             }
 
             return AdornerLayer.GetAdornerLayer(adornedElement);

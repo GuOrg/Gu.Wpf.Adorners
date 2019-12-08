@@ -1,9 +1,1 @@
-﻿Gu.Wpf.Adorners.WatermarkVisibleWhen.Never = 2 -> Gu.Wpf.Adorners.WatermarkVisibleWhen
-XamlGeneratedNamespace.GeneratedInternalTypeHelper
-XamlGeneratedNamespace.GeneratedInternalTypeHelper.GeneratedInternalTypeHelper() -> void
-static Gu.Wpf.Adorners.Info.GetIsVisible(this System.Windows.DependencyObject element) -> bool
-static Gu.Wpf.Adorners.Info.GetVisibility(System.Windows.DependencyObject element) -> System.Windows.Visibility
-static Gu.Wpf.Adorners.Info.SetVisibility(System.Windows.DependencyObject element, System.Windows.Visibility value) -> void
-static Gu.Wpf.Adorners.Watermark.GetIsVisible(this System.Windows.Controls.Control element) -> bool
-static readonly Gu.Wpf.Adorners.Info.VisibilityProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Adorners.Watermark.IsVisibleProperty -> System.Windows.DependencyProperty
+﻿

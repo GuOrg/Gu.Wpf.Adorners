@@ -304,12 +304,12 @@ namespace Gu.Wpf.Adorners
         {
             if (Equals(e.NewValue, true))
             {
-                if (d.GetValue(AdornerProperty) is null)
+                if (d.GetValue(AdornerProperty) is null &&
+                    d is UIElement element)
                 {
-                    var element = (UIElement)d;
-
-                    var adornedElement = element is Window
-                        ? element.FirstOrDefaultRecursiveVisualChild<AdornerDecorator>()?.Child
+                    var adornedElement = element is Window &&
+                                         element.FirstRecursiveVisualChild<AdornerDecorator>() is { } adornerDecorator
+                        ? adornerDecorator.Child
                         : element;
 
                     var adorner = new ContentAdorner(adornedElement)

@@ -19,7 +19,7 @@ namespace Gu.Wpf.Adorners
 
         private const string TextBoxView = "TextBoxView";
 
-        private readonly WeakReference<FrameworkElement> referenceElement = new WeakReference<FrameworkElement>(null);
+        private readonly WeakReference<FrameworkElement?> referenceElement = new WeakReference<FrameworkElement?>(null);
 
         static WatermarkAdorner()
         {
@@ -78,13 +78,13 @@ namespace Gu.Wpf.Adorners
 
                 if (this.AdornedElement is ComboBox comboBox)
                 {
-                    if (comboBox.TryFirstRecursiveVisualChild(out ContentPresenter contentPresenter))
+                    if (comboBox.FirstRecursiveVisualChild<ContentPresenter>() is { } contentPresenter)
                     {
                         this.referenceElement.SetTarget(contentPresenter);
                         return contentPresenter;
                     }
 
-                    if (comboBox.TryFirstRecursiveVisualChild(out ToggleButton toggleButton))
+                    if (comboBox.FirstRecursiveVisualChild<ToggleButton>() is { } toggleButton)
                     {
                         if (toggleButton.VisualChildren().SingleOrDefault() is Border border &&
                             border.VisualChildren().SingleOrDefault() is FrameworkElement borderChild)

@@ -21,7 +21,7 @@ namespace Gu.Wpf.Adorners
         public VisualBrushDragAdorner(UIElement adornedElement)
             : base(adornedElement, new Rectangle())
         {
-            if (this.Child is {} child)
+            if (this.Child is { } child)
             {
                 _ = child.Bind(WidthProperty)
                          .OneWayTo(adornedElement, ActualWidthProperty);
