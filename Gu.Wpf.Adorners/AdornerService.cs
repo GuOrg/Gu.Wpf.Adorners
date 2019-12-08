@@ -83,7 +83,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static object ShowAdornerOperation(object arg)
+        private static object? ShowAdornerOperation(object arg)
         {
             var args = (object[])arg;
             var adorner = (Adorner)args[0];

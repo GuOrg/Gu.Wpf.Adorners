@@ -15,6 +15,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Version>1.5.2</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -25,11 +30,6 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
     <PackageReleaseNotes>FEATURE: netcoreapp3.</PackageReleaseNotes>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

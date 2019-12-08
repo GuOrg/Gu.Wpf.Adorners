@@ -14,7 +14,7 @@ namespace Gu.Wpf.Adorners
             this.count = child == null ? 0 : 1;
         }
 
-        object IEnumerator.Current => this.index == 0 ? this.child : null;
+        object? IEnumerator.Current => this.index == 0 ? this.child : null;
 
         bool IEnumerator.MoveNext()
         {

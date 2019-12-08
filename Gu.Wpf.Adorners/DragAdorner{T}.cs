@@ -66,7 +66,7 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <inheritdoc />
-        public sealed override T Child
+        public sealed override T? Child
         {
             get => base.Child;
             set => base.Child = value;

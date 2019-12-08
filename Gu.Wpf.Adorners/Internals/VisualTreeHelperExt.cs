@@ -30,7 +30,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        internal static T VisualChild<T>(this Visual parent)
+        internal static T? VisualChild<T>(this Visual parent)
             where T : Visual
         {
             var count = VisualTreeHelper.GetChildrenCount(parent);
@@ -41,7 +41,7 @@ namespace Gu.Wpf.Adorners
 
             if (count == 0)
             {
-                return default(T);
+                return default;
             }
 
             return (T)VisualTreeHelper.GetChild(parent, 0);

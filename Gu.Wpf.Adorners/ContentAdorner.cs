@@ -48,21 +48,22 @@ namespace Gu.Wpf.Adorners
         public ContentAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
-            base.Child = new ContentPresenter();
-            _ = this.Child.Bind(MarginProperty)
-                    .OneWayTo(this, MarginProperty);
-            _ = this.Child.Bind(ContentPresenter.ContentProperty)
-                    .OneWayTo(this, ContentProperty);
-            _ = this.Child.Bind(ContentPresenter.ContentTemplateProperty)
-                    .OneWayTo(this, ContentTemplateProperty);
-            _ = this.Child.Bind(ContentPresenter.ContentTemplateSelectorProperty)
-                    .OneWayTo(this, ContentTemplateSelectorProperty);
-            _ = this.Child.Bind(StyleProperty)
-                    .OneWayTo(this, StyleProperty);
+            var child = new ContentPresenter();
+            base.Child = child;
+            _ = child.Bind(MarginProperty)
+                     .OneWayTo(this, MarginProperty);
+            _ = child.Bind(ContentPresenter.ContentProperty)
+                     .OneWayTo(this, ContentProperty);
+            _ = child.Bind(ContentPresenter.ContentTemplateProperty)
+                     .OneWayTo(this, ContentTemplateProperty);
+            _ = child.Bind(ContentPresenter.ContentTemplateSelectorProperty)
+                     .OneWayTo(this, ContentTemplateSelectorProperty);
+            _ = child.Bind(StyleProperty)
+                     .OneWayTo(this, StyleProperty);
         }
 
         /// <inheritdoc />
-        public sealed override ContentPresenter Child
+        public sealed override ContentPresenter? Child
         {
             get => base.Child;
             set => base.Child = value;
