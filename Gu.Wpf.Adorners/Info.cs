@@ -138,7 +138,9 @@ namespace Gu.Wpf.Adorners
             }
         }
 
+#pragma warning disable SA1313 // Parameter names should begin with lower-case letter
         private static void OnAdornedElementChanged(object? sender, object _)
+#pragma warning restore SA1313 // Parameter names should begin with lower-case letter
         {
             if (sender is UIElement adornedElement)
             {

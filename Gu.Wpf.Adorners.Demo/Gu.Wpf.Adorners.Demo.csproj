@@ -5,6 +5,7 @@
     <UseWpf>true</UseWpf>
     <Nullable>enable</Nullable>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.Demo.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>$(NoWarn);IDE0009</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

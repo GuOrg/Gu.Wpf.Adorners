@@ -57,7 +57,7 @@ namespace Gu.Wpf.Adorners
             set => this.SetValue(TextStyleProperty, value);
         }
 
-        private FrameworkElement ReferenceElement
+        private FrameworkElement? ReferenceElement
         {
             get
             {
@@ -68,8 +68,7 @@ namespace Gu.Wpf.Adorners
 
                 foreach (var child in this.AdornedElement.RecursiveVisualChildren())
                 {
-                    if (child is FrameworkElement candidate &&
-                        candidate.DependencyObjectType is DependencyObjectType objectType &&
+                    if (child is FrameworkElement { DependencyObjectType: { } objectType } candidate &&
                         objectType.Name == TextBoxView)
                     {
                         this.referenceElement.SetTarget(candidate);
@@ -115,7 +114,7 @@ namespace Gu.Wpf.Adorners
                 this.ReferenceElement.InvalidateMeasure();
             }
 
-            if (this.Child is TextBlock child)
+            if (this.Child is { } child)
             {
                 child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
                 return child.DesiredSize;
@@ -128,7 +127,7 @@ namespace Gu.Wpf.Adorners
         protected override Size ArrangeOverride(Size size)
         {
             var finalRect = GetFinalRect();
-            if (this.Child is TextBlock child)
+            if (this.Child is { } child)
             {
                 child.Arrange(finalRect);
             }
@@ -137,6 +136,11 @@ namespace Gu.Wpf.Adorners
 
             Rect GetFinalRect()
             {
+                if (this.ReferenceElement is null)
+                {
+                    return Rect.Empty;
+                }
+
                 if (ReferenceEquals(this.AdornedElement, this.ReferenceElement))
                 {
                     var slot = LayoutInformation.GetLayoutSlot(this.ReferenceElement);
