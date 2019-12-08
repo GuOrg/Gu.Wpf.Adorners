@@ -13,9 +13,9 @@ namespace Gu.Wpf.Adorners.Demo
         private void OnShowMessageBoxClick(object sender, RoutedEventArgs e)
         {
             var window = Window.GetWindow(this);
-            window?.SetCurrentValue(Overlay.IsVisibleProperty, true);
+            window?.SetCurrentValue(Overlay.VisibilityProperty, Visibility.Visible);
             MessageBox.Show("Text", "Caption");
-            window?.SetCurrentValue(Overlay.IsVisibleProperty, false);
+            window?.SetCurrentValue(Overlay.VisibilityProperty, Visibility.Hidden);
         }
     }
 }

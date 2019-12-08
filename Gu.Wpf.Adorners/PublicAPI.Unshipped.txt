@@ -1,1 +1,14 @@
-﻿
+﻿XamlGeneratedNamespace.GeneratedInternalTypeHelper
+XamlGeneratedNamespace.GeneratedInternalTypeHelper.GeneratedInternalTypeHelper() -> void
+static Gu.Wpf.Adorners.Overlay.GetContent(System.Windows.FrameworkElement element) -> object
+static Gu.Wpf.Adorners.Overlay.GetContentPresenterStyle(System.Windows.FrameworkElement element) -> System.Windows.Style
+static Gu.Wpf.Adorners.Overlay.GetContentTemplate(System.Windows.FrameworkElement element) -> System.Windows.DataTemplate
+static Gu.Wpf.Adorners.Overlay.GetContentTemplateSelector(System.Windows.FrameworkElement element) -> System.Windows.Controls.DataTemplateSelector
+static Gu.Wpf.Adorners.Overlay.GetIsVisible(this System.Windows.FrameworkElement element) -> bool
+static Gu.Wpf.Adorners.Overlay.GetVisibility(System.Windows.FrameworkElement element) -> System.Windows.Visibility
+static Gu.Wpf.Adorners.Overlay.SetContent(System.Windows.FrameworkElement element, object value) -> void
+static Gu.Wpf.Adorners.Overlay.SetContentPresenterStyle(System.Windows.FrameworkElement element, System.Windows.Style value) -> void
+static Gu.Wpf.Adorners.Overlay.SetContentTemplate(System.Windows.FrameworkElement element, System.Windows.DataTemplate value) -> void
+static Gu.Wpf.Adorners.Overlay.SetContentTemplateSelector(System.Windows.FrameworkElement element, System.Windows.Controls.DataTemplateSelector value) -> void
+static Gu.Wpf.Adorners.Overlay.SetVisibility(System.Windows.FrameworkElement element, System.Windows.Visibility value) -> void
+static readonly Gu.Wpf.Adorners.Overlay.VisibilityProperty -> System.Windows.DependencyProperty

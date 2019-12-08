@@ -51,17 +51,6 @@ namespace Gu.Wpf.Adorners.UiTests
         }
 
         [Test]
-        public void WithInheritedContentTemplate()
-        {
-            using (var app = Application.Launch(ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                var groupBox = window.FindGroupBox("Inherits");
-                ImageAssert.AreEqual(".\\Images\\OverlayWindow\\Inherited_content_template.png", groupBox);
-            }
-        }
-
-        [Test]
         public void WhenSizeChanges()
         {
             using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Gu.Wpf.Adorners.Demo.OverlayView"
+<UserControl x:Class="Gu.Wpf.Adorners.Demo.OverlayView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:adorners="http://gu.se/Adorners"
@@ -6,6 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
         <Style TargetType="{x:Type Button}">
             <Setter Property="Height" Value="50" />
             <Setter Property="Margin" Value="5" />
@@ -17,28 +19,37 @@
 
         <Button Content="Default visibility">
             <adorners:Overlay.Content>
-                <Border BorderBrush="Blue" BorderThickness="3" />
+                <Border BorderBrush="Blue"
+                        BorderThickness="3" />
             </adorners:Overlay.Content>
         </Button>
 
-        <TextBlock HorizontalAlignment="Center" Text="Bound visibility" />
-        <ToggleButton x:Name="IsVisibleButton"
+        <TextBlock HorizontalAlignment="Center"
+                   Text="Bound visibility" />
+        <ToggleButton x:Name="IsVisibleToggleButton"
                       Content="IsVisible"
                       IsChecked="True" />
 
-        <Button adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}" Content="Bound visibility">
+        <Button adorners:Overlay.Visibility="{Binding IsChecked,
+                                                      ElementName=IsVisibleToggleButton,
+                                                      Converter={StaticResource BooleanToVisibilityConverter}}"
+                Content="Bound visibility">
             <adorners:Overlay.Content>
-                <Border BorderBrush="HotPink" BorderThickness="3" />
+                <Border BorderBrush="HotPink"
+                        BorderThickness="3" />
             </adorners:Overlay.Content>
         </Button>
 
         <Button adorners:Overlay.Content="yeah"
-                adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}"
+                adorners:Overlay.Visibility="{Binding IsChecked,
+                                                      ElementName=IsVisibleToggleButton,
+                                                      Converter={StaticResource BooleanToVisibilityConverter}}"
                 Content="With content template"
                 Foreground="Blue">
             <adorners:Overlay.ContentTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="BlueViolet" BorderThickness="3">
+                    <Border BorderBrush="BlueViolet"
+                            BorderThickness="3">
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="{Binding}" />
@@ -46,26 +57,5 @@
                 </DataTemplate>
             </adorners:Overlay.ContentTemplate>
         </Button>
-
-        <TextBlock Text="Inherits" />
-        <StackPanel adorners:Overlay.IsVisible="{Binding IsChecked, ElementName=IsVisibleButton}">
-            <adorners:Overlay.ContentTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="GreenYellow" BorderThickness="3">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Text="{Binding}" />
-                    </Border>
-                </DataTemplate>
-            </adorners:Overlay.ContentTemplate>
-
-            <Button adorners:Overlay.Content="inherited"
-                    Content="1"
-                    Foreground="Yellow" />
-
-            <Button adorners:Overlay.Content="inherited"
-                    Content="2"
-                    Foreground="Blue" />
-        </StackPanel>
     </StackPanel>
 </UserControl>
