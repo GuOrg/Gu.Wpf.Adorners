@@ -51,7 +51,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Gets or sets the style for the <see cref="TextBlock"/> rendering <see cref="Watermark.TextProperty"/> for <see cref="System.Windows.Documents.Adorner.AdornedElement"/>.
         /// </summary>
-        public Style TextStyle
+        public Style? TextStyle
         {
             get => (Style)this.GetValue(TextStyleProperty);
             set => this.SetValue(TextStyleProperty, value);

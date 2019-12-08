@@ -72,7 +72,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Gets or sets the content is the data used to generate the child elements of this control.
         /// </summary>
-        public object Content
+        public object? Content
         {
             get => this.GetValue(ContentProperty);
             set => this.SetValue(ContentProperty, value);
@@ -81,7 +81,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Gets or sets the <see cref="DataTemplate"/> used to display the content of the control.
         /// </summary>
-        public DataTemplate ContentTemplate
+        public DataTemplate? ContentTemplate
         {
             get => (DataTemplate)this.GetValue(ContentTemplateProperty);
             set => this.SetValue(ContentTemplateProperty, value);
@@ -94,7 +94,7 @@ namespace Gu.Wpf.Adorners
         /// <remarks>
         /// This property is ignored if <seealso cref="ContentTemplate"/> is set.
         /// </remarks>
-        public DataTemplateSelector ContentTemplateSelector
+        public DataTemplateSelector? ContentTemplateSelector
         {
             get => (DataTemplateSelector)this.GetValue(ContentTemplateSelectorProperty);
             set => this.SetValue(ContentTemplateSelectorProperty, value);
@@ -103,7 +103,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Gets or sets the <see cref="Style"/> for <see cref="Child"/>.
         /// </summary>
-        public Style ContentPresenterStyle
+        public Style? ContentPresenterStyle
         {
             get => (Style)this.GetValue(ContentPresenterStyleProperty);
             set => this.SetValue(ContentPresenterStyleProperty, value);

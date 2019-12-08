@@ -7,6 +7,7 @@
     <LangVersion>8</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>$(NoWarn);IDE0009</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>

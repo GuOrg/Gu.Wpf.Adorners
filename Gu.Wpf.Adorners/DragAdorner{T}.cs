@@ -59,7 +59,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Gets or sets the drop target to snap position to.
         /// </summary>
-        public UIElement DropTarget
+        public UIElement? DropTarget
         {
             get => (UIElement)this.GetValue(DropTargetProperty);
             set => this.SetValue(DropTargetProperty, value);
@@ -112,7 +112,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>This method is invoked when the <see cref="DropTargetProperty"/> changes.</summary>
         /// <param name="oldValue">The old value of <see cref="DropTargetProperty"/>.</param>
         /// <param name="newValue">The new value of <see cref="DropTargetProperty"/>.</param>
-        protected virtual void OnDropTargetChanged(UIElement oldValue, UIElement newValue)
+        protected virtual void OnDropTargetChanged(UIElement? oldValue, UIElement? newValue)
         {
             this.UpdatePosition();
             this.InvalidateMeasure();

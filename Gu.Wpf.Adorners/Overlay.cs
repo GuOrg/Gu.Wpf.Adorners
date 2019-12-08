@@ -146,7 +146,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for setting <see cref="ContentTemplateProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="FrameworkElement"/> to set <see cref="ContentTemplateProperty"/> on.</param>
         /// <param name="value">ContentTemplate property value.</param>
-        public static void SetContentTemplate(FrameworkElement element, DataTemplate value)
+        public static void SetContentTemplate(FrameworkElement element, DataTemplate? value)
         {
             if (element is null)
             {
@@ -174,7 +174,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for setting <see cref="ContentTemplateSelectorProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="FrameworkElement"/> to set <see cref="ContentTemplateSelectorProperty"/> on.</param>
         /// <param name="value">ContentTemplateSelector property value.</param>
-        public static void SetContentTemplateSelector(FrameworkElement element, DataTemplateSelector value)
+        public static void SetContentTemplateSelector(FrameworkElement element, DataTemplateSelector? value)
         {
             if (element is null)
             {
@@ -202,7 +202,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for setting <see cref="ContentPresenterStyleProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="FrameworkElement"/> to set <see cref="ContentPresenterStyleProperty"/> on.</param>
         /// <param name="value">ContentPresenterStyle property value.</param>
-        public static void SetContentPresenterStyle(FrameworkElement element, Style value)
+        public static void SetContentPresenterStyle(FrameworkElement element, Style? value)
         {
             if (element is null)
             {
@@ -353,7 +353,9 @@ namespace Gu.Wpf.Adorners
                 UnloadedEventManager.UpdateHandler(element, OnAdornedElementChanged);
                 SizeChangedEventManager.UpdateHandler(element, OnSizeChanged);
 
-                void OnAdornedElementChanged(object sender, EventArgs _)
+#pragma warning disable SA1313 // Parameter names should begin with lower-case letter
+                static void OnAdornedElementChanged(object? sender, EventArgs _)
+#pragma warning restore SA1313 // Parameter names should begin with lower-case letter
                 {
                     if (sender is FrameworkElement e)
                     {
@@ -361,7 +363,9 @@ namespace Gu.Wpf.Adorners
                     }
                 }
 
-                void OnSizeChanged(object sender, RoutedEventArgs _)
+#pragma warning disable SA1313 // Parameter names should begin with lower-case letter
+                static void OnSizeChanged(object? sender, RoutedEventArgs _)
+#pragma warning restore SA1313 // Parameter names should begin with lower-case letter
                 {
                     if (sender is UIElement e)
                     {

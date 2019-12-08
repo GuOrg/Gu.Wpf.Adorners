@@ -141,7 +141,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for setting <see cref="TextStyleProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="UIElement"/> to set <see cref="TextStyleProperty"/> on.</param>
         /// <param name="value">TextStyle property value.</param>
-        public static void SetTextStyle(this UIElement element, Style value)
+        public static void SetTextStyle(this UIElement element, Style? value)
         {
             if (element is null)
             {

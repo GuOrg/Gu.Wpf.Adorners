@@ -58,7 +58,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for setting <see cref="TemplateProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to set <see cref="TemplateProperty"/> on.</param>
         /// <param name="value">Template property value.</param>
-        public static void SetTemplate(DependencyObject element, ControlTemplate value)
+        public static void SetTemplate(DependencyObject element, ControlTemplate? value)
         {
             if (element is null)
             {
