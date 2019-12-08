@@ -94,10 +94,10 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        internal static T SingleOrNull<T>(this IEnumerable<object> items)
+        internal static T? SingleOrNull<T>(this IEnumerable<object> items)
             where T : class
         {
-            T match = null;
+            T? match = null;
             foreach (var item in items)
             {
                 if (item is T temp)
@@ -116,14 +116,10 @@ namespace Gu.Wpf.Adorners
 
         internal static string DumpVisualTree(this DependencyObject parent)
         {
-            using (var stringWriter = new StringWriter())
-            {
-                using (var writer = new IndentedTextWriter(stringWriter))
-                {
-                    DumpVisualTree(parent, writer);
-                    return stringWriter.ToString();
-                }
-            }
+            using var stringWriter = new StringWriter();
+            using var writer = new IndentedTextWriter(stringWriter);
+            DumpVisualTree(parent, writer);
+            return stringWriter.ToString();
         }
 
         private static void DumpVisualTree(this DependencyObject parent, IndentedTextWriter writer)

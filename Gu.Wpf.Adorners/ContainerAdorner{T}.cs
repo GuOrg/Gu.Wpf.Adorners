@@ -16,7 +16,7 @@ namespace Gu.Wpf.Adorners
     public abstract class ContainerAdorner<T> : Adorner
         where T : Visual
     {
-        private T child;
+        private T? child;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ContainerAdorner{T}"/> class.
@@ -31,7 +31,7 @@ namespace Gu.Wpf.Adorners
         /// marked virtual because AddVisualChild calls the virtual OnVisualChildrenChanged.
         /// </summary>
         [DefaultValue(null)]
-        public virtual T Child
+        public virtual T? Child
         {
             get => this.child;
 

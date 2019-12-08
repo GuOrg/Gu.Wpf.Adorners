@@ -60,6 +60,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">Template property value.</param>
         public static void SetTemplate(DependencyObject element, ControlTemplate value)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(TemplateProperty, value);
         }
 
@@ -68,6 +73,11 @@ namespace Gu.Wpf.Adorners
         /// <returns>Template property value.</returns>
         public static ControlTemplate GetTemplate(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             return (ControlTemplate)element.GetValue(TemplateProperty);
         }
 
@@ -76,6 +86,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">Visibility property value.</param>
         public static void SetVisibility(DependencyObject element, Visibility value)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(VisibilityProperty, value);
         }
 
@@ -84,6 +99,11 @@ namespace Gu.Wpf.Adorners
         /// <returns>Visibility property value.</returns>
         public static Visibility GetVisibility(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             return (Visibility)element.GetValue(VisibilityProperty);
         }
 
@@ -99,12 +119,17 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static bool GetIsVisible(this DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             return (bool)element.GetValue(IsVisibleProperty);
         }
 
 #pragma warning restore SA1202 // Elements must be ordered by access
 
-        private static void OnSizeChanged(object sender, RoutedEventArgs e)
+        private static void OnSizeChanged(object? sender, RoutedEventArgs e)
         {
             if (sender is UIElement adornedElement)
             {
@@ -113,7 +138,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void OnAdornedElementChanged(object sender, object _)
+        private static void OnAdornedElementChanged(object? sender, object _)
         {
             if (sender is UIElement adornedElement)
             {

@@ -87,6 +87,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">Text property value.</param>
         public static void SetText(this UIElement element, string value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(TextProperty, value);
         }
 
@@ -97,6 +102,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static string GetText(this UIElement element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (string)element.GetValue(TextProperty);
         }
 
@@ -105,6 +115,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">VisibleWhen property value.</param>
         public static void SetVisibleWhen(this UIElement element, WatermarkVisibleWhen value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(VisibleWhenProperty, value);
         }
 
@@ -115,6 +130,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static WatermarkVisibleWhen GetVisibleWhen(this UIElement element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (WatermarkVisibleWhen)element.GetValue(VisibleWhenProperty);
         }
 
@@ -123,6 +143,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">TextStyle property value.</param>
         public static void SetTextStyle(this UIElement element, Style value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(TextStyleProperty, value);
         }
 
@@ -133,6 +158,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static Style GetTextStyle(this UIElement element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (Style)element.GetValue(TextStyleProperty);
         }
 
@@ -147,6 +177,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(Control))]
         public static bool GetIsVisible(this Control element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (bool)element.GetValue(IsVisibleProperty);
         }
 
@@ -237,7 +272,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void OnSizeChanged(object sender, RoutedEventArgs e)
+        private static void OnSizeChanged(object? sender, RoutedEventArgs e)
         {
             if (sender is Control adornedElement)
             {
@@ -246,7 +281,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void OnAdornedElementChanged(object sender, object _)
+        private static void OnAdornedElementChanged(object? sender, object _)
         {
             if (sender is Control adornedElement)
             {

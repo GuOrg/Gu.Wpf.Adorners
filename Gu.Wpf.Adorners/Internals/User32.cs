@@ -9,27 +9,30 @@ namespace Gu.Wpf.Adorners
     {
         internal static Point GetMousePosition()
         {
-            var p = default(Win32Point);
-            _ = GetCursorPos(ref p);
+            var p = default(Native.Win32Point);
+            _ = Native.GetCursorPos(ref p);
             return new Point(p.X, p.Y);
         }
 
         internal static Point GetMousePosition(Visual relativeTo)
         {
-            var p = default(Win32Point);
-            _ = GetCursorPos(ref p);
+            var p = default(Native.Win32Point);
+            _ = Native.GetCursorPos(ref p);
             return relativeTo.PointFromScreen(new Point(p.X, p.Y));
         }
 
-        [DllImport("user32.dll")]
-        private static extern bool GetCursorPos(ref Win32Point pt);
-
-        [StructLayout(LayoutKind.Sequential)]
-        [SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Local")]
-        private struct Win32Point
+        private static class Native
         {
-            internal int X;
-            internal int Y;
+            [DllImport("user32.dll")]
+            internal static extern bool GetCursorPos(ref Win32Point pt);
+
+            [StructLayout(LayoutKind.Sequential)]
+            [SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Local")]
+            internal struct Win32Point
+            {
+                internal int X;
+                internal int Y;
+            }
         }
     }
 }

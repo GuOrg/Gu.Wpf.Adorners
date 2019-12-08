@@ -34,7 +34,7 @@ namespace Gu.Wpf.Adorners
 
         private static PropertyPath GetPath(DependencyProperty property)
         {
-            if (PropertyPaths.TryGetValue(property, out PropertyPath path))
+            if (PropertyPaths.TryGetValue(property, out PropertyPath? path))
             {
                 return path;
             }

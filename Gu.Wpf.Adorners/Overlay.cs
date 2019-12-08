@@ -100,6 +100,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">Content property value.</param>
         public static void SetContent(DependencyObject element, object value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(ContentProperty, value);
         }
 
@@ -110,6 +115,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static object GetContent(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return element.GetValue(ContentProperty);
         }
 
@@ -118,6 +128,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">ContentTemplate property value.</param>
         public static void SetContentTemplate(DependencyObject element, DataTemplate value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(ContentTemplateProperty, value);
         }
 
@@ -128,6 +143,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static DataTemplate GetContentTemplate(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (DataTemplate)element.GetValue(ContentTemplateProperty);
         }
 
@@ -136,6 +156,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">ContentTemplateSelector property value.</param>
         public static void SetContentTemplateSelector(DependencyObject element, DataTemplateSelector value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(ContentTemplateSelectorProperty, value);
         }
 
@@ -146,6 +171,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static DataTemplateSelector GetContentTemplateSelector(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (DataTemplateSelector)element.GetValue(ContentTemplateSelectorProperty);
         }
 
@@ -154,6 +184,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">ContentPresenterStyle property value.</param>
         public static void SetContentPresenterStyle(DependencyObject element, Style value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(ContentPresenterStyleProperty, value);
         }
 
@@ -164,6 +199,11 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static Style GetContentPresenterStyle(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (Style)element.GetValue(ContentPresenterStyleProperty);
         }
 
@@ -172,6 +212,11 @@ namespace Gu.Wpf.Adorners
         /// <param name="value">IsVisible property value.</param>
         public static void SetIsVisible(DependencyObject element, bool? value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(IsVisibleProperty, value);
         }
 
@@ -180,6 +225,11 @@ namespace Gu.Wpf.Adorners
         /// <returns>IsVisible property value.</returns>
         public static bool? GetIsVisible(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (bool?)element.GetValue(IsVisibleProperty);
         }
 
@@ -195,12 +245,17 @@ namespace Gu.Wpf.Adorners
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static bool GetIsShowing(this DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (bool)element.GetValue(IsShowingProperty);
         }
 
 #pragma warning restore SA1202 // Elements must be ordered by access
 
-        private static void OnSizeChanged(object sender, RoutedEventArgs e)
+        private static void OnSizeChanged(object? sender, RoutedEventArgs e)
         {
             if (sender is UIElement element)
             {
@@ -209,7 +264,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void OnAdornedElementChanged(object sender, EventArgs e) => UpdateIsShowing(sender as DependencyObject);
+        private static void OnAdornedElementChanged(object? sender, EventArgs e) => UpdateIsShowing(sender as DependencyObject);
 
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -275,7 +330,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private static void UpdateIsShowing(DependencyObject o)
+        private static void UpdateIsShowing(DependencyObject? o)
         {
             if (o is UIElement element)
             {
