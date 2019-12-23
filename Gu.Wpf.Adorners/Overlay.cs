@@ -367,7 +367,7 @@ namespace Gu.Wpf.Adorners
                 static void OnSizeChanged(object? sender, RoutedEventArgs _)
 #pragma warning restore SA1313 // Parameter names should begin with lower-case letter
                 {
-                    if (sender is UIElement e)
+                    if (sender is FrameworkElement e)
                     {
                         (e.GetValue(AdornerProperty) as ContentAdorner)?.InvalidateMeasure();
                     }
