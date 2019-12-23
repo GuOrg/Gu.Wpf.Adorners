@@ -59,5 +59,14 @@ namespace Gu.Wpf.Adorners.UiTests
             var comboBox = window.FindButton("Overlaid button");
             ImageAssert.AreEqual($"Images\\DefaultAdornerDecoratorWindow\\{TestImage.CurrentFolder}\\Overlaid_button.png", comboBox, TestImage.OnFail);
         }
+
+        [Test]
+        public void InfoButton()
+        {
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var comboBox = window.FindButton("Info button");
+            ImageAssert.AreEqual($"Images\\DefaultAdornerDecoratorWindow\\{TestImage.CurrentFolder}\\Info_button.png", comboBox, TestImage.OnFail);
+        }
     }
 }

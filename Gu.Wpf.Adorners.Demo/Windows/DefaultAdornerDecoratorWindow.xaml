@@ -35,6 +35,19 @@
             </adorners:Overlay.Content>
         </Button>
 
+        <Button Margin="4"
+                Content="Info button">
+            <adorners:Info.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <AdornedElementPlaceholder />
+                        <Border BorderBrush="CornflowerBlue"
+                                BorderThickness="2" />
+                    </Grid>
+                </ControlTemplate>
+            </adorners:Info.Template>
+        </Button>
+
         <Button Content="Lose focus" />
     </StackPanel>
 </Window>

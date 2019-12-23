@@ -43,85 +43,87 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <StackPanel>
-        <Slider x:Name="WidthSlider"
+    <AdornerDecorator>
+        <StackPanel>
+            <Slider x:Name="WidthSlider"
                 Maximum="200"
                 Minimum="0"
                 Value="200" />
 
-        <Button Width="{Binding ElementName=WidthSlider,
+            <Button Width="{Binding ElementName=WidthSlider,
                                 Path=Value}"
                 Content="red border default visibility"
                 Visibility="{Binding ElementName=VisibilityCbx,
                                      Path=SelectedItem}">
-            <adorners:Info.Template>
-                <ControlTemplate>
-                    <Border Margin="-1"
+                <adorners:Info.Template>
+                    <ControlTemplate>
+                        <Border Margin="-1"
                             BorderBrush="Red"
                             BorderThickness="1">
-                        <AdornedElementPlaceholder />
-                    </Border>
-                </ControlTemplate>
-            </adorners:Info.Template>
-        </Button>
+                            <AdornedElementPlaceholder />
+                        </Border>
+                    </ControlTemplate>
+                </adorners:Info.Template>
+            </Button>
 
-        <Button Width="{Binding ElementName=WidthSlider,
+            <Button Width="{Binding ElementName=WidthSlider,
                                 Path=Value}"
                 adorners:Info.Visibility="{Binding IsChecked,
                                                    ElementName=IsVisibleToggleButton,
                                                    Converter={StaticResource BooleanToVisibilityConverter}}"
                 Content="red border bound visibility">
-            <adorners:Info.Template>
-                <ControlTemplate>
-                    <Border Margin="-1"
+                <adorners:Info.Template>
+                    <ControlTemplate>
+                        <Border Margin="-1"
                             BorderBrush="Red"
                             BorderThickness="1">
-                        <AdornedElementPlaceholder />
-                    </Border>
-                </ControlTemplate>
-            </adorners:Info.Template>
-        </Button>
+                            <AdornedElementPlaceholder />
+                        </Border>
+                    </ControlTemplate>
+                </adorners:Info.Template>
+            </Button>
 
-        <GroupBox Padding="0,0,0,20"
+            <GroupBox Padding="0,0,0,20"
                   Header="Draws outside">
-            <Button Width="{Binding ElementName=WidthSlider,
+                <Button Width="{Binding ElementName=WidthSlider,
                                     Path=Value}"
                     adorners:Info.Visibility="{Binding IsChecked,
                                                        ElementName=IsVisibleToggleButton,
                                                        Converter={StaticResource BooleanToVisibilityConverter}}"
                     Content="info adorner">
-                <adorners:Info.Template>
-                    <ControlTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Border HorizontalAlignment="Right"
+                    <adorners:Info.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Border HorizontalAlignment="Right"
                                     BorderBrush="Blue"
                                     BorderThickness="0,0,0,1">
-                                <AdornedElementPlaceholder />
-                            </Border>
-                            <TextBlock Grid.Row="1"
+                                    <AdornedElementPlaceholder />
+                                </Border>
+                                <TextBlock Grid.Row="1"
                                        HorizontalAlignment="Right"
                                        Text="Some info text"
                                        TextAlignment="Right" />
-                        </Grid>
-                    </ControlTemplate>
-                </adorners:Info.Template>
-            </Button>
-        </GroupBox>
+                            </Grid>
+                        </ControlTemplate>
+                    </adorners:Info.Template>
+                </Button>
+            </GroupBox>
 
-        <ToggleButton x:Name="IsVisibleToggleButton"
+            <ToggleButton x:Name="IsVisibleToggleButton"
                       Margin="5,5,5,5"
                       Content="IsVisible"
                       IsChecked="True" />
 
-        <ComboBox x:Name="VisibilityCbx"
+            <ComboBox x:Name="VisibilityCbx"
                   SelectedIndex="0">
-            <Visibility>Visible</Visibility>
-            <Visibility>Hidden</Visibility>
-            <Visibility>Collapsed</Visibility>
-        </ComboBox>
-    </StackPanel>
+                <Visibility>Visible</Visibility>
+                <Visibility>Hidden</Visibility>
+                <Visibility>Collapsed</Visibility>
+            </ComboBox>
+        </StackPanel>
+    </AdornerDecorator>
 </Window>
