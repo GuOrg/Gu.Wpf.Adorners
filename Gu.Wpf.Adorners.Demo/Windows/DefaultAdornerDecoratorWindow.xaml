@@ -10,13 +10,30 @@
         WindowStartupLocation="Manual"
         mc:Ignorable="d">
     <StackPanel>
-        <ComboBox x:Name="Default"
-                  Margin="5"
-                  adorners:Watermark.Text="Watermark text" />
+        <ComboBox Margin="5"
+                  adorners:Watermark.Text="Watermark text"
+                  AutomationProperties.AutomationId="Default" />
         <ComboBox x:Name="DefaultEditable"
                   Margin="5"
                   adorners:Watermark.Text="Watermark text"
                   IsEditable="True" />
+
+        <TextBox Margin="5"
+                 adorners:Watermark.Text="Watermark text"
+                 AutomationProperties.AutomationId="Default" />
+        <TextBox x:Name="DefaultWithZeroBorder"
+                 Margin="5"
+                 adorners:Watermark.Text="Watermark text"
+                 BorderThickness="0"
+                 Text="" />
+
+        <Button adorners:Overlay.Visibility="Visible"
+                Content="Overlaid button">
+            <adorners:Overlay.Content>
+                <Border BorderBrush="HotPink"
+                        BorderThickness="2" />
+            </adorners:Overlay.Content>
+        </Button>
 
         <Button Content="Lose focus" />
     </StackPanel>

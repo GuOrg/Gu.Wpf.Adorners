@@ -16,6 +16,24 @@ namespace Gu.Wpf.Adorners.UiTests
         }
 
         [Test]
+        public void DefaultTextBoxWaterMark()
+        {
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var textBox = window.FindTextBox("Default");
+            ImageAssert.AreEqual($"Images\\TextBoxWindow\\{TestImage.CurrentFolder}\\Default.png", textBox, TestImage.OnFail);
+        }
+
+        [Test]
+        public void DefaultWithZeroBorderTextBoxWaterMark()
+        {
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var textBox = window.FindTextBox("DefaultWithZeroBorder");
+            ImageAssert.AreEqual($"Images\\TextBoxWindow\\{TestImage.CurrentFolder}\\Default_zero_border.png", textBox, TestImage.OnFail);
+        }
+
+        [Test]
         public void DefaultComboBoxWatermark()
         {
             using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
@@ -31,6 +49,15 @@ namespace Gu.Wpf.Adorners.UiTests
             var window = app.MainWindow;
             var comboBox = window.FindComboBox("DefaultEditable");
             ImageAssert.AreEqual($"Images\\ComboBoxWindow\\{TestImage.CurrentFolder}\\Default_editable.png", comboBox, TestImage.OnFail);
+        }
+
+        [Test]
+        public void OverlaidButton()
+        {
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var comboBox = window.FindButton("Overlaid button");
+            ImageAssert.AreEqual($"Images\\DefaultAdornerDecoratorWindow\\{TestImage.CurrentFolder}\\Overlaid_button.png", comboBox, TestImage.OnFail);
         }
     }
 }
