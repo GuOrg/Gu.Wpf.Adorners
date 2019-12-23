@@ -22,7 +22,6 @@ namespace Gu.Wpf.Adorners.UiTests
             var window = app.MainWindow;
             var textBox = window.FindTextBox("Default");
             ImageAssert.AreEqual($"Images\\TextBoxWindow\\{TestImage.CurrentFolder}\\Default.png", textBox, TestImage.OnFail);
-
         }
 
         [Test]

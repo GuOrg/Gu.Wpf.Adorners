@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Adorners.UiTests
 {
-    using System;
     using System.Drawing;
     using System.IO;
     using Gu.Wpf.UiAutomation;
@@ -28,15 +27,12 @@ namespace Gu.Wpf.Adorners.UiTests
             }
         }
 
-        public static void OnFail(Exception exception, Bitmap bitmap)
+        internal static void OnFail(Bitmap? expected, Bitmap actual, string resource)
         {
-            if (exception is ImageAssertException { Actual: { } actual, FileName: { } fileName })
-            {
-                var fullFileName = Path.Combine(Path.GetTempPath(), fileName);
-                _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
-                actual.Save(fullFileName);
-                TestContext.AddTestAttachment(fullFileName);
-            }
+            var fullFileName = Path.Combine(Path.GetTempPath(), resource);
+            _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
+            actual.Save(fullFileName);
+            TestContext.AddTestAttachment(fullFileName);
         }
 
         private static string GetCurrent()
