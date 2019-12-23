@@ -8,12 +8,6 @@ namespace Gu.Wpf.Adorners.UiTests
         private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
         private const string WindowName = "ComboBoxWindow";
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            ImageAssert.OnFail = OnFail.SaveImageToTemp;
-        }
-
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
@@ -24,37 +18,19 @@ namespace Gu.Wpf.Adorners.UiTests
         [Test]
         public void Default()
         {
-            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                var comboBox = window.FindComboBox("Default");
-                if (WindowsVersion.IsWindows10())
-                {
-                    ImageAssert.AreEqual(".\\Images\\ComboBoxWindow\\Default_Win10.png", comboBox);
-                }
-                else
-                {
-                    Assert.Inconclusive($"No image for current windows version.");
-                }
-            }
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var comboBox = window.FindComboBox("Default");
+            ImageAssert.AreEqual($"Images\\ComboBoxWindow\\{TestImage.CurrentFolder}\\Default.png", comboBox, TestImage.OnFail);
         }
 
         [Test]
         public void DefaultEditable()
         {
-            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                var comboBox = window.FindComboBox("DefaultEditable");
-                if (WindowsVersion.IsWindows10())
-                {
-                    ImageAssert.AreEqual(".\\Images\\ComboBoxWindow\\Default_editable_Win10.png", comboBox);
-                }
-                else
-                {
-                    Assert.Inconclusive($"No image for current windows version.");
-                }
-            }
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var comboBox = window.FindComboBox("DefaultEditable");
+            ImageAssert.AreEqual($"Images\\ComboBoxWindow\\{TestImage.CurrentFolder}\\Default_editable.png", comboBox, TestImage.OnFail);
         }
     }
 }

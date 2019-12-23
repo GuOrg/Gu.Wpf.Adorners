@@ -8,12 +8,6 @@ namespace Gu.Wpf.Adorners.UiTests
         private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
         private const string WindowName = "TextBoxWindow";
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            ImageAssert.OnFail = OnFail.SaveImageToTemp;
-        }
-
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
@@ -24,37 +18,20 @@ namespace Gu.Wpf.Adorners.UiTests
         [Test]
         public void Default()
         {
-            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                var textBox = window.FindTextBox("Default");
-                if (WindowsVersion.IsWindows10())
-                {
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWindow\\Default_Win10.png", textBox);
-                }
-                else
-                {
-                    Assert.Inconclusive($"No image for current windows version.");
-                }
-            }
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var textBox = window.FindTextBox("Default");
+            ImageAssert.AreEqual($"Images\\TextBoxWindow\\{TestImage.CurrentFolder}\\Default.png", textBox, TestImage.OnFail);
+
         }
 
         [Test]
         public void DefaultWithZeroBorder()
         {
-            using (var app = Application.AttachOrLaunch(ExeFileName, WindowName))
-            {
-                var window = app.MainWindow;
-                var textBox = window.FindTextBox("DefaultWithZeroBorder");
-                if (WindowsVersion.IsWindows10())
-                {
-                    ImageAssert.AreEqual(".\\Images\\TextBoxWindow\\Default_zero_border_Win10.png", textBox);
-                }
-                else
-                {
-                    Assert.Inconclusive($"No image for current windows version.");
-                }
-            }
+            using var app = Application.AttachOrLaunch(ExeFileName, WindowName);
+            var window = app.MainWindow;
+            var textBox = window.FindTextBox("DefaultWithZeroBorder");
+            ImageAssert.AreEqual($"Images\\TextBoxWindow\\{TestImage.CurrentFolder}\\Default_zero_border.png", textBox, TestImage.OnFail);
         }
     }
 }
