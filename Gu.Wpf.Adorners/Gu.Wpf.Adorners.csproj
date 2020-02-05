@@ -37,12 +37,12 @@
     </PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationCore" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationFramework" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System.Xaml" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="WindowsBase" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
 
   <ItemGroup>
