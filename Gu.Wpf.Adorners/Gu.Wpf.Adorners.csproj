@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -30,6 +30,9 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
     <PackageReleaseNotes>
+      2.1.0
+      FEATURE: netcoreapp3.1
+      2.0.0
       BREAKING: Rename Visibility and IsVisible to be consistent with framework.
       BREAKING: Remove property inheritance from Overlay.
       BUGFIX: Update nullable annotations.
