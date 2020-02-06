@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Gu.Analyzers" Version="1.6.7-dev" PrivateAssets="all" />
-    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.3.4" />
+    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.3.5" />
     <PackageReference Include="IDisposableAnalyzers" Version="3.3.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" PrivateAssets="all" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
