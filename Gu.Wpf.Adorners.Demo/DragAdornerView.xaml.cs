@@ -30,16 +30,14 @@ namespace Gu.Wpf.Adorners.Demo
                 contentPresenter.Content != null)
             {
                 var data = new DataObject(typeof(DragItem), contentPresenter.Content);
-                using (var adorner = DragAdorner.Create(contentPresenter))
+                using var adorner = DragAdorner.Create(contentPresenter);
+                data.SetData(adorner);
+                contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, null);
+                DragDrop.DoDragDrop(contentPresenter, data, DragDropEffects.Move);
+                if (!data.TryGetData<ContentPresenter>(out _) &&
+                    data.TryGetData<DragItem>(out var item))
                 {
-                    data.SetData(adorner);
-                    contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, null);
-                    DragDrop.DoDragDrop(contentPresenter, data, DragDropEffects.Move);
-                    if (!data.TryGetData<ContentPresenter>(out _) &&
-                        data.TryGetData<DragItem>(out var item))
-                    {
-                        contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, item);
-                    }
+                    contentPresenter.SetCurrentValue(ContentPresenter.ContentProperty, item);
                 }
             }
         }

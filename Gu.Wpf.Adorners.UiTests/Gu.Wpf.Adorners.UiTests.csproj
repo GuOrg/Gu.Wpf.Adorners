@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <LangVersion>8</LangVersion>
     <CodeAnalysisRuleSet>Gu.Wpf.Adorners.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
