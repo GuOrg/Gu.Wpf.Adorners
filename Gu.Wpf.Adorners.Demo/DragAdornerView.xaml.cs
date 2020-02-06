@@ -15,8 +15,7 @@ namespace Gu.Wpf.Adorners.Demo
         private static bool TryGetDropTarget(object sender, [NotNullWhen(true)] out ContentPresenter? target)
         {
             target = null;
-            if (sender is ContentPresenter cp &&
-                cp.Content == null)
+            if (sender is ContentPresenter { Content: null } cp)
             {
                 target = cp;
             }
@@ -26,8 +25,7 @@ namespace Gu.Wpf.Adorners.Demo
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.Source is ContentPresenter contentPresenter &&
-                contentPresenter.Content != null)
+            if (e.Source is ContentPresenter { Content: { } } contentPresenter)
             {
                 var data = new DataObject(typeof(DragItem), contentPresenter.Content);
                 using var adorner = DragAdorner.Create(contentPresenter);
