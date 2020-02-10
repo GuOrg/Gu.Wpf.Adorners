@@ -205,7 +205,7 @@ namespace Gu.Wpf.Adorners
                     break;
             }
 
-            void UpdateListener(Control adornedElement)
+            static void UpdateListener(Control adornedElement)
             {
                 if (adornedElement.GetValue(ListenerProperty) is null)
                 {

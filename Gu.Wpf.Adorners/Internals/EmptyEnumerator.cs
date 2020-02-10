@@ -6,7 +6,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Returns an Enumerator that enumerates over nothing.
     /// </summary>
-    internal class EmptyEnumerator : IEnumerator
+    internal sealed class EmptyEnumerator : IEnumerator
     {
         /// <summary>
         /// Read-Only instance of an Empty Enumerator.

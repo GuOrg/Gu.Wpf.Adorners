@@ -27,7 +27,9 @@ namespace Gu.Wpf.Adorners.UiTests
             }
         }
 
+#pragma warning disable IDE0060 // Remove unused parameter
         internal static void OnFail(Bitmap? expected, Bitmap actual, string resource)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             var fullFileName = Path.Combine(Path.GetTempPath(), resource);
             _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
