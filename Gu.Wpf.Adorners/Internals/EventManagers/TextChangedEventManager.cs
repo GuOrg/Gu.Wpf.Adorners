@@ -22,7 +22,7 @@ namespace Gu.Wpf.Adorners
                 var manager = (TextChangedEventManager)GetCurrentManager(managerType);
 
                 // at first use, create and register a new manager
-                if (manager == null)
+                if (manager is null)
                 {
                     manager = new TextChangedEventManager();
                     SetCurrentManager(managerType, manager);

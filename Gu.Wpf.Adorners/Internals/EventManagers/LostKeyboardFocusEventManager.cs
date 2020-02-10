@@ -21,7 +21,7 @@
                 var manager = (LostKeyboardFocusEventManager)GetCurrentManager(managerType);
 
                 // at first use, create and register a new manager
-                if (manager == null)
+                if (manager is null)
                 {
                     manager = new LostKeyboardFocusEventManager();
                     SetCurrentManager(managerType, manager);

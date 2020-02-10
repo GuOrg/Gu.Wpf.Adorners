@@ -178,7 +178,7 @@ namespace Gu.Wpf.Adorners
         protected virtual void UpdatePosition()
         {
             this.ThrowIfDisposed();
-            if (this.DropTarget == null)
+            if (this.DropTarget is null)
             {
                 var mp = User32.GetMousePosition(this.AdornedElement) + this.elementOffset;
                 this.Offset.SetCurrentValue(TranslateTransform.XProperty, mp.X);

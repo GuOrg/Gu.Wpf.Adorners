@@ -207,7 +207,7 @@ namespace Gu.Wpf.Adorners
 
             void UpdateListener(Control adornedElement)
             {
-                if (adornedElement.GetValue(ListenerProperty) == null)
+                if (adornedElement.GetValue(ListenerProperty) is null)
                 {
                     switch (adornedElement)
                     {
@@ -231,7 +231,7 @@ namespace Gu.Wpf.Adorners
                 adornedElement.GetValue(AdornerProperty) is WatermarkAdorner adorner)
             {
                 adorner.SetCurrentValue(WatermarkAdorner.TextStyleProperty, e.NewValue);
-                if (e.NewValue == null)
+                if (e.NewValue is null)
                 {
                     adorner.UpdateDefaultStyle();
                 }
@@ -241,7 +241,7 @@ namespace Gu.Wpf.Adorners
         private static bool ValidateTextStyle(object value)
         {
             var style = (Style)value;
-            return style?.TargetType == null ||
+            return style?.TargetType is null ||
                    typeof(TextBlock).IsAssignableFrom(style.TargetType);
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
@@ -22,7 +22,7 @@
                 var manager = (PasswordChangedEventManager)GetCurrentManager(managerType);
 
                 // at first use, create and register a new manager
-                if (manager == null)
+                if (manager is null)
                 {
                     manager = new PasswordChangedEventManager();
                     SetCurrentManager(managerType, manager);

@@ -52,10 +52,10 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <inheritdoc />
-        protected override int VisualChildrenCount => this.child == null ? 0 : 1;
+        protected override int VisualChildrenCount => this.child is null ? 0 : 1;
 
         /// <inheritdoc />
-        protected override IEnumerator LogicalChildren => this.child == null
+        protected override IEnumerator LogicalChildren => this.child is null
                                               ? EmptyEnumerator.Instance
                                               : new SingleChildEnumerator(this.child);
 
@@ -72,7 +72,7 @@ namespace Gu.Wpf.Adorners
         /// <inheritdoc />
         protected override Visual GetVisualChild(int index)
         {
-            if (this.child == null || index != 0)
+            if (this.child is null || index != 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }

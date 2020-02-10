@@ -21,7 +21,7 @@
                 var manager = (SizeChangedEventManager)GetCurrentManager(managerType);
 
                 // at first use, create and register a new manager
-                if (manager == null)
+                if (manager is null)
                 {
                     manager = new SizeChangedEventManager();
                     SetCurrentManager(managerType, manager);

@@ -16,7 +16,7 @@ namespace Gu.Wpf.Adorners.Demo
         {
             target = null;
             if (sender is ContentPresenter cp &&
-                cp.Content == null)
+                cp.Content is null)
             {
                 target = cp;
             }
