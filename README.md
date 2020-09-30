@@ -265,7 +265,7 @@ Sample:
 ```xaml
 <Button adorners:Overlay.Visibility="{Binding IsChecked,
                                               ElementName=IsVisibleButton,
-                                              Converter={StaticResource BooleanToVisibilityConverter}}"
+                                              Converter={StaticResource BooleanToVisibilityConverter}}">
     <adorners:Overlay.Content>
         <Border BorderBrush="HotPink"
                 BorderThickness="2" />
@@ -313,7 +313,7 @@ Sample:
 ```xaml
 <Button adorners:Info.Visibility="{Binding IsChecked,
                                            ElementName=IsVisibleToggleButton,
-                                           Converter={StaticResource BooleanToVisibilityConverter}}"
+                                           Converter={StaticResource BooleanToVisibilityConverter}}">
     <adorners:Info.Template>
         <ControlTemplate>
             <Grid>
