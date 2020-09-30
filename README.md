@@ -259,15 +259,16 @@ TextStyle accepts a style for `TextBlock` the text is drawn where the textbox te
 # Overlay
 
 For adding an overlay to an element.
-The overlay visibility is controlled with adorners:Overlay.IsVisible if set to null the overlay is shown if adorners:Overlay.Content != null
+The overlay visibility is controlled with adorners:Overlay.Visibility
 
 Sample:
 ```xaml
-<Button adorners:Overlay.IsVisible="{Binding IsChecked,
-                                             ElementName=IsVisibleButton}">
+<Button adorners:Overlay.Visibility="{Binding IsChecked,
+                                              ElementName=IsVisibleButton,
+                                              Converter={StaticResource BooleanToVisibilityConverter}}"
     <adorners:Overlay.Content>
         <Border BorderBrush="HotPink"
-                BorderThickness="3" />
+                BorderThickness="2" />
     </adorners:Overlay.Content>
 </Button>
 ```
@@ -310,8 +311,9 @@ This is very similar to the adorner used for validation in WPF
 Sample:
 
 ```xaml
-<Button adorners:Info.IsVisible="{Binding IsChecked,
-                                          ElementName=IsVisibleButton}">
+<Button adorners:Info.Visibility="{Binding IsChecked,
+                                           ElementName=IsVisibleToggleButton,
+                                           Converter={StaticResource BooleanToVisibilityConverter}}"
     <adorners:Info.Template>
         <ControlTemplate>
             <Grid>
