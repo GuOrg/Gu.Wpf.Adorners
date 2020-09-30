@@ -259,7 +259,7 @@ TextStyle accepts a style for `TextBlock` the text is drawn where the textbox te
 # Overlay
 
 For adding an overlay to an element.
-The overlay visibility is controlled with adorners:Overlay.Visibility
+The overlay visibility is controlled with `adorners:Overlay.Visibility`.
 
 Sample:
 ```xaml
@@ -306,7 +306,7 @@ Note that this sample makes little sense overspecifying, providing it to give co
 
 # Info
 
-This is very similar to the adorner used for validation in WPF
+This is very similar to the adorner used for validation in WPF.
 
 Sample:
 
