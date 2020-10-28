@@ -1,10 +1,10 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
 
     /// <summary>
-    /// Manager for the DependencyObject.IsVisibleChanged event.
+    /// Manager for the UIElement.IsVisibleChanged event.
     /// </summary>
     internal class IsVisibleChangedEventManager : WeakEventManager
     {
