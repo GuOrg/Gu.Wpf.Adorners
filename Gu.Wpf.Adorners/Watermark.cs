@@ -77,10 +77,12 @@ namespace Gu.Wpf.Adorners
             typeof(Watermark),
             new PropertyMetadata(default(IListener)));
 
+#pragma warning disable SA1600 // Elements should be documented
         private interface IListener
         {
             string Text { get; }
         }
+#pragma warning restore SA1600 // Elements should be documented
 
         /// <summary>Helper for setting <see cref="TextProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="UIElement"/> to set <see cref="TextProperty"/> on.</param>

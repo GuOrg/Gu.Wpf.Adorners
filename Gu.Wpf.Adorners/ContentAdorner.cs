@@ -45,6 +45,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentAdorner"/> class.
         /// </summary>
+        /// <param name="adornedElement">The <see cref="UIElement"/>.</param>
         public ContentAdorner(UIElement adornedElement)
             : base(adornedElement)
         {

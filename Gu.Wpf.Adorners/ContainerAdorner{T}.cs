@@ -21,6 +21,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Initializes a new instance of the <see cref="ContainerAdorner{T}"/> class.
         /// </summary>
+        /// <param name="adornedElement">The <see cref="UIElement"/>.</param>
         protected ContainerAdorner(UIElement adornedElement)
             : base(adornedElement)
         {

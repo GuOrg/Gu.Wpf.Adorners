@@ -45,6 +45,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>
         /// Initializes a new instance of the <see cref="ContentDragAdorner"/> class.
         /// </summary>
+        /// <param name="adornedElement">The <see cref="UIElement"/>.</param>
         public ContentDragAdorner(UIElement adornedElement)
             : base(adornedElement, new ContentPresenter())
         {
