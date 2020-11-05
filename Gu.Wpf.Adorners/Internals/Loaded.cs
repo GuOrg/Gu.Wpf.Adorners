@@ -11,7 +11,7 @@ namespace Gu.Wpf.Adorners
             {
                 FrameworkElement fe => fe.IsLoaded,
                 FrameworkContentElement fce => fce.IsLoaded,
-                _ => throw new ArgumentException($"Did not find an IsLoaded property on the element: {element}.", nameof(element))
+                _ => throw new ArgumentException($"Did not find an IsLoaded property on the element: {element}.", nameof(element)),
             };
         }
     }
