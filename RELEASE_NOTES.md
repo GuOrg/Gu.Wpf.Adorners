@@ -1,4 +1,7 @@
-#### 2.0
+#### 2.1.1
+* FEATURE: tweak nullable annotations
+
+#### 2.0.0
 * BREAKING: Rename Visibility and IsVisible to be consistent with framework.
 * BREAKING: Remove property inheritance from Overlay.
 * BUGFIX: Update nullable annotations.
