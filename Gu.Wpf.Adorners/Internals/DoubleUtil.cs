@@ -1,7 +1,6 @@
 namespace Gu.Wpf.Adorners
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
 
     /// <summary>
@@ -28,7 +27,6 @@ namespace Gu.Wpf.Adorners
         /// </returns>
         /// <param name="value1"> The first double to compare. </param>
         /// <param name="value2"> The second double to compare. </param>
-        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         internal static bool AreClose(double value1, double value2)
         {
             // in case they are Infinities (then epsilon check does not work)

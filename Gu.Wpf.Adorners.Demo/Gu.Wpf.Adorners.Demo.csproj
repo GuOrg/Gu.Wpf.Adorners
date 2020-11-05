@@ -5,7 +5,6 @@
     <UseWpf>true</UseWpf>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <CodeAnalysisRuleSet>Gu.Wpf.Adorners.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

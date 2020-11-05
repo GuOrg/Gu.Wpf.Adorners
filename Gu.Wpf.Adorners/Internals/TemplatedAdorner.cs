@@ -3,7 +3,6 @@
 namespace Gu.Wpf.Adorners
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Windows;
@@ -30,7 +29,6 @@ namespace Gu.Wpf.Adorners
             _ = ClearChildMethod.Invoke(adorner, null);
         }
 
-        [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         private static void AssertTemplatedAdornerType(Adorner adorner, [CallerMemberName] string? caller = null)
         {
             if (adorner?.GetType() != TemplatedAdornerType)

@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Adorners
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
     using System.Windows;
     using System.Windows.Media;
@@ -27,7 +26,6 @@ namespace Gu.Wpf.Adorners
             internal static extern bool GetCursorPos(ref Win32Point pt);
 
             [StructLayout(LayoutKind.Sequential)]
-            [SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Local")]
             internal struct Win32Point
             {
                 internal int X;
