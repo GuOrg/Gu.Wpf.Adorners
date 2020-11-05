@@ -6,7 +6,7 @@ namespace Gu.Wpf.Adorners
     public enum WatermarkVisibleWhen
     {
         /// <summary>
-        /// Shows the watermark as long as the <see cref="System.Windows.Controls.TextBox"/> is empty
+        /// Shows the watermark as long as the <see cref="System.Windows.Controls.TextBox"/> is empty.
         /// </summary>
         Empty,
 

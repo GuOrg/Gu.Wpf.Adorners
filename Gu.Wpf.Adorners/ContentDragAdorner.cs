@@ -97,7 +97,7 @@ namespace Gu.Wpf.Adorners
         /// </summary>
         public Style? ContentPresenterStyle
         {
-            get => (Style)this.GetValue(ContentPresenterStyleProperty);
+            get => (Style?)this.GetValue(ContentPresenterStyleProperty);
             set => this.SetValue(ContentPresenterStyleProperty, value);
         }
     }

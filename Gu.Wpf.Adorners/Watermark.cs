@@ -48,7 +48,7 @@ namespace Gu.Wpf.Adorners
                 default(Style),
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnTextStyleChanged),
-            ValidateTextStyle);
+            value => ((Style?)value)?.TargetType is null || typeof(TextBlock).IsAssignableFrom(((Style)value).TargetType));
 
         private static readonly DependencyPropertyKey IsVisiblePropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "IsVisible",
@@ -69,7 +69,7 @@ namespace Gu.Wpf.Adorners
             typeof(Watermark),
             new PropertyMetadata(
                 default(WatermarkAdorner),
-                (d, e) => ((WatermarkAdorner)e.OldValue)?.ClearChild()));
+                (d, e) => ((WatermarkAdorner?)e.OldValue)?.ClearChild()));
 
         private static readonly DependencyProperty ListenerProperty = DependencyProperty.RegisterAttached(
             "Listener",
@@ -85,7 +85,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for setting <see cref="TextProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="UIElement"/> to set <see cref="TextProperty"/> on.</param>
         /// <param name="value">Text property value.</param>
-        public static void SetText(this UIElement element, string value)
+        public static void SetText(this UIElement element, string? value)
         {
             if (element is null)
             {
@@ -100,14 +100,14 @@ namespace Gu.Wpf.Adorners
         /// <returns>Text property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static string GetText(this UIElement element)
+        public static string? GetText(this UIElement element)
         {
             if (element is null)
             {
                 throw new ArgumentNullException(nameof(element));
             }
 
-            return (string)element.GetValue(TextProperty);
+            return (string?)element.GetValue(TextProperty);
         }
 
         /// <summary>Helper for setting <see cref="VisibleWhenProperty"/> on <paramref name="element"/>.</summary>
@@ -156,14 +156,14 @@ namespace Gu.Wpf.Adorners
         /// <returns>TextStyle property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
-        public static Style GetTextStyle(this UIElement element)
+        public static Style? GetTextStyle(this UIElement element)
         {
             if (element is null)
             {
                 throw new ArgumentNullException(nameof(element));
             }
 
-            return (Style)element.GetValue(TextStyleProperty);
+            return (Style?)element.GetValue(TextStyleProperty);
         }
 
         private static void SetIsVisible(this Control element, bool value)
@@ -236,13 +236,6 @@ namespace Gu.Wpf.Adorners
                     adorner.UpdateDefaultStyle();
                 }
             }
-        }
-
-        private static bool ValidateTextStyle(object value)
-        {
-            var style = (Style)value;
-            return style?.TargetType is null ||
-                   typeof(TextBlock).IsAssignableFrom(style.TargetType);
         }
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

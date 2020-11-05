@@ -18,7 +18,7 @@ namespace Gu.Wpf.Adorners
             typeof(DragAdorner<T>),
             new PropertyMetadata(
                 default(UIElement),
-                OnDropTargetChanged));
+                (d, e) => ((DragAdorner<T>)d).OnDropTargetChanged((UIElement?)e.OldValue, (UIElement?)e.NewValue)));
 
         private readonly Vector elementOffset;
 
@@ -61,7 +61,7 @@ namespace Gu.Wpf.Adorners
         /// </summary>
         public UIElement? DropTarget
         {
-            get => (UIElement)this.GetValue(DropTargetProperty);
+            get => (UIElement?)this.GetValue(DropTargetProperty);
             set => this.SetValue(DropTargetProperty, value);
         }
 
@@ -189,12 +189,6 @@ namespace Gu.Wpf.Adorners
                 this.Offset.SetCurrentValue(TranslateTransform.XProperty, 0.0);
                 this.Offset.SetCurrentValue(TranslateTransform.YProperty, 0.0);
             }
-        }
-
-        private static void OnDropTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var adorner = (DragAdorner<T>)d;
-            adorner.OnDropTargetChanged((UIElement)e.OldValue, (UIElement)e.NewValue);
         }
 
         private void UpdatePosition(object sender, QueryContinueDragEventArgs e)

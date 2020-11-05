@@ -68,26 +68,26 @@ static Gu.Wpf.Adorners.DragAdorner.Create(System.Windows.Controls.ContentPresent
 static Gu.Wpf.Adorners.DragAdorner.Create(System.Windows.UIElement! adornedElement, object! content, System.Windows.DataTemplate? contentTemplate = null, System.Windows.Controls.DataTemplateSelector? contentTemplateSelector = null) -> Gu.Wpf.Adorners.ContentDragAdorner!
 static Gu.Wpf.Adorners.DragAdorner.CreateVisualBrushAdorner(System.Windows.FrameworkElement! adornedElement) -> Gu.Wpf.Adorners.VisualBrushDragAdorner!
 static Gu.Wpf.Adorners.Info.GetIsVisible(this System.Windows.DependencyObject! element) -> bool
-static Gu.Wpf.Adorners.Info.GetTemplate(System.Windows.DependencyObject! element) -> System.Windows.Controls.ControlTemplate!
+static Gu.Wpf.Adorners.Info.GetTemplate(System.Windows.DependencyObject! element) -> System.Windows.Controls.ControlTemplate?
 static Gu.Wpf.Adorners.Info.GetVisibility(System.Windows.DependencyObject! element) -> System.Windows.Visibility
 static Gu.Wpf.Adorners.Info.SetTemplate(System.Windows.DependencyObject! element, System.Windows.Controls.ControlTemplate? value) -> void
 static Gu.Wpf.Adorners.Info.SetVisibility(System.Windows.DependencyObject! element, System.Windows.Visibility value) -> void
-static Gu.Wpf.Adorners.Overlay.GetContent(System.Windows.FrameworkElement! element) -> object!
-static Gu.Wpf.Adorners.Overlay.GetContentPresenterStyle(System.Windows.FrameworkElement! element) -> System.Windows.Style!
-static Gu.Wpf.Adorners.Overlay.GetContentTemplate(System.Windows.FrameworkElement! element) -> System.Windows.DataTemplate!
-static Gu.Wpf.Adorners.Overlay.GetContentTemplateSelector(System.Windows.FrameworkElement! element) -> System.Windows.Controls.DataTemplateSelector!
+static Gu.Wpf.Adorners.Overlay.GetContent(System.Windows.FrameworkElement! element) -> object?
+static Gu.Wpf.Adorners.Overlay.GetContentPresenterStyle(System.Windows.FrameworkElement! element) -> System.Windows.Style?
+static Gu.Wpf.Adorners.Overlay.GetContentTemplate(System.Windows.FrameworkElement! element) -> System.Windows.DataTemplate?
+static Gu.Wpf.Adorners.Overlay.GetContentTemplateSelector(System.Windows.FrameworkElement! element) -> System.Windows.Controls.DataTemplateSelector?
 static Gu.Wpf.Adorners.Overlay.GetIsVisible(this System.Windows.FrameworkElement! element) -> bool
 static Gu.Wpf.Adorners.Overlay.GetVisibility(System.Windows.FrameworkElement! element) -> System.Windows.Visibility
-static Gu.Wpf.Adorners.Overlay.SetContent(System.Windows.FrameworkElement! element, object! value) -> void
+static Gu.Wpf.Adorners.Overlay.SetContent(System.Windows.FrameworkElement! element, object? value) -> void
 static Gu.Wpf.Adorners.Overlay.SetContentPresenterStyle(System.Windows.FrameworkElement! element, System.Windows.Style? value) -> void
 static Gu.Wpf.Adorners.Overlay.SetContentTemplate(System.Windows.FrameworkElement! element, System.Windows.DataTemplate? value) -> void
 static Gu.Wpf.Adorners.Overlay.SetContentTemplateSelector(System.Windows.FrameworkElement! element, System.Windows.Controls.DataTemplateSelector? value) -> void
 static Gu.Wpf.Adorners.Overlay.SetVisibility(System.Windows.FrameworkElement! element, System.Windows.Visibility value) -> void
 static Gu.Wpf.Adorners.Watermark.GetIsVisible(this System.Windows.Controls.Control! element) -> bool
-static Gu.Wpf.Adorners.Watermark.GetText(this System.Windows.UIElement! element) -> string!
-static Gu.Wpf.Adorners.Watermark.GetTextStyle(this System.Windows.UIElement! element) -> System.Windows.Style!
+static Gu.Wpf.Adorners.Watermark.GetText(this System.Windows.UIElement! element) -> string?
+static Gu.Wpf.Adorners.Watermark.GetTextStyle(this System.Windows.UIElement! element) -> System.Windows.Style?
 static Gu.Wpf.Adorners.Watermark.GetVisibleWhen(this System.Windows.UIElement! element) -> Gu.Wpf.Adorners.WatermarkVisibleWhen
-static Gu.Wpf.Adorners.Watermark.SetText(this System.Windows.UIElement! element, string! value) -> void
+static Gu.Wpf.Adorners.Watermark.SetText(this System.Windows.UIElement! element, string? value) -> void
 static Gu.Wpf.Adorners.Watermark.SetTextStyle(this System.Windows.UIElement! element, System.Windows.Style? value) -> void
 static Gu.Wpf.Adorners.Watermark.SetVisibleWhen(this System.Windows.UIElement! element, Gu.Wpf.Adorners.WatermarkVisibleWhen value) -> void
 static readonly Gu.Wpf.Adorners.ContentAdorner.ContentPresenterStyleProperty -> System.Windows.DependencyProperty!

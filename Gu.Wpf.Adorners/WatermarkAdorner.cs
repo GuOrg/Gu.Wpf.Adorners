@@ -53,7 +53,7 @@ namespace Gu.Wpf.Adorners
         /// </summary>
         public Style? TextStyle
         {
-            get => (Style)this.GetValue(TextStyleProperty);
+            get => (Style?)this.GetValue(TextStyleProperty);
             set => this.SetValue(TextStyleProperty, value);
         }
 
@@ -124,7 +124,7 @@ namespace Gu.Wpf.Adorners
         }
 
         /// <inheritdoc />
-        protected override Size ArrangeOverride(Size size)
+        protected override Size ArrangeOverride(Size finalSize)
         {
             var finalRect = GetFinalRect();
             if (this.Child is { } child)
@@ -165,7 +165,7 @@ namespace Gu.Wpf.Adorners
 
                 Rect CenteredVertically(Rect rect)
                 {
-                    var y = rect.Height > size.Height ? (rect.Height - size.Height) / 2 : 0;
+                    var y = rect.Height > finalSize.Height ? (rect.Height - finalSize.Height) / 2 : 0;
                     return new Rect(rect.TopLeft + new Vector(0, y), rect.BottomRight - new Vector(0, y));
                 }
             }

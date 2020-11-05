@@ -113,12 +113,12 @@ namespace Gu.Wpf.Adorners
             typeof(Overlay),
             new PropertyMetadata(
                 default(ContentAdorner),
-                (d, e) => ((ContentAdorner)e.OldValue)?.ClearChild()));
+                (d, e) => ((ContentAdorner?)e.OldValue)?.ClearChild()));
 
         /// <summary>Helper for setting <see cref="ContentProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="FrameworkElement"/> to set <see cref="ContentProperty"/> on.</param>
         /// <param name="value">Content property value.</param>
-        public static void SetContent(FrameworkElement element, object value)
+        public static void SetContent(FrameworkElement element, object? value)
         {
             if (element is null)
             {
@@ -133,7 +133,7 @@ namespace Gu.Wpf.Adorners
         /// <returns>Content property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static object GetContent(FrameworkElement element)
+        public static object? GetContent(FrameworkElement element)
         {
             if (element is null)
             {
@@ -161,14 +161,14 @@ namespace Gu.Wpf.Adorners
         /// <returns>ContentTemplate property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static DataTemplate GetContentTemplate(FrameworkElement element)
+        public static DataTemplate? GetContentTemplate(FrameworkElement element)
         {
             if (element is null)
             {
                 throw new ArgumentNullException(nameof(element));
             }
 
-            return (DataTemplate)element.GetValue(ContentTemplateProperty);
+            return (DataTemplate?)element.GetValue(ContentTemplateProperty);
         }
 
         /// <summary>Helper for setting <see cref="ContentTemplateSelectorProperty"/> on <paramref name="element"/>.</summary>
@@ -189,14 +189,14 @@ namespace Gu.Wpf.Adorners
         /// <returns>ContentTemplateSelector property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static DataTemplateSelector GetContentTemplateSelector(FrameworkElement element)
+        public static DataTemplateSelector? GetContentTemplateSelector(FrameworkElement element)
         {
             if (element is null)
             {
                 throw new ArgumentNullException(nameof(element));
             }
 
-            return (DataTemplateSelector)element.GetValue(ContentTemplateSelectorProperty);
+            return (DataTemplateSelector?)element.GetValue(ContentTemplateSelectorProperty);
         }
 
         /// <summary>Helper for setting <see cref="ContentPresenterStyleProperty"/> on <paramref name="element"/>.</summary>
@@ -217,14 +217,14 @@ namespace Gu.Wpf.Adorners
         /// <returns>ContentPresenterStyle property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
-        public static Style GetContentPresenterStyle(FrameworkElement element)
+        public static Style? GetContentPresenterStyle(FrameworkElement element)
         {
             if (element is null)
             {
                 throw new ArgumentNullException(nameof(element));
             }
 
-            return (Style)element.GetValue(ContentPresenterStyleProperty);
+            return (Style?)element.GetValue(ContentPresenterStyleProperty);
         }
 
         /// <summary>Helper for setting <see cref="VisibilityProperty"/> on <paramref name="element"/>.</summary>

@@ -53,7 +53,7 @@ namespace Gu.Wpf.Adorners
             typeof(Info),
             new PropertyMetadata(
                 default(Adorner),
-                (d, e) => ((Adorner)e.OldValue)?.ClearTemplatedAdornerChild()));
+                (d, e) => ((Adorner?)e.OldValue)?.ClearTemplatedAdornerChild()));
 
         /// <summary>Helper for setting <see cref="TemplateProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to set <see cref="TemplateProperty"/> on.</param>
@@ -71,14 +71,14 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for getting <see cref="TemplateProperty"/> from <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to read <see cref="TemplateProperty"/> from.</param>
         /// <returns>Template property value.</returns>
-        public static ControlTemplate GetTemplate(DependencyObject element)
+        public static ControlTemplate? GetTemplate(DependencyObject element)
         {
             if (element is null)
             {
                 throw new System.ArgumentNullException(nameof(element));
             }
 
-            return (ControlTemplate)element.GetValue(TemplateProperty);
+            return (ControlTemplate?)element.GetValue(TemplateProperty);
         }
 
         /// <summary>Helper for setting <see cref="VisibilityProperty"/> on <paramref name="element"/>.</summary>

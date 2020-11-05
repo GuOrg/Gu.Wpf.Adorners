@@ -76,7 +76,9 @@ namespace Gu.Wpf.Adorners
             else if (retry)
             {
                 // try again later, perhaps giving layout a chance to create the adorner layer
+#pragma warning disable VSTHRD001 // Avoid legacy thread switching APIs
                 _ = adorner.Dispatcher.BeginInvoke(
+#pragma warning restore VSTHRD001 // Avoid legacy thread switching APIs
                            DispatcherPriority.Loaded,
                            new DispatcherOperationCallback(ShowAdornerOperation),
                            new object[] { adorner });
