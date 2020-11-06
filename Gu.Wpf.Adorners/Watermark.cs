@@ -12,7 +12,6 @@ namespace Gu.Wpf.Adorners
     [StyleTypedProperty(Property = "TextStyle", StyleTargetType = typeof(TextBlock))]
     public static class Watermark
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
         /// The watermark text.
         /// </summary>
@@ -186,8 +185,6 @@ namespace Gu.Wpf.Adorners
 
             return (bool)element.GetValue(IsVisibleProperty);
         }
-
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         private static void OnTextChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {

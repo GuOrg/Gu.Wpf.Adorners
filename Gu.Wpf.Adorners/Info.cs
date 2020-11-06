@@ -10,7 +10,6 @@ namespace Gu.Wpf.Adorners
     /// </summary>
     public static class Info
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
         /// Template used to generate info feedback on the AdornerLayer.
         /// </summary>
@@ -126,8 +125,6 @@ namespace Gu.Wpf.Adorners
 
             return (bool)element.GetValue(IsVisibleProperty);
         }
-
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         private static void OnSizeChanged(object? sender, RoutedEventArgs e)
         {

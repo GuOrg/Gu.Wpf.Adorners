@@ -12,7 +12,6 @@ namespace Gu.Wpf.Adorners
     [StyleTypedProperty(Property = "ContentPresenterStyle", StyleTargetType = typeof(ContentPresenter))]
     public static class Overlay
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
         /// Gets or sets the content is the data used to generate the child elements of this control.
         /// </summary>
@@ -272,8 +271,6 @@ namespace Gu.Wpf.Adorners
 
             return (bool)element.GetValue(IsVisibleProperty);
         }
-
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         private static void OnIsVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
