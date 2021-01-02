@@ -1,66 +1,71 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-	<PropertyGroup>
-		<OutputType>library</OutputType>
-		<UseWpf>true</UseWpf>
-		<TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
-		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+  <PropertyGroup>
+    <OutputType>library</OutputType>
+    <UseWpf>true</UseWpf>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>../Gu.Wpf.Adorners.snk</AssemblyOriginatorKeyFile>
-	</PropertyGroup>
+  <PropertyGroup>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	</PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../Gu.Wpf.Adorners.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<Version>2.1.1</Version>
-		<Authors>Johan Larsson</Authors>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Description>Watermark and overlay adorners for WPF.</Description>
-		<PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</RepositoryUrl>
-		<NeutralLanguage>en</NeutralLanguage>
-		<PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
-		<PackageReleaseNotes>
-			2.1.1
-			FEATURE: tweak nullable annotations
-			2.1.0
-			FEATURE: netcoreapp3.1
-			2.0.0
-			BREAKING: Rename Visibility and IsVisible to be consistent with framework.
-			BREAKING: Remove property inheritance from Overlay.
-			BUGFIX: Update nullable annotations.
-		</PackageReleaseNotes>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	</PropertyGroup>
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<AdditionalFiles Include="PublicAPI.Shipped.txt" />
-		<AdditionalFiles Include="PublicAPI.Unshipped.txt" />
-		<AdditionalFiles Include="stylecop.json" />
-	</ItemGroup>
+  <PropertyGroup>
+    <Version>2.1.1</Version>
+    <Authors>Johan Larsson</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Watermark and overlay adorners for WPF.</Description>
+    <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Adorners</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageTags>xaml wpf watermark adorner overlay attachedproperty</PackageTags>
+    <PackageReleaseNotes>
+      2.1.1
+      FEATURE: tweak nullable annotations
+      2.1.0
+      FEATURE: netcoreapp3.1
+      2.0.0
+      BREAKING: Rename Visibility and IsVisible to be consistent with framework.
+      BREAKING: Remove property inheritance from Overlay.
+      BUGFIX: Update nullable annotations.
+    </PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Gu.Analyzers" Version="1.8.4" PrivateAssets="all" />
-		<PackageReference Include="IDisposableAnalyzers" Version="3.4.8" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.55" PrivateAssets="all" />
-		<PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
-		<PackageReference Include="ReflectionAnalyzers" Version="0.1.22-dev" PrivateAssets="all" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.261" PrivateAssets="all" />
-		<PackageReference Include="WpfAnalyzers" Version="3.5.2" PrivateAssets="all" />
-	</ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="PublicAPI.Shipped.txt" />
+    <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
-		<PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160" PrivateAssets="all" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Gu.Analyzers" Version="1.8.4" PrivateAssets="all" />
+    <PackageReference Include="IDisposableAnalyzers" Version="3.4.8" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.55" PrivateAssets="all" />
+    <PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
+    <PackageReference Include="ReflectionAnalyzers" Version="0.1.22-dev" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.261" PrivateAssets="all" />
+    <PackageReference Include="WpfAnalyzers" Version="3.5.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
+    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160" PrivateAssets="all" />
+  </ItemGroup>
 </Project>
