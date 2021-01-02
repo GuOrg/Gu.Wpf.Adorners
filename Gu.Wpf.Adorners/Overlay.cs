@@ -242,6 +242,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for getting <see cref="VisibilityProperty"/> from <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="FrameworkElement"/> to read <see cref="VisibilityProperty"/> from.</param>
         /// <returns>Visibility property value.</returns>
+        [AttachedPropertyBrowsableForType(typeof(FrameworkElement))]
         public static Visibility GetVisibility(FrameworkElement element)
         {
             if (element is null)

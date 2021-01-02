@@ -22,6 +22,7 @@ namespace Gu.Wpf.Adorners
 
         private static class NativeMethods
         {
+            [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             [DllImport("user32.dll")]
             internal static extern bool GetCursorPos(ref Win32Point pt);
 

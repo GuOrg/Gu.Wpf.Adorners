@@ -70,6 +70,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for getting <see cref="TemplateProperty"/> from <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to read <see cref="TemplateProperty"/> from.</param>
         /// <returns>Template property value.</returns>
+        [AttachedPropertyBrowsableForType(typeof(DependencyObject))]
         public static ControlTemplate? GetTemplate(DependencyObject element)
         {
             if (element is null)
@@ -96,6 +97,7 @@ namespace Gu.Wpf.Adorners
         /// <summary>Helper for getting <see cref="VisibilityProperty"/> from <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to read <see cref="VisibilityProperty"/> from.</param>
         /// <returns>Visibility property value.</returns>
+        [AttachedPropertyBrowsableForType(typeof(DependencyObject))]
         public static Visibility GetVisibility(DependencyObject element)
         {
             if (element is null)
