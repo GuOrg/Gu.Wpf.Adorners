@@ -20,7 +20,7 @@ namespace Gu.Wpf.Adorners
             typeof(object),
             typeof(Overlay),
             new PropertyMetadata(
-                default(object),
+                null,
                 (d, e) =>
                 {
                     UpdateIsVisible(d);

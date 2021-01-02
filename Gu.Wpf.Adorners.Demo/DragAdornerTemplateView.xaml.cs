@@ -20,7 +20,9 @@ namespace Gu.Wpf.Adorners.Demo
                 target = cp;
             }
 
+#pragma warning disable CA1508 // Avoid dead conditional code, analyzer broken
             return target != null;
+#pragma warning restore CA1508 // Avoid dead conditional code
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
