@@ -14,7 +14,7 @@ namespace Gu.Wpf.Adorners.Tests
         {
             var dependencyProperties = typeof(TextElement).GetFields()
                 .Where(f => f.FieldType == typeof(DependencyProperty))
-                .Select(f => (DependencyProperty)f.GetValue(null))
+                .Select(f => (DependencyProperty)f.GetValue(null)!)
                 .ToArray();
             foreach (var property in dependencyProperties)
             {
