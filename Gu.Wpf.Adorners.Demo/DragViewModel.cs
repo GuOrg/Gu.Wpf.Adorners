@@ -5,7 +5,7 @@ namespace Gu.Wpf.Adorners.Demo
 
     public class DragViewModel : INotifyPropertyChanged
     {
-        private DragItem? item1 = new DragItem("Kajsa");
+        private DragItem? item1 = new("Kajsa");
         private DragItem? item2;
 
         public event PropertyChangedEventHandler? PropertyChanged;

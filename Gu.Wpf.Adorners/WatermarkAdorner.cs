@@ -19,7 +19,7 @@ namespace Gu.Wpf.Adorners
 
         private const string TextBoxView = "TextBoxView";
 
-        private readonly WeakReference<FrameworkElement?> referenceElement = new WeakReference<FrameworkElement?>(null);
+        private readonly WeakReference<FrameworkElement?> referenceElement = new(null);
 
         static WatermarkAdorner()
         {
