@@ -14,4 +14,4 @@ steps:
   displayName: Test
   inputs:
     configuration: 'Release'
-    platform: Any CPU
+    platform: 'Any CPU'
