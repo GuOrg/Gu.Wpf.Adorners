@@ -9,6 +9,6 @@ steps:
     command: 'build'
 
 - task: DotNetCoreCLI@2
-  displayName: 'build'
+  displayName: 'test'
   inputs:
     command: 'test'
