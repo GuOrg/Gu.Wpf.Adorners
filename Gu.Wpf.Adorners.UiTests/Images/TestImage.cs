@@ -10,6 +10,7 @@ namespace Gu.Wpf.Adorners.UiTests
     {
         internal static readonly string CurrentFolder = GetCurrent();
 
+        [Explicit]
         [Script]
         public static void Rename()
         {
