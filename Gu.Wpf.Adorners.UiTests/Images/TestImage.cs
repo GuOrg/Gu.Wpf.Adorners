@@ -45,7 +45,8 @@ namespace Gu.Wpf.Adorners.UiTests
                 return "Win7";
             }
 
-            if (WindowsVersion.IsWindows10())
+            if (WindowsVersion.IsWindows10() ||
+                WindowsVersion.CurrentContains("Windows Server 2022"))
             {
                 return "Win10";
             }
