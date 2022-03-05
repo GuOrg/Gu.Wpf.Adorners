@@ -13,4 +13,4 @@ steps:
   displayName: Test
   inputs:
     configuration: 'Release'
-    otherConsoleOptions: '/Framework:.NETCoreApp,Version=v6.0 /Platform:AnyCPU'
+    otherConsoleOptions: '/Framework:.NETCoreApp,Version=v6.0 /Platform:x64'
