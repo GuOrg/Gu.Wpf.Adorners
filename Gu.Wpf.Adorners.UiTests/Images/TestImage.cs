@@ -45,13 +45,13 @@ namespace Gu.Wpf.Adorners.UiTests
                 return "Win7";
             }
 
-            if (WindowsVersion.IsWindows10() ||
-                WindowsVersion.CurrentContains("Windows Server 2022"))
+            if (WindowsVersion.IsWindows10())
             {
                 return "Win10";
             }
 
-            if (WindowsVersion.CurrentContains("Windows Server 2019"))
+            if (WindowsVersion.CurrentContains("Windows Server 2019") ||
+                WindowsVersion.CurrentContains("Windows Server 2022"))
             {
                 return "WinServer2019";
             }
