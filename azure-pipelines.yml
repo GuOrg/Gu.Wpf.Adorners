@@ -7,7 +7,7 @@ steps:
   displayName: Build
   inputs:
     configuration: 'Release'
-    platform: Any CPU    
+    platform: 'Any CPU'  
     msbuildArgs: '/restore'
 
 - task: VSTest@2
