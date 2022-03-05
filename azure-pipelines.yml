@@ -3,6 +3,12 @@ pool:
 
 steps:
 
+- task: UseDotNet@2
+  displayName: 'Install .NET SDK'
+  inputs:
+    version: 6.0.100
+    performMultiLevelLookup: true
+
 - task: VSBuild@1
   displayName: Build
   inputs:
