@@ -1,18 +1,17 @@
 pool:
   vmImage: 'windows-2022'
 
-variables:
-  buildConfiguration: 'Release'
-
 steps:
 
 - task: VSBuild@1
   displayName: Build
   inputs:
-    configuration: '$(buildConfiguration)'
+    configuration: 'Release'
+    platform: Any CPU    
     msbuildArgs: '/restore'
 
 - task: VSTest@2
   displayName: Test
   inputs:
-    configuration: '$(buildConfiguration)'
+    configuration: 'Release'
+    platform: Any CPU
