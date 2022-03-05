@@ -7,12 +7,9 @@ steps:
   displayName: Build
   inputs:
     configuration: 'Release'
-    platform: 'Any CPU'  
     msbuildArgs: '/restore'
 
 - task: VSTest@2
   displayName: Test
   inputs:
     configuration: 'Release'
-    platform: 'Any CPU'
-    otherConsoleOptions: '/Framework:.NETCoreApp,Version=v6.0'
