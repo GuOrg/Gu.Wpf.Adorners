@@ -10,29 +10,35 @@ steps:
 
 # Add this Command to Include the .NET 6 SDK
 - task: UseDotNet@2
-  displayName: Use .NET 6.0
+  displayName: use .NET 6.0
   inputs:
     packageType: 'sdk'
     version: '6.0.x'
 
 # Add a Command To List the Current .NET SDKs (Sanity Check)
 - task: CmdLine@2
+  displayName: list sdk
   inputs:
     script: 'dotnet --list-sdks'
 
 - task: NuGetToolInstaller@1
+  displayName: install nuget
 
 - task: NuGetCommand@2
+  displayName: restore
   inputs:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
+  displayName: build
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
+  displayName: test
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    otherConsoleOptions: '/Framework:.NETCoreApp,Version=v6.0 /Platform:x64'
