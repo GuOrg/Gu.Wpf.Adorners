@@ -33,7 +33,7 @@ namespace Gu.Wpf.Adorners.UiTests
 #pragma warning restore CA1801, IDE0060 // Remove unused parameter
         {
             var fullFileName = Path.Combine(Path.GetTempPath(), resource);
-            _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
+            _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName)!);
             actual.Save(fullFileName);
             TestContext.AddTestAttachment(fullFileName);
         }
