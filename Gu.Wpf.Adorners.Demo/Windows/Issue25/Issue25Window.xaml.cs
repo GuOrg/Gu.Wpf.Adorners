@@ -1,12 +1,11 @@
-namespace Gu.Wpf.Adorners.Demo.Windows.Issue25
-{
-    using System.Windows;
+namespace Gu.Wpf.Adorners.Demo.Windows.Issue25;
 
-    public partial class Issue25Window : Window
+using System.Windows;
+
+public partial class Issue25Window : Window
+{
+    public Issue25Window()
     {
-        public Issue25Window()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

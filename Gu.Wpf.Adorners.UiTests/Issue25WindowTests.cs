@@ -1,37 +1,36 @@
-namespace Gu.Wpf.Adorners.UiTests
+namespace Gu.Wpf.Adorners.UiTests;
+
+using Gu.Wpf.UiAutomation;
+using NUnit.Framework;
+
+public class Issue25WindowTests
 {
-    using Gu.Wpf.UiAutomation;
-    using NUnit.Framework;
+    private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
+    private const string WindowName = "Issue25/Issue25Window";
 
-    public class Issue25WindowTests
+    [Test]
+    public void Resize()
     {
-        private const string ExeFileName = "Gu.Wpf.Adorners.Demo.exe";
-        private const string WindowName = "Issue25/Issue25Window";
-
-        [Test]
-        public void Resize()
+        using var app = Application.Launch(ExeFileName, WindowName);
+        var window = app.MainWindow;
+        while (window.ActualHeight > 100)
         {
-            using var app = Application.Launch(ExeFileName, WindowName);
-            var window = app.MainWindow;
-            while (window.ActualHeight > 100)
-            {
-                window.Resize((int)window.ActualWidth, (int)(window.ActualHeight - 10));
-            }
+            window.Resize((int)window.ActualWidth, (int)(window.ActualHeight - 10));
+        }
 
-            while (window.ActualHeight < 600)
-            {
-                window.Resize((int)window.ActualWidth, (int)(window.ActualHeight + 10));
-            }
+        while (window.ActualHeight < 600)
+        {
+            window.Resize((int)window.ActualWidth, (int)(window.ActualHeight + 10));
+        }
 
-            while (window.ActualHeight > 100)
-            {
-                window.Resize((int)window.ActualWidth, (int)(window.ActualHeight - 10));
-            }
+        while (window.ActualHeight > 100)
+        {
+            window.Resize((int)window.ActualWidth, (int)(window.ActualHeight - 10));
+        }
 
-            while (window.ActualHeight < 600)
-            {
-                window.Resize((int)window.ActualWidth, (int)(window.ActualHeight + 10));
-            }
+        while (window.ActualHeight < 600)
+        {
+            window.Resize((int)window.ActualWidth, (int)(window.ActualHeight + 10));
         }
     }
 }

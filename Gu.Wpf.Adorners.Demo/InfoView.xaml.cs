@@ -1,13 +1,12 @@
-namespace Gu.Wpf.Adorners.Demo
-{
-    using System.Windows.Controls;
+namespace Gu.Wpf.Adorners.Demo;
 
-    public partial class InfoView : UserControl
+using System.Windows.Controls;
+
+public partial class InfoView : UserControl
+{
+    public InfoView()
     {
-        public InfoView()
-        {
-            this.InitializeComponent();
-            this.DataContext = this;
-        }
+        this.InitializeComponent();
+        this.DataContext = this;
     }
 }

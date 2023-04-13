@@ -1,19 +1,18 @@
-namespace Gu.Wpf.Adorners.Demo.Windows
+namespace Gu.Wpf.Adorners.Demo.Windows;
+
+using System.Windows;
+
+public partial class OverlayDialogWindow : Window
 {
-    using System.Windows;
-
-    public partial class OverlayDialogWindow : Window
+    public OverlayDialogWindow()
     {
-        public OverlayDialogWindow()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
+    }
 
-        private void OnShowMessageBoxClick(object sender, RoutedEventArgs e)
-        {
-            this.SetCurrentValue(Overlay.VisibilityProperty, Visibility.Visible);
-            MessageBox.Show("Text", "Caption");
-            this.SetCurrentValue(Overlay.VisibilityProperty, Visibility.Hidden);
-        }
+    private void OnShowMessageBoxClick(object sender, RoutedEventArgs e)
+    {
+        this.SetCurrentValue(Overlay.VisibilityProperty, Visibility.Visible);
+        MessageBox.Show("Text", "Caption");
+        this.SetCurrentValue(Overlay.VisibilityProperty, Visibility.Hidden);
     }
 }

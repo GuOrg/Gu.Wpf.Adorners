@@ -1,93 +1,92 @@
-namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners;
+
+using System;
+using System.Windows;
+
+/// <summary>
+/// Manager for the DependencyObject.GotKeyboardFocus event.
+/// </summary>
+internal sealed class GotKeyboardFocusEventManager : WeakEventManager
 {
-    using System;
-    using System.Windows;
-
-    /// <summary>
-    /// Manager for the DependencyObject.GotKeyboardFocus event.
-    /// </summary>
-    internal sealed class GotKeyboardFocusEventManager : WeakEventManager
+    private GotKeyboardFocusEventManager()
     {
-        private GotKeyboardFocusEventManager()
+    }
+
+    // get the event manager for the current thread
+    private static GotKeyboardFocusEventManager CurrentManager
+    {
+        get
         {
-        }
+            var managerType = typeof(GotKeyboardFocusEventManager);
+            var manager = (GotKeyboardFocusEventManager)GetCurrentManager(managerType);
 
-        // get the event manager for the current thread
-        private static GotKeyboardFocusEventManager CurrentManager
+            // at first use, create and register a new manager
+            if (manager is null)
+            {
+                manager = new GotKeyboardFocusEventManager();
+                SetCurrentManager(managerType, manager);
+            }
+
+            return manager;
+        }
+    }
+
+    internal static void UpdateHandler(DependencyObject source, EventHandler<RoutedEventArgs> handler)
+    {
+        var manager = CurrentManager;
+        manager.ProtectedRemoveHandler(
+            source ?? throw new ArgumentNullException(nameof(source)),
+            handler ?? throw new ArgumentNullException(nameof(handler)));
+
+        manager.ProtectedAddHandler(
+            source,
+            handler);
+    }
+
+    /// <inheritdoc />
+    protected override ListenerList NewListenerList() => new ListenerList<RoutedEventArgs>();
+
+    /// <inheritdoc />
+    protected override void StartListening(object source)
+    {
+        if (source is FrameworkElement fe)
         {
-            get
-            {
-                var managerType = typeof(GotKeyboardFocusEventManager);
-                var manager = (GotKeyboardFocusEventManager)GetCurrentManager(managerType);
-
-                // at first use, create and register a new manager
-                if (manager is null)
-                {
-                    manager = new GotKeyboardFocusEventManager();
-                    SetCurrentManager(managerType, manager);
-                }
-
-                return manager;
-            }
+            fe.GotKeyboardFocus += this.OnGotKeyboardFocus;
         }
-
-        internal static void UpdateHandler(DependencyObject source, EventHandler<RoutedEventArgs> handler)
+        else if (source is FrameworkContentElement fce)
         {
-            var manager = CurrentManager;
-            manager.ProtectedRemoveHandler(
-                source ?? throw new ArgumentNullException(nameof(source)),
-                handler ?? throw new ArgumentNullException(nameof(handler)));
-
-            manager.ProtectedAddHandler(
-                source,
-                handler);
+            fce.GotKeyboardFocus += this.OnGotKeyboardFocus;
         }
-
-        /// <inheritdoc />
-        protected override ListenerList NewListenerList() => new ListenerList<RoutedEventArgs>();
-
-        /// <inheritdoc />
-        protected override void StartListening(object source)
+        else
         {
-            if (source is FrameworkElement fe)
-            {
-                fe.GotKeyboardFocus += this.OnGotKeyboardFocus;
-            }
-            else if (source is FrameworkContentElement fce)
-            {
-                fce.GotKeyboardFocus += this.OnGotKeyboardFocus;
-            }
-            else
-            {
-                // ReSharper disable once ConstantConditionalAccessQualifier R# dumbs it here
-                // ReSharper disable once ConstantNullCoalescingCondition
-                throw new ArgumentException($"Cannot start listening to {source?.GetType().Name ?? "null"}");
-            }
+            // ReSharper disable once ConstantConditionalAccessQualifier R# dumbs it here
+            // ReSharper disable once ConstantNullCoalescingCondition
+            throw new ArgumentException($"Cannot start listening to {source?.GetType().Name ?? "null"}");
         }
+    }
 
-        /// <inheritdoc />
-        protected override void StopListening(object source)
+    /// <inheritdoc />
+    protected override void StopListening(object source)
+    {
+        if (source is FrameworkElement fe)
         {
-            if (source is FrameworkElement fe)
-            {
-                fe.GotKeyboardFocus -= this.OnGotKeyboardFocus;
-            }
-            else if (source is FrameworkContentElement fce)
-            {
-                fce.GotKeyboardFocus -= this.OnGotKeyboardFocus;
-            }
-            else
-            {
-                // ReSharper disable once ConstantConditionalAccessQualifier
-                // ReSharper disable once ConstantNullCoalescingCondition
-                throw new ArgumentException($"Cannot stop listening to {source?.GetType().Name ?? "null"}");
-            }
+            fe.GotKeyboardFocus -= this.OnGotKeyboardFocus;
         }
+        else if (source is FrameworkContentElement fce)
+        {
+            fce.GotKeyboardFocus -= this.OnGotKeyboardFocus;
+        }
+        else
+        {
+            // ReSharper disable once ConstantConditionalAccessQualifier
+            // ReSharper disable once ConstantNullCoalescingCondition
+            throw new ArgumentException($"Cannot stop listening to {source?.GetType().Name ?? "null"}");
+        }
+    }
 
-        // event handler for GotKeyboardFocus event
-        private void OnGotKeyboardFocus(object sender, RoutedEventArgs args)
-        {
-            this.DeliverEvent(sender, args);
-        }
+    // event handler for GotKeyboardFocus event
+    private void OnGotKeyboardFocus(object sender, RoutedEventArgs args)
+    {
+        this.DeliverEvent(sender, args);
     }
 }

@@ -64,7 +64,7 @@
     <PackageReference Include="WpfAnalyzers" Version="4.1.1" PrivateAssets="all" />
   </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net45" Version="1.0.3" />
-	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+	  <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net45" Version="1.0.3" />
+  </ItemGroup>
 </Project>

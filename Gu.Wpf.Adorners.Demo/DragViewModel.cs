@@ -1,50 +1,49 @@
-namespace Gu.Wpf.Adorners.Demo
+namespace Gu.Wpf.Adorners.Demo;
+
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+public class DragViewModel : INotifyPropertyChanged
 {
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
+    private DragItem? item1 = new("Kajsa");
+    private DragItem? item2;
 
-    public class DragViewModel : INotifyPropertyChanged
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public DragItem? Item1
     {
-        private DragItem? item1 = new("Kajsa");
-        private DragItem? item2;
+        get => this.item1;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public DragItem? Item1
+        set
         {
-            get => this.item1;
-
-            set
+            if (ReferenceEquals(value, this.item1))
             {
-                if (ReferenceEquals(value, this.item1))
-                {
-                    return;
-                }
-
-                this.item1 = value;
-                this.OnPropertyChanged();
+                return;
             }
+
+            this.item1 = value;
+            this.OnPropertyChanged();
         }
+    }
 
-        public DragItem? Item2
+    public DragItem? Item2
+    {
+        get => this.item2;
+
+        set
         {
-            get => this.item2;
-
-            set
+            if (ReferenceEquals(value, this.item2))
             {
-                if (ReferenceEquals(value, this.item2))
-                {
-                    return;
-                }
-
-                this.item2 = value;
-                this.OnPropertyChanged();
+                return;
             }
-        }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.item2 = value;
+            this.OnPropertyChanged();
         }
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

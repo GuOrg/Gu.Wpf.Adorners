@@ -1,12 +1,11 @@
-namespace Gu.Wpf.Adorners.Demo.Windows.NotShowingWhenInFrames
-{
-    using System.Windows.Controls;
+namespace Gu.Wpf.Adorners.Demo.Windows.NotShowingWhenInFrames;
 
-    public partial class Page1 : Page
+using System.Windows.Controls;
+
+public partial class Page1 : Page
+{
+    public Page1()
     {
-        public Page1()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

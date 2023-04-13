@@ -1,22 +1,21 @@
-namespace Gu.Wpf.Adorners.Demo
+namespace Gu.Wpf.Adorners.Demo;
+
+using System.Windows;
+using System.Windows.Controls;
+
+public class DragItemTemplateSelector : DataTemplateSelector
 {
-    using System.Windows;
-    using System.Windows.Controls;
+    public DataTemplate? EmptyTemplate { get; set; }
 
-    public class DragItemTemplateSelector : DataTemplateSelector
+    public DataTemplate? ItemTemplate { get; set; }
+
+    public override DataTemplate SelectTemplate(object item, DependencyObject container)
     {
-        public DataTemplate? EmptyTemplate { get; set; }
-
-        public DataTemplate? ItemTemplate { get; set; }
-
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        if (item is DragItem)
         {
-            if (item is DragItem)
-            {
-                return this.ItemTemplate ?? base.SelectTemplate(item, container);
-            }
-
-            return this.EmptyTemplate ?? base.SelectTemplate(item, container);
+            return this.ItemTemplate ?? base.SelectTemplate(item, container);
         }
+
+        return this.EmptyTemplate ?? base.SelectTemplate(item, container);
     }
 }

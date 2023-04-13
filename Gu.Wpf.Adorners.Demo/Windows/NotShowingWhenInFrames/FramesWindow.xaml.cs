@@ -1,12 +1,11 @@
-﻿namespace Gu.Wpf.Adorners.Demo.Windows.NotShowingWhenInFrames
-{
-    using System.Windows;
+﻿namespace Gu.Wpf.Adorners.Demo.Windows.NotShowingWhenInFrames;
 
-    public partial class FramesWindow : Window
+using System.Windows;
+
+public partial class FramesWindow : Window
+{
+    public FramesWindow()
     {
-        public FramesWindow()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

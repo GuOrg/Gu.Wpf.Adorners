@@ -1,86 +1,85 @@
-namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners;
+
+using System;
+using System.Windows;
+using System.Windows.Controls;
+
+/// <summary>
+/// Manager for the ComboBox.SelectionChanged event.
+/// </summary>
+internal sealed class SelectionChangedEventManager : WeakEventManager
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    /// <summary>
-    /// Manager for the ComboBox.SelectionChanged event.
-    /// </summary>
-    internal sealed class SelectionChangedEventManager : WeakEventManager
+    private SelectionChangedEventManager()
     {
-        private SelectionChangedEventManager()
-        {
-        }
+    }
 
-        // get the event manager for the current thread
-        private static SelectionChangedEventManager CurrentManager
+    // get the event manager for the current thread
+    private static SelectionChangedEventManager CurrentManager
+    {
+        get
         {
-            get
+            var managerType = typeof(SelectionChangedEventManager);
+            var manager = (SelectionChangedEventManager)GetCurrentManager(managerType);
+
+            // at first use, create and register a new manager
+            if (manager is null)
             {
-                var managerType = typeof(SelectionChangedEventManager);
-                var manager = (SelectionChangedEventManager)GetCurrentManager(managerType);
-
-                // at first use, create and register a new manager
-                if (manager is null)
-                {
-                    manager = new SelectionChangedEventManager();
-                    SetCurrentManager(managerType, manager);
-                }
-
-                return manager;
+                manager = new SelectionChangedEventManager();
+                SetCurrentManager(managerType, manager);
             }
-        }
 
-        internal static void UpdateHandler(ComboBox source, EventHandler<RoutedEventArgs> handler)
+            return manager;
+        }
+    }
+
+    internal static void UpdateHandler(ComboBox source, EventHandler<RoutedEventArgs> handler)
+    {
+        var manager = CurrentManager;
+        manager.ProtectedRemoveHandler(
+            source ?? throw new ArgumentNullException(nameof(source)),
+            handler ?? throw new ArgumentNullException(nameof(handler)));
+
+        manager.ProtectedAddHandler(
+            source,
+            handler);
+    }
+
+    /// <inheritdoc />
+    protected override ListenerList NewListenerList() => new ListenerList<RoutedEventArgs>();
+
+    /// <inheritdoc />
+    protected override void StartListening(object source)
+    {
+        if (source is ComboBox comboBox)
         {
-            var manager = CurrentManager;
-            manager.ProtectedRemoveHandler(
-                source ?? throw new ArgumentNullException(nameof(source)),
-                handler ?? throw new ArgumentNullException(nameof(handler)));
-
-            manager.ProtectedAddHandler(
-                source,
-                handler);
+            comboBox.SelectionChanged += this.OnSelectionChanged;
         }
-
-        /// <inheritdoc />
-        protected override ListenerList NewListenerList() => new ListenerList<RoutedEventArgs>();
-
-        /// <inheritdoc />
-        protected override void StartListening(object source)
+        else
         {
-            if (source is ComboBox comboBox)
-            {
-                comboBox.SelectionChanged += this.OnSelectionChanged;
-            }
-            else
-            {
-                // ReSharper disable once ConstantConditionalAccessQualifier
-                // ReSharper disable once ConstantNullCoalescingCondition
-                throw new ArgumentException($"Cannot start listening to {source?.GetType().Name ?? "null"}");
-            }
+            // ReSharper disable once ConstantConditionalAccessQualifier
+            // ReSharper disable once ConstantNullCoalescingCondition
+            throw new ArgumentException($"Cannot start listening to {source?.GetType().Name ?? "null"}");
         }
+    }
 
-        /// <inheritdoc />
-        protected override void StopListening(object source)
+    /// <inheritdoc />
+    protected override void StopListening(object source)
+    {
+        if (source is ComboBox comboBox)
         {
-            if (source is ComboBox comboBox)
-            {
-                comboBox.SelectionChanged -= this.OnSelectionChanged;
-            }
-            else
-            {
-                // ReSharper disable once ConstantConditionalAccessQualifier
-                // ReSharper disable once ConstantNullCoalescingCondition
-                throw new ArgumentException($"Cannot stop listening to {source?.GetType().Name ?? "null"}");
-            }
+            comboBox.SelectionChanged -= this.OnSelectionChanged;
         }
+        else
+        {
+            // ReSharper disable once ConstantConditionalAccessQualifier
+            // ReSharper disable once ConstantNullCoalescingCondition
+            throw new ArgumentException($"Cannot stop listening to {source?.GetType().Name ?? "null"}");
+        }
+    }
 
-        // event handler for SelectionChanged event
-        private void OnSelectionChanged(object sender, RoutedEventArgs args)
-        {
-            this.DeliverEvent(sender, args);
-        }
+    // event handler for SelectionChanged event
+    private void OnSelectionChanged(object sender, RoutedEventArgs args)
+    {
+        this.DeliverEvent(sender, args);
     }
 }

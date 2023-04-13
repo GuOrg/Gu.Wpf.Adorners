@@ -1,93 +1,92 @@
-namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners;
+
+using System;
+using System.Windows;
+
+/// <summary>
+/// Manager for the DependencyObject.Loaded event.
+/// </summary>
+internal sealed class LoadedEventManager : WeakEventManager
 {
-    using System;
-    using System.Windows;
-
-    /// <summary>
-    /// Manager for the DependencyObject.Loaded event.
-    /// </summary>
-    internal sealed class LoadedEventManager : WeakEventManager
+    private LoadedEventManager()
     {
-        private LoadedEventManager()
+    }
+
+    // get the event manager for the current thread
+    private static LoadedEventManager CurrentManager
+    {
+        get
         {
-        }
+            var managerType = typeof(LoadedEventManager);
+            var manager = (LoadedEventManager)GetCurrentManager(managerType);
 
-        // get the event manager for the current thread
-        private static LoadedEventManager CurrentManager
+            // at first use, create and register a new manager
+            if (manager is null)
+            {
+                manager = new LoadedEventManager();
+                SetCurrentManager(managerType, manager);
+            }
+
+            return manager;
+        }
+    }
+
+    internal static void UpdateHandler(DependencyObject source, EventHandler<RoutedEventArgs> handler)
+    {
+        var manager = CurrentManager;
+        manager.ProtectedRemoveHandler(
+            source ?? throw new ArgumentNullException(nameof(source)),
+            handler ?? throw new ArgumentNullException(nameof(handler)));
+
+        manager.ProtectedAddHandler(
+            source,
+            handler);
+    }
+
+    /// <inheritdoc />
+    protected override ListenerList NewListenerList() => new ListenerList<RoutedEventArgs>();
+
+    /// <inheritdoc />
+    protected override void StartListening(object source)
+    {
+        if (source is FrameworkElement fe)
         {
-            get
-            {
-                var managerType = typeof(LoadedEventManager);
-                var manager = (LoadedEventManager)GetCurrentManager(managerType);
-
-                // at first use, create and register a new manager
-                if (manager is null)
-                {
-                    manager = new LoadedEventManager();
-                    SetCurrentManager(managerType, manager);
-                }
-
-                return manager;
-            }
+            fe.Loaded += this.OnLoaded;
         }
-
-        internal static void UpdateHandler(DependencyObject source, EventHandler<RoutedEventArgs> handler)
+        else if (source is FrameworkContentElement fce)
         {
-            var manager = CurrentManager;
-            manager.ProtectedRemoveHandler(
-                source ?? throw new ArgumentNullException(nameof(source)),
-                handler ?? throw new ArgumentNullException(nameof(handler)));
-
-            manager.ProtectedAddHandler(
-                source,
-                handler);
+            fce.Loaded += this.OnLoaded;
         }
-
-        /// <inheritdoc />
-        protected override ListenerList NewListenerList() => new ListenerList<RoutedEventArgs>();
-
-        /// <inheritdoc />
-        protected override void StartListening(object source)
+        else
         {
-            if (source is FrameworkElement fe)
-            {
-                fe.Loaded += this.OnLoaded;
-            }
-            else if (source is FrameworkContentElement fce)
-            {
-                fce.Loaded += this.OnLoaded;
-            }
-            else
-            {
-                // ReSharper disable once ConstantConditionalAccessQualifier
-                // ReSharper disable once ConstantNullCoalescingCondition
-                throw new ArgumentException($"Cannot start listening to {source?.GetType().Name ?? "null"}");
-            }
+            // ReSharper disable once ConstantConditionalAccessQualifier
+            // ReSharper disable once ConstantNullCoalescingCondition
+            throw new ArgumentException($"Cannot start listening to {source?.GetType().Name ?? "null"}");
         }
+    }
 
-        /// <inheritdoc />
-        protected override void StopListening(object source)
+    /// <inheritdoc />
+    protected override void StopListening(object source)
+    {
+        if (source is FrameworkElement fe)
         {
-            if (source is FrameworkElement fe)
-            {
-                fe.Loaded -= this.OnLoaded;
-            }
-            else if (source is FrameworkContentElement fce)
-            {
-                fce.Loaded -= this.OnLoaded;
-            }
-            else
-            {
-                // ReSharper disable once ConstantConditionalAccessQualifier
-                // ReSharper disable once ConstantNullCoalescingCondition
-                throw new ArgumentException($"Cannot stop listening to {source?.GetType().Name ?? "null"}");
-            }
+            fe.Loaded -= this.OnLoaded;
         }
+        else if (source is FrameworkContentElement fce)
+        {
+            fce.Loaded -= this.OnLoaded;
+        }
+        else
+        {
+            // ReSharper disable once ConstantConditionalAccessQualifier
+            // ReSharper disable once ConstantNullCoalescingCondition
+            throw new ArgumentException($"Cannot stop listening to {source?.GetType().Name ?? "null"}");
+        }
+    }
 
-        // event handler for Loaded event
-        private void OnLoaded(object sender, RoutedEventArgs args)
-        {
-            this.DeliverEvent(sender, args);
-        }
+    // event handler for Loaded event
+    private void OnLoaded(object sender, RoutedEventArgs args)
+    {
+        this.DeliverEvent(sender, args);
     }
 }

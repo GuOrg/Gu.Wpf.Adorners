@@ -1,12 +1,11 @@
-namespace Gu.Wpf.Adorners.Demo
-{
-    using System.Windows.Controls;
+namespace Gu.Wpf.Adorners.Demo;
 
-    public partial class OverlayView : UserControl
+using System.Windows.Controls;
+
+public partial class OverlayView : UserControl
+{
+    public OverlayView()
     {
-        public OverlayView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

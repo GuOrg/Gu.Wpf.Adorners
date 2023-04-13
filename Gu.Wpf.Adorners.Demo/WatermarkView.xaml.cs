@@ -1,12 +1,11 @@
-namespace Gu.Wpf.Adorners.Demo
-{
-    using System.Windows.Controls;
+namespace Gu.Wpf.Adorners.Demo;
 
-    public partial class WatermarkView : UserControl
+using System.Windows.Controls;
+
+public partial class WatermarkView : UserControl
+{
+    public WatermarkView()
     {
-        public WatermarkView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

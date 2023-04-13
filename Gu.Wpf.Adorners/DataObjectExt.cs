@@ -1,60 +1,59 @@
-namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners;
+
+using System.Windows;
+
+/// <summary>
+/// Extension methods for <see cref="IDataObject"/>.
+/// </summary>
+public static class DataObjectExt
 {
-    using System.Windows;
+    /// <summary>
+    /// Calls return (T)dataObject.GetData(typeof(T));.
+    /// </summary>
+    /// <typeparam name="T">The type of the key and the data.</typeparam>
+    /// <param name="dataObject">The <see cref="IDataObject"/>.</param>
+    /// <returns>The value returned by <see cref="IDataObject.GetData(System.Type)"/>.</returns>
+    public static T GetData<T>(this IDataObject dataObject)
+    {
+        if (dataObject is null)
+        {
+            throw new System.ArgumentNullException(nameof(dataObject));
+        }
+
+        return (T)dataObject.GetData(typeof(T));
+    }
 
     /// <summary>
-    /// Extension methods for <see cref="IDataObject"/>.
+    /// Calls return (T)dataObject.GetData(typeof(T));.
     /// </summary>
-    public static class DataObjectExt
+    /// <typeparam name="T">The type of the key and the data.</typeparam>
+    /// <param name="dataObject">The <see cref="IDataObject"/>.</param>
+    /// <param name="data">The data keyed by <typeparamref name="T"/>.</param>
+    /// <returns>True if <see cref="IDataObject.GetData(System.Type)"/> returns not null.</returns>
+    public static bool TryGetData<T>(this IDataObject dataObject, out T data)
     {
-        /// <summary>
-        /// Calls return (T)dataObject.GetData(typeof(T));.
-        /// </summary>
-        /// <typeparam name="T">The type of the key and the data.</typeparam>
-        /// <param name="dataObject">The <see cref="IDataObject"/>.</param>
-        /// <returns>The value returned by <see cref="IDataObject.GetData(System.Type)"/>.</returns>
-        public static T GetData<T>(this IDataObject dataObject)
+        if (dataObject is null)
         {
-            if (dataObject is null)
-            {
-                throw new System.ArgumentNullException(nameof(dataObject));
-            }
-
-            return (T)dataObject.GetData(typeof(T));
+            throw new System.ArgumentNullException(nameof(dataObject));
         }
 
-        /// <summary>
-        /// Calls return (T)dataObject.GetData(typeof(T));.
-        /// </summary>
-        /// <typeparam name="T">The type of the key and the data.</typeparam>
-        /// <param name="dataObject">The <see cref="IDataObject"/>.</param>
-        /// <param name="data">The data keyed by <typeparamref name="T"/>.</param>
-        /// <returns>True if <see cref="IDataObject.GetData(System.Type)"/> returns not null.</returns>
-        public static bool TryGetData<T>(this IDataObject dataObject, out T data)
-        {
-            if (dataObject is null)
-            {
-                throw new System.ArgumentNullException(nameof(dataObject));
-            }
+        data = (T)dataObject.GetData(typeof(T));
+        return data != null;
+    }
 
-            data = (T)dataObject.GetData(typeof(T));
-            return data != null;
+    /// <summary>
+    /// Calls dataObject.SetData(typeof(T), data);.
+    /// </summary>
+    /// <typeparam name="T">The type to key the data with.</typeparam>
+    /// <param name="dataObject">The <see cref="IDataObject"/>.</param>
+    /// <param name="data">The value to set.</param>
+    public static void SetData<T>(this IDataObject dataObject, T data)
+    {
+        if (dataObject is null)
+        {
+            throw new System.ArgumentNullException(nameof(dataObject));
         }
 
-        /// <summary>
-        /// Calls dataObject.SetData(typeof(T), data);.
-        /// </summary>
-        /// <typeparam name="T">The type to key the data with.</typeparam>
-        /// <param name="dataObject">The <see cref="IDataObject"/>.</param>
-        /// <param name="data">The value to set.</param>
-        public static void SetData<T>(this IDataObject dataObject, T data)
-        {
-            if (dataObject is null)
-            {
-                throw new System.ArgumentNullException(nameof(dataObject));
-            }
-
-            dataObject.SetData(typeof(T), data);
-        }
+        dataObject.SetData(typeof(T), data);
     }
 }
