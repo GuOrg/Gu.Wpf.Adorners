@@ -7,7 +7,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Manager for the TextBoxBase.TextChanged event.
     /// </summary>
-    internal class TextChangedEventManager : WeakEventManager
+    internal sealed class TextChangedEventManager : WeakEventManager
     {
         private TextChangedEventManager()
         {

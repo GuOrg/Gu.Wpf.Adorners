@@ -7,7 +7,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Manager for the PasswordBox.PasswordChanged event.
     /// </summary>
-    internal class PasswordChangedEventManager : WeakEventManager
+    internal sealed class PasswordChangedEventManager : WeakEventManager
     {
         private PasswordChangedEventManager()
         {

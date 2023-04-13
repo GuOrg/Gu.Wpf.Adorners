@@ -6,7 +6,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Manager for the UIElement.IsVisibleChanged event.
     /// </summary>
-    internal class IsVisibleChangedEventManager : WeakEventManager
+    internal sealed class IsVisibleChangedEventManager : WeakEventManager
     {
         private IsVisibleChangedEventManager()
         {

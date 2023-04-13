@@ -1,9 +1,9 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
 
-    internal class IsKeyboardFocusWithinChangedEventManager : WeakEventManager
+    internal sealed class IsKeyboardFocusWithinChangedEventManager : WeakEventManager
     {
         private IsKeyboardFocusWithinChangedEventManager()
         {

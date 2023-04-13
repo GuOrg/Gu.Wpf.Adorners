@@ -2,7 +2,7 @@ namespace Gu.Wpf.Adorners
 {
     using System.Collections;
 
-    internal class SingleChildEnumerator : IEnumerator
+    internal sealed class SingleChildEnumerator : IEnumerator
     {
         private readonly int count;
         private readonly object child;

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
@@ -7,7 +7,7 @@
     /// <summary>
     /// Manager for the DependencyObject.TextInput event.
     /// </summary>
-    internal class TextInputEventManager : WeakEventManager
+    internal sealed class TextInputEventManager : WeakEventManager
     {
         private TextInputEventManager()
         {

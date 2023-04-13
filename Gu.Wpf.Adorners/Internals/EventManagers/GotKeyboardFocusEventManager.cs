@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
@@ -6,7 +6,7 @@
     /// <summary>
     /// Manager for the DependencyObject.GotKeyboardFocus event.
     /// </summary>
-    internal class GotKeyboardFocusEventManager : WeakEventManager
+    internal sealed class GotKeyboardFocusEventManager : WeakEventManager
     {
         private GotKeyboardFocusEventManager()
         {

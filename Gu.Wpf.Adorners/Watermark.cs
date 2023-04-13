@@ -319,7 +319,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private class TextBoxListener : IListener
+        private sealed class TextBoxListener : IListener
         {
             private readonly TextBox textBox;
 
@@ -338,7 +338,7 @@ namespace Gu.Wpf.Adorners
             public string Text => this.textBox.Text;
         }
 
-        private class PasswordBoxListener : IListener
+        private sealed class PasswordBoxListener : IListener
         {
             private readonly PasswordBox passwordBox;
 
@@ -357,7 +357,7 @@ namespace Gu.Wpf.Adorners
             public string Text => this.passwordBox.Password;
         }
 
-        private class ComboBoxListener : IListener
+        private sealed class ComboBoxListener : IListener
         {
             private readonly ComboBox comboBox;
 

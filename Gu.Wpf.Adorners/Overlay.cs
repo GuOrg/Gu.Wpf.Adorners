@@ -342,7 +342,7 @@ namespace Gu.Wpf.Adorners
             }
         }
 
-        private class EventListener
+        private sealed class EventListener
         {
             internal EventListener(FrameworkElement element)
             {

@@ -4,7 +4,7 @@ namespace Gu.Wpf.Adorners
     using System.Windows;
     using System.Windows.Media;
 
-    internal class User32
+    internal static class User32
     {
         internal static Point GetMousePosition()
         {

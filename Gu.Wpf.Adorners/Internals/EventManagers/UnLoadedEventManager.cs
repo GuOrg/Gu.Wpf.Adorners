@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Adorners
+namespace Gu.Wpf.Adorners
 {
     using System;
     using System.Windows;
@@ -6,7 +6,7 @@
     /// <summary>
     /// Manager for the DependencyObject.Unloaded event.
     /// </summary>
-    internal class UnloadedEventManager : WeakEventManager
+    internal sealed class UnloadedEventManager : WeakEventManager
     {
         private UnloadedEventManager()
         {

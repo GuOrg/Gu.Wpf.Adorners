@@ -7,7 +7,7 @@ namespace Gu.Wpf.Adorners
     /// <summary>
     /// Manager for the ComboBox.SelectionChanged event.
     /// </summary>
-    internal class SelectionChangedEventManager : WeakEventManager
+    internal sealed class SelectionChangedEventManager : WeakEventManager
     {
         private SelectionChangedEventManager()
         {
